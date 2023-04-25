@@ -18,6 +18,16 @@ public class Tile : MonoBehaviour
     public int X { get; set; }
     public int Y { get; set; }
 
-   
+    private void Update()
+    {
+        transform.position = TileManager.Instance.GetTilePos(X, Y);
+        transform.localScale = new Vector3(TileManager.Instance.XScale_Tile, TileManager.Instance.YScale_Tile, 1);
+    }
+
+    public Vector3 GetPos()
+    {
+        return transform.position;
+    }
+
 
 }

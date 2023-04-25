@@ -41,7 +41,7 @@ public class TileManager : MonoBehaviour
             {
                 GameObject go = Instantiate(Tile_Prefab);
                 go.name = $"Tile {x},{y}";
-                go.transform.localPosition = GetTilePos(x, y);
+                go.transform.position = GetTilePos(x, y);
 
                 SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
                 int colorIndex = x + y;

@@ -49,14 +49,13 @@ public class TileManager : MonoBehaviour
 
     void GenerateTiles()
     {
-        if (transform.childCount > 0)
+        Transform[] tfs = GetComponentsInChildren<Transform>();
+
+        for (int i = 1; i < tfs.Length; i++)
         {
-            foreach (Transform item in transform)
-            {
-                DestroyImmediate(item.gameObject);
-            }
+            DestroyImmediate(tfs[i].gameObject);
         }
-            
+     
         TileArray = new Tile[MapX,MapY];
 
         for (int x = 0; x < MapX; x++)

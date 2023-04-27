@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     float maxSpeed;
     public enum State { Move, Attack };
     public State enemyStete;
+
+    Unit unit;
     void Start()
     {
         maxSpeed = speed;
@@ -34,9 +36,9 @@ public class Enemy : MonoBehaviour
         if (hit)
         {
             enemyStete = State.Attack;
-            if (hit.collider.CompareTag("Player")) // && unit != null 추가
+            if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null 추가
             {
-                // this.unit = (Unit)hit.GetComponent(typeof(Unit)); // 타겟을 지정
+                this.unit = (Unit)hit.collider.GetComponent(typeof(Unit)); // 타겟을 지정
                 // 애니메이션 발동
                 Attack(); // 임시
                 enemyStete = State.Attack;
@@ -45,11 +47,22 @@ public class Enemy : MonoBehaviour
         else
         {
             enemyStete = State.Move;
+            // 애니메이션 초기화
         }
     }
 
-    public void Attack() // 타겟 타입 구분
+    public void Attack() // 타겟 타입 구분, 애니메이션 이벤트 키프레임
     {
-        // unit.hp -= damage;
+        unit.HP -= damage;
+    }
+
+    public float HP
+    {
+        get { return hp; }
+        set
+        {
+            hp = value;
+            if (hp <= 0) Destroy(gameObject);
+        }
     }
 }

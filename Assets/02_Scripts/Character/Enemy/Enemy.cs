@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     public State enemyStete;
 
     Unit unit;
+
+    enum TargetType { Unit, Base }
+    TargetType target;
     void Start()
     {
         maxSpeed = speed;
@@ -35,7 +38,6 @@ public class Enemy : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, range, Vector2.zero,0, layerMask);
         if (hit)
         {
-            enemyStete = State.Attack;
             if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null 추가
             {
                 this.unit = (Unit)hit.collider.GetComponent(typeof(Unit)); // 타겟을 지정
@@ -63,6 +65,15 @@ public class Enemy : MonoBehaviour
         {
             hp = value;
             if (hp <= 0) Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.collider.CompareTag("Base"))
+        {
+            coll.gameObject.GetComponent<Base>().HP -= 1;
+            Destroy(gameObject);
         }
     }
 }

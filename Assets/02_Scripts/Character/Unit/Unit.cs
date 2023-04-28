@@ -6,17 +6,20 @@ public class Unit : MonoBehaviour
 {
     public float hp, damage, range;
 
-    Enemy enemy;
+    protected Enemy enemy;
+
+    public enum Kind { Warrior };
+    public Kind unitKind;
     void Start()
     {
         
     }
     void Update()
     {
-        Search();
+        //Search();
     }
 
-    void Search()
+    protected void Search()
     {
         int layerMask = (-1) - (1 << LayerMask.NameToLayer("Unit"));
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, range, Vector2.zero, 0, layerMask);
@@ -48,5 +51,13 @@ public class Unit : MonoBehaviour
             hp = value;
             if (hp <= 0) Destroy(gameObject);
         }
+    }
+
+
+    public void EnableObj()
+    {
+        enabled = false;
+        GetComponent<SynthesisUnit>().unitKind = unitKind;
+        GetComponent<SynthesisUnit>().Original = gameObject;
     }
 }

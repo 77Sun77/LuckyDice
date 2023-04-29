@@ -24,7 +24,7 @@ public class DragUnit : MonoBehaviour
                     GameObject hitObj = Instantiate(hit.collider.gameObject);
                     hitObj.AddComponent<SynthesisUnit>();
                     target = (Unit)hitObj.GetComponent(typeof(Unit));
-                    target.EnableObj();
+                    target.EnableObj(hit.collider.gameObject);
 
                 }
             }
@@ -34,8 +34,6 @@ public class DragUnit : MonoBehaviour
             if(target != null)
             {
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward, 1);
-
                 target.transform.position = mousePos;
             }
             
@@ -45,7 +43,14 @@ public class DragUnit : MonoBehaviour
         {
             if (target != null)
             {
+                SynthesisUnit unit = target.GetComponent<SynthesisUnit>();
+                if (unit.target != null)
+                {
+                    unit.target.Rating++;
+                    Destroy(unit.Original);
+                }
                 Destroy(target.gameObject);
+
                 target = null;
             }
             

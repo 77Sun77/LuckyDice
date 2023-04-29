@@ -5,10 +5,11 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public float hp, damage, range;
+    public int Rating;
 
     protected Enemy enemy;
 
-    public enum Kind { Warrior };
+    public enum Kind { Warrior, Wizard, Supporter };
     public Kind unitKind;
     void Start()
     {
@@ -54,10 +55,10 @@ public class Unit : MonoBehaviour
     }
 
 
-    public void EnableObj()
+    public void EnableObj(GameObject original)
     {
         enabled = false;
         GetComponent<SynthesisUnit>().unitKind = unitKind;
-        GetComponent<SynthesisUnit>().Original = gameObject;
+        GetComponent<SynthesisUnit>().Original = original;
     }
 }

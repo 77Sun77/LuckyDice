@@ -6,10 +6,10 @@ public class Warrior : Unit
 {
     void Start()
     {
-        hp = 0;
-        damage = 0;
-        range = 0;
-
+        //hp = 0;
+        //damage = 0;
+        //srange = 0;
+        Rating = 1;
     }
 
     // Update is called once per frame

@@ -4,73 +4,81 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed, hp, damage, range;
-    float maxSpeed;
-    public enum State { Move, Attack };
-    public State enemyStete;
+    public string name;
+    public float damage, hp, defense, speed;
+    public float delayTime, time;
+    public float drop_Gold;
+
+    public bool isAttack;
 
     Unit unit;
 
-    enum TargetType { Unit, Base }
-    TargetType target;
     void Start()
     {
-        maxSpeed = speed;
+        
     }
 
-    void Update()
+    protected void Update()
     {
         Search();
         Move();
+
+        if(isAttack)
+        {
+            if(time <= 0)
+            {
+                Attack();
+                time = delayTime;
+            }
+            time -= Time.deltaTime;
+        }
+
     }
 
     void Move()
     {
-        if(enemyStete == State.Move)
+        if(!isAttack)
         {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+            transform.Translate(Vector2.left * (speed/10) * Time.deltaTime);
         }
     }
 
     void Search()
     {
-        int layerMask = (-1) - (1 << LayerMask.NameToLayer("Enemy"));
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, range, Vector2.zero,0, layerMask);
+        int layerMask = 1 << LayerMask.NameToLayer("Unit");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position+new Vector3(0.5f, 0, 0), Vector2.left, 1, layerMask);
         if (hit)
         {
             if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null 추가
             {
                 this.unit = (Unit)hit.collider.GetComponent(typeof(Unit)); // 타겟을 지정
                 // 애니메이션 발동
-                Attack(); // 임시
-                enemyStete = State.Attack;
+                isAttack = true;
             }
         }
         else
         {
-            enemyStete = State.Move;
+            isAttack = false;
             // 애니메이션 초기화
+            time = delayTime;
         }
     }
 
     public void Attack() // 타겟 타입 구분, 애니메이션 이벤트 키프레임
     {
-        unit.HP -= damage;
+        unit.TakeDamage(damage);
     }
 
-    public float HP
+    public void TakeDamage(float damage)
     {
-        get { return hp; }
-        set
-        {
-            hp = value;
-            if (hp <= 0) Destroy(gameObject);
-        }
+        damage -= defense;
+        hp -= damage;
+        if (hp <= 0) Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.collider.CompareTag("Base"))
+        if (coll.CompareTag("Base"))
         {
             coll.gameObject.GetComponent<Base>().HP -= 1;
             Destroy(gameObject);

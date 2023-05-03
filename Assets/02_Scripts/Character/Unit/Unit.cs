@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour
     public float delayTime, time;
     public int Rating;
 
-    protected List<Enemy> enemys=new List<Enemy>();
+    protected List<Enemy> enemys = new List<Enemy>();
 
     public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer };
     public Kind unitKind;
@@ -27,11 +27,11 @@ public class Unit : MonoBehaviour
     {
         mySprite = GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
-        if(detectRange.y > 1)
+        if (detectRange.y > 1)
         {
             detectRange.y -= 0.1f;
         }
-        if(attackRange.y > 1)
+        if (attackRange.y > 1)
         {
             attackRange.y -= 0.1f;
         }
@@ -39,7 +39,7 @@ public class Unit : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
     protected void Update()
     {
@@ -61,23 +61,32 @@ public class Unit : MonoBehaviour
     {
         int layerMask = 1 << LayerMask.NameToLayer("Enemy");
         Vector2 pos = transform.position;
-        pos.x -= 0.5f;
-        RaycastHit2D hit = Physics2D.BoxCast(pos, detectRange, 0, Vector2.right, detectRange.x/2, layerMask);
-        
-        if (hit) isAttack = true;
+
+        pos.x -= 0.875f; // Ä­ x/2
+        Vector2 range = detectRange; // »õ·Î¿î º¯¼ö
+        range.x += (detectRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
+        RaycastHit2D hit = Physics2D.BoxCast(pos, range, 0, Vector2.right, range.x / 2, layerMask); // detectRange -> range
+
+        if (hit)
+        {
+            isAttack = true;
+            print(hit.transform.position);
+        }
         else
         {
             isAttack = false;
             time = delayTime;
         }
 
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, attackRange, 0, Vector2.right, attackRange.x/2, layerMask);
+        range = attackRange; // »õ·Î¿î º¯¼ö
+        range.x += (attackRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, attackRange, 0, Vector2.right, attackRange.x / 2, layerMask); // attackRange -> range
 
         if (hits.Length != 0)
         {
             enemys.Clear();
 
-            foreach(RaycastHit2D hitEnemy in hits)
+            foreach (RaycastHit2D hitEnemy in hits)
             {
                 enemys.Add((Enemy)hitEnemy.collider.GetComponent(typeof(Enemy)));
             }
@@ -88,7 +97,7 @@ public class Unit : MonoBehaviour
     {
         if (enemys.Count != 0)
         {
-            foreach(Enemy enemy in enemys)
+            foreach (Enemy enemy in enemys)
             {
                 float damage = this.damage;
                 if (isBuff)
@@ -98,7 +107,7 @@ public class Unit : MonoBehaviour
                 enemy.TakeDamage(damage);
             }
         }
-       
+
     }
     public void Projectile_Attack()
     {
@@ -106,7 +115,7 @@ public class Unit : MonoBehaviour
         Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity).GetComponent<Projectile>().Set_Projectile(this, 3, damage);
     }
 
-    public void TakeDamage(float damage) 
+    public void TakeDamage(float damage)
     {
         float defense = this.defense;
         if (isBuff)

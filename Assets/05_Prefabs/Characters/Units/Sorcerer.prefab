@@ -149,8 +149,8 @@ MonoBehaviour:
   damage: 30
   hp: 150
   defense: 10
-  detectRange: {x: 15, y: 1}
-  attackRange: {x: 15, y: 1}
+  detectRange: {x: 6, y: 1}
+  attackRange: {x: 5, y: 1}
   delayTime: 2
   time: 0
   Rating: 0

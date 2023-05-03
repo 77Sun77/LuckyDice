@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
 
     Unit unit;
 
+    public enum Debuff { None, Damage, Defense, Speed };
+    public Debuff debuff;
+
     void Start()
     {
         
@@ -39,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         if(!isAttack)
         {
-            transform.Translate(Vector2.left * (speed/10) * Time.deltaTime);
+            transform.Translate(Vector2.left * (speed/15) * Time.deltaTime);
         }
     }
 

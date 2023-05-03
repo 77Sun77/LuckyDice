@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class DragUnit : MonoBehaviour
 {
+    bool isDrag;
+    float timer;
+    Vector2 mousePos;
     Unit target;
     void Start()
     {
-        
+        timer = 0.5f;
     }
 
     void Update()
@@ -15,7 +18,7 @@ public class DragUnit : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (target != null) return;
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward, 1);
             if (hit)
             {
@@ -31,12 +34,34 @@ public class DragUnit : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            if(target != null)
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (isDrag)
             {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.transform.position = mousePos;
+                return;
+            }
+            else if (target != null)
+            {
+                if (Vector2.Distance(this.mousePos, mousePos) > 0.5f)
+                {
+                    target.transform.position = mousePos;
+                    isDrag = true;
+
+                }
             }
             
+
+            if (!isDrag && Vector2.Distance(mousePos, target.transform.position) > 0.5f) timer = 0.5f;
+            if (timer <= 0)
+            {
+                //target.transform.position = mousePos;
+                isDrag = true;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
 
         }
         if (Input.GetMouseButtonUp(0))
@@ -51,9 +76,11 @@ public class DragUnit : MonoBehaviour
                 }
                 Destroy(target.gameObject);
 
+                timer = 0.5f;
+
+                isDrag = false;
                 target = null;
             }
-            
 
         }
 

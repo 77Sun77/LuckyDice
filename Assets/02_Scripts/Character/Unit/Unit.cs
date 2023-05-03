@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
 
     protected List<Enemy> enemys=new List<Enemy>();
 
-    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer };
+    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer };
     public Kind unitKind;
 
     public bool isAttack, isBuff;
@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     public SpriteRenderer mySprite;
     public Animator anim;
 
+    public GameObject ProjectilePrefab;
     protected void first_Setting()
     {
         mySprite = GetComponent<SpriteRenderer>();
@@ -102,6 +103,7 @@ public class Unit : MonoBehaviour
     public void Projectile_Attack()
     {
         // 투사체 프리팹 소환
+        Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity).GetComponent<Projectile>().Set_Projectile(this, 3, damage);
     }
 
     public void TakeDamage(float damage) 

@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sorcerer : Unit
+public class Archer : Unit
 {
+    // Start is called before the first frame update
     void Start()
     {
-        //hp = 0;
-        //damage = 0;
-        //srange = 0;
         first_Setting();
     }
 
     new void Update()
     {
-        base.Update();
+        base.Update();        
     }
 }

@@ -67,11 +67,7 @@ public class Unit : MonoBehaviour
         range.x += (detectRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
         RaycastHit2D hit = Physics2D.BoxCast(pos, range, 0, Vector2.right, range.x / 2, layerMask); // detectRange -> range
 
-        if (hit)
-        {
-            isAttack = true;
-            print(hit.transform.position);
-        }
+        if (hit) isAttack = true;
         else
         {
             isAttack = false;
@@ -80,7 +76,7 @@ public class Unit : MonoBehaviour
 
         range = attackRange; // »õ·Î¿î º¯¼ö
         range.x += (attackRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, attackRange, 0, Vector2.right, attackRange.x / 2, layerMask); // attackRange -> range
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.right, range.x / 2, layerMask); // attackRange -> range
 
         if (hits.Length != 0)
         {

@@ -17,7 +17,7 @@ public class PawnPlacementManager : MonoBehaviour
         IsHoldingMouse = Input.GetKey(KeyCode.Mouse0);//나중에 터치로 바꿀것
 
         if (IsHoldingMouse) ShotRay();
-        else if(!IsHoldingMouse&&selectPawn)
+        else if (!IsHoldingMouse && selectPawn)
         {
             MovePawnToGrid();
             ClearVars();
@@ -34,8 +34,8 @@ public class PawnPlacementManager : MonoBehaviour
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        int layerMask = 1 << LayerMask.NameToLayer("Pawn");
-        RaycastHit2D raycastHit = Physics2D.Raycast(mousePos,Vector2.zero,0f, layerMask);
+        int layerMask = 1 << LayerMask.NameToLayer("Unit");
+        RaycastHit2D raycastHit = Physics2D.Raycast(mousePos, Vector2.zero, 0f, layerMask);
 
         if (raycastHit.collider)
         {
@@ -43,7 +43,7 @@ public class PawnPlacementManager : MonoBehaviour
 
             if (selectPawn) return;
 
-            selectTarget = raycastHit.collider.transform.parent.gameObject;
+            selectTarget = raycastHit.collider.transform.gameObject;
             selectPawn = selectTarget.GetComponent<Pawn>();
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pawnPos_OnClick = selectPawn.gameObject.transform.position;

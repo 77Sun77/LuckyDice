@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     void Search()
     {
         int layerMask = 1 << LayerMask.NameToLayer("Unit");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position+new Vector3(0.5f, 0, 0), Vector2.left, 1, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position+new Vector3(0.5f, 0, 0), Vector2.left, 1.75f, layerMask); // distance == Ä­ x
         if (hit)
         {
             if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null Ãß°¡

@@ -8,9 +8,11 @@ public class DragUnit : MonoBehaviour
     float timer;
     Vector2 mousePos;
     Unit target;
+    int layerMask;
     void Start()
     {
         timer = 0.5f;
+        layerMask = 1 << LayerMask.NameToLayer("Unit");
     }
 
     void Update()
@@ -19,7 +21,7 @@ public class DragUnit : MonoBehaviour
         {
             if (target != null) return;
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward, 1);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward, 1, layerMask);
             if (hit)
             {
                 if (hit.collider.CompareTag("Unit"))

@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febb6bb0ce1ef174db3271890ff8cf58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: "\uBA39\uC5B4 \uCE58\uC6B0\uB294 \uC790"
+  name: "\uAD76\uC8FC\uB9B0 \uC790"
   damage: 30
   hp: 120
   defense: 10

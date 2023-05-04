@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
 
     Unit unit;
 
+    public enum Debuff { None, Damage, Defense, Speed };
+    public Debuff debuff;
+
     void Start()
     {
         
@@ -39,14 +42,14 @@ public class Enemy : MonoBehaviour
     {
         if(!isAttack)
         {
-            transform.Translate(Vector2.left * (speed/10) * Time.deltaTime);
+            transform.Translate(Vector2.left * (speed/15) * Time.deltaTime);
         }
     }
 
     void Search()
     {
         int layerMask = 1 << LayerMask.NameToLayer("Unit");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position+new Vector3(0.5f, 0, 0), Vector2.left, 1, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position+new Vector3(0.5f, 0, 0), Vector2.left, 1.75f, layerMask); // distance == Ä­ x
         if (hit)
         {
             if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null Ãß°¡

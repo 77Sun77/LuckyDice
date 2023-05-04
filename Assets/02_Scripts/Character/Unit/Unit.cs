@@ -9,9 +9,9 @@ public class Unit : MonoBehaviour
     public float delayTime, time;
     public int Rating;
 
-    protected List<Enemy> enemys=new List<Enemy>();
+    protected List<Enemy> enemys = new List<Enemy>();
 
-    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer };
+    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer };
     public Kind unitKind;
 
     public bool isAttack, isBuff;
@@ -22,15 +22,16 @@ public class Unit : MonoBehaviour
     public SpriteRenderer mySprite;
     public Animator anim;
 
+    public GameObject ProjectilePrefab;
     protected void first_Setting()
     {
         mySprite = GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
-        if(detectRange.y > 1)
+        if (detectRange.y > 1)
         {
             detectRange.y -= 0.1f;
         }
-        if(attackRange.y > 1)
+        if (attackRange.y > 1)
         {
             attackRange.y -= 0.1f;
         }
@@ -38,7 +39,7 @@ public class Unit : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
     protected void Update()
     {
@@ -60,9 +61,12 @@ public class Unit : MonoBehaviour
     {
         int layerMask = 1 << LayerMask.NameToLayer("Enemy");
         Vector2 pos = transform.position;
-        pos.x -= 0.5f;
-        RaycastHit2D hit = Physics2D.BoxCast(pos, detectRange, 0, Vector2.right, detectRange.x/2, layerMask);
-        
+
+        pos.x -= 0.875f; // ƒ≠ x/2
+        Vector2 range = detectRange; // ªı∑ŒøÓ ∫Øºˆ
+        range.x += (detectRange.x * 0.75f)+1.25f; // ƒ≠ x*ƒ≠ √ﬂ∞° π¸¿ß(«√∑π¿ÃæÓ : 1, ƒ≠ : 1.75) + (ƒ≠x-0.5)
+        RaycastHit2D hit = Physics2D.BoxCast(pos, range, 0, Vector2.right, range.x / 2, layerMask); // detectRange -> range
+
         if (hit) isAttack = true;
         else
         {
@@ -70,13 +74,15 @@ public class Unit : MonoBehaviour
             time = delayTime;
         }
 
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, attackRange, 0, Vector2.right, attackRange.x/2, layerMask);
+        range = attackRange; // ªı∑ŒøÓ ∫Øºˆ
+        range.x += (attackRange.x * 0.75f)+1.25f; // ƒ≠ x*ƒ≠ √ﬂ∞° π¸¿ß(«√∑π¿ÃæÓ : 1, ƒ≠ : 1.75) + (ƒ≠x-0.5)
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.right, range.x / 2, layerMask); // attackRange -> range
 
         if (hits.Length != 0)
         {
             enemys.Clear();
 
-            foreach(RaycastHit2D hitEnemy in hits)
+            foreach (RaycastHit2D hitEnemy in hits)
             {
                 enemys.Add((Enemy)hitEnemy.collider.GetComponent(typeof(Enemy)));
             }
@@ -87,7 +93,7 @@ public class Unit : MonoBehaviour
     {
         if (enemys.Count != 0)
         {
-            foreach(Enemy enemy in enemys)
+            foreach (Enemy enemy in enemys)
             {
                 float damage = this.damage;
                 if (isBuff)
@@ -97,14 +103,15 @@ public class Unit : MonoBehaviour
                 enemy.TakeDamage(damage);
             }
         }
-       
+
     }
     public void Projectile_Attack()
     {
         // ≈ıªÁ√º «¡∏Æ∆’ º“»Ø
+        Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity).GetComponent<Projectile>().Set_Projectile(this, 3, damage);
     }
 
-    public void TakeDamage(float damage) 
+    public void TakeDamage(float damage)
     {
         float defense = this.defense;
         if (isBuff)

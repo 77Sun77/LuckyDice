@@ -12,21 +12,23 @@ public class PawnPlacementManager : MonoBehaviour
     Vector3 deltaVec;
 
     Vector3 pawnPos_OnClick;
+
+    public GameObject DebugObj;
+
     private void Update()
     {
         IsHoldingMouse = Input.GetKey(KeyCode.Mouse0);//나중에 터치로 바꿀것
 
         if (IsHoldingMouse) ShotRay();
-        else if(!IsHoldingMouse&&selectPawn)
+        else if(!IsHoldingMouse && selectPawn)
         {
-            MovePawnToGrid();
+            if (selectPawn.IsMoveGrid) MovePawnToGrid();
             ClearVars();
         }
 
         if (selectPawn)
         {
-            deltaVec = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clickPoint;
-            selectPawn.gameObject.transform.position = pawnPos_OnClick + deltaVec;
+            MovePawnPos();
         }
     }
 
@@ -48,6 +50,7 @@ public class PawnPlacementManager : MonoBehaviour
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pawnPos_OnClick = selectPawn.gameObject.transform.position;
         }
+        else Debug.Log("None Obj");
     }
 
     void MovePawnToGrid()
@@ -58,7 +61,7 @@ public class PawnPlacementManager : MonoBehaviour
 
         if (raycastHit.collider)
         {
-            Debug.Log(raycastHit.collider.gameObject);
+            //Debug.Log(raycastHit.collider.gameObject);
 
             if (raycastHit.collider.gameObject.layer.Equals(LayerMask.NameToLayer("Tile")))
             {
@@ -77,4 +80,9 @@ public class PawnPlacementManager : MonoBehaviour
         pawnPos_OnClick = Vector3.zero;
     }
 
+    void MovePawnPos()
+    {
+        deltaVec = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clickPoint;
+        selectPawn.gameObject.transform.position = pawnPos_OnClick + deltaVec;
+    }
 }

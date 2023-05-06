@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public float damage,maxhp,hp, defense;
+    public float damage,maxHP,hp, defense;
     public Vector2 detectRange, attackRange;
     public float delayTime, time;
-    public int Rating;
+    public int Rating, UpgradeCount;
 
-    protected List<Enemy> enemys = new List<Enemy>();
+    protected List<Enemy> enemies = new List<Enemy>();
 
-    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer };
+    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
     public Kind unitKind;
 
     public bool isAttack, isBuff;
@@ -43,22 +43,23 @@ public class Unit : MonoBehaviour
             attackRange.y -= 0.1f;
         }
         Rating = 1;
+        UpgradeCount = 1;
     }
 
     protected void SpawnHPBar()
     {
-       GameObject canvas = GameObject.Find("Canvas");
-       GameObject go = Instantiate(HPBarPrefab,canvas.transform);
-       go.name = $"{transform.name} HPBar";
-       hPBar = go.GetComponent<HPBar>();
+        GameObject canvas = GameObject.Find("Canvas");
+        GameObject go = Instantiate(HPBarPrefab, canvas.transform);
+        go.name = $"{transform.name} HPBar";
+        hPBar = go.GetComponent<HPBar>();
 
-       hPBar.InitializeHPBar(this);
+        hPBar.InitializeHPBar(this);
     }
 
 
     void Start()
     {
-
+        first_Setting();
     }
     protected void Update()
     {
@@ -100,20 +101,20 @@ public class Unit : MonoBehaviour
 
         if (hits.Length != 0)
         {
-            enemys.Clear();
+            enemies.Clear();
 
             foreach (RaycastHit2D hitEnemy in hits)
             {
-                enemys.Add((Enemy)hitEnemy.collider.GetComponent(typeof(Enemy)));
+                enemies.Add(hitEnemy.collider.GetComponent<Enemy>());
             }
         }
     }
 
     public void Active_Attack() // 타겟 타입 구분, 애니메이션 이벤트 키프레임
     {
-        if (enemys.Count != 0)
+        if (enemies.Count != 0)
         {
-            foreach (Enemy enemy in enemys)
+            foreach (Enemy enemy in enemies)
             {
                 float damage = this.damage;
                 if (isBuff)
@@ -139,10 +140,19 @@ public class Unit : MonoBehaviour
             //defense += 20;
         }
         damage -= defense;
+        if (damage < 5) damage = 5;
         hp -= damage;
         if (hp <= 0) Destroy(gameObject);
     }
-
+    public void HeelHP(float value)
+    {
+        if (unitKind != Kind.ITEM)
+        {
+            hp += value;
+            if (hp > maxHP) hp = maxHP;
+        } 
+        
+    }
 
     public void EnableObj(GameObject original)
     {
@@ -161,6 +171,16 @@ public class Unit : MonoBehaviour
         hPBar.curHP = hp;
     }
 
+    public void Upgrade(float price)
+    {
+        // money -= /*지정된 가격*/ price;
+        UpgradeCount++;
+    }
 
-
+    protected void Upgrade(float maxHP, float damage, float defense) // 각각 캐릭터의 Update에서 UpgradeCount에 맞게 능력치 맞춰서 호출
+    {
+        this.maxHP = maxHP;
+        this.damage = damage;
+        this.defense = defense;
+    }
 }

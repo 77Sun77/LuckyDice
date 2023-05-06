@@ -36,33 +36,36 @@ public class DragUnit : MonoBehaviour
         }
         if (Input.GetMouseButton(0))
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if(target != null)
+            {
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            if (isDrag)
-            {
-                target.transform.position = mousePos;
-                return;
-            }
-            else if (target != null)
-            {
-                if (Vector2.Distance(this.mousePos, mousePos) > 0.5f)
+                if (isDrag)
                 {
                     target.transform.position = mousePos;
-                    isDrag = true;
-
+                    return;
                 }
-            }
-            
+                else if (target != null)
+                {
+                    if (Vector2.Distance(this.mousePos, mousePos) > 0.5f)
+                    {
+                        target.transform.position = mousePos;
+                        isDrag = true;
 
-            if (!isDrag && Vector2.Distance(mousePos, target.transform.position) > 0.5f) timer = 0.5f;
-            if (timer <= 0)
-            {
-                //target.transform.position = mousePos;
-                isDrag = true;
-            }
-            else
-            {
-                timer -= Time.deltaTime;
+                    }
+                }
+
+
+                if (!isDrag && Vector2.Distance(mousePos, target.transform.position) > 0.5f) timer = 0.5f;
+                if (timer <= 0)
+                {
+                    //target.transform.position = mousePos;
+                    isDrag = true;
+                }
+                else
+                {
+                    timer -= Time.deltaTime;
+                }
             }
 
         }

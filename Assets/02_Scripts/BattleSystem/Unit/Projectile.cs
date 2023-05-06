@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
         this.unit = unit;
         this.speed = speed;
         this.damage = damage;
+        Destroy(gameObject, 5f);
     }
 
     void Update()

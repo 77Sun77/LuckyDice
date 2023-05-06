@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
         {
             if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null 추가
             {
-                this.unit = (Unit)hit.collider.GetComponent(typeof(Unit)); // 타겟을 지정
+                this.unit = hit.collider.GetComponent<Unit>(); // 타겟을 지정
                 // 애니메이션 발동
                 isAttack = true;
             }
@@ -91,7 +91,13 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         damage -= defense;
+        if (damage < 5) damage = 5;
         hp -= damage;
+        if (hp <= 0) Destroy(gameObject);
+    }
+    public void TakeDamage()
+    {
+        hp -= 50;
         if (hp <= 0) Destroy(gameObject);
     }
 

@@ -13,8 +13,14 @@ public class Buffer : Unit
     {
         int layerMask = 1 << LayerMask.NameToLayer("Unit");
 
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, detectRange, 0, Vector2.zero, 0, layerMask);
+        Vector2 pos = transform.position;
 
+        pos.x -= 0.875f; // Ä­ x/2
+        Vector2 range = detectRange; // »õ·Î¿î º¯¼ö
+        range.x += (detectRange.x * 0.75f) + 1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
+
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.zero, 0, layerMask);
+        
         if (hits.Length != 0)
         {
             List<Unit> units = new List<Unit>();

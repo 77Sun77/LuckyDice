@@ -26,7 +26,7 @@ public class HPBar : MonoBehaviour
         else if (Target is Enemy)
         {
             enemy = Target as Enemy;
-            maxHP = enemy.maxhp;
+            maxHP = enemy.maxHP;
             Debug.Log("Àû");
         }
     }
@@ -45,7 +45,7 @@ public class HPBar : MonoBehaviour
         {
             curHP = enemy.hp;
 
-            maxHP = enemy.maxhp;
+            maxHP = enemy.maxHP;
             transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position) + enemy.HPBarOffset;
         }
         else

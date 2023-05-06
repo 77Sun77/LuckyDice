@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\uAE30\uB3C4\uD558\uB294 \uC790"
   damage: 0
-  maxhp: 100
+  maxHP: 100
   hp: 100
   defense: 10
   speed: 20
@@ -156,5 +156,7 @@ MonoBehaviour:
   time: 0
   drop_Gold: 15
   isAttack: 0
+  money: 15
   debuff: 0
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
+  HPBarOffset: {x: 0, y: 0, z: 0}

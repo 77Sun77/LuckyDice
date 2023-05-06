@@ -10,6 +10,8 @@ public class Oppressed : Enemy
     {
         phase = 1;
         hp = hp1;
+        maxHP = hp;
+        SpawnHPBar();
     }
 
     new void Update()
@@ -28,6 +30,7 @@ public class Oppressed : Enemy
                 phase=2;
                 speed *= 2;
                 hp = hp2;
+                maxHP = hp;
             }
             else
             {

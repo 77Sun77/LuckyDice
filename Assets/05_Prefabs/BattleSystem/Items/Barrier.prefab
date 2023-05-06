@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  maxhp: 300
+  maxHP: 300
   hp: 300
   defense: 0
   detectRange: {x: 0, y: 0}
@@ -133,6 +133,7 @@ MonoBehaviour:
   delayTime: 0
   time: 0
   Rating: 0
+  UpgradeCount: 0
   unitKind: 6
   isAttack: 0
   isBuff: 0

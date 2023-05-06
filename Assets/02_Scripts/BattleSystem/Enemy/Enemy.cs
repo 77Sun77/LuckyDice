@@ -5,12 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public string name;
-    public float damage,maxhp,hp, defense, speed;
+    public float damage,maxHP,hp, defense, speed;
     public float delayTime, time;
     public float drop_Gold;
 
     public bool isAttack;
-
+    public int money;
     Unit unit;
 
     public enum Debuff { None, Damage, Defense, Speed };
@@ -93,14 +93,21 @@ public class Enemy : MonoBehaviour
         damage -= defense;
         if (damage < 5) damage = 5;
         hp -= damage;
-        if (hp <= 0) Destroy(gameObject);
+        DIe();
     }
     public void TakeDamage()
     {
         hp -= 50;
-        if (hp <= 0) Destroy(gameObject);
+        DIe();
     }
-
+    void DIe()
+    {
+        if (hp <= 0)
+        {
+            GameManager.instance.Set_Money(money);
+            Destroy(gameObject);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.CompareTag("Base"))

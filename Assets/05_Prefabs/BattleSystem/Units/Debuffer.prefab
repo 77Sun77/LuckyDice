@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  maxhp: 200
+  maxHP: 200
   hp: 200
   defense: 20
   detectRange: {x: 0, y: 0}
@@ -156,6 +156,7 @@ MonoBehaviour:
   delayTime: 3
   time: 0
   Rating: 0
+  UpgradeCount: 0
   unitKind: 2
   isAttack: 0
   isBuff: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   ProjectilePrefab: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
+  HPBarOffset: {x: 0, y: -37, z: 0}
 --- !u!1 &5358839955765971022
 GameObject:
   m_ObjectHideFlags: 0

@@ -156,8 +156,10 @@ MonoBehaviour:
   time: 0
   drop_Gold: 20
   isAttack: 0
+  money: 20
   debuff: 0
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
+  HPBarOffset: {x: 0, y: 0, z: 0}
   hp1: 90
   hp2: 120
   phase: 0

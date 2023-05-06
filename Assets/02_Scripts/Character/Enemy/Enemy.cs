@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     [Header("HPBar ฐüทร")]
     public GameObject HPBarPrefab;
     protected HPBar hPBar;
-    public Vector3 HPBarOffset = new Vector3(0, -37);
+    public Vector3 HPBarOffset;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         go.name = $"{transform.name} HPBar";
         hPBar = go.GetComponent<HPBar>();
 
-        //hPBar.transform.position = Camera.main.WorldToScreenPoint(transform.position) + HPBarOffset;
+        HPBarOffset = new Vector3(0, -0.6f);
         hPBar.InitializeHPBar(this);
     }
 

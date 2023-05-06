@@ -37,12 +37,12 @@ public class HPBar : MonoBehaviour
         if (unit)
         {
             curHP = unit.hp;
-            transform.position = Camera.main.WorldToScreenPoint(unit.transform.position) + unit.HPBarOffset;
+            transform.position = Camera.main.WorldToScreenPoint(unit.transform.position + unit.HPBarOffset);
         }
         else if (enemy)
         {
             curHP = enemy.hp;
-            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position) + enemy.HPBarOffset;
+            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + enemy.HPBarOffset);
         }
         else
         {

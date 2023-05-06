@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour
     [Header("HPBar ฐüทร")]
     public GameObject HPBarPrefab;
     protected HPBar hPBar;
-    public Vector3 HPBarOffset = new Vector3(0,-37);
+    public Vector3 HPBarOffset;
 
     protected void first_Setting()
     {
@@ -52,6 +52,7 @@ public class Unit : MonoBehaviour
        go.name = $"{transform.name} HPBar";
        hPBar = go.GetComponent<HPBar>();
 
+       HPBarOffset = new Vector3(0, -0.6f);
        hPBar.InitializeHPBar(this);
     }
 

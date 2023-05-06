@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public float damage, hp, defense;
+    public float damage,maxhp,hp, defense;
     public Vector2 detectRange, attackRange;
     public float delayTime, time;
     public int Rating;
@@ -23,10 +23,17 @@ public class Unit : MonoBehaviour
     public Animator anim;
 
     public GameObject ProjectilePrefab;
+    
+    [Header("HPBar 관련")]
+    public GameObject HPBarPrefab;
+    protected HPBar hPBar;
+    public Vector3 HPBarOffset = new Vector3(0,-37);
+
     protected void first_Setting()
     {
         mySprite = GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
+        SpawnHPBar();
         if (detectRange.y > 1)
         {
             detectRange.y -= 0.1f;
@@ -37,6 +44,18 @@ public class Unit : MonoBehaviour
         }
         Rating = 1;
     }
+
+    protected void SpawnHPBar()
+    {
+       GameObject canvas = GameObject.Find("Canvas");
+       GameObject go = Instantiate(HPBarPrefab,canvas.transform);
+       go.name = $"{transform.name} HPBar";
+       hPBar = go.GetComponent<HPBar>();
+
+       hPBar.InitializeHPBar(this);
+    }
+
+
     void Start()
     {
 
@@ -55,6 +74,7 @@ public class Unit : MonoBehaviour
             }
             time -= Time.deltaTime;
         }
+        SyncHPBar();
     }
 
     protected void Search()
@@ -135,5 +155,12 @@ public class Unit : MonoBehaviour
         color.a = 0.5f;
         mySprite.color = color;
     }
+
+    void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
+    {
+        hPBar.curHP = hp;
+    }
+
+
 
 }

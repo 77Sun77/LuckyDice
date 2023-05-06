@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public string name;
-    public float damage, hp, defense, speed;
+    public float damage,maxhp,hp, defense, speed;
     public float delayTime, time;
     public float drop_Gold;
 
@@ -16,9 +16,25 @@ public class Enemy : MonoBehaviour
     public enum Debuff { None, Damage, Defense, Speed };
     public Debuff debuff;
 
+    [Header("HPBar ฐüทร")]
+    public GameObject HPBarPrefab;
+    protected HPBar hPBar;
+    public Vector3 HPBarOffset = new Vector3(0, -37);
+
     void Start()
     {
-        
+        SpawnHPBar();
+    }
+
+    protected void SpawnHPBar()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        GameObject go = Instantiate(HPBarPrefab, canvas.transform);
+        go.name = $"{transform.name} HPBar";
+        hPBar = go.GetComponent<HPBar>();
+
+        //hPBar.transform.position = Camera.main.WorldToScreenPoint(transform.position) + HPBarOffset;
+        hPBar.InitializeHPBar(this);
     }
 
     protected void Update()

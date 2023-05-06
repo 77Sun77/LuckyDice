@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  maxhp: 300
   hp: 300
   defense: 25
   detectRange: {x: 5, y: 1}
@@ -162,6 +163,7 @@ MonoBehaviour:
   mySprite: {fileID: 0}
   anim: {fileID: 0}
   ProjectilePrefab: {fileID: 0}
+  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
 --- !u!1 &8266803180323639652
 GameObject:
   m_ObjectHideFlags: 0

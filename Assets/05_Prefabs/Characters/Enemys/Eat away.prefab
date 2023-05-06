@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\uAD76\uC8FC\uB9B0 \uC790"
   damage: 30
+  maxhp: 120
   hp: 120
   defense: 10
   speed: 30
@@ -156,3 +157,4 @@ MonoBehaviour:
   drop_Gold: 25
   isAttack: 0
   debuff: 0
+  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}

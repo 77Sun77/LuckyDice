@@ -38,7 +38,7 @@ public class HPBar : MonoBehaviour
         {
             curHP = unit.hp;
             maxHP = unit.maxHP;
-            transform.position = Camera.main.WorldToScreenPoint(unit.transform.position) + unit.HPBarOffset;
+            transform.position = Camera.main.WorldToScreenPoint(unit.transform.position + unit.HPBarOffset);
 
         }
         else if (enemy)
@@ -46,7 +46,7 @@ public class HPBar : MonoBehaviour
             curHP = enemy.hp;
 
             maxHP = enemy.maxHP;
-            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position) + enemy.HPBarOffset;
+            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + enemy.HPBarOffset);
         }
         else
         {

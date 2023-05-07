@@ -4,57 +4,98 @@ using UnityEngine;
 
 public class DiceTest : MonoBehaviour
 {
-    public float MaxTorqueScale;
     Rigidbody myRIgid;
     bool isHit;
-    Vector3 target;
+
+    Vector3 target, dir;
     public List<Vector3> diceRotations = new List<Vector3>();
-    public Transform Dice;
     public int number;
+
+    public float ranXTorque, ranYTorque, ranZTorque;
+    float t = 0;
+
+    bool rotationX;
     void Start()
     {
-        /*
-        foreach(Transform child in Dice)
-        {
-            diceRotations.Add(child.eulerAngles);
-        }
+        diceRotations.Add(new Vector3(180, 0, 0));
+        diceRotations.Add(new Vector3(0, 0, 270));
+        diceRotations.Add(new Vector3(270, 0, 0));
+        diceRotations.Add(new Vector3(90, 0, 0));
+        diceRotations.Add(new Vector3(0, 0, 90));
+        diceRotations.Add(new Vector3(0, 0, 0));
+
         myRIgid = GetComponent<Rigidbody>();
 
-        float ranXTorque = Random.Range(0f, MaxTorqueScale);
-        float ranYTorque = Random.Range(0f, MaxTorqueScale);
-        float ranZTorque = Random.Range(0f, MaxTorqueScale);
+        
 
-        myRIgid.AddTorque(new Vector3(ranXTorque, ranYTorque, ranZTorque));
-        myRIgid.AddForce(Vector3.left * 200f);
-        number = Random.Range(1, 7);
-
+        number = Random.Range(0, 6);
+        dir = diceRotations[number];
         switch (number)
         {
-            case 1: target = new Vector3(180, 0, 0);
+            case 0:
+            case 2:
+            case 3:
+                rotationX = true;
                 break;
-            default:
-                target = diceRotations[number - 1];
-                break;
+        }
 
-        }*/
-        myRIgid = GetComponent<Rigidbody>();
+        ranXTorque = Random.Range(50, 100);
+        ranYTorque = Random.Range(50, 100);
+        ranZTorque = Random.Range(50, 100);
+
+        //myRIgid.AddTorque(new Vector3(5, 5, 5));
         myRIgid.AddForce(Vector3.left * 200f);
     }
 
     void Update()
     {
-        if (!isHit)
+        if (isHit)
         {
-            //transform.Rotate(Vector3.left+Vector3.down);
-            //print(diceRotations[0]);
-            //Vector3 dir = new Vector3(180,0,0) - transform.localEulerAngles;
-            //transform.Rotate(dir.normalized * Time.deltaTime*20);
-            // print(transform.localEulerAngles);
-            // print(Vector3.Distance(transform.localEulerAngles, new Vector3(0, 180, 180)));
-            //if(Vector3.Distance(transform.localEulerAngles, new Vector3(180,0,0))<= 10){
-            //    isHit = true;
-            //}
-            transform.Rotate(new Vector3(Random.Range(1, 100), Random.Range(1, 100), Random.Range(1, 100)) * 0.05f, Space.Self);
+            if (rotationX)
+            {
+                if (t >= 1) return;
+
+                if (dir.x - transform.eulerAngles.x <= 160)
+                {
+                    target.x = Mathf.Lerp(transform.eulerAngles.x, dir.x, t);
+                }
+                else
+                {
+                    float x = -(360 - this.dir.x);
+                    target.x = Mathf.Lerp(transform.eulerAngles.x, x, t);
+                }
+                
+                transform.rotation = Quaternion.Euler(target);
+                t += Time.deltaTime;
+                
+            }
+            else
+            {
+                if (t >= 1) return;
+
+                if (dir.z - transform.eulerAngles.z <= 160)
+                {
+                    target.z = Mathf.Lerp(transform.eulerAngles.z, dir.z, t);
+                }
+                else
+                {
+                    float z = -(360 - this.dir.z);
+                    target.z = Mathf.Lerp(transform.eulerAngles.z, z, t);
+                }
+         
+                transform.rotation = Quaternion.Euler(target);
+                t += Time.deltaTime;
+            }
+            
+        }
+        else
+        {
+            //transform.rotation = Quaternion.Euler((new Vector3(ranXTorque, ranYTorque, ranZTorque)*Time.deltaTime) + transform.eulerAngles);
+            
+            Vector3 vec = transform.eulerAngles;
+            if (rotationX) vec.z = Mathf.Clamp(vec.z, -40, 40);
+            else vec.x = Mathf.Clamp(vec.x, -40, 40);
+            //transform.rotation = Quaternion.Euler(vec);
         }
         
     }
@@ -66,8 +107,15 @@ public class DiceTest : MonoBehaviour
             myRIgid.AddForce(Vector2.up * 100f);
             
             isHit = true;
-            //  startRotation = transform.rotation;
-            //myRIgid.freezeRotation = true;
+            target = transform.eulerAngles;
+            if (rotationX) target.x = dir.x;
+            else target.z = dir.z;
+            //transform.rotation = Quaternion.Euler(target);
+            
+        }
+        if (isHit)
+        {
+            myRIgid.freezeRotation = false;
         }
         
     }

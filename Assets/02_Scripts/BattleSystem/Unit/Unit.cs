@@ -130,7 +130,11 @@ public class Unit : MonoBehaviour
     public void Projectile_Attack()
     {
         // 투사체 프리팹 소환
-        Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity).GetComponent<Projectile>().Set_Projectile(this, 3, damage);
+        Vector3 vec = enemies[0].transform.position-transform.position;
+        vec.x -= 1f;
+        GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+        bullet.GetComponent<Projectile>().Set_Projectile(this, 3, damage);
+        bullet.transform.right = vec;
     }
 
     public void TakeDamage(float damage)

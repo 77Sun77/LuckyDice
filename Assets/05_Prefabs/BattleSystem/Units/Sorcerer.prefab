@@ -235,8 +235,8 @@ MonoBehaviour:
   maxHP: 150
   hp: 150
   defense: 10
-  detectRange: {x: 6, y: 1}
-  attackRange: {x: 5, y: 1}
+  detectRange: {x: 7, y: 3}
+  attackRange: {x: 7, y: 3}
   delayTime: 2
   time: 0
   Rating: 0

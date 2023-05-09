@@ -15,6 +15,8 @@ public class DiceTest : MonoBehaviour
     float t = 0;
 
     bool rotationX;
+
+    public float tte;
     void Start()
     {
         diceRotations.Add(new Vector3(180, 0, 0));
@@ -44,7 +46,9 @@ public class DiceTest : MonoBehaviour
         ranZTorque = Random.Range(50, 100);
 
         //myRIgid.AddTorque(new Vector3(5, 5, 5));
-        myRIgid.AddForce(Vector3.left * 200f);
+        //myRIgid.AddForce(Vector3.left * 200f);
+
+        //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.eulerAngles, dir, tte));
     }
 
     void Update()
@@ -53,7 +57,7 @@ public class DiceTest : MonoBehaviour
         {
             if (rotationX)
             {
-                if (t >= 1) return;
+                if (t >= 0.9f) return;
 
                 if (dir.x - transform.eulerAngles.x <= 160)
                 {
@@ -71,7 +75,7 @@ public class DiceTest : MonoBehaviour
             }
             else
             {
-                if (t >= 1) return;
+                if (t >= 0.9f) return;
 
                 if (dir.z - transform.eulerAngles.z <= 160)
                 {
@@ -85,8 +89,9 @@ public class DiceTest : MonoBehaviour
          
                 transform.rotation = Quaternion.Euler(target);
                 t += Time.deltaTime;
+                
             }
-            
+            print(t);
         }
         else
         {
@@ -98,6 +103,7 @@ public class DiceTest : MonoBehaviour
             //transform.rotation = Quaternion.Euler(vec);
         }
         
+
     }
 
     private void OnCollisionEnter(Collision coll)
@@ -115,7 +121,7 @@ public class DiceTest : MonoBehaviour
         }
         if (isHit)
         {
-            myRIgid.freezeRotation = false;
+            //myRIgid.freezeRotation = false;
         }
         
     }

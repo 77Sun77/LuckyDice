@@ -45,7 +45,7 @@ public class DiceTTest : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
             distance += Time.deltaTime * 0.2f;
-
+            transform.Rotate(Vector3.up * Random.Range(50, 100) * Time.deltaTime, Space.World);
         }
         else
         {

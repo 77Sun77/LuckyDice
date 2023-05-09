@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public float damage,maxHP,hp, defense;
+    public float damage, maxHP, hp, defense;
     public Vector2 detectRange, attackRange;
     public float delayTime, time;
-    public int Rating, UpgradeCount;
+    public int Rating, UpgradeCount, money;
 
     protected List<Enemy> enemies = new List<Enemy>();
 
@@ -171,21 +171,27 @@ public class Unit : MonoBehaviour
         mySprite.color = color;
     }
 
-    void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
+    void SyncHPBar() //Buffer랑 Debuffer에게도 적용되게 수정해주세용 -> 수정은 안했는데 알아서 되는것같아요
     {
         hPBar.curHP = hp;
     }
 
-    public void Upgrade(float price)
+    public void Upgrade(int price)
     {
-        // money -= /*지정된 가격*/ price;
+        GameManager.instance.money -= price;
         UpgradeCount++;
     }
 
-    protected void Upgrade(float maxHP, float damage, float defense) // 각각 캐릭터의 Update에서 UpgradeCount에 맞게 능력치 맞춰서 호출
+    protected void Upgrade(float maxHP, float damage, float defense) // 각각 캐릭터의 Update에서 UpgradeCount에 맞게 능력치 맞춰서 호출 예시 : (if(UpgradeCount == 2) Upgrade(400, 50, 20);)
     {
         this.maxHP = maxHP;
         this.damage = damage;
         this.defense = defense;
+    }
+
+    public void Sell_Unit()
+    {
+        GameManager.instance.money += money;
+        Destroy(gameObject);
     }
 }

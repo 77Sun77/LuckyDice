@@ -5,11 +5,16 @@ using UnityEngine;
 public class DiceTTest : MonoBehaviour
 {
     Vector3 startPos, dir;
+    Quaternion target;
 
     public List<Vector3> diceRotations = new List<Vector3>();
 
-    public bool rotationX, LeftMove;
+    public bool aing;
     public int number, hitCount;
+
+    Rigidbody myRigid;
+
+    float distance;
     void Start()
     {
         diceRotations.Add(new Vector3(180, 0, 0));
@@ -23,50 +28,40 @@ public class DiceTTest : MonoBehaviour
         number = 0;
         dir = diceRotations[number];
         
-        switch (number)
-        {
-            case 0:
-            case 2:
-            case 3:
-                rotationX = true;
-                break;
-        }
+        myRigid = GetComponent<Rigidbody>();
+        myRigid.AddForce(Vector3.left * 300);
 
     }
 
     void Update()
     {
-        if(hitCount == 1)
+        if (hitCount == 0)
         {
-            if (rotationX)
+            transform.Rotate(new Vector3(Random.Range(20, 50), Random.Range(20, 50), Random.Range(20, 50)) * Time.deltaTime);
+        }
+        else if (hitCount == 1 && !aing)
+        {
+            if (Quaternion.Angle(transform.rotation, target) < 1f)
             {
-                print(Quaternion.Euler(dir).x - Quaternion.Euler(transform.eulerAngles).x);
-               // if (Mathf.Abs(Quaternion.Euler(dir).x - Quaternion.Euler(transform.eulerAngles).x) <= 10) return;
-
-                if (LeftMove)
-                {
-                    transform.Rotate(Vector3.left * 100 * Time.deltaTime);
-                    
-                }
-                else
-                {
-                    transform.Rotate(Vector3.right * 100 * Time.deltaTime);
-                }
-
+                aing = true;
+                target = Quaternion.Euler(startPos);
+                distance = 0;
+                return;
             }
             else
             {
-                if (LeftMove)
-                {
-                    transform.Rotate(Vector3.back * 100 * Time.deltaTime);
-                }
-                else
-                {
-                    transform.Rotate(Vector3.forward * 100 * Time.deltaTime);
-                }
+                transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
+                distance += Time.deltaTime * 0.4f;
             }
             
         }
+        else if(hitCount == 2)
+        {
+            //transform.ro
+            transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
+            distance += Time.deltaTime;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision coll)
@@ -74,28 +69,24 @@ public class DiceTTest : MonoBehaviour
         if(hitCount == 0)
         {
             startPos = transform.eulerAngles;
-            if (rotationX)
-            {
-                float x = dir.x - 180;
-                if (transform.eulerAngles.x >= x)
-                {
-                    LeftMove = true;
-                }
-            }
-            else
-            {
-                float z = dir.z - 180;
-                if (transform.eulerAngles.z >= z)
-                {
-                    LeftMove = true;
-                }
-            }
+            startPos.x = dir.x;
+            startPos.z = dir.z;
+            target = Quaternion.Euler(Vector3.Lerp(transform.eulerAngles, startPos, 0.8f));
             
+            myRigid.AddForce(Vector3.up * 150f);
             hitCount = 1;
         }
         else if(hitCount == 1)
         {
-
+            myRigid.AddForce(Vector3.up * 75f);
+            hitCount = 2;
+        }
+        else if (hitCount == 2)
+        {
+            
+           // myRigid.freezeRotation = false;
+            
+            hitCount = 3;
         }
     }
 }

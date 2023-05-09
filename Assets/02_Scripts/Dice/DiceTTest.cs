@@ -27,7 +27,9 @@ public class DiceTTest : MonoBehaviour
         number = Random.Range(0, 6);
         //number = 0;
         dir = diceRotations[number];
-        
+
+        transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+
         myRigid = GetComponent<Rigidbody>();
         myRigid.AddForce(Vector3.left * 300);
 

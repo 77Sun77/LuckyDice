@@ -25,7 +25,7 @@ public class DiceTTest : MonoBehaviour
         diceRotations.Add(new Vector3(0, 0, 0));
 
         number = Random.Range(0, 6);
-        number = 0;
+        //number = 0;
         dir = diceRotations[number];
         
         myRigid = GetComponent<Rigidbody>();
@@ -39,23 +39,13 @@ public class DiceTTest : MonoBehaviour
         {
             transform.Rotate(new Vector3(Random.Range(20, 50), Random.Range(20, 50), Random.Range(20, 50)) * Time.deltaTime);
         }
-        else if (hitCount == 1 && !aing)
+        else if (hitCount == 1)
         {
-            if (Quaternion.Angle(transform.rotation, target) < 1f)
-            {
-                aing = true;
-                target = Quaternion.Euler(startPos);
-                distance = 0;
-                return;
-            }
-            else
-            {
-                transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
-                distance += Time.deltaTime * 0.4f;
-            }
-            
+            transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
+            distance += Time.deltaTime * 0.2f;
+
         }
-        else if(hitCount == 2)
+        else
         {
             //transform.ro
             transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
@@ -73,12 +63,16 @@ public class DiceTTest : MonoBehaviour
             startPos.z = dir.z;
             target = Quaternion.Euler(Vector3.Lerp(transform.eulerAngles, startPos, 0.8f));
             
-            myRigid.AddForce(Vector3.up * 150f);
+            myRigid.AddForce(Vector3.up * 100f);
+            myRigid.AddForce(Vector3.left * 50);
             hitCount = 1;
         }
         else if(hitCount == 1)
         {
-            myRigid.AddForce(Vector3.up * 75f);
+            target = Quaternion.Euler(startPos);
+            distance = 0;
+            myRigid.AddForce(Vector3.up * 50f);
+            myRigid.AddForce(Vector3.left * 25);
             hitCount = 2;
         }
         else if (hitCount == 2)

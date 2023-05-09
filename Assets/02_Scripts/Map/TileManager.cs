@@ -22,6 +22,9 @@ public class TileManager : MonoBehaviour
     [SerializeField]
     private Vector3 originPos;
 
+    public bool IsUpdatingTilePos;
+
+
     private void Awake()
     {
         Instance = this;
@@ -84,4 +87,14 @@ public class TileManager : MonoBehaviour
     {
         return new Vector3(XDistance * x, YDistance * y, 0) + originPos;
     }
+
+    public bool IsRightRange(int x, int y)
+    {
+        if (0 < x && x < Width && 0 < y && y < Heigth)
+        {
+            return true;
+        }
+        else return false;
+    }
+
 }

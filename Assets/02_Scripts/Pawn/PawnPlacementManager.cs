@@ -36,7 +36,7 @@ public class PawnPlacementManager : MonoBehaviour
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        int layerMask = 1 << LayerMask.NameToLayer("Pawn");
+        int layerMask = (1 << LayerMask.NameToLayer("Pawn")) + (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Unit"));
         RaycastHit2D raycastHit = Physics2D.Raycast(mousePos,Vector2.zero,0f, layerMask);
 
         if (raycastHit.collider)
@@ -45,12 +45,16 @@ public class PawnPlacementManager : MonoBehaviour
 
             if (selectPawn) return;
 
-            selectTarget = raycastHit.collider.transform.parent.gameObject;
-            selectPawn = selectTarget.GetComponent<Pawn>();
+            selectTarget = raycastHit.collider.transform.gameObject;
+            if (!selectTarget.TryGetComponent(out selectPawn))
+            {
+                selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();
+            }
+
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pawnPos_OnClick = selectPawn.gameObject.transform.position;
         }
-        else Debug.Log("None Obj");
+        //else Debug.Log("None Obj");
     }
 
     void MovePawnToGrid()

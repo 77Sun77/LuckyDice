@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Unit unit;
+    //public Unit unit;
     public float speed, damage;
-    public void Set_Projectile(Unit unit, float speed, float damage)
+    //public void Set_Projectile(Unit unit, float speed, float damage)
+    //{
+    //    //this.unit = unit;
+    //    this.speed = speed;
+    //    this.damage = damage;
+    //    Destroy(gameObject, 5f);
+    //}
+
+    private void OnEnable()
     {
-        this.unit = unit;
-        this.speed = speed;
-        this.damage = damage;
         Destroy(gameObject, 5f);
     }
 
@@ -24,10 +29,7 @@ public class Projectile : MonoBehaviour
         if (coll.CompareTag("Enemy"))
         {
             Enemy enemy = (Enemy)coll.GetComponent(typeof(Enemy));
-            if (unit.isBuff)
-            {
-                //damage += 20;
-            }
+            
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }

@@ -97,8 +97,9 @@ GameObject:
   - component: {fileID: 7696597218292851332}
   - component: {fileID: 7696597218292851328}
   - component: {fileID: 7696597218292851071}
+  - component: {fileID: 2393364730516908464}
   m_Layer: 8
-  m_Name: Warrior
+  m_Name: Warrior_B
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,10 +236,10 @@ MonoBehaviour:
   maxHP: 10
   hp: 10
   defense: 1
-  detectRange: {x: 1, y: 1}
+  minDamage: 0
+  detectRange: {x: 5, y: 1}
   attackRange: {x: 1, y: 1}
-  detectRange_List:
-  - {x: 1, y: 0}
+  detectRange_List: []
   delayTime: 1
   time: 0
   Rating: 0
@@ -252,3 +253,18 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
+--- !u!114 &2393364730516908464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7696597218292851334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1373574f27e78448a8021bdfaa4811e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMoveGrid: 1
+  X: 0
+  Y: 0

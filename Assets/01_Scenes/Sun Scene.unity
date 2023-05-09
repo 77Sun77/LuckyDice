@@ -2980,6 +2980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 5161478708710330670, guid: cdca055bf8caa2e41b8cb035ae3699a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdca055bf8caa2e41b8cb035ae3699a5, type: 3}
 --- !u!1 &776201597
@@ -3143,7 +3147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625070, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625104, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_RootOrder
@@ -3212,7 +3216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625070, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625104, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_RootOrder
@@ -3281,7 +3285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625070, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625104, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_RootOrder
@@ -4056,6 +4060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warrior
       objectReference: {fileID: 0}
+    - target: {fileID: 7696597218292851334, guid: b773c11e35f955949a5e2788fa125048, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b773c11e35f955949a5e2788fa125048, type: 3}
 --- !u!4 &1115863511 stripped
@@ -4342,7 +4350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625070, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625104, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_RootOrder
@@ -6247,7 +6255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625070, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213839814217625104, guid: f657b7ceac2dbeb4685053ed355ccfd0, type: 3}
       propertyPath: m_RootOrder

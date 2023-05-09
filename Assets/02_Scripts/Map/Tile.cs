@@ -18,8 +18,14 @@ public class Tile : MonoBehaviour
     public int X { get; set; }
     public int Y { get; set; }
 
+    public Unit TileUnit;
+    public List<Enemy> EnemyList = new();
+    public bool IsEnemy;
     private void Update()
     {
+        if (!TileManager.Instance.IsUpdatingTilePos)
+            return;
+
         transform.position = TileManager.Instance.GetTilePos(X, Y);
         transform.localScale = new Vector3(TileManager.Instance.XScale_Tile, TileManager.Instance.YScale_Tile, 1);
     }
@@ -28,6 +34,4 @@ public class Tile : MonoBehaviour
     {
         return transform.position;
     }
-
-
 }

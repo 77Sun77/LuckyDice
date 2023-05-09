@@ -21,7 +21,7 @@ public class Boomb : MonoBehaviour
             {
                 for (int index = enemies.Count - 1; index >= 0; index--)
                 {
-                    enemies[index].TakeDamage();
+                    enemies[index].TakeDamageByBomb();
                 }
                 
 

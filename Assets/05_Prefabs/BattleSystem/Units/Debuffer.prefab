@@ -153,6 +153,7 @@ MonoBehaviour:
   defense: 20
   detectRange: {x: 0, y: 0}
   attackRange: {x: 0, y: 0}
+  detectRange_List: []
   delayTime: 3
   time: 0
   Rating: 0

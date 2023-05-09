@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public string name;
+    public new string name;
     public float damage,maxHP,hp, defense, speed;
     public float delayTime, time;
-    public float drop_Gold;
+    public int money;
 
     public bool isAttack;
-    public int money;
-    Unit unit;
+    public List<Vector2> detectRange_List;
+    public List<Unit> UnitList = new();
+    
+    private Unit unit;
+    public Pawn pawn;
 
     public enum Debuff { None, Damage, Defense, Speed };
     public Debuff debuff;
+
+    public float minDamage;
 
     [Header("HPBar 관련")]
     public GameObject HPBarPrefab;
@@ -24,6 +29,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         SpawnHPBar();
+        pawn = GetComponent<Pawn>();
     }
 
     protected void SpawnHPBar()
@@ -39,7 +45,7 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        Search();
+        Search_New();
         Move();
 
         if(isAttack)
@@ -51,14 +57,13 @@ public class Enemy : MonoBehaviour
             }
             time -= Time.deltaTime;
         }
-
     }
 
     void Move()
     {
         if(!isAttack)
         {
-            transform.Translate(Vector2.left * (speed/15) * Time.deltaTime);
+            transform.Translate(Vector2.left * (speed*1.6f) * Time.deltaTime);
         }
     }
 
@@ -83,36 +88,62 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected void Search_New()
+    {
+        UnitList.Clear();
+        //detectRange안의 Tile의 Unit 가져오기
+        foreach (var _detectRange in detectRange_List)
+        {
+            int x = pawn.X + (int)_detectRange.x;
+            int y = pawn.Y + (int)_detectRange.y;
+            if (!TileManager.Instance.IsRightRange(x, y)) continue;
+            var TileUnit = TileManager.Instance.TileArray[x, y].TileUnit;
+            if(TileUnit != null)
+            UnitList.Add(TileUnit);
+            //Debug.Log($"{x},{y}");
+        }
+        
+        isAttack = UnitList.Count != 0 && pawn.IsOverCenter;
+    }
+
     public void Attack() // 타겟 타입 구분, 애니메이션 이벤트 키프레임
     {
-        unit.TakeDamage(damage);
+        foreach (var _unit in UnitList)
+        {
+            _unit.TakeDamage(damage);
+        }
     }
 
     public void TakeDamage(float damage)
     {
         damage -= defense;
-        if (damage < 5) damage = 5;
+        if (damage < minDamage) damage = minDamage;
         hp -= damage;
         DIe();
     }
-    public void TakeDamage()
+
+    public void TakeDamageByBomb()
     {
         hp -= 50;
         DIe();
     }
+
     void DIe()
     {
         if (hp <= 0)
         {
             GameManager.instance.Set_Money(money);
+            pawn.RemoveTilePawn();
             Destroy(gameObject);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.CompareTag("Base"))
         {
             coll.gameObject.GetComponent<Base>().HP -= 1;
+            pawn.RemoveTilePawn();
             Destroy(gameObject);
         }
     }

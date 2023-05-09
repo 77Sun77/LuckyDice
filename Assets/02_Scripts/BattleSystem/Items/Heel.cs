@@ -40,7 +40,7 @@ public class Heel : MonoBehaviour
     {
         foreach (Unit unit in units)
         {
-            unit.HeelHP(value);
+            unit.HealHP(value);
         }
     }
     private void OnTriggerEnter2D(Collider2D coll)

@@ -45,7 +45,7 @@ public class DiceTTest : MonoBehaviour
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, target, distance);
             distance += Time.deltaTime * 0.2f;
-            transform.Rotate(Vector3.up * Random.Range(50, 100) * Time.deltaTime, Space.World);
+           // transform.Rotate(Vector3.up * Random.Range(50, 100) * Time.deltaTime, Space.World);
         }
         else
         {
@@ -62,19 +62,22 @@ public class DiceTTest : MonoBehaviour
         {
             startPos = transform.eulerAngles;
             startPos.x = dir.x;
+            startPos.y = Random.Range(0, 360);
             startPos.z = dir.z;
-            target = Quaternion.Euler(Vector3.Lerp(transform.eulerAngles, startPos, 0.8f));
+            target = Quaternion.Euler(Vector3.Lerp(transform.eulerAngles, startPos, 0.9f));
             
-            myRigid.AddForce(Vector3.up * 100f);
+            myRigid.AddForce(Vector3.up * 120f);
             myRigid.AddForce(Vector3.left * 50);
             hitCount = 1;
         }
         else if(hitCount == 1)
         {
+            startPos.y += Random.Range(0, 45);
             target = Quaternion.Euler(startPos);
             distance = 0;
             myRigid.AddForce(Vector3.up * 50f);
             myRigid.AddForce(Vector3.left * 25);
+            
             hitCount = 2;
         }
         else if (hitCount == 2)

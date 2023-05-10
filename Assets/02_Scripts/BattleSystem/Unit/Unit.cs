@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public float damage,maxHP,hp, defense;
+    public float maxHP,hp, defense;
     public float minDamage;
-    public Vector2 detectRange, attackRange;
+    //public Vector2 detectRange, attackRange;
 
     public List<Vector2> detectRange_List;
     public List<Vector2> AOERange_List;//±¤¿ª °ø°Ý ¹üÀ§
     public Vector2 AOEPos;//±¤¿ª °ø°Ý ½ÃÀü À§Ä¡(Áß½ÉÁ¡)
-    
+
+    public float damage;
     public float delayTime, time;
     public int Rating, UpgradeCount;
 
@@ -36,7 +37,7 @@ public class Unit : MonoBehaviour
     public Animator anim;
 
     public GameObject ProjectilePrefab;
-    private Pawn pawn;
+    public Pawn pawn;
     
     [Header("HPBar °ü·Ã")]
     public GameObject HPBarPrefab;
@@ -50,14 +51,14 @@ public class Unit : MonoBehaviour
         pawn = GetComponent<Pawn>();
 
         SpawnHPBar();
-        if (detectRange.y > 1)
-        {
-            detectRange.y -= 0.1f;
-        }
-        if (attackRange.y > 1)
-        {
-            attackRange.y -= 0.1f;
-        }
+        //if (detectRange.y > 1)
+        //{
+        //    detectRange.y -= 0.1f;
+        //}
+        //if (attackRange.y > 1)
+        //{
+        //    attackRange.y -= 0.1f;
+        //}
         Rating = 1;
         UpgradeCount = 1;
     }
@@ -105,37 +106,37 @@ public class Unit : MonoBehaviour
         SyncHPBar();
     }
 
-    protected void Search()
-    {
-        int layerMask = 1 << LayerMask.NameToLayer("Enemy");
-        Vector2 pos = transform.position;
+    //protected void Search()
+    //{
+    //    int layerMask = 1 << LayerMask.NameToLayer("Enemy");
+    //    Vector2 pos = transform.position;
 
-        pos.x -= 0.875f; // Ä­ x/2
-        Vector2 range = detectRange; // »õ·Î¿î º¯¼ö
-        range.x += (detectRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
-        RaycastHit2D hit = Physics2D.BoxCast(pos, range, 0, Vector2.right, range.x / 2, layerMask); // detectRange -> range
+    //    pos.x -= 0.875f; // Ä­ x/2
+    //    Vector2 range = detectRange; // »õ·Î¿î º¯¼ö
+    //    range.x += (detectRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
+    //    RaycastHit2D hit = Physics2D.BoxCast(pos, range, 0, Vector2.right, range.x / 2, layerMask); // detectRange -> range
 
-        if (hit) isAttack = true;
-        else
-        {
-            isAttack = false;
-            time = delayTime;
-        }
+    //    if (hit) isAttack = true;
+    //    else
+    //    {
+    //        isAttack = false;
+    //        time = delayTime;
+    //    }
 
-        range = attackRange; // »õ·Î¿î º¯¼ö
-        range.x += (attackRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.right, range.x / 2, layerMask); // attackRange -> range
+    //    range = attackRange; // »õ·Î¿î º¯¼ö
+    //    range.x += (attackRange.x * 0.75f)+1.25f; // Ä­ x*Ä­ Ãß°¡ ¹üÀ§(ÇÃ·¹ÀÌ¾î : 1, Ä­ : 1.75) + (Ä­x-0.5)
+    //    RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.right, range.x / 2, layerMask); // attackRange -> range
 
-        if (hits.Length != 0)
-        {
-            enemies.Clear();
+    //    if (hits.Length != 0)
+    //    {
+    //        enemies.Clear();
 
-            foreach (RaycastHit2D hitEnemy in hits)
-            {
-                enemies.Add(hitEnemy.collider.GetComponent<Enemy>());
-            }
-        }
-    }
+    //        foreach (RaycastHit2D hitEnemy in hits)
+    //        {
+    //            enemies.Add(hitEnemy.collider.GetComponent<Enemy>());
+    //        }
+    //    }
+    //}
 
     protected void Search_New()
     {
@@ -235,7 +236,7 @@ public class Unit : MonoBehaviour
     IEnumerator Do_AOE_Effect(SpriteRenderer tileSR, Color originColor)
     {
         tileSR.color = Color.red;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         tileSR.color = originColor;
     }
 

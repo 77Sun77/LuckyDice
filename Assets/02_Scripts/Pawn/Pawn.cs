@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Pawn : MonoBehaviour
 {
-    private Tile pastTile;
+    public Tile pastTile;
     private Tile curTile;
     private Action OnTileChanged;
 
@@ -15,6 +15,7 @@ public class Pawn : MonoBehaviour
     public bool IsEnemy;
     public bool IsOverCenter;
 
+    public bool IsGrabbed;
     public bool IsMoveGrid;
     public int X, Y;
     
@@ -37,11 +38,14 @@ public class Pawn : MonoBehaviour
 
     private void Update()
     {
-        ShotRay();
+        if (curTile != null && !IsEnemy) unit.enabled = !curTile.IsTable;
+        
+        if (IsEnemy) ShotRay_Enemy(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
+
         CheckCenter();
     }
 
-    void ShotRay()
+    void ShotRay_Enemy()
     {
         int layerMask = (1 << LayerMask.NameToLayer("Tile"));
         RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, layerMask);
@@ -52,10 +56,34 @@ public class Pawn : MonoBehaviour
             raycastHit.collider.transform.TryGetComponent(out curTile);
             if (curTile != pastTile) OnTileChanged.Invoke();
             pastTile = curTile;
+
             X = curTile.X;
             Y = curTile.Y;
         }
         else Debug.Log("None Obj");
+    }
+
+    public void OnClick_Unit()
+    {
+        if(curTile!=null) pastTile = curTile;
+        IsGrabbed = true;
+    }
+    public void OnDrop_Unit()
+    {
+        int layerMask = (1 << LayerMask.NameToLayer("Tile"));
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, layerMask);
+
+        if (raycastHit.collider)
+        {
+            //Debug.Log(raycastHit.collider.gameObject);
+            raycastHit.collider.transform.TryGetComponent(out curTile);
+            if (curTile != pastTile) OnTileChanged.Invoke();
+
+            X = curTile.X;
+            Y = curTile.Y;
+        }
+
+        IsGrabbed = false;
     }
 
     void CheckCenter()
@@ -86,5 +114,13 @@ public class Pawn : MonoBehaviour
         if(!IsEnemy) pastTile.TileUnit = null;
         else pastTile.EnemyList.Remove(enemy);
     }
+
+    public void MoveToTargetTile(Tile targetTile)
+    {
+        OnClick_Unit();
+        transform.position = targetTile.GetPos();
+        OnDrop_Unit();
+    }
+
 
 }

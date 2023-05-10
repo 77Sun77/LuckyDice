@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public int X { get; set; }
+    public int Y { get; set; }
+
+    public Unit TileUnit;
+    public List<Enemy> EnemyList = new();
+    
+    public bool IsTable;
+    public bool CanPlacement;
+
     /// <summary>
     /// Tile의 X,Y값 할당
     /// </summary>
@@ -16,21 +25,23 @@ public class Tile : MonoBehaviour
         CanPlacement = false;
     }
 
-    public int X { get; set; }
-    public int Y { get; set; }
-
-    public Unit TileUnit;
-    public List<Enemy> EnemyList = new();
-    public bool IsEnemy;
-
-    public bool CanPlacement;
+    public void Initialize_Table(int i)
+    {
+        CanPlacement = true;
+        IsTable = true;
+        X=i;
+    }
 
     private void Update()
     {
+        CanPlacement = EnemyList.Count == 0 && TileUnit == null;
+
         if (!TileManager.Instance.IsUpdatingTilePos)
             return;
 
-        transform.position = TileManager.Instance.GetTilePos(X, Y);
+        if(!IsTable) transform.position = TileManager.Instance.GetTilePos(X, Y);
+        else if (IsTable) transform.position = TileManager.Instance.GetTablePos(X);
+
         transform.localScale = new Vector3(TileManager.Instance.XScale_Tile, TileManager.Instance.YScale_Tile, 1);
     }
 

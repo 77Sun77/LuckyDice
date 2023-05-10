@@ -22,13 +22,13 @@ public class PawnPlacementManager : MonoBehaviour
         if (IsHoldingMouse) ShotRay();
         else if(!IsHoldingMouse && selectPawn)
         {
-            if (selectPawn.IsMoveGrid) MovePawnToGrid();
+            if (selectPawn.IsMoveGrid) MoveOrSwitchPawn();
             ClearVars();
         }
 
         if (selectPawn)
         {
-            MovePawnPos();
+            GrabPawn();
         }
     }
 
@@ -57,7 +57,7 @@ public class PawnPlacementManager : MonoBehaviour
         //else Debug.Log("None Obj");
     }
 
-    void MovePawnToGrid()
+    void MoveOrSwitchPawn()
     {
         Vector2 pawnPos = selectPawn.gameObject.transform.position;
         int layerMask = 1 << LayerMask.NameToLayer("Tile");
@@ -66,12 +66,28 @@ public class PawnPlacementManager : MonoBehaviour
         if (raycastHit.collider)
         {
             //Debug.Log(raycastHit.collider.gameObject);
-
             if (raycastHit.collider.gameObject.layer.Equals(LayerMask.NameToLayer("Tile")))
             {
-                selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
-            }
+                var tile = raycastHit.collider.transform.GetComponent<Tile>();
+                Unit unit = tile.TileUnit;
+                
+                if (tile.CanPlacement)//빈자리인 경우
+                {
+                    selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
+                    selectPawn.OnDrop_Unit();
+                    return;
+                }
+                else if (unit.pawn != selectPawn)//다른 유닛이 있을 경우
+                {
+                    selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
+                    unit.pawn.MoveToTargetTile(selectPawn.pastTile);
+                    selectPawn.OnDrop_Unit();
+                    Debug.Log("Switch Positon");
+                    return;
+                }
+            }   
         }
+        selectPawn.transform.position = selectPawn.pastTile.GetPos();
     }
 
     void ClearVars()
@@ -84,9 +100,11 @@ public class PawnPlacementManager : MonoBehaviour
         pawnPos_OnClick = Vector3.zero;
     }
 
-    void MovePawnPos()
+    void GrabPawn()
     {
         deltaVec = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clickPoint;
         selectPawn.gameObject.transform.position = pawnPos_OnClick + deltaVec;
+        
+        if(selectPawn.IsGrabbed == false) selectPawn.OnClick_Unit();
     }
 }

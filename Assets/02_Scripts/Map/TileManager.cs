@@ -6,23 +6,29 @@ public class TileManager : MonoBehaviour
 {
     public static TileManager Instance { get; set; }
 
+    public Transform Map_Tf;
+
+    public Transform Table_Tf;
+    public Vector3 OriginPos_Table;
+    public int TableCount;
+    public Tile[] TableArray;
+
     [SerializeField]
     private GameObject Tile_Prefab;
     
     public Color Color1, Color2;
 
     public float Width, Heigth;//¹°¸®ÀûÀÎ Å©±â
-
-    public Tile[,] TileArray { get; set; }
-    public int MapX, MapY;//Ä­ °¹¼ö
     [HideInInspector]
     public float XScale_Tile, YScale_Tile;
     [HideInInspector]
     public float XDistance, YDistance;
-
     [SerializeField]
     private Vector3 originPos;
 
+    public int MapX, MapY;//Ä­ °¹¼ö
+    public Tile[,] TileArray { get; set; }
+    
     [SerializeField]
     private Vector2 VisibleTile_Start;
     [SerializeField]
@@ -52,12 +58,13 @@ public class TileManager : MonoBehaviour
         XDistance = XScale_Tile;
         YDistance = YScale_Tile;
         
-        GenerateTiles();
+        GenerateMap();
+        GenerateTable();
     }
 
-    void GenerateTiles()
+    void GenerateMap()
     {
-        Transform[] tfs = GetComponentsInChildren<Transform>();
+        Transform[] tfs = Map_Tf.GetComponentsInChildren<Transform>();
 
         for (int i = 1; i < tfs.Length; i++)
         {
@@ -70,7 +77,7 @@ public class TileManager : MonoBehaviour
         {
             for (int y = 0; y < MapY; y++)
             {
-                GameObject go = Instantiate(Tile_Prefab,transform);
+                GameObject go = Instantiate(Tile_Prefab,Map_Tf);
                 go.name = $"Tile {x},{y}";
                 go.transform.position = GetTilePos(x, y);
                 go.transform.localScale = new Vector3(XScale_Tile, YScale_Tile, 1);
@@ -99,9 +106,43 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    void GenerateTable()
+    {
+        TableArray = new Tile[TableCount];
+
+        Transform[] tfs = Table_Tf.GetComponentsInChildren<Transform>();
+
+        for (int i = 1; i < tfs.Length; i++)
+        {
+            DestroyImmediate(tfs[i].gameObject);
+        }
+
+        for (int i = 0; i < TableCount; i++)
+        {
+            GameObject go = Instantiate(Tile_Prefab, Table_Tf);
+            go.name = $"Table {i}";
+            go.transform.position = GetTablePos(i);
+            go.transform.localScale = new Vector3(XScale_Tile, YScale_Tile, 1);
+
+            SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+            
+            if (i % 2 == 0) sr.color = Color1;
+            else sr.color = Color2;
+
+            Tile tile = go.GetComponent<Tile>();
+            tile.Initialize_Table(i);
+            TableArray.SetValue(tile,i);
+        }
+    }
+
+
     public Vector3 GetTilePos(int x, int y)
     {
         return new Vector3(XDistance * x, YDistance * y, 0) + originPos;
+    }
+    public Vector3 GetTablePos(int i)
+    {
+        return OriginPos_Table + Vector3.right * XDistance * i;
     }
 
     public bool IsRightRange(int x, int y)
@@ -112,5 +153,4 @@ public class TileManager : MonoBehaviour
         }
         else return false;
     }
-
 }

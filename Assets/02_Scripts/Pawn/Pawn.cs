@@ -9,15 +9,30 @@ public class Pawn : MonoBehaviour
     private Tile curTile;
     private Action OnTileChanged;
 
+    Unit unit;
+    Enemy enemy;
+
+    public bool IsEnemy;
     public bool IsOverCenter;
 
     public bool IsMoveGrid;
     public int X, Y;
-
+    
     private void Awake()
     {
         OnTileChanged += AddTilePawn;
         OnTileChanged += RemoveTilePawn;
+
+        if (gameObject.TryGetComponent(out Unit _unit))
+        {
+            unit = _unit;
+            IsEnemy = false;
+        }
+        else if (gameObject.TryGetComponent(out Enemy _enemy))
+        {
+            enemy = _enemy;
+            IsEnemy = true;
+        }
     }
 
     private void Update()
@@ -45,17 +60,17 @@ public class Pawn : MonoBehaviour
 
     void CheckCenter()
     {
+        if(curTile)
         IsOverCenter = transform.position.x < curTile.transform.position.x;
     }
 
-
     public void AddTilePawn()
     {
-        if (gameObject.TryGetComponent(out Unit unit))
+        if (!IsEnemy)
         {
             curTile.TileUnit = unit;
         }
-        else if (gameObject.TryGetComponent(out Enemy enemy))
+        else if (IsEnemy)
         {
             if(!curTile.EnemyList.Contains(enemy))
             curTile.EnemyList.Add(enemy);
@@ -68,8 +83,8 @@ public class Pawn : MonoBehaviour
         if (pastTile == null)
             return;
 
-        pastTile.TileUnit = null;
-        pastTile.EnemyList.Clear();
+        if(!IsEnemy) pastTile.TileUnit = null;
+        else pastTile.EnemyList.Remove(enemy);
     }
 
 }

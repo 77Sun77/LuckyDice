@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
     {
         if(!isAttack)
         {
-            transform.Translate(Vector2.left * (speed*1.6f) * Time.deltaTime);
+            transform.Translate(Vector2.left * (speed*TileManager.Instance.XScale_Tile) * Time.deltaTime);
         }
     }
 

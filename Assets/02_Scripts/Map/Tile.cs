@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     {
         X = x;
         Y = y;
+        CanPlacement = false;
     }
 
     public int X { get; set; }
@@ -21,6 +22,9 @@ public class Tile : MonoBehaviour
     public Unit TileUnit;
     public List<Enemy> EnemyList = new();
     public bool IsEnemy;
+
+    public bool CanPlacement;
+
     private void Update()
     {
         if (!TileManager.Instance.IsUpdatingTilePos)

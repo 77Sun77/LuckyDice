@@ -241,6 +241,9 @@ MonoBehaviour:
   attackRange: {x: 1, y: 1}
   detectRange_List:
   - {x: 1, y: 0}
+  AOERange_List:
+  - {x: 0, y: 0}
+  AOEPos: {x: 0, y: 0}
   delayTime: 1
   time: 0
   Rating: 0
@@ -248,7 +251,7 @@ MonoBehaviour:
   unitKind: 0
   isAttack: 0
   isBuff: 0
-  attackType: 0
+  attackType: 3
   mySprite: {fileID: 0}
   anim: {fileID: 0}
   ProjectilePrefab: {fileID: 0}
@@ -266,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1373574f27e78448a8021bdfaa4811e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsEnemy: 0
   IsOverCenter: 0
   IsMoveGrid: 1
   X: 0

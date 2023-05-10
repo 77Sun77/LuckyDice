@@ -11,19 +11,24 @@ public class TileManager : MonoBehaviour
     
     public Color Color1, Color2;
 
-    public float Width, Heigth;
+    public float Width, Heigth;//¹°¸®ÀûÀÎ Å©±â
 
     public Tile[,] TileArray { get; set; }
-    public int MapX, MapY;
+    public int MapX, MapY;//Ä­ °¹¼ö
     [HideInInspector]
     public float XScale_Tile, YScale_Tile;
     [HideInInspector]
     public float XDistance, YDistance;
+
     [SerializeField]
     private Vector3 originPos;
 
-    public bool IsUpdatingTilePos;
+    [SerializeField]
+    private Vector2 VisibleTile_Start;
+    [SerializeField]
+    private Vector2 VisibleTile_End;
 
+    public bool IsUpdatingTilePos;
 
     private void Awake()
     {
@@ -79,6 +84,17 @@ public class TileManager : MonoBehaviour
                 Tile tile = go.GetComponent<Tile>();
                 tile.Initialize_Tile(x, y);
                 TileArray.SetValue(tile, x, y);
+
+                sr.enabled = false;
+            }
+        }
+
+        for (int x = (int)VisibleTile_Start.x; x <= (int)VisibleTile_End.x; x++)
+        {
+            for (int y = (int)VisibleTile_Start.y; y <= (int)VisibleTile_End.y; y++)
+            {
+                TileArray[x,y].GetComponent<SpriteRenderer>().enabled = true;
+                TileArray[x, y].CanPlacement = true;
             }
         }
     }
@@ -90,7 +106,7 @@ public class TileManager : MonoBehaviour
 
     public bool IsRightRange(int x, int y)
     {
-        if (0 < x && x < Width && 0 < y && y < Heigth)
+        if (0 < x && x < MapX && 0 < y && y < MapY)
         {
             return true;
         }

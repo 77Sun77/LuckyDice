@@ -10,7 +10,7 @@ public class Unit : MonoBehaviour
 
     public List<Vector2> detectRange_List;
     public List<Vector2> AOERange_List;//광역 공격 범위
-
+    public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
     
     public float delayTime, time;
     public int Rating, UpgradeCount;
@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
 
     public bool isAttack, isBuff;
 
-    public enum AttackType { Active, Projectile, AreaOfEffect };//근접,투사체,광역
+    public enum AttackType { Active, Projectile, AreaOfEffect, AOE_Melee};//근접,투사체,광역,광역 근접
     public AttackType attackType;
 
     public SpriteRenderer mySprite;
@@ -82,18 +82,26 @@ public class Unit : MonoBehaviour
     {
         Search_New();
 
-        if (isAttack)
+        if (isAttack && time <= 0)
         {
-            if (time <= 0)
+            switch (attackType)
             {
-                if (attackType == AttackType.Active && GetClosestEnemy(enemies).pawn.IsOverCenter) Active_Attack();//적이 타일 정중앙에 있을때 때리게 하기 위함
-                else if (attackType == AttackType.Projectile) Projectile_Attack();
-                else if (attackType == AttackType.AreaOfEffect) Debug.Log("광역기");
-                
-                time = delayTime;
+                case AttackType.Active:
+                    if (GetClosestEnemy(enemies).pawn.IsOverCenter) Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
+                    break;
+                case AttackType.Projectile:
+                    Projectile_Attack();
+                    break;
+                case AttackType.AreaOfEffect:
+                    AOE_Attack();
+                    break;
+                case AttackType.AOE_Melee:
+                    if (GetClosestEnemy(enemies).pawn.IsOverCenter) AOE_Attack();
+                    break;
             }
-            time -= Time.deltaTime;
         }
+        time -= Time.deltaTime;
+
         SyncHPBar();
     }
 
@@ -134,16 +142,11 @@ public class Unit : MonoBehaviour
         enemies.Clear();
         EnemyList_List.Clear();
         //detectRange안의 Tile의 EnemyList 가져오기
-        foreach (var _detectRange in detectRange_List)
+        foreach (var Tile in GetTileInRange(pawn.X,pawn.Y,detectRange_List))
         {
-            int x = pawn.X + (int)_detectRange.x;
-            int y = pawn.Y + (int)_detectRange.y;
-            if (!TileManager.Instance.IsRightRange(x, y)) continue;
-            var EnemyList = TileManager.Instance.TileArray[x, y].EnemyList;
-            EnemyList_List.Add(EnemyList);
-            //Debug.Log($"{x},{y}");
+            EnemyList_List.Add(Tile.EnemyList);
         }
-
+        
         //enemies에 전부 추가
         foreach (var EnemyList in EnemyList_List)
         {
@@ -155,25 +158,24 @@ public class Unit : MonoBehaviour
 
         isAttack = enemies.Count != 0;
     }
-
-    List<Tile> GetTileInRange()
+    //나중에 확장으로 뺄것
+    List<Tile> GetTileInRange(int targetX,int targetY,List<Vector2> targetRange)
     {
         List<Tile> TileList = new();
 
-        foreach (var _detectRange in detectRange_List)
+        foreach (var targetTile in targetRange)
         {
-            int x = pawn.X + (int)_detectRange.x;
-            int y = pawn.Y + (int)_detectRange.y;
+            int x = targetX + (int)targetTile.x;
+            int y = targetY + (int)targetTile.y;
             if (!TileManager.Instance.IsRightRange(x, y)) continue;
+
             var Tile = TileManager.Instance.TileArray[x, y];
             TileList.Add(Tile);
             
             //Debug.Log($"{x},{y}");
         }
         return TileList;
-
     }
-
 
     /// <summary>
     /// 단일 근접
@@ -185,8 +187,8 @@ public class Unit : MonoBehaviour
         {
             //damage += 20;
         }
-        
         GetClosestEnemy(enemies).TakeDamage(damage);
+        time = delayTime;
     }
     /// <summary>
     /// 유도 투사체
@@ -194,20 +196,48 @@ public class Unit : MonoBehaviour
     public void Projectile_Attack()
     {
         // 투사체 프리팹 소환
-        Vector3 vec = GetClosestEnemy(enemies).transform.position - transform.position;
-        //vec.x -= 1f;
         GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-        //bullet.GetComponent<Projectile>().Set_Projectile(this, 3, damage);//투사체 자체에서 설정할 수 있도록 바꾸기
-        bullet.transform.right = vec;
+        bullet.GetComponent<Projectile>().SetTarget(GetClosestEnemy(enemies).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
+        time = delayTime;
     }
     /// <summary>
     /// 광역 공격
     /// </summary>
     public void AOE_Attack()
     {
+        List<Enemy> targets = new();
 
+        AOEPos = new Vector2(GetClosestEnemy(enemies).pawn.X, GetClosestEnemy(enemies).pawn.Y);
+        foreach (var _tile in GetTileInRange((int)AOEPos.x, (int)AOEPos.y, AOERange_List))
+        {
+            if (_tile.EnemyList.Count != 0)
+            {
+                targets.AddRange(_tile.EnemyList);
+            }
+            //디버깅용 임시 코드
+            var tileSR = _tile.GetComponent<SpriteRenderer>();
+            Color OriginColor = tileSR.color;
+            StartCoroutine(Do_AOE_Effect(tileSR, OriginColor));
+        }
+
+        foreach (var _enemy in targets)
+        {
+            _enemy.TakeDamage(damage);
+        }
+        time = delayTime;
     }
-
+    /// <summary>
+    /// 디버깅용 임시 코드
+    /// </summary>
+    /// <param name="tileSR"></param>
+    /// <param name="originColor"></param>
+    /// <returns></returns>
+    IEnumerator Do_AOE_Effect(SpriteRenderer tileSR, Color originColor)
+    {
+        tileSR.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        tileSR.color = originColor;
+    }
 
     public Enemy GetClosestEnemy(List<Enemy> enemies)
     {

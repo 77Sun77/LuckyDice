@@ -7,8 +7,11 @@ public class Unit : MonoBehaviour
     public float damage,maxHP,hp, defense;
     public float minDamage;
     public Vector2 detectRange, attackRange;
-    public List<Vector2> detectRange_List;
 
+    public List<Vector2> detectRange_List;
+    public List<Vector2> AOERange_List;//광역 공격 범위
+
+    
     public float delayTime, time;
     public int Rating, UpgradeCount;
 
@@ -79,13 +82,16 @@ public class Unit : MonoBehaviour
     {
         Search_New();
 
-        if (isAttack && time <= 0)
+        if (isAttack)
         {
-            if (attackType == AttackType.Active && GetClosestEnemy(enemies).pawn.IsOverCenter) Active_Attack();//적이 타일 정중앙에 있을때 때리게 하기 위함
-            else if (attackType == AttackType.Projectile) Projectile_Attack();
-            else if (attackType == AttackType.AreaOfEffect) Debug.Log("광역기");
-            time = delayTime;
-
+            if (time <= 0)
+            {
+                if (attackType == AttackType.Active && GetClosestEnemy(enemies).pawn.IsOverCenter) Active_Attack();//적이 타일 정중앙에 있을때 때리게 하기 위함
+                else if (attackType == AttackType.Projectile) Projectile_Attack();
+                else if (attackType == AttackType.AreaOfEffect) Debug.Log("광역기");
+                
+                time = delayTime;
+            }
             time -= Time.deltaTime;
         }
         SyncHPBar();
@@ -137,6 +143,7 @@ public class Unit : MonoBehaviour
             EnemyList_List.Add(EnemyList);
             //Debug.Log($"{x},{y}");
         }
+
         //enemies에 전부 추가
         foreach (var EnemyList in EnemyList_List)
         {
@@ -148,6 +155,25 @@ public class Unit : MonoBehaviour
 
         isAttack = enemies.Count != 0;
     }
+
+    List<Tile> GetTileInRange()
+    {
+        List<Tile> TileList = new();
+
+        foreach (var _detectRange in detectRange_List)
+        {
+            int x = pawn.X + (int)_detectRange.x;
+            int y = pawn.Y + (int)_detectRange.y;
+            if (!TileManager.Instance.IsRightRange(x, y)) continue;
+            var Tile = TileManager.Instance.TileArray[x, y];
+            TileList.Add(Tile);
+            
+            //Debug.Log($"{x},{y}");
+        }
+        return TileList;
+
+    }
+
 
     /// <summary>
     /// 단일 근접
@@ -174,6 +200,14 @@ public class Unit : MonoBehaviour
         //bullet.GetComponent<Projectile>().Set_Projectile(this, 3, damage);//투사체 자체에서 설정할 수 있도록 바꾸기
         bullet.transform.right = vec;
     }
+    /// <summary>
+    /// 광역 공격
+    /// </summary>
+    public void AOE_Attack()
+    {
+
+    }
+
 
     public Enemy GetClosestEnemy(List<Enemy> enemies)
     {

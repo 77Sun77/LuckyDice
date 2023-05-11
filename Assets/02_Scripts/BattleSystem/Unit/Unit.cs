@@ -25,7 +25,7 @@ public class Unit : MonoBehaviour
     /// </summary>
     protected List<Enemy> enemies = new List<Enemy>();
 
-    public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
+    
     public Kind unitKind;
 
     public bool isAttack, isBuff;
@@ -317,3 +317,5 @@ public class Unit : MonoBehaviour
     }
 
 }
+public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
+public enum EnemyKind {Blind,Eat,Head,Oppressed,Prayer};

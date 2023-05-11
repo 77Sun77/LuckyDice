@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SynthesisUnit : MonoBehaviour
 {
-    public Unit.Kind unitKind;
+    public Kind unitKind;
     public GameObject Original;
     public Unit target;
     void Start()
@@ -27,10 +27,8 @@ public class SynthesisUnit : MonoBehaviour
             bool isRating = (target == null || Vector2.Distance(transform.position, target.transform.position) > Vector2.Distance(transform.position, coll.transform.position)) && unit.Rating == original.Rating && original.unitKind == unit.unitKind;
             if (isRating)
             {
-                target = (Unit)coll.GetComponent(typeof(Unit));
-                
+                target = (Unit)coll.GetComponent(typeof(Unit));   
             }
-
         }
     }
 

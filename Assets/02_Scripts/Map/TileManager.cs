@@ -135,7 +135,6 @@ public class TileManager : MonoBehaviour
         }
     }
 
-
     public Vector3 GetTilePos(int x, int y)
     {
         return new Vector3(XDistance * x, YDistance * y, 0) + originPos;
@@ -144,6 +143,18 @@ public class TileManager : MonoBehaviour
     {
         return OriginPos_Table + Vector3.right * XDistance * i;
     }
+
+    public Tile GetTableEmptySlot()
+    {
+        for (int i = 0; i < TableArray.Length; i++)
+        {
+            if(TableArray[i].CanPlacement)
+                return TableArray[i];
+        }
+
+        return null;
+    }
+
 
     public bool IsRightRange(int x, int y)
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sorcerer : Unit
+public class Archer : Ally
 {
     void Start()
     {
@@ -11,8 +11,6 @@ public class Sorcerer : Unit
 
     new void Update()
     {
-        base.Update();
+        base.Update();        
     }
-
-    
 }

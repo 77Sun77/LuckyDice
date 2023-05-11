@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buffer : Unit
+public class Buffer : Ally
 {
     List<Unit> units = new List<Unit>();
     private void Start()

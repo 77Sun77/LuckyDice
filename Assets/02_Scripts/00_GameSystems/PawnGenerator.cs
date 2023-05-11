@@ -27,6 +27,10 @@ public class PawnGenerator : MonoBehaviour
         {
             Roll();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetStore();
+        }
 
         MakeKeyEvent(KeyCode.Alpha0);
         MakeKeyEvent(KeyCode.Alpha1);

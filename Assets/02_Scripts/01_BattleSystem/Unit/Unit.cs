@@ -6,59 +6,49 @@ public class Unit : MonoBehaviour
 {
     public float maxHP,hp, defense;
     public float minDamage;
-    //public Vector2 detectRange, attackRange;
-
-    public List<Vector2> detectRange_List;
-    public List<Vector2> AOERange_List;//광역 공격 범위
-    public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
 
     public float damage;
     public float delayTime, time;
     public int Rating, UpgradeCount;
+   
+    public List<Vector2> detectRange_List;
+    public List<Vector2> AOERange_List;//광역 공격 범위
+    public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
 
     /// <summary>
     /// 타일에 있는 EnemyList들의 List
     /// </summary>
-    List<List<Enemy>> EnemyList_List = new();
+    public List<List<Unit>> TargetList_List = new();
     /// <summary>
     /// TileEnemyList들의 합
     /// </summary>
-    protected List<Enemy> enemies = new List<Enemy>();
-
-    
-    public Kind unitKind;
+    protected List<Unit> targets = new List<Unit>();
 
     public bool isAttack, isBuff;
 
     public enum AttackType { Active, Projectile, AreaOfEffect, AOE_Melee};//근접,투사체,광역,광역 근접
     public AttackType attackType;
 
+    public GameObject ProjectilePrefab;
+    public Pawn pawn;
+
     public SpriteRenderer mySprite;
     public Animator anim;
 
-    public GameObject ProjectilePrefab;
-    public Pawn pawn;
-    
     [Header("HPBar 관련")]
     public GameObject HPBarPrefab;
     protected HPBar hPBar;
     public Vector3 HPBarOffset;
 
-    protected void first_Setting()
+    public bool isEnemy;
+    protected virtual void first_Setting()
     {
         mySprite = GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
 
         SpawnHPBar();
-        //if (detectRange.y > 1)
-        //{
-        //    detectRange.y -= 0.1f;
-        //}
-        //if (attackRange.y > 1)
-        //{
-        //    attackRange.y -= 0.1f;
-        //}
+        
         Rating = 1;
         UpgradeCount = 1;
     }
@@ -74,12 +64,11 @@ public class Unit : MonoBehaviour
         hPBar.InitializeHPBar(this);
     }
 
-
     void Start()
     {
         first_Setting();
     }
-    protected void Update()
+    protected virtual void Update()
     {
         Search_New();
 
@@ -88,7 +77,7 @@ public class Unit : MonoBehaviour
             switch (attackType)
             {
                 case AttackType.Active:
-                    if (GetClosestEnemy(enemies).pawn.IsOverCenter) Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
+                    if (GetClosestEnemy(targets).pawn.IsOverCenter) Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
                     break;
                 case AttackType.Projectile:
                     Projectile_Attack();
@@ -97,7 +86,7 @@ public class Unit : MonoBehaviour
                     AOE_Attack();
                     break;
                 case AttackType.AOE_Melee:
-                    if (GetClosestEnemy(enemies).pawn.IsOverCenter) AOE_Attack();
+                    if (GetClosestEnemy(targets).pawn.IsOverCenter) AOE_Attack();
                     break;
             }
         }
@@ -106,61 +95,29 @@ public class Unit : MonoBehaviour
         SyncHPBar();
     }
 
-    //protected void Search()
-    //{
-    //    int layerMask = 1 << LayerMask.NameToLayer("Enemy");
-    //    Vector2 pos = transform.position;
-
-    //    pos.x -= 0.875f; // 칸 x/2
-    //    Vector2 range = detectRange; // 새로운 변수
-    //    range.x += (detectRange.x * 0.75f)+1.25f; // 칸 x*칸 추가 범위(플레이어 : 1, 칸 : 1.75) + (칸x-0.5)
-    //    RaycastHit2D hit = Physics2D.BoxCast(pos, range, 0, Vector2.right, range.x / 2, layerMask); // detectRange -> range
-
-    //    if (hit) isAttack = true;
-    //    else
-    //    {
-    //        isAttack = false;
-    //        time = delayTime;
-    //    }
-
-    //    range = attackRange; // 새로운 변수
-    //    range.x += (attackRange.x * 0.75f)+1.25f; // 칸 x*칸 추가 범위(플레이어 : 1, 칸 : 1.75) + (칸x-0.5)
-    //    RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.right, range.x / 2, layerMask); // attackRange -> range
-
-    //    if (hits.Length != 0)
-    //    {
-    //        enemies.Clear();
-
-    //        foreach (RaycastHit2D hitEnemy in hits)
-    //        {
-    //            enemies.Add(hitEnemy.collider.GetComponent<Enemy>());
-    //        }
-    //    }
-    //}
-
-    protected void Search_New()
+    protected virtual void Search_New()
     {
-        enemies.Clear();
-        EnemyList_List.Clear();
+        targets.Clear();
+        TargetList_List.Clear();
         //detectRange안의 Tile의 EnemyList 가져오기
         foreach (var Tile in GetTileInRange(pawn.X,pawn.Y,detectRange_List))
         {
-            EnemyList_List.Add(Tile.EnemyList);
+            TargetList_List.Add(Tile.EnemyList);
         }
         
         //enemies에 전부 추가
-        foreach (var EnemyList in EnemyList_List)
+        foreach (var EnemyList in TargetList_List)
         {
             if (EnemyList.Count != 0)
             {
-                enemies.AddRange(EnemyList);
+                targets.AddRange(EnemyList);
             }
         }
 
-        isAttack = enemies.Count != 0;
+        isAttack = targets.Count != 0;
     }
     //나중에 확장으로 뺄것
-    List<Tile> GetTileInRange(int targetX,int targetY,List<Vector2> targetRange)
+    protected virtual List<Tile> GetTileInRange(int targetX,int targetY,List<Vector2> targetRange)
     {
         List<Tile> TileList = new();
 
@@ -188,7 +145,7 @@ public class Unit : MonoBehaviour
         {
             //damage += 20;
         }
-        GetClosestEnemy(enemies).TakeDamage(damage);
+        GetClosestEnemy(targets).TakeDamage(damage);
         time = delayTime;
     }
     /// <summary>
@@ -198,7 +155,7 @@ public class Unit : MonoBehaviour
     {
         // 투사체 프리팹 소환
         GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-        bullet.GetComponent<Projectile>().SetTarget(GetClosestEnemy(enemies).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
+        bullet.GetComponent<Projectile>().SetTarget(GetClosestEnemy(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
     }
     /// <summary>
@@ -206,9 +163,9 @@ public class Unit : MonoBehaviour
     /// </summary>
     public void AOE_Attack()
     {
-        List<Enemy> targets = new();
+        List<Unit> targets = new();
 
-        AOEPos = new Vector2(GetClosestEnemy(enemies).pawn.X, GetClosestEnemy(enemies).pawn.Y);
+        AOEPos = new Vector2(this.GetClosestEnemy(this.targets).pawn.X, this.GetClosestEnemy(this.targets).pawn.Y);
         foreach (var _tile in GetTileInRange((int)AOEPos.x, (int)AOEPos.y, AOERange_List))
         {
             if (_tile.EnemyList.Count != 0)
@@ -240,9 +197,9 @@ public class Unit : MonoBehaviour
         tileSR.color = originColor;
     }
 
-    public Enemy GetClosestEnemy(List<Enemy> enemies)
+    public Unit GetClosestEnemy(List<Unit> enemies)
     {
-        Enemy targetEnemy = null;
+        Unit targetEnemy = null;
         float minDistance = float.MaxValue;
 
         foreach (var _enemy in enemies)
@@ -270,27 +227,27 @@ public class Unit : MonoBehaviour
         hp -= damage;
         if (hp <= 0) Die();
     }
-    public void HealHP(float value)
-    {
-        if (unitKind != Kind.ITEM)
-        {
-            hp += value;
-            if (hp > maxHP) hp = maxHP;
-        } 
+    //public void HealHP(float value)
+    //{
+    //    if (unitKind != UnitKind.ITEM)
+    //    {
+    //        hp += value;
+    //        if (hp > maxHP) hp = maxHP;
+    //    } 
         
-    }
+    //}
 
-    public void EnableObj(GameObject original)
-    {
-        enabled = false;
-        GetComponent<SynthesisUnit>().unitKind = unitKind;
-        GetComponent<SynthesisUnit>().Original = original;
+    //public void EnableObj(GameObject original)
+    //{
+    //    enabled = false;
+    //    GetComponent<SynthesisUnit>().unitKind = unitKind;
+    //    GetComponent<SynthesisUnit>().Original = original;
 
-        SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-        Color color = mySprite.color;
-        color.a = 0.5f;
-        mySprite.color = color;
-    }
+    //    SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+    //    Color color = mySprite.color;
+    //    color.a = 0.5f;
+    //    mySprite.color = color;
+    //}
 
     void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
     {
@@ -310,12 +267,12 @@ public class Unit : MonoBehaviour
         this.defense = defense;
     }
 
-    void Die()
+    protected virtual void Die()
     {
         pawn.RemoveTilePawn();
         Destroy(gameObject);
     }
 
 }
-public enum Kind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
+public enum AllyKind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM};
 public enum EnemyKind {Blind,Eat,Head,Oppressed,Prayer};

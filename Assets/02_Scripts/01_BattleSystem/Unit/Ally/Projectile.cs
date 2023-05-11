@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    //public Unit unit;
     public GameObject Target;
     public float speed, damage;
-    //public void Set_Projectile(Unit unit, float speed, float damage)
-    //{
-    //    //this.unit = unit;
-    //    this.speed = speed;
-    //    this.damage = damage;
-    //    Destroy(gameObject, 5f);
-    //}
-
+    
     public void SetTarget(GameObject go)
     {
         Target = go;
     }
-
 
     private void OnEnable()
     {

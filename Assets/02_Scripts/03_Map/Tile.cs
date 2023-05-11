@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     public int Y { get; set; }
 
     public Unit TileUnit;
-    public List<Enemy> EnemyList = new();
+    public List<Unit> EnemyList = new();
     
     public bool IsTable;
     public bool CanPlacement;

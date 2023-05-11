@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tanker : Unit
+public class Tanker : Ally
 {
     void Start()
     {

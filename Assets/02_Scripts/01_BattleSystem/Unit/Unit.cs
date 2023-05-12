@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [HideInInspector]
+    public Pawn pawn;
+
     public float maxHP,hp, defense;
     public float minDamage;
 
@@ -24,14 +27,13 @@ public class Unit : MonoBehaviour
     /// </summary>
     protected List<Unit> targets = new List<Unit>();
 
-    public bool isAttack, isBuff;
+    protected bool isAttack, isBuff;
 
     public enum AttackType { Active, Projectile, AreaOfEffect, AOE_Melee};//근접,투사체,광역,광역 근접
     public AttackType attackType;
 
     public GameObject ProjectilePrefab;
-    public Pawn pawn;
-
+   
     public SpriteRenderer mySprite;
     public Animator anim;
 

@@ -148,20 +148,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5730d7a7f0ee0634abd8ef33feb7dda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: "\uC5B5\uC555\uBC1B\uB294 \uC790"
-  damage: 30
-  maxHP: 0
-  hp: 0
-  defense: 10
-  speed: 20
-  delayTime: 1.5
+  maxHP: 20
+  hp: 20
+  defense: 0
+  minDamage: 0
+  damage: 2
+  delayTime: 1
   time: 0
-  drop_Gold: 20
+  Rating: 0
+  UpgradeCount: 0
+  detectRange_List: []
+  AOERange_List: []
+  AOEPos: {x: 0, y: 0}
   isAttack: 0
-  money: 20
-  debuff: 0
+  isBuff: 0
+  attackType: 0
+  ProjectilePrefab: {fileID: 0}
+  pawn: {fileID: 0}
+  mySprite: {fileID: 0}
+  anim: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: 0, z: 0}
+  isEnemy: 0
+  money: 20
+  speed: 20
+  enemyKind: 3
   hp1: 90
   hp2: 120
   phase: 0
@@ -177,6 +188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1373574f27e78448a8021bdfaa4811e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pastTile: {fileID: 0}
+  IsEnemy: 0
+  IsOverCenter: 0
+  IsGrabbed: 0
   IsMoveGrid: 0
   X: 0
   Y: 0

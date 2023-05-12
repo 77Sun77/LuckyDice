@@ -85,8 +85,6 @@ public abstract class Unit : MonoBehaviour
         SyncHPBar();
     }
 
-    protected abstract void Search_Targets();
-
     //나중에 확장으로 뺄것
     protected virtual List<Tile> GetTileInRange(int targetX, int targetY, List<Vector2> targetRange)
     {
@@ -106,6 +104,7 @@ public abstract class Unit : MonoBehaviour
         return TileList;
     }
 
+    protected abstract void Search_Targets();
     protected abstract bool TryAttack();
     
 

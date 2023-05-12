@@ -60,6 +60,7 @@ public class TileManager : MonoBehaviour
         
         GenerateMap();
         GenerateTable();
+
     }
 
     void GenerateMap()

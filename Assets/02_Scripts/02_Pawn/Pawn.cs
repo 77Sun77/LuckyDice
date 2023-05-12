@@ -17,7 +17,9 @@ public class Pawn : MonoBehaviour
     public bool IsGrabbed;
     public bool IsMoveGrid;
     public int X, Y;
-    
+
+    public Action OnInitialize_SetTile;
+
     private void Awake()
     {
         OnTileChanged += AddTilePawn;
@@ -37,6 +39,14 @@ public class Pawn : MonoBehaviour
         if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 
         CheckCenter();
+
+        //디버그때 미리 배치된 Ally를 Tile에 적용시키기 위함
+        if (Input.GetKey(KeyCode.P))
+        {
+            Set_CurTile();
+            AddTilePawn();
+            Debug.Log("초기화됨");
+        }
     }
 
     public void Set_CurTile()
@@ -97,6 +107,5 @@ public class Pawn : MonoBehaviour
         transform.position = targetTile.GetPos();
         Set_CurTile();
     }
-
 
 }

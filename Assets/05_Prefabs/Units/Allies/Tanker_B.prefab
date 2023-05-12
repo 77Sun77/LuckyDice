@@ -148,28 +148,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f250e731c093fe7478777e0fdb35ae8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  pawn: {fileID: 0}
+  isEnemy: 0
   maxHP: 10
   hp: 10
   defense: 2
   minDamage: 0
-  detectRange_List: []
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
+  damage: 1
   delayTime: 1.5
   time: 0
   Rating: 0
   UpgradeCount: 0
-  unitKind: 3
-  isAttack: 0
+  detectRange_List:
+  - {x: 1, y: 0}
+  AOERange_List: []
+  AOEPos: {x: 0, y: 0}
+  targets: []
+  isTargetDetected: 0
+  isAttacking: 0
   isBuff: 0
   attackType: 0
+  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  pawn: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
+  unitKind: 3
 --- !u!114 &-8378796134601819673
 MonoBehaviour:
   m_ObjectHideFlags: 0

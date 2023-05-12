@@ -150,10 +150,12 @@ using UnityEngine;
 //}
 public class Enemy : Unit
 {
+    public EnemyKind enemyKind;
+
     [Header("EnmeyOnly")]
     public int money;
     public float speed;
-    public EnemyKind enemyKind;
+   
     protected override void first_Setting()
     {
         base.first_Setting();
@@ -212,6 +214,11 @@ public class Enemy : Unit
         isTargetDetected = targets.Count != 0;
     }
 
+    protected override void Die()
+    {
+        GameManager.instance.Set_Money(money);
+        base.Die();
+    }
 
     void Move()
     {
@@ -219,12 +226,6 @@ public class Enemy : Unit
         {
             transform.Translate(Vector2.left * (speed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
         }
-    }
-
-    protected override void Die()
-    {
-        GameManager.instance.Set_Money(money);
-        base.Die();
     }
 
     public void TakeDamageByBomb()

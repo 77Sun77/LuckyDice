@@ -10,7 +10,6 @@ public class Pawn : MonoBehaviour
     private Action OnTileChanged;
 
     Unit unit;
-    Enemy enemy;
 
     public bool IsEnemy;
     public bool IsOverCenter;
@@ -27,12 +26,7 @@ public class Pawn : MonoBehaviour
         if (gameObject.TryGetComponent(out Unit _unit))
         {
             unit = _unit;
-            IsEnemy = false;
-        }
-        else if (gameObject.TryGetComponent(out Enemy _enemy))
-        {
-            enemy = _enemy;
-            IsEnemy = true;
+            IsEnemy = _unit.isEnemy;
         }
     }
 
@@ -40,12 +34,12 @@ public class Pawn : MonoBehaviour
     {
         if (curTile != null && !IsEnemy) unit.enabled = !curTile.IsTable;
         
-        if (IsEnemy) ShotRay_Enemy(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
+        if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 
         CheckCenter();
     }
 
-    void ShotRay_Enemy()
+    public void Set_CurTile()
     {
         int layerMask = (1 << LayerMask.NameToLayer("Tile"));
         RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, layerMask);
@@ -63,29 +57,11 @@ public class Pawn : MonoBehaviour
         else Debug.Log("None Obj");
     }
 
-    public void OnClick_Unit()
+    public void Set_PastTile()
     {
         if(curTile!=null) pastTile = curTile;
-        IsGrabbed = true;
     }
-    public void OnDrop_Unit()
-    {
-        int layerMask = (1 << LayerMask.NameToLayer("Tile"));
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, layerMask);
-
-        if (raycastHit.collider)
-        {
-            //Debug.Log(raycastHit.collider.gameObject);
-            raycastHit.collider.transform.TryGetComponent(out curTile);
-            if (curTile != pastTile) OnTileChanged.Invoke();
-
-            X = curTile.X;
-            Y = curTile.Y;
-        }
-
-        IsGrabbed = false;
-    }
-
+   
     void CheckCenter()
     {
         if(curTile)
@@ -100,8 +76,8 @@ public class Pawn : MonoBehaviour
         }
         else if (IsEnemy)
         {
-            if(!curTile.EnemyList.Contains(enemy))
-            curTile.EnemyList.Add(enemy);
+            if(!curTile.EnemyList.Contains(unit))
+            curTile.EnemyList.Add(unit);
         }
         else Debug.Log("Pawn에서 캐릭터 스크립터를 찾을 수 없습니다");
     }
@@ -112,14 +88,14 @@ public class Pawn : MonoBehaviour
             return;
 
         if(!IsEnemy) pastTile.TileUnit = null;
-        else pastTile.EnemyList.Remove(enemy);
+        else pastTile.EnemyList.Remove(unit);
     }
 
     public void MoveToTargetTile(Tile targetTile)
     {
-        OnClick_Unit();
+        Set_PastTile();
         transform.position = targetTile.GetPos();
-        OnDrop_Unit();
+        Set_CurTile();
     }
 
 

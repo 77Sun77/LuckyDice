@@ -2,38 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
     [HideInInspector]
     public Pawn pawn;
+    public bool isEnemy;
 
-    public float maxHP,hp, defense;
+    public float maxHP, hp, defense;
     public float minDamage;
 
     public float damage;
     public float delayTime, time;
     public int Rating, UpgradeCount;
-   
+
     public List<Vector2> detectRange_List;
     public List<Vector2> AOERange_List;//광역 공격 범위
     public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
 
     /// <summary>
-    /// 타일에 있는 EnemyList들의 List
+    /// Tile에 있는 EnemyList의 List
     /// </summary>
-    public List<List<Unit>> TargetList_List = new();
-    /// <summary>
-    /// TileEnemyList들의 합
-    /// </summary>
-    protected List<Unit> targets = new List<Unit>();
+    protected List<List<Unit>> TargetList_List = new();
+ 
+    public List<Unit> targets = new List<Unit>();
 
-    protected bool isAttack, isBuff;
+    public bool isTargetDetected,isAttacking,isBuff;
 
-    public enum AttackType { Active, Projectile, AreaOfEffect, AOE_Melee};//근접,투사체,광역,광역 근접
     public AttackType attackType;
 
     public GameObject ProjectilePrefab;
-   
+
     public SpriteRenderer mySprite;
     public Animator anim;
 
@@ -42,7 +40,11 @@ public class Unit : MonoBehaviour
     protected HPBar hPBar;
     public Vector3 HPBarOffset;
 
-    public bool isEnemy;
+    
+
+    //public bool flag;
+    //public int i;
+
     protected virtual void first_Setting()
     {
         mySprite = GetComponent<SpriteRenderer>();
@@ -50,7 +52,7 @@ public class Unit : MonoBehaviour
         pawn = GetComponent<Pawn>();
 
         SpawnHPBar();
-        
+
         Rating = 1;
         UpgradeCount = 1;
     }
@@ -72,54 +74,21 @@ public class Unit : MonoBehaviour
     }
     protected virtual void Update()
     {
-        Search_New();
+        Search_Targets();
 
-        if (isAttack && time <= 0)
+        if (isTargetDetected && time <= 0)
         {
-            switch (attackType)
-            {
-                case AttackType.Active:
-                    if (GetClosestEnemy(targets).pawn.IsOverCenter) Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
-                    break;
-                case AttackType.Projectile:
-                    Projectile_Attack();
-                    break;
-                case AttackType.AreaOfEffect:
-                    AOE_Attack();
-                    break;
-                case AttackType.AOE_Melee:
-                    if (GetClosestEnemy(targets).pawn.IsOverCenter) AOE_Attack();
-                    break;
-            }
+            isAttacking = TryAttack();
         }
         time -= Time.deltaTime;
 
         SyncHPBar();
     }
 
-    protected virtual void Search_New()
-    {
-        targets.Clear();
-        TargetList_List.Clear();
-        //detectRange안의 Tile의 EnemyList 가져오기
-        foreach (var Tile in GetTileInRange(pawn.X,pawn.Y,detectRange_List))
-        {
-            TargetList_List.Add(Tile.EnemyList);
-        }
-        
-        //enemies에 전부 추가
-        foreach (var EnemyList in TargetList_List)
-        {
-            if (EnemyList.Count != 0)
-            {
-                targets.AddRange(EnemyList);
-            }
-        }
+    protected abstract void Search_Targets();
 
-        isAttack = targets.Count != 0;
-    }
     //나중에 확장으로 뺄것
-    protected virtual List<Tile> GetTileInRange(int targetX,int targetY,List<Vector2> targetRange)
+    protected virtual List<Tile> GetTileInRange(int targetX, int targetY, List<Vector2> targetRange)
     {
         List<Tile> TileList = new();
 
@@ -131,11 +100,14 @@ public class Unit : MonoBehaviour
 
             var Tile = TileManager.Instance.TileArray[x, y];
             TileList.Add(Tile);
-            
+
             //Debug.Log($"{x},{y}");
         }
         return TileList;
     }
+
+    protected abstract bool TryAttack();
+    
 
     /// <summary>
     /// 단일 근접
@@ -147,7 +119,7 @@ public class Unit : MonoBehaviour
         {
             //damage += 20;
         }
-        GetClosestEnemy(targets).TakeDamage(damage);
+        GetClosestTarget(targets).TakeDamage(damage);
         time = delayTime;
     }
     /// <summary>
@@ -157,7 +129,7 @@ public class Unit : MonoBehaviour
     {
         // 투사체 프리팹 소환
         GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-        bullet.GetComponent<Projectile>().SetTarget(GetClosestEnemy(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
+        bullet.GetComponent<Projectile>().SetTarget(GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
     }
     /// <summary>
@@ -167,7 +139,7 @@ public class Unit : MonoBehaviour
     {
         List<Unit> targets = new();
 
-        AOEPos = new Vector2(this.GetClosestEnemy(this.targets).pawn.X, this.GetClosestEnemy(this.targets).pawn.Y);
+        AOEPos = new Vector2(this.GetClosestTarget(this.targets).pawn.X, this.GetClosestTarget(this.targets).pawn.Y);
         foreach (var _tile in GetTileInRange((int)AOEPos.x, (int)AOEPos.y, AOERange_List))
         {
             if (_tile.EnemyList.Count != 0)
@@ -199,22 +171,22 @@ public class Unit : MonoBehaviour
         tileSR.color = originColor;
     }
 
-    public Unit GetClosestEnemy(List<Unit> enemies)
+    public Unit GetClosestTarget(List<Unit> targets)
     {
-        Unit targetEnemy = null;
+        Unit target = null;
         float minDistance = float.MaxValue;
 
-        foreach (var _enemy in enemies)
+        foreach (var _target in targets)
         {
-            float distance = (transform.position - _enemy.transform.position).sqrMagnitude;
+            float distance = (transform.position - _target.transform.position).sqrMagnitude;
             if (minDistance > distance)
             {
                 minDistance = distance;
-                targetEnemy = _enemy;
+                target = _target;
             }
         }
 
-        return targetEnemy;
+        return target;
     }
 
     public void TakeDamage(float damage)
@@ -236,7 +208,7 @@ public class Unit : MonoBehaviour
     //        hp += value;
     //        if (hp > maxHP) hp = maxHP;
     //    } 
-        
+
     //}
 
     //public void EnableObj(GameObject original)
@@ -276,5 +248,7 @@ public class Unit : MonoBehaviour
     }
 
 }
-public enum AllyKind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM};
-public enum EnemyKind {Blind,Eat,Head,Oppressed,Prayer};
+public enum AllyKind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
+public enum EnemyKind { Blind, Eat, Head, Oppressed, Prayer };
+public enum AttackType { Active, Projectile, AreaOfEffect, AOE_Melee };//근접,투사체,광역,광역 근접
+

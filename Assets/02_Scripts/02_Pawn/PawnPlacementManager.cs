@@ -19,7 +19,7 @@ public class PawnPlacementManager : MonoBehaviour
     {
         IsHoldingMouse = Input.GetKey(KeyCode.Mouse0);//나중에 터치로 바꿀것
 
-        if (IsHoldingMouse) ShotRay();
+        if (IsHoldingMouse) SetSelectPawn();
         else if(!IsHoldingMouse && selectPawn)
         {
             if (selectPawn.IsMoveGrid) MoveOrSwitchPawn();
@@ -32,7 +32,7 @@ public class PawnPlacementManager : MonoBehaviour
         }
     }
 
-    void ShotRay()
+    void SetSelectPawn()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -46,11 +46,10 @@ public class PawnPlacementManager : MonoBehaviour
             if (selectPawn) return;
 
             selectTarget = raycastHit.collider.transform.gameObject;
-            if (!selectTarget.TryGetComponent(out selectPawn))
-            {
-                selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();
-            }
 
+            if (selectTarget.TryGetComponent(out Pawn pawn) && !pawn.IsEnemy) selectPawn = pawn;
+            else selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();
+          
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pawnPos_OnClick = selectPawn.gameObject.transform.position;
         }
@@ -74,14 +73,16 @@ public class PawnPlacementManager : MonoBehaviour
                 if (tile.CanPlacement)//빈자리인 경우
                 {
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
-                    selectPawn.OnDrop_Unit();
+                    selectPawn.Set_CurTile();
+                    selectPawn.IsGrabbed = false;
                     return;
                 }
                 else if (unit.pawn != selectPawn)//다른 유닛이 있을 경우
                 {
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     unit.pawn.MoveToTargetTile(selectPawn.pastTile);
-                    selectPawn.OnDrop_Unit();
+                    selectPawn.Set_CurTile();
+                    selectPawn.IsGrabbed = false;
                     Debug.Log("Switch Positon");
                     return;
                 }
@@ -104,7 +105,12 @@ public class PawnPlacementManager : MonoBehaviour
     {
         deltaVec = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clickPoint;
         selectPawn.gameObject.transform.position = pawnPos_OnClick + deltaVec;
-        
-        if(selectPawn.IsGrabbed == false) selectPawn.OnClick_Unit();
+
+        if (selectPawn.IsGrabbed == false)
+        {
+            selectPawn.Set_PastTile();
+            selectPawn.IsGrabbed = true;
+        }    
+
     }
 }

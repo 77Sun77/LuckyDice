@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7820702717522260762}
   - component: {fileID: 7820702717522260763}
   - component: {fileID: 7820702717522260756}
-  - component: {fileID: 7820702717522260761}
+  - component: {fileID: 8186901312544048567}
   m_Layer: 6
   m_Name: DiceTest
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7820702717522260758}
   m_LocalRotation: {x: 0.3300891, y: 0.23805717, z: -0.26232332, w: 0.87496084}
   m_LocalPosition: {x: 4, y: 2.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7710741809323237539}
@@ -64,7 +64,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7820702717522260761
+--- !u!114 &8186901312544048567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,12 +73,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7820702717522260758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1708d6b01c0a9b645a95e2200f3cd904, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a0502ac9572260468caf6323c868225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxTorqueScale: 5
   count: 0
-  isSimulated: 1
+  isSimulated: 0
+  dice: {fileID: 7710741809323237539}
+  Graduation: 0
 --- !u!1 &7820702717542413735
 GameObject:
   m_ObjectHideFlags: 0

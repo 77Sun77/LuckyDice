@@ -93,7 +93,7 @@ public class DiceRotation : MonoBehaviour
     public void OnDice()
     {
         target.SetActive(true);
-        Destroy(target, 5f);
+        Destroy(target, 4f);
         Destroy(gameObject);
     }
     private void OnCollisionEnter(Collision collision)

@@ -8,13 +8,15 @@ public class DiceManager : MonoBehaviour
 
     public float MaxTorqueScale;
 
-    public int number;
+    public int number, count;
 
     float ranXTorque, ranYTorque, ranZTorque, dirX, dirY, dirZ;
 
     GameObject temp;
     DiceRotation diceTemp;
     bool isShot;
+
+    public GameObject[] Dices;
     void Start()
     {
         
@@ -34,6 +36,12 @@ public class DiceManager : MonoBehaviour
         print(number);
         while (isShot)
         {
+            if(count > 5)
+            {
+                Instantiate(Dices[number - 1]);
+                isShot = false;
+                break;
+            }
             dirX = Random.Range(0, 360);
             dirY = Random.Range(0, 360);
             dirZ = Random.Range(0, 360);
@@ -58,12 +66,15 @@ public class DiceManager : MonoBehaviour
             {
                 diceTemp.OnDice();
                 isShot = false;
+                print(dirX + " " + dirY +" "+ dirZ + " " + ranXTorque + " " + ranYTorque + " " + ranZTorque + " ");
             }
             else
             {
                 diceTemp.DestroyDice();
             }
+            count++;
+
         }
-        
+        count = 0;
     }
 }

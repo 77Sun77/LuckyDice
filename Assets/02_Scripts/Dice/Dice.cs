@@ -24,7 +24,7 @@ public class Dice : MonoBehaviour
         if (count == 0)
         {
             count++;
-            rigid.AddForce(Vector3.up * 100f);
+           // rigid.AddForce(Vector3.back * 100f);
         }
     }
 }

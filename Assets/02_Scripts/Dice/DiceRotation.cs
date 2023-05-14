@@ -16,7 +16,7 @@ public class DiceRotation : MonoBehaviour
 
     public Transform dice;
     public int Graduation;
-    float max;
+    float min;
 
     public void SetDice(int count, float x, float y, float z, GameObject target)
     {
@@ -67,14 +67,14 @@ public class DiceRotation : MonoBehaviour
 
         if (Vector3.Magnitude(rigid.velocity) < 0.1f && isSimulated)
         {
-            max = dice.transform.GetChild(0).transform.position.y;
+            min = dice.transform.GetChild(0).transform.position.z;
             Graduation = 1;
             for (int i = 0; i < 6; i++)
             {
-                float y = dice.transform.GetChild(i).transform.position.y;
-                if (max < y)
+                float z = dice.transform.GetChild(i).transform.position.z;
+                if (min > z)
                 {
-                    max = y;
+                    min = z;
                     Graduation = i + 1;
                 }
             }
@@ -101,7 +101,7 @@ public class DiceRotation : MonoBehaviour
         if (count == 0)
         {
             count++;
-            rigid.AddForce(Vector3.up * 100f);
+            //rigid.AddForce(Vector3.back * 100f);
         }
 
     }

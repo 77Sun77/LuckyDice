@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DiceManager : MonoBehaviour
 {
+    public static DiceManager instance;
+
     public GameObject prefab;
 
     public float MaxTorqueScale;
@@ -19,21 +21,17 @@ public class DiceManager : MonoBehaviour
     public GameObject[] Dices;
     void Start()
     {
-        
+        instance = this;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && temp == null && !isShot)
-        {
-            StartCoroutine(LoopDice());
-        }
 
     }
-    IEnumerator LoopDice()
+    IEnumerator LoopDice(int number)
     {
         isShot = true;
-        number = Random.Range(1, 7);
-        print(number);
+        this.number = number;
+        print(this.number);
         while (isShot)
         {
             if(count > 5)
@@ -51,7 +49,7 @@ public class DiceManager : MonoBehaviour
             temp = null;
             for (int i = 0; i < 2; i++)
             {
-                GameObject go = Instantiate(prefab, new Vector3(4, 2.25f, 0), Quaternion.Euler(dirX, dirY, dirZ));
+                GameObject go = Instantiate(prefab, new Vector3(4, 0f, -2f), Quaternion.Euler(dirX, dirY, dirZ));
                 go.GetComponent<DiceRotation>().SetDice(i, ranXTorque, ranYTorque, ranZTorque, temp);
                 if (i == 0) temp = go;
                 else diceTemp = go.GetComponent<DiceRotation>();
@@ -62,7 +60,7 @@ public class DiceManager : MonoBehaviour
                 yield return null;
             }
 
-            if (diceTemp.Graduation == number)
+            if (diceTemp.Graduation == this.number)
             {
                 diceTemp.OnDice();
                 isShot = false;
@@ -76,5 +74,10 @@ public class DiceManager : MonoBehaviour
 
         }
         count = 0;
+    }
+
+    public void DiceControl(int number)
+    {
+        StartCoroutine(LoopDice(number));
     }
 }

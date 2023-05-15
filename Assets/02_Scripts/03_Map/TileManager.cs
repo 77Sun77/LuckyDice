@@ -159,7 +159,7 @@ public class TileManager : MonoBehaviour
 
     public bool IsRightRange(int x, int y)
     {
-        if (0 < x && x < MapX && 0 < y && y < MapY)
+        if (0 <= x && x < MapX && 0 <= y && y < MapY)
         {
             return true;
         }

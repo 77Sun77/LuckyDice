@@ -75,11 +75,15 @@ public abstract class Unit : MonoBehaviour
     protected virtual void Update()
     {
         Search_Targets();
-
-        if (isTargetDetected && time <= 0)
+       
+        if (isTargetDetected)
         {
-            isAttacking = TryAttack();
+            if (time <= 0)
+            {
+                isAttacking = TryAttack();
+            }
         }
+        else isAttacking = false;
         time -= Time.deltaTime;
 
         SyncHPBar();
@@ -128,7 +132,7 @@ public abstract class Unit : MonoBehaviour
     {
         // 투사체 프리팹 소환
         GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-        bullet.GetComponent<Projectile>().SetTarget(GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
+        bullet.GetComponent<Projectile>().SetProjectile(damage, GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
     }
     /// <summary>

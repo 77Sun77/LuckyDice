@@ -77,7 +77,7 @@ public class PawnPlacementManager : MonoBehaviour
                     selectPawn.IsGrabbed = false;
                     return;
                 }
-                else if (unit.pawn != selectPawn)//다른 유닛이 있을 경우
+                else if (unit != null && unit.pawn != selectPawn)//다른 유닛이 있을 경우
                 {
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     unit.pawn.MoveToTargetTile(selectPawn.pastTile);

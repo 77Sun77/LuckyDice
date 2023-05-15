@@ -149,12 +149,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
+  isEnemy: 0
   maxHP: 10
   hp: 10
   defense: 0
   minDamage: 0
-  damage: 3
-  delayTime: 0.5
+  damage: 1
+  delayTime: 1.1
   time: 0
   Rating: 0
   UpgradeCount: 0
@@ -169,19 +170,19 @@ MonoBehaviour:
   - {x: 7, y: 0}
   - {x: 8, y: 0}
   - {x: 9, y: 0}
-  - {x: 9, y: 0}
   - {x: 10, y: 0}
   AOERange_List: []
   AOEPos: {x: 0, y: 0}
+  targets: []
+  isTargetDetected: 0
+  isAttacking: 0
+  isBuff: 0
   attackType: 1
   ProjectilePrefab: {fileID: 5388325044995908961, guid: 80a0c6d6275ed904aac1d58fc16bb526, type: 3}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
-  isEnemy: 0
-  flag: 0
-  i: 0
   unitKind: 5
 --- !u!114 &5278243932145574865
 MonoBehaviour:

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
     public Base _base;
 
     public int money;
+
+    public bool IsInBattle;
+
     void Start()
     {
         if (instance == null)

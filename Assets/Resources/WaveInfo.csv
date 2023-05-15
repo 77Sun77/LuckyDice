@@ -1,6 +1,9 @@
 Wave,Name,Lv,Pos,MinDelay,MaxDelay
 1,Blind,1,0,0,0
-1,Blind,1,0,6,6
+,,,,,
+,,,,,
+,,,,,
+,,,,,
 2,Blind,1,-2,1.1,1.1
 2,Eat,1,0,1,1
 2,Head,1,1,1,1

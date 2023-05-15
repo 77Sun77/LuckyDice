@@ -232,10 +232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &37930984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -564,10 +565,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &146838242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -827,10 +829,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &217147320
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -955,10 +958,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &225015766
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1083,10 +1087,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &233309391
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1211,10 +1216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &236515999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1436,10 +1442,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &269517917
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1564,10 +1571,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &294421748
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1692,10 +1700,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &305228453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1780,7 +1789,7 @@ Transform:
   - {fileID: 1422128170}
   - {fileID: 929560096}
   m_Father: {fileID: 1512755373}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &319347351
 MonoBehaviour:
@@ -1844,7 +1853,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1512755373}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &322491590
 MonoBehaviour:
@@ -1939,10 +1948,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &348923160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2067,10 +2077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &355359094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2262,10 +2273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &383311788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2390,10 +2402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &401174528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2518,10 +2531,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &421332716
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2646,10 +2660,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &459729136
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3006,10 +3021,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &493258188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3134,10 +3150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &546740944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3262,10 +3279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &557911406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3390,10 +3408,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &566485461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3490,6 +3509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _base: {fileID: 2056096329}
   money: 0
+  IsInBattle: 0
 --- !u!4 &571522658
 Transform:
   m_ObjectHideFlags: 0
@@ -3653,10 +3673,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &609041062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3781,10 +3802,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &612840282
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3909,10 +3931,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &622306908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4037,10 +4060,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &669856528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4249,10 +4273,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &738790508
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4377,10 +4402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &820727874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4505,10 +4531,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &853113835
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4708,10 +4735,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &898519128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4867,10 +4895,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &931147540
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4995,10 +5024,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1002219781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5237,10 +5267,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1050364620
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5468,10 +5499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1111889843
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5694,10 +5726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1137494037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5822,10 +5855,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1137854971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5926,7 +5960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8839907890535085561, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8839907890535085561, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6005,7 +6039,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1512755373}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175465534
 MonoBehaviour:
@@ -6093,10 +6127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1198020253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6221,10 +6256,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1258959420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6349,10 +6385,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1279340743
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6477,10 +6514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1325066215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6605,10 +6643,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1326937384
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6733,10 +6772,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1340763033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6861,10 +6901,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1342314927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6989,10 +7030,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1382779486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7418,8 +7460,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1525845873}
-  - {fileID: 1466450396}
   - {fileID: 1161101413}
+  - {fileID: 1466450396}
+  - {fileID: 1848539633}
   m_Father: {fileID: 121716135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7495,10 +7538,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1454787427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7623,10 +7667,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1456954268
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7686,21 +7731,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1453006439}
     m_Modifications:
-    - target: {fileID: 7696597218292851071, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
-      propertyPath: damage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7696597218292851330, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7696597218292851330, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.18
+      value: 7.11
       objectReference: {fileID: 0}
     - target: {fileID: 7696597218292851330, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.56
+      value: -0.78
       objectReference: {fileID: 0}
     - target: {fileID: 7696597218292851330, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7737,10 +7778,6 @@ PrefabInstance:
     - target: {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
       propertyPath: m_Name
       value: Warrior_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
@@ -7803,7 +7840,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1512755373}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1500109690
 GameObject:
@@ -7877,10 +7914,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1500109694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7962,6 +8000,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 571522658}
+  - {fileID: 1517722731}
   - {fileID: 1175465533}
   - {fileID: 319347350}
   - {fileID: 2010208508}
@@ -7970,6 +8009,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1517722729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1517722731}
+  - component: {fileID: 1517722730}
+  m_Layer: 0
+  m_Name: GoogleSheetManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1517722730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517722729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8171cba0424c0549b74c43ae0b31366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Archer: {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
+  Buffer: {fileID: 1953436954116349608, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+  Debuffer: {fileID: 5124941803456547265, guid: 05e8a5bd0dbb39c48bd953a100cd772f, type: 3}
+  Socerer: {fileID: 7154396063005979274, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
+  Tanker: {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
+  Warrior: {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
+--- !u!4 &1517722731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517722729}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512755373}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1525845872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7977,14 +8066,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1453006439}
     m_Modifications:
-    - target: {fileID: -8985316195994324783, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
-      propertyPath: detectRange_List.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -8985316195994324783, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
-      propertyPath: detectRange_List.Array.data[11].x
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 5161478708710330666, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -7995,7 +8076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5161478708710330666, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.47
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 5161478708710330666, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8032,10 +8113,6 @@ PrefabInstance:
     - target: {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
       propertyPath: m_Name
       value: Archer_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
@@ -8289,10 +8366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1711008982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8417,10 +8495,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1711996179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8545,10 +8624,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1735378711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8673,10 +8753,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1735830688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8801,10 +8882,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1749851908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8929,10 +9011,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1757453198
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9057,10 +9140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1765921464
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9185,10 +9269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1776363927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9313,10 +9398,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1804898142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9441,10 +9527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1806144238
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9569,10 +9656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1817318479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9760,6 +9848,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836014715}
   m_CullTransparentMesh: 1
+--- !u!1001 &1848539632
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1453006439}
+    m_Modifications:
+    - target: {fileID: 1953436954116349608, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_Name
+      value: Buffer_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+--- !u!4 &1848539633 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1953436954116349612, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+  m_PrefabInstance: {fileID: 1848539632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1852749595
 GameObject:
   m_ObjectHideFlags: 0
@@ -9869,10 +10019,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1898928735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9997,10 +10148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1918536033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10125,10 +10277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1967870461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10253,10 +10406,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1992240357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10355,7 +10509,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1512755373}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2017166274
 GameObject:
@@ -10429,10 +10583,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0c5805adf91c64e9bc7510b9ef4d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileUnit: {fileID: 0}
+  Ally: {fileID: 0}
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &2017166278
 SpriteRenderer:
   m_ObjectHideFlags: 0

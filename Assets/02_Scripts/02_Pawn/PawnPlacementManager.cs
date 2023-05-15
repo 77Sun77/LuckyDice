@@ -47,7 +47,7 @@ public class PawnPlacementManager : MonoBehaviour
 
             selectTarget = raycastHit.collider.transform.gameObject;
 
-            if (selectTarget.TryGetComponent(out Pawn pawn) && !pawn.IsEnemy) selectPawn = pawn;
+            if (selectTarget.TryGetComponent(out Pawn pawn)) selectPawn = pawn;
             else selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();
           
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -68,7 +68,7 @@ public class PawnPlacementManager : MonoBehaviour
             if (raycastHit.collider.gameObject.layer.Equals(LayerMask.NameToLayer("Tile")))
             {
                 var tile = raycastHit.collider.transform.GetComponent<Tile>();
-                Unit unit = tile.TileUnit;
+                Unit unit = tile.Ally;
                 
                 if (tile.CanPlacement)//빈자리인 경우
                 {

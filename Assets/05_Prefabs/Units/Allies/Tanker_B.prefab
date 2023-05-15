@@ -167,7 +167,7 @@ MonoBehaviour:
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 0
+  attackType: 1
   ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}

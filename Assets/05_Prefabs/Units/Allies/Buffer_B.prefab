@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1953436954116349612
 Transform:
   m_ObjectHideFlags: 0
@@ -232,28 +232,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59571a995f5550141a6d47f8eaea10d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  pawn: {fileID: 0}
+  isEnemy: 0
   maxHP: 3
   hp: 3
   defense: 0
   minDamage: 0
-  detectRange_List: []
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
-  delayTime: 0
+  damage: 1
+  delayTime: 4
   time: 0
   Rating: 0
   UpgradeCount: 0
-  unitKind: 4
-  isAttack: 0
+  detectRange_List:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  AOERange_List:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  AOEPos: {x: 0, y: 0}
+  targets: []
+  isTargetDetected: 0
+  isAttacking: 0
   isBuff: 0
   attackType: 0
+  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  pawn: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
+  unitKind: 4
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0

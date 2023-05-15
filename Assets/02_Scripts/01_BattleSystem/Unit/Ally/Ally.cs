@@ -17,6 +17,8 @@ public class Ally : Unit
 
         switch (attackType)
         {
+            case AttackType.None:
+                break;
             case AttackType.Active:
                 if (GetClosestTarget(targets).pawn.IsOverCenter)
                 {
@@ -49,7 +51,7 @@ public class Ally : Unit
     protected override void Search_Targets()
     {
         targets.Clear();
-        TargetList_List.Clear();
+
         //detectRange안의 Tile의 EnemyList 가져온후 추가
         foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
         {

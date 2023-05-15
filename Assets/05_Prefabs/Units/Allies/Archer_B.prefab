@@ -150,12 +150,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 10
-  hp: 10
+  maxHP: 5
+  hp: 5
   defense: 0
   minDamage: 0
   damage: 1
-  delayTime: 1.1
+  delayTime: 0.9
   time: 0
   Rating: 0
   UpgradeCount: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 1
+  attackType: 2
   ProjectilePrefab: {fileID: 5388325044995908961, guid: 80a0c6d6275ed904aac1d58fc16bb526, type: 3}
   mySprite: {fileID: 0}
   anim: {fileID: 0}

@@ -90,7 +90,7 @@ public class TileManager : MonoBehaviour
                 else sr.color = Color2;
 
                 Tile tile = go.GetComponent<Tile>();
-                tile.Initialize_Tile(x, y);
+                tile.Initialize_Tile(x, y, sr.color);
                 TileArray.SetValue(tile, x, y);
 
                 sr.enabled = false;

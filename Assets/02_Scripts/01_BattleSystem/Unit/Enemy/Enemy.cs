@@ -174,7 +174,7 @@ public class Enemy : Unit
 
         foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
         {
-            if (Tile.TileUnit != null) targets.Add(Tile.TileUnit);
+            if (Tile.Ally != null) targets.Add(Tile.Ally);
         }
         isTargetDetected = targets.Count != 0;
     }

@@ -45,7 +45,7 @@ public class Pawn : MonoBehaviour
         {
             Set_CurTile();
             AddTilePawn();
-            Debug.Log("√ ±‚»≠µ ");
+            //Debug.Log("√ ±‚»≠µ ");
         }
     }
 
@@ -82,7 +82,7 @@ public class Pawn : MonoBehaviour
     {
         if (!IsEnemy)
         {
-            curTile.TileUnit = unit;
+            curTile.Ally = unit;
         }
         else if (IsEnemy)
         {
@@ -97,7 +97,7 @@ public class Pawn : MonoBehaviour
         if (pastTile == null)
             return;
 
-        if(!IsEnemy) pastTile.TileUnit = null;
+        if(!IsEnemy) pastTile.Ally = null;
         else pastTile.EnemyList.Remove(unit);
     }
 

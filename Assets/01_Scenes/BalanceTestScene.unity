@@ -8033,6 +8033,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8171cba0424c0549b74c43ae0b31366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Archer: {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
+  Buffer: {fileID: 1953436954116349608, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+  Debuffer: {fileID: 5124941803456547265, guid: 05e8a5bd0dbb39c48bd953a100cd772f, type: 3}
+  Socerer: {fileID: 7154396063005979274, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
+  Tanker: {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
+  Warrior: {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
 --- !u!4 &1517722731
 Transform:
   m_ObjectHideFlags: 0

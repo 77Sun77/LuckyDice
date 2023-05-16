@@ -6,6 +6,8 @@ using System;
 
 public class EnemyGenerator : MonoBehaviour
 {
+    public static EnemyGenerator instance;
+
     public Transform Generate_Tf;
 
     List<Dictionary<string, object>> data_Dialog;
@@ -16,12 +18,18 @@ public class EnemyGenerator : MonoBehaviour
     public int spawnX;
     int pastSpawnLine;
 
-    
-    
+    public Action OnWaveStart;
+    public Action OnWaveEnd;
+
     public void Awake()
     {
+        instance = this;
         ParseEnemyTable();
-        DebugWaveList(); 
+        DebugWaveList();
+
+        OnWaveStart += () => { GameManager.instance.IsInBattle = true; };
+        OnWaveEnd += () => { GameManager.instance.IsInBattle = false; };
+
     }
 
     void ParseEnemyTable()
@@ -72,6 +80,9 @@ public class EnemyGenerator : MonoBehaviour
             }
             Debug.Log(s);
         }
+
+        OnWaveStart += () => { Debug.Log("Wave Start"); };
+        OnWaveEnd += () => { Debug.Log("Wave End"); };
     }
 
     private void Update()
@@ -81,11 +92,12 @@ public class EnemyGenerator : MonoBehaviour
             StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
             CurWaveIndex++;
        }
-
     }
 
     IEnumerator SpawnWave(Wave wave)
     {
+        OnWaveStart.Invoke();
+
         foreach (var enemySpawnInfo in wave.enemySpawnInfo_List)
         {
             yield return new WaitForSeconds(enemySpawnInfo.GetRandomDelay());
@@ -94,6 +106,11 @@ public class EnemyGenerator : MonoBehaviour
             
             MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
         }
+
+        Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
+        yield return new WaitUntil(IsAllEnemyDied);
+        OnWaveEnd.Invoke();
+
     }
 
     void MoveEnemyToTile(GameObject go,int spawnLineIndex)
@@ -108,8 +125,10 @@ public class EnemyGenerator : MonoBehaviour
         }
 
         go.transform.position = TileManager.Instance.TileArray[spawnX, spawnLineIndex].GetPos();
-        Debug.Log(spawnLineIndex);
+        //Debug.Log(spawnLineIndex);
         pastSpawnLine = spawnLineIndex;
     }
+
+
 
 }

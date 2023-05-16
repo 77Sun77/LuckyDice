@@ -167,6 +167,17 @@ public class Enemy : Unit
         base.Update();
         Move();
     }
+    
+    protected override void Search_Targets()
+    {
+        targets.Clear();
+
+        foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
+        {
+            if (Tile.Ally != null) targets.Add(Tile.Ally);
+        }
+        isTargetDetected = targets.Count != 0;
+    }
 
     protected override bool TryAttack()//적을 공격
     {
@@ -201,17 +212,6 @@ public class Enemy : Unit
                 break;
         }
         return _canAttack;
-    }
-
-    protected override void Search_Targets()
-    {
-        targets.Clear();
-
-        foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
-        {
-            if (Tile.TileUnit != null) targets.Add(Tile.TileUnit);
-        }
-        isTargetDetected = targets.Count != 0;
     }
 
     protected override void Die()

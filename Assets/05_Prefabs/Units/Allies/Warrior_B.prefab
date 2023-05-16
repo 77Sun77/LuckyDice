@@ -232,31 +232,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd6d299673cdcd4ab0074b28ff1f439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  pawn: {fileID: 0}
+  isEnemy: 0
   maxHP: 10
   hp: 10
   defense: 1
   minDamage: 0
-  detectRange: {x: 5, y: 1}
-  attackRange: {x: 1, y: 1}
+  damage: 4
+  delayTime: 1
+  time: 0
+  Rating: 0
+  UpgradeCount: 0
   detectRange_List:
   - {x: 1, y: 0}
   AOERange_List:
   - {x: 0, y: 0}
   AOEPos: {x: 0, y: 0}
-  delayTime: 1
-  time: 0
-  Rating: 0
-  UpgradeCount: 0
-  unitKind: 0
-  isAttack: 0
+  targets: []
+  isTargetDetected: 0
+  isAttacking: 0
   isBuff: 0
-  attackType: 3
+  attackType: 4
+  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
+  unitKind: 0
 --- !u!114 &2393364730516908464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1373574f27e78448a8021bdfaa4811e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pastTile: {fileID: 0}
   IsEnemy: 0
   IsOverCenter: 0
+  IsGrabbed: 0
   IsMoveGrid: 1
   X: 0
   Y: 0

@@ -19,11 +19,6 @@ public abstract class Unit : MonoBehaviour
     public List<Vector2> AOERange_List;//광역 공격 범위
     public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
 
-    /// <summary>
-    /// Tile에 있는 EnemyList의 List
-    /// </summary>
-    protected List<List<Unit>> TargetList_List = new();
- 
     public List<Unit> targets = new List<Unit>();
 
     public bool isTargetDetected,isAttacking,isBuff;
@@ -75,11 +70,15 @@ public abstract class Unit : MonoBehaviour
     protected virtual void Update()
     {
         Search_Targets();
-
-        if (isTargetDetected && time <= 0)
+       
+        if (isTargetDetected)
         {
-            isAttacking = TryAttack();
+            if (time <= 0)
+            {
+                isAttacking = TryAttack();
+            }
         }
+        else isAttacking = false;
         time -= Time.deltaTime;
 
         SyncHPBar();
@@ -128,7 +127,7 @@ public abstract class Unit : MonoBehaviour
     {
         // 투사체 프리팹 소환
         GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-        bullet.GetComponent<Projectile>().SetTarget(GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
+        bullet.GetComponent<Projectile>().SetProjectile(damage, GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
     }
     /// <summary>
@@ -146,9 +145,8 @@ public abstract class Unit : MonoBehaviour
                 targets.AddRange(_tile.EnemyList);
             }
             //디버깅용 임시 코드
-            var tileSR = _tile.GetComponent<SpriteRenderer>();
-            Color OriginColor = tileSR.color;
-            StartCoroutine(Do_AOE_Effect(tileSR, OriginColor));
+            
+            StartCoroutine(Do_AOE_Effect(_tile,Color.red));
         }
 
         foreach (var _enemy in targets)
@@ -163,11 +161,12 @@ public abstract class Unit : MonoBehaviour
     /// <param name="tileSR"></param>
     /// <param name="originColor"></param>
     /// <returns></returns>
-    IEnumerator Do_AOE_Effect(SpriteRenderer tileSR, Color originColor)
+    protected IEnumerator Do_AOE_Effect(Tile _tile, Color effectColor)
     {
-        tileSR.color = Color.red;
-        yield return new WaitForSeconds(0.5f);
-        tileSR.color = originColor;
+        SpriteRenderer tileSR = _tile.GetComponent<SpriteRenderer>();
+        tileSR.color = effectColor;
+        yield return new WaitForSeconds(0.3f);
+        tileSR.color = _tile.originColor;
     }
 
     public Unit GetClosestTarget(List<Unit> targets)
@@ -200,15 +199,11 @@ public abstract class Unit : MonoBehaviour
         hp -= damage;
         if (hp <= 0) Die();
     }
-    //public void HealHP(float value)
-    //{
-    //    if (unitKind != UnitKind.ITEM)
-    //    {
-    //        hp += value;
-    //        if (hp > maxHP) hp = maxHP;
-    //    } 
-
-    //}
+    public void HealHP(float value)
+    {
+        hp += value;
+        if (hp > maxHP) hp = maxHP;
+    }
 
     //public void EnableObj(GameObject original)
     //{
@@ -222,7 +217,7 @@ public abstract class Unit : MonoBehaviour
     //    mySprite.color = color;
     //}
 
-    void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
+    protected void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
     {
         hPBar.curHP = hp;
     }
@@ -249,5 +244,5 @@ public abstract class Unit : MonoBehaviour
 }
 public enum AllyKind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
 public enum EnemyKind { Blind, Eat, Head, Oppressed, Prayer };
-public enum AttackType { Active, Projectile, AreaOfEffect, AOE_Melee };//근접,투사체,광역,광역 근접
+public enum AttackType { None , Active, Projectile, AreaOfEffect, AOE_Melee };//근접,투사체,광역,광역 근접
 

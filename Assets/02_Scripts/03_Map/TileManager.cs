@@ -90,7 +90,7 @@ public class TileManager : MonoBehaviour
                 else sr.color = Color2;
 
                 Tile tile = go.GetComponent<Tile>();
-                tile.Initialize_Tile(x, y);
+                tile.Initialize_Tile(x, y, sr.color);
                 TileArray.SetValue(tile, x, y);
 
                 sr.enabled = false;
@@ -159,7 +159,7 @@ public class TileManager : MonoBehaviour
 
     public bool IsRightRange(int x, int y)
     {
-        if (0 < x && x < MapX && 0 < y && y < MapY)
+        if (0 <= x && x < MapX && 0 <= y && y < MapY)
         {
             return true;
         }

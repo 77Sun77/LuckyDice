@@ -7,22 +7,24 @@ public class Tile : MonoBehaviour
     public int X { get; set; }
     public int Y { get; set; }
 
-    public Unit TileUnit;
+    public Unit Ally;
     public List<Unit> EnemyList = new();
     
     public bool IsTable;
     public bool CanPlacement;
 
+    public Color originColor;
     /// <summary>
     /// Tile의 X,Y값 할당
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public void Initialize_Tile(int x, int y)
+    public void Initialize_Tile(int x, int y,Color _originColor)
     {
         X = x;
         Y = y;
         CanPlacement = false;
+        originColor = _originColor;
     }
 
     public void Initialize_Table(int i)
@@ -34,7 +36,7 @@ public class Tile : MonoBehaviour
 
     private void Update()
     {
-        CanPlacement = EnemyList.Count == 0 && TileUnit == null;
+        CanPlacement = EnemyList.Count == 0 && Ally == null;
 
         if (!TileManager.Instance.IsUpdatingTilePos)
             return;

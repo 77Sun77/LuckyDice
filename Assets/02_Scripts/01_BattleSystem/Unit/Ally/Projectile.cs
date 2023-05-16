@@ -7,8 +7,9 @@ public class Projectile : MonoBehaviour
     public GameObject Target;
     public float speed, damage;
     
-    public void SetTarget(GameObject go)
+    public void SetProjectile(float dmg,GameObject go)
     {
+        damage = dmg;
         Target = go;
     }
 

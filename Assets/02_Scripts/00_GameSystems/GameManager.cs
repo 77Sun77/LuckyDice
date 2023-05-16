@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Base _base;
+    public UnitSynthesis us;
 
     public int money;
 
@@ -18,11 +19,6 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     public void Set_Money(int value)

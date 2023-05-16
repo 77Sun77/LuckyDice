@@ -50,6 +50,8 @@ public abstract class Unit : MonoBehaviour
 
         Rating = 1;
         UpgradeCount = 1;
+
+
     }
 
     protected void SpawnHPBar()

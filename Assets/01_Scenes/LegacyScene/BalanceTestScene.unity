@@ -3475,7 +3475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 571522658}
   - component: {fileID: 571522657}
-  - component: {fileID: 571522656}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3483,18 +3482,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &571522656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 571522655}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d052ddf73ae1e4a8b11da9eed5a657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &571522657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8030,7 +8017,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1517722729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c8171cba0424c0549b74c43ae0b31366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Archer: {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}

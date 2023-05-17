@@ -150,12 +150,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 1
-  maxHP: 10
-  hp: 10
+  maxHP: 100
+  hp: 100
   defense: 0
   minDamage: 0
-  damage: 2
-  delayTime: 1
+  damage: 30
+  delayTime: 0.95
   time: 0
   Rating: 0
   UpgradeCount: 0

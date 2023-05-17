@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Base _base;
     public UnitSynthesis us;
+    public PawnGenerator pg;
 
     public int money;
 

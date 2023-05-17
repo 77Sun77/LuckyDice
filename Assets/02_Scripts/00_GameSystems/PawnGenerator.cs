@@ -81,7 +81,12 @@ public class PawnGenerator : MonoBehaviour
         go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
         Store.SetValue(UnitList_Store.ÆÈ¸², ModifiedInput);
     }
+    public void Roll(GameObject unit)
+    {
+        GameObject go = Instantiate(unit, UnitSpawn_Tf);
+        go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
 
+    }
     void OnEndWave()
     {
         TheNumberOfDice += 2;

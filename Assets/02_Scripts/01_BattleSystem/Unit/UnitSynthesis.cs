@@ -17,39 +17,19 @@ public class UnitSynthesis : MonoBehaviour
             units.Add(new List<Ally>());
         }
 
-        /* 2성, 3성 프리팹 가져와서 역할 분리한 하나의 리스트로 처리하는 코드
-        for (int i = 0; i < 6; i+=2)
+        for (int i = 0; i < 12; i+=2)
         {
             GameObject[] units = { unitPrefabs[i], unitPrefabs[i + 1] };
             prefabs.Add(units);
         }
-        */
+        
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            for (int i = 0; i < 6; i++)
-            {
-                units[i].Clear();
-            }
-            GameObject[] unitsGO = GameObject.FindGameObjectsWithTag("Unit");
-            foreach (GameObject go in unitsGO)
-            {
-                Ally unit = go.GetComponent<Ally>();
-                if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);
-                else if (unit.unitKind == AllyKind.Sorcerer) units[1].Add(unit);
-                else if (unit.unitKind == AllyKind.Debuffer) units[2].Add(unit);
-                else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
-                else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
-                else units[5].Add(unit);
-            }
-
-            for(int i=0;i< units.Count; i++)
-            {
-                Synthesis(units[i], i);
-            }
+            
         }
         /*
         for (int i = 0; i < 6; i++)
@@ -71,8 +51,31 @@ public class UnitSynthesis : MonoBehaviour
         {
             Synthesis(units);
         }*/
+        Search();
     }
+    public void Search()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            units[i].Clear();
+        }
+        GameObject[] unitsGO = GameObject.FindGameObjectsWithTag("Unit");
+        foreach (GameObject go in unitsGO)
+        {
+            Ally unit = go.GetComponent<Ally>();
+            if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);
+            else if (unit.unitKind == AllyKind.Sorcerer) units[1].Add(unit);
+            else if (unit.unitKind == AllyKind.Debuffer) units[2].Add(unit);
+            else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
+            else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
+            else units[5].Add(unit);
+        }
 
+        for (int i = 0; i < units.Count; i++)
+        {
+            Synthesis(units[i], i);
+        }
+    }
     public void Synthesis(List<Ally> units, int index) // index는 유닛의 인덱스값  0:Warrior, 1:Sorcerer, 2:Debuffer, 3:Tanker, 4:Buffer, 5:Archer
     {
         int[] Rating = { 0, 0, 0 }; // 0:1성, 1:2성, 2:3성
@@ -80,8 +83,11 @@ public class UnitSynthesis : MonoBehaviour
         {
             Rating[unit.Rating - 1]++;
         }
+        List<GameObject> distroyList = new List<GameObject>();
+        
         for(int i = 0; i < 2; i++)
         {
+            distroyList.Clear();
             if (Rating[i] >= 3)
             {
                 foreach (Ally unit in units)
@@ -89,7 +95,7 @@ public class UnitSynthesis : MonoBehaviour
                     if (unit.Rating == i+1)
                     {
                         print(unit.name + " 유닛 삭제");
-                        Destroy(unit.gameObject);
+                        distroyList.Add(unit.gameObject);
                         Rating[i]--;
                         if (Rating[i] == 0)
                         {
@@ -102,9 +108,9 @@ public class UnitSynthesis : MonoBehaviour
             }
             if (NextRating)
             {
-                //prefabs[index][i + 1];
+                GameManager.instance.pg.Roll(prefabs[index][i]);
                 NextRating = false;
-
+                foreach (GameObject unit in distroyList) Destroy(unit);
             }
         }
 

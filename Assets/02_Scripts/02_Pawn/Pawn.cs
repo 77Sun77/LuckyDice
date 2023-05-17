@@ -20,6 +20,8 @@ public class Pawn : MonoBehaviour
 
     public Action OnInitialize_SetTile;
 
+    public bool isSearch;
+
     private void Awake()
     {
         OnTileChanged += AddTilePawn;
@@ -34,7 +36,16 @@ public class Pawn : MonoBehaviour
 
     private void Update()
     {
-        if (curTile != null && !IsEnemy) unit.enabled = !curTile.IsTable;
+        if (curTile != null && !IsEnemy)
+        {
+            unit.enabled = !curTile.IsTable;
+            /*
+            if (!isSearch && unit.enabled)
+            {
+                GameManager.instance.us.Search();
+                isSearch = true;
+            }*/
+        }
         
         if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 

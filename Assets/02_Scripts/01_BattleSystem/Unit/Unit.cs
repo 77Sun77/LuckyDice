@@ -48,7 +48,7 @@ public abstract class Unit : MonoBehaviour
 
         SpawnHPBar();
 
-        Rating = 1;
+       // Rating = 1;
         UpgradeCount = 1;
 
 

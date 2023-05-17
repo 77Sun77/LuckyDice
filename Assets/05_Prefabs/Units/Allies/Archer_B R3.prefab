@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8985316195994324783}
   - component: {fileID: 5278243932145574865}
   m_Layer: 8
-  m_Name: Archer_B
+  m_Name: Archer_B R3
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,14 +150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 60
-  hp: 60
+  maxHP: 5
+  hp: 5
   defense: 0
   minDamage: 0
-  damage: 10
-  delayTime: 1
+  damage: 1
+  delayTime: 0.9
   time: 0
-  Rating: 1
+  Rating: 3
   UpgradeCount: 0
   detectRange_List:
   - {x: 0, y: 0}

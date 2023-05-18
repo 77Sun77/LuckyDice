@@ -42,6 +42,8 @@ public class EnemyGenerator : MonoBehaviour
         {
             if ((int)data_Dialog[i]["Wave"] != waveIndex)
             {
+                if ((int)data_Dialog[i]["Wave"] == -1) return;
+               
                 waveIndex++;
                 wave = new Wave(waveIndex);
                 WaveList.Add(wave);

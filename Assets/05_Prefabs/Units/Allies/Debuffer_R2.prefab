@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 80525310573221450}
   - component: {fileID: 6434187431763836486}
   m_Layer: 8
-  m_Name: Debuffer_B R3
+  m_Name: Debuffer_R2
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   damage: 0
   delayTime: 3
   time: 0
-  Rating: 3
+  Rating: 2
   UpgradeCount: 0
   detectRange_List: []
   AOERange_List: []

@@ -12,9 +12,17 @@ public class Buffer : Ally
 
     private void OnEnable()
     {
+        StartCoroutine(OnEnable_Cor());
+    }
+
+    IEnumerator OnEnable_Cor()
+    {
+        yield return EnemyGenerator.instance;
+
         EnemyGenerator.instance.OnWaveStart += HealAllies;
         EnemyGenerator.instance.OnWaveEnd += HealAllies;
     }
+
 
     private void OnDestroy()
     {

@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -3884453616770375946}
   - component: {fileID: 8923402529169717202}
   m_Layer: 8
-  m_Name: Buffer_B R3
+  m_Name: Buffer_R3
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

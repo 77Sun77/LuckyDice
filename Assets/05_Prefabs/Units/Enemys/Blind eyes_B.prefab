@@ -154,7 +154,7 @@ MonoBehaviour:
   hp: 100
   defense: 0
   minDamage: 0
-  damage: 30
+  damage: 20
   delayTime: 0.95
   time: 0
   Rating: 0
@@ -195,6 +195,7 @@ MonoBehaviour:
   IsMoveGrid: 0
   X: 0
   Y: 0
+  isSearch: 0
 --- !u!1 &4454790940553778428
 GameObject:
   m_ObjectHideFlags: 0

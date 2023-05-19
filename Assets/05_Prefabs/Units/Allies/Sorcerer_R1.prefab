@@ -234,14 +234,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 5
-  hp: 5
+  maxHP: 40
+  hp: 40
   defense: 0
   minDamage: 0
-  damage: 10
-  delayTime: 5
+  damage: 8
+  delayTime: 1
   time: 5
-  Rating: 0
+  Rating: 1
   UpgradeCount: 0
   detectRange_List:
   - {x: 0, y: -1}
@@ -303,3 +303,4 @@ MonoBehaviour:
   IsMoveGrid: 1
   X: 0
   Y: 0
+  isSearch: 0

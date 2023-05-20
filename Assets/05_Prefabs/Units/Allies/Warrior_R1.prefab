@@ -238,10 +238,10 @@ MonoBehaviour:
   hp: 100
   defense: 0
   minDamage: 0
-  damage: 50
+  damage: 100
   delayTime: 1
   time: 0
-  Rating: 0
+  Rating: 1
   UpgradeCount: 0
   detectRange_List:
   - {x: 1, y: 0}

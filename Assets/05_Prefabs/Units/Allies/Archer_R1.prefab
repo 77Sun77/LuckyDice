@@ -157,7 +157,7 @@ MonoBehaviour:
   damage: 15
   delayTime: 1
   time: 0
-  Rating: 0
+  Rating: 1
   UpgradeCount: 0
   detectRange_List:
   - {x: 0, y: 0}

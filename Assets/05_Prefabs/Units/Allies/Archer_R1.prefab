@@ -150,12 +150,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 5
-  hp: 5
+  maxHP: 50
+  hp: 50
   defense: 0
   minDamage: 0
-  damage: 1
-  delayTime: 1.2
+  damage: 15
+  delayTime: 1
   time: 0
   Rating: 0
   UpgradeCount: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   IsMoveGrid: 1
   X: 0
   Y: 0
+  isSearch: 0
 --- !u!1 &7260445954674809683
 GameObject:
   m_ObjectHideFlags: 0

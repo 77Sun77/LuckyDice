@@ -35,6 +35,7 @@ public class TileManager : MonoBehaviour
     private Vector2 VisibleTile_End;
 
     public bool IsUpdatingTilePos;
+    public bool IsMapGeneratingOver;
 
     private void Awake()
     {
@@ -105,6 +106,7 @@ public class TileManager : MonoBehaviour
                 TileArray[x, y].CanPlacement = true;
             }
         }
+        IsMapGeneratingOver = true;
     }
 
     void GenerateTable()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PawnGenerator : MonoBehaviour
 {
+    public static PawnGenerator instance;
+
     public GameObject[] UnitPrefabs;
     public Transform UnitSpawn_Tf;
 
@@ -17,6 +19,7 @@ public class PawnGenerator : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         Store = new UnitList_Store[6];
         ResetStore();
     }

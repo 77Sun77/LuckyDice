@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public GameObject Target;
     public float speed, damage;
-    
+    bool isContact;
     public void SetProjectile(float dmg,GameObject go)
     {
         damage = dmg;
@@ -36,10 +36,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.CompareTag("Enemy"))
+        if (coll.CompareTag("Enemy") )
         {
+            if (isContact)
+                return;
+
+            isContact = true;
             Enemy enemy = (Enemy)coll.GetComponent(typeof(Enemy));
-            
+            Debug.Log(enemy.gameObject.name);
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }

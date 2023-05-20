@@ -22,6 +22,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Time.timeScale *=2f;
+            Debug.Log("Speed Up");
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Time.timeScale /= 2f;
+            Debug.Log("Speed Down");
+        }
+
+    }
+
     public void Set_Money(int value)
     {
         money += value;

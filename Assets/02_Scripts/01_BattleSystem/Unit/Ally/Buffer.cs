@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Buffer : Ally
 {
-    List<Unit> units = new List<Unit>();
+    public bool IsSteadyHealing;
     private void Start()
     {
         first_Setting();
@@ -12,6 +12,8 @@ public class Buffer : Ally
 
     private void OnEnable()
     {
+        if (IsSteadyHealing)
+            return;
         StartCoroutine(OnEnable_Cor());
     }
 
@@ -68,6 +70,9 @@ public class Buffer : Ally
         //}
         #endregion
         Search_Targets();
+
+        if (!IsSteadyHealing)
+            return;
         if (isTargetDetected && time<0)
         {
             if(GameManager.instance.IsInBattle)
@@ -93,6 +98,7 @@ public class Buffer : Ally
     
     public void HealAllies()
     {
+        
         List<Unit> _targets = new();
 
         AOEPos = new Vector2(pawn.X, pawn.Y);

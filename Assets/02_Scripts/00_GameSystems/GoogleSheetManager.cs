@@ -6,16 +6,23 @@ using UnityEngine.Networking;
 
 public class GoogleSheetManager : MonoBehaviour
 {
+    public static GoogleSheetManager instance;
+
     public GameObject Archer;
     public GameObject Buffer;
     public GameObject Debuffer;
-    public GameObject Socerer;
+    public GameObject Sorcerer;
     public GameObject Tanker;
     public GameObject Warrior;
 
     const string URL = "https://docs.google.com/spreadsheets/d/1Of--8G94QJGvuqsjvRTf7mtuzd7RifqTrVq14S6_hE4/export?format=csv";
     List<Dictionary<string, object>> data_Dialog;
     List<UnitInfo> unitInfoList = new();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -59,6 +66,7 @@ public class GoogleSheetManager : MonoBehaviour
             string AS = data_Dialog[i]["공격속도"].ToString();
             UnitInfo unitInfo = new(rating, name, HP, defense, damage, AS);
             unitInfoList.Add(unitInfo);
+            
         }
     }
 
@@ -71,21 +79,27 @@ public class GoogleSheetManager : MonoBehaviour
             {
                 case "전사":
                     AdjustUnitInfo(Warrior, unitInfo);
+                    //Debug.Log("전사");
                     break;
                 case "궁수":
                     AdjustUnitInfo(Archer, unitInfo);
+                    //Debug.Log("궁수");
                     break;
                 case "탱커":
                     AdjustUnitInfo(Tanker, unitInfo);
+                    //Debug.Log("탱커");
                     break;
                 case "버퍼":
                     AdjustUnitInfo(Buffer, unitInfo);
+                    //Debug.Log("버퍼");
                     break;
                 case "디버퍼":
                     AdjustUnitInfo(Debuffer, unitInfo);
+                    //Debug.Log("디버퍼");
                     break;
                 case "마법사":
-                    AdjustUnitInfo(Socerer, unitInfo);
+                    AdjustUnitInfo(Sorcerer, unitInfo);
+                    //Debug.Log("마법사");
                     break;
             }
         }

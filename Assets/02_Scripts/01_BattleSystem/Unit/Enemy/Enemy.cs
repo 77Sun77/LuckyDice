@@ -155,7 +155,7 @@ public class Enemy : Unit
     [Header("EnmeyOnly")]
     public int money;
     public float speed;
-   
+
     protected override void first_Setting()
     {
         base.first_Setting();

@@ -154,8 +154,8 @@ MonoBehaviour:
   hp: 100
   defense: 0
   minDamage: 0
-  damage: 20
-  delayTime: 0.95
+  damage: 25
+  delayTime: 1
   time: 0
   Rating: 0
   UpgradeCount: 0

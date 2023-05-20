@@ -22,7 +22,8 @@ public class Pawn : MonoBehaviour
 
     public bool isSearch;
 
-    private void Awake()
+    public bool isRegenerated;
+    private void OnEnable()
     {
         OnTileChanged += AddTilePawn;
         OnTileChanged += RemoveTilePawn;
@@ -32,6 +33,61 @@ public class Pawn : MonoBehaviour
             unit = _unit;
             IsEnemy = _unit.isEnemy;
         }
+        if(!isRegenerated)
+        StartCoroutine(PreSpawnedPawnInitialize());
+    }
+
+    /// <summary>
+    /// 디버깅때 미리 배치된 Ally를 Tile에 적용시키기 위함
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator PreSpawnedPawnInitialize()
+    {
+        yield return TileManager.Instance;
+        yield return TileManager.Instance.IsMapGeneratingOver;
+        yield return GoogleSheetManager.instance;
+        yield return PawnGenerator.instance;
+        Vector3 curPos = gameObject.transform.position;
+        string unitKindString = "";
+        
+        if (!IsEnemy)
+        {
+            GameObject go = null;
+            unitKindString = unit.GetComponent<Ally>().unitKind.ToString();
+
+            switch(unitKindString)
+            {
+                case "Warrior":
+                    go = Instantiate(GoogleSheetManager.instance.Warrior, PawnGenerator.instance.UnitSpawn_Tf);
+                    break;
+                case "Archer":
+                    go = Instantiate(GoogleSheetManager.instance.Archer, PawnGenerator.instance.UnitSpawn_Tf);
+                    break;
+                case "Tanker":
+                    go = Instantiate(GoogleSheetManager.instance.Tanker, PawnGenerator.instance.UnitSpawn_Tf);
+                    break;
+                case "Sorcerer":
+                    go = Instantiate(GoogleSheetManager.instance.Sorcerer, PawnGenerator.instance.UnitSpawn_Tf);
+                    break;
+                case "Debuffer":
+                    go = Instantiate(GoogleSheetManager.instance.Debuffer, PawnGenerator.instance.UnitSpawn_Tf);
+                    break;
+                case "Buffer":
+                    go = Instantiate(GoogleSheetManager.instance.Buffer, PawnGenerator.instance.UnitSpawn_Tf);
+                    break;
+            }
+            go.SetActive(false);
+            go.transform.position = curPos;
+            Pawn pawn = go.GetComponent<Pawn>();
+            pawn.isRegenerated = true;
+            pawn.Set_CurTile();
+            pawn.AddTilePawn();
+            go.SetActive(true);
+            Destroy(gameObject);
+        }
+        
+        //Set_CurTile();
+        //AddTilePawn();
     }
 
     private void Update()
@@ -50,14 +106,6 @@ public class Pawn : MonoBehaviour
         if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 
         CheckCenter();
-
-        //디버그때 미리 배치된 Ally를 Tile에 적용시키기 위함
-        if (Input.GetKey(KeyCode.P))
-        {
-            Set_CurTile();
-            AddTilePawn();
-            //Debug.Log("초기화됨");
-        }
     }
 
     public void Set_CurTile()

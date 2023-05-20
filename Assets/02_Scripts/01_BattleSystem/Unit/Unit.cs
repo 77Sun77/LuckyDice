@@ -131,6 +131,7 @@ public abstract class Unit : MonoBehaviour
         GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
         bullet.GetComponent<Projectile>().SetProjectile(damage, GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
+        Debug.Log("Shot");
     }
     /// <summary>
     /// 광역 공격
@@ -240,8 +241,15 @@ public abstract class Unit : MonoBehaviour
     protected virtual void Die()
     {
         pawn.RemoveTilePawn();
+        StartCoroutine(Destroy_this());
+    }
+
+    IEnumerator Destroy_this()
+    {
+        yield return null;
         Destroy(gameObject);
     }
+
 
 }
 public enum AllyKind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };

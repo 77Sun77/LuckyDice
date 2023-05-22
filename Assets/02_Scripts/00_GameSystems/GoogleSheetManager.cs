@@ -48,8 +48,8 @@ public class GoogleSheetManager : MonoBehaviour
     const string AllyStatURL = "https://docs.google.com/spreadsheets/d/1Of--8G94QJGvuqsjvRTf7mtuzd7RifqTrVq14S6_hE4/export?format=csv";
     const string EnemyStatURL = "https://docs.google.com/spreadsheets/d/18LIGb_ar1AT4Qgk5Vvv52Xe6aAFpy0jgApOpOYw9Txo/export?format=csv";
 
-    const string AllyStatURL_Yejun = "https://docs.google.com/spreadsheets/d/1Of--8G94QJGvuqsjvRTf7mtuzd7RifqTrVq14S6_hE4/export?format=csv";
-    const string EnemyStatURL_Yejun = "https://docs.google.com/spreadsheets/d/18LIGb_ar1AT4Qgk5Vvv52Xe6aAFpy0jgApOpOYw9Txo/export?format=csv";
+    const string AllyStatURL_Yejun = "https://docs.google.com/spreadsheets/d/1mhmDgZ3wlzvaSLT2FGiKzDny4IMAr5krRHk6N6RrEK4/export?format=csv";
+    const string EnemyStatURL_Yejun = "https://docs.google.com/spreadsheets/d/1gHHI5LSGooUxACVkW-ld9Pn-L6zu45qBVghqMW-jgVk/export?format=csv";
 
 
     List<AllyInfo> allyInfoList = new();

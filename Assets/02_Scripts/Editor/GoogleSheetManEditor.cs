@@ -13,7 +13,7 @@ public class GoogleSheetManagerEditor : Editor
         if (GUILayout.Button("Get GoogleSheetInfo"))
         {
             GoogleSheetManager googleMan = target as GoogleSheetManager;
-            googleMan.Do_SetUnitInfo();
+            googleMan.DoSetUnitInfo();
         }
     }
 }

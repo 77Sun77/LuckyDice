@@ -20,6 +20,7 @@ public abstract class Unit : MonoBehaviour
     public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
 
     public List<Unit> targets = new List<Unit>();
+    public Unit attackingTarget;
 
     public bool isTargetDetected,isAttacking,isBuff;
 
@@ -121,6 +122,7 @@ public abstract class Unit : MonoBehaviour
         }
         GetClosestTarget(targets).TakeDamage(damage);
         time = delayTime;
+        Debug.Log(gameObject.name);
     }
     /// <summary>
     /// 유도 투사체
@@ -171,23 +173,34 @@ public abstract class Unit : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         tileSR.color = _tile.originColor;
     }
-
+    //0.05내외
     public Unit GetClosestTarget(List<Unit> targets)
     {
-        Unit target = null;
         float minDistance = float.MaxValue;
 
         foreach (var _target in targets)
         {
             float distance = (transform.position - _target.transform.position).sqrMagnitude;
-            if (minDistance > distance)
+            
+            if (attackingTarget != null)
             {
-                minDistance = distance;
-                target = _target;
+                if (minDistance > distance + 0.05f)
+                {
+                    minDistance = distance;
+                    attackingTarget = _target;
+                }
+            }
+            else
+            {
+                if (minDistance > distance)
+                {
+                    minDistance = distance;
+                    attackingTarget = _target;
+                }
             }
         }
 
-        return target;
+        return attackingTarget;
     }
 
     public void TakeDamage(float damage)

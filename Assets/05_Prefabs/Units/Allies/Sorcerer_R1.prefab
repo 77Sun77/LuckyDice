@@ -274,10 +274,11 @@ MonoBehaviour:
   - {x: 1, y: 1}
   AOEPos: {x: 0, y: 0}
   targets: []
+  attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 2
+  attackType: 3
   ProjectilePrefab: {fileID: 7133068110475347916, guid: 7a04b7e412da86c469bcb4f0dba27225, type: 3}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
@@ -304,3 +305,4 @@ MonoBehaviour:
   X: 0
   Y: 0
   isSearch: 0
+  isRegenerated: 0

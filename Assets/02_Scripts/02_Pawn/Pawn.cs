@@ -32,6 +32,9 @@ public class Pawn : MonoBehaviour
         {
             unit = _unit;
             IsEnemy = _unit.isEnemy;
+
+            if(!IsEnemy)
+            unit.enabled = false;
         }
         if(!isRegenerated)
         StartCoroutine(PreSpawnedPawnInitialize());

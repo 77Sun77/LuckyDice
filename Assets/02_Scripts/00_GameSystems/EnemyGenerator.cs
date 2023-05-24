@@ -18,23 +18,33 @@ public class EnemyGenerator : MonoBehaviour
     public int spawnX;
     int pastSpawnLine;
 
+    int enemyIndex;
+
     public Action OnWaveStart;
     public Action OnWaveEnd;
 
     public void Awake()
     {
         instance = this;
+        StartCoroutine(Initialize_EnemyGenerator());
+    }
+
+    IEnumerator Initialize_EnemyGenerator()
+    {
+        yield return GoogleSheetManager.instance;
         ParseEnemyTable();
         DebugWaveList();
 
+        yield return GameManager.instance;
         OnWaveStart += () => { GameManager.instance.IsInBattle = true; };
         OnWaveEnd += () => { GameManager.instance.IsInBattle = false; };
-
     }
+
 
     void ParseEnemyTable()
     {
-        data_Dialog = CSVReader.Read("WaveInfo");
+        if (GoogleSheetManager.instance.IsForYejun) data_Dialog = CSVReader.Read("WaveInfo_Yejun");
+        else data_Dialog = CSVReader.Read("WaveInfo");
 
         int waveIndex = 0;
         Wave wave = null;
@@ -98,6 +108,7 @@ public class EnemyGenerator : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave)
     {
+        enemyIndex = 0;
         OnWaveStart.Invoke();
 
         foreach (var enemySpawnInfo in wave.enemySpawnInfo_List)
@@ -105,8 +116,10 @@ public class EnemyGenerator : MonoBehaviour
             yield return new WaitForSeconds(enemySpawnInfo.GetRandomDelay());
 
             GameObject go = Instantiate(enemyPrefabs[(int)enemySpawnInfo.enemyKind], Generate_Tf);
-            
+            go.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
+            enemyIndex++;
             MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
+            
         }
 
         Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };

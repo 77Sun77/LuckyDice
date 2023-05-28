@@ -46,12 +46,12 @@ public class Projectile : MonoBehaviour
 
             if (Target != null && Mathf.Abs(coll.gameObject.transform.position.x - Target.gameObject.transform.position.x) < 0.05f)
             {
-                enemy = (Enemy)Target.GetComponent(typeof(Enemy));
+                enemy = Target.GetComponent<Enemy>();
                 OnAttack(enemy);
             }
             else
             {
-                enemy = (Enemy)coll.GetComponent(typeof(Enemy));
+                enemy = coll.GetComponent<Enemy>();
                 OnAttack(enemy);
             }
         }

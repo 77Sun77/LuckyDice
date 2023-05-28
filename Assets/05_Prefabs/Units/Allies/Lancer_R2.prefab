@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6235716871363650791}
   - component: {fileID: 6434187431763836486}
   m_Layer: 8
-  m_Name: Lancer_R1
+  m_Name: Lancer_R2
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,14 +150,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 60
-  hp: 60
+  maxHP: 30
+  hp: 30
   defense: 0
   minDamage: 0
-  damage: 10
-  delayTime: 0.8
+  damage: -1
+  delayTime: -1
   time: 0
-  Rating: 1
+  Rating: 2
   UpgradeCount: 0
   detectRange_List:
   - {x: 0, y: 1}

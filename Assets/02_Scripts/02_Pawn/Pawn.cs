@@ -7,7 +7,7 @@ public class Pawn : MonoBehaviour
 {
     public Tile pastTile;
     private Tile curTile;
-    private Action OnTileChanged;
+    protected private Action OnTileChanged;
 
     Unit unit;
 

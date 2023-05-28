@@ -110,9 +110,7 @@ public class Buffer : Ally
                 _targets.Add(_tile.Ally);
             }
             //디버깅용 임시 코드
-            var tileSR = _tile.GetComponent<SpriteRenderer>();
-            Color OriginColor = tileSR.color;
-            StartCoroutine(Do_AOE_Effect(_tile, Color.green));
+            _tile.Do_AOE_Effect(Color.green);
         }
 
         foreach (var Ally in _targets)

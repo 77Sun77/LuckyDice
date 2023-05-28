@@ -1958,7 +1958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7647019490625122924, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.44
+      value: -3.93
       objectReference: {fileID: 0}
     - target: {fileID: 7647019490625122924, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1996,17 +1996,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7647019490625122928, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
-      propertyPath: defense
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
       propertyPath: m_Name
       value: Tanker_R1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c600dbbb59c9a9343983115c56d18712, type: 3}

@@ -22,12 +22,14 @@ public class FireBall : Projectile
 
     void DoExplosionAttack(Enemy enemy)
     {
-        foreach (var curTile in explosionRange.GetTileInRange(enemy.pawn.X, enemy.pawn.Y))
+        foreach (var tile in explosionRange.GetTileInRange(enemy.pawn.X, enemy.pawn.Y))
         {
             List<Unit> targets = new();
-            if (curTile.EnemyList.Count != 0)
+            tile.Do_AOE_Effect(Color.red);
+            
+            if (tile.EnemyList.Count != 0)
             {
-                targets.AddRange(curTile.EnemyList);
+                targets.AddRange(tile.EnemyList);
             }
 
             foreach (Unit unit in targets)

@@ -150,8 +150,7 @@ public abstract class Unit : MonoBehaviour
                 targets.AddRange(_tile.EnemyList);
             }
             //디버깅용 임시 코드
-            
-            StartCoroutine(Do_AOE_Effect(_tile,Color.red));
+            _tile.Do_AOE_Effect(Color.red);
         }
 
         foreach (var _enemy in targets)
@@ -161,7 +160,7 @@ public abstract class Unit : MonoBehaviour
         time = delayTime;
     }
     /// <summary>
-    /// 디버깅용 임시 코드
+    /// Tile에서 실행하는 것으로 수정
     /// </summary>
     /// <param name="tileSR"></param>
     /// <param name="originColor"></param>

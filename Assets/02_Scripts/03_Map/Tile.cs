@@ -51,4 +51,17 @@ public class Tile : MonoBehaviour
     {
         return transform.position;
     }
+
+    public void Do_AOE_Effect(Color effectColor)
+    {
+        StartCoroutine(DO_AOE_Effect_Cor(this, effectColor));
+    }
+
+    IEnumerator DO_AOE_Effect_Cor(Tile tile, Color effectColor)
+    {
+        SpriteRenderer tileSR = tile.GetComponent<SpriteRenderer>();
+        tileSR.color = effectColor;
+        yield return new WaitForSeconds(0.3f);
+        tileSR.color = tile.originColor;
+    }
 }

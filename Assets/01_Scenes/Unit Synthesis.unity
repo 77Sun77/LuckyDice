@@ -668,11 +668,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Archer: {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
+  Archer2: {fileID: 0}
+  Archer3: {fileID: 0}
   Buffer: {fileID: 1953436954116349608, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
+  Buffer2: {fileID: 0}
+  Buffer3: {fileID: 0}
   Debuffer: {fileID: 5124941803456547265, guid: 05e8a5bd0dbb39c48bd953a100cd772f, type: 3}
+  Debuffer2: {fileID: 0}
+  Debuffer3: {fileID: 0}
   Sorcerer: {fileID: 7154396063005979274, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
+  Sorcerer2: {fileID: 0}
+  Sorcerer3: {fileID: 0}
   Tanker: {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
+  Tanker2: {fileID: 0}
+  Tanker3: {fileID: 0}
   Warrior: {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
+  Warrior2: {fileID: 0}
+  Warrior3: {fileID: 0}
+  Blind: {fileID: 0}
+  Eat: {fileID: 0}
+  Head: {fileID: 0}
+  Oppressed: {fileID: 0}
+  Prayer: {fileID: 0}
+  IsForYejun: 0
 --- !u!114 &147227412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3237,6 +3255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiceControl
       objectReference: {fileID: 0}
+    - target: {fileID: 4027566416026017365, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
 --- !u!224 &494290104 stripped
@@ -3677,6 +3699,7 @@ MonoBehaviour:
   _base: {fileID: 2056096329}
   us: {fileID: 571522659}
   pg: {fileID: 1497752898}
+  unitNumber: 000000000000000000000000000000000000000000000000
   money: 0
   IsInBattle: 0
 --- !u!4 &571522658
@@ -4368,7 +4391,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4087
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1225308598808450658}
   - component: {fileID: 1225308598808450657}
   - component: {fileID: 1225308598808450656}
-  - component: {fileID: 1225308598808450659}
+  - component: {fileID: 6846747934411339649}
   m_Layer: 8
   m_Name: Barrier
   m_TagString: Unit
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225308598808450655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.15, y: 0.13, z: 0}
-  m_LocalScale: {x: 1, y: 4.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1225308598808450659
+--- !u!114 &6846747934411339649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,25 +121,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1225308598808450655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2224763fc11a8b4f9cae302afe9f016, type: 3}
+  m_Script: {fileID: 11500000, guid: 4732265a81007f349b580e0b71f3ebae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  maxHP: 300
-  hp: 300
+  pawn: {fileID: 0}
+  isEnemy: 0
+  maxHP: 0
+  hp: 0
   defense: 0
-  detectRange: {x: 0, y: 0}
-  attackRange: {x: 0, y: 0}
+  minDamage: 0
+  damage: 0
   delayTime: 0
   time: 0
   Rating: 0
   UpgradeCount: 0
-  unitKind: 6
-  isAttack: 0
+  detectRange_List: []
+  AOERange_List: []
+  AOEPos: {x: 0, y: 0}
+  targets: []
+  attackingTarget: {fileID: 0}
+  isTargetDetected: 0
+  isAttacking: 0
   isBuff: 0
   attackType: 0
+  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
+  HPBarPrefab: {fileID: 0}
+  HPBarOffset: {x: 0, y: 0, z: 0}
+  unitKind: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1225308598808450655
+--- !u!1 &5035466986856987844
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1225308598808450658}
-  - component: {fileID: 1225308598808450657}
-  - component: {fileID: 1225308598808450656}
-  - component: {fileID: -7904021622265519307}
-  - component: {fileID: 220113774434618437}
+  - component: {fileID: 5035466986856987847}
+  - component: {fileID: 5035466986856987846}
+  - component: {fileID: 663128751855849237}
+  - component: {fileID: 5035466986856987845}
+  - component: {fileID: 6313896687950463634}
   m_Layer: 12
-  m_Name: Barrier
-  m_TagString: Unit
+  m_Name: Heal_Potion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1225308598808450658
+--- !u!4 &5035466986856987847
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225308598808450655}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 5035466986856987844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.88, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1225308598808450657
+--- !u!212 &5035466986856987846
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225308598808450655}
+  m_GameObject: {fileID: 5035466986856987844}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.22271271, g: 0.4339623, b: 0.23644783, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -87,17 +87,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1225308598808450656
+--- !u!61 &663128751855849237
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225308598808450655}
+  m_GameObject: {fileID: 5035466986856987844}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -113,54 +113,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-7904021622265519307
+--- !u!114 &5035466986856987845
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225308598808450655}
+  m_GameObject: {fileID: 5035466986856987844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d4a64fe6d13ab468c612801adaf8e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 66adc2cf682c100478dfc26e32d8ad1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AOERange_List:
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  - {x: -1, y: -1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 1}
   pawn: {fileID: 0}
-  isEnemy: 0
-  maxHP: 100
-  hp: 100
-  defense: 0
-  minDamage: 0
-  damage: 0
-  delayTime: 0
-  time: 0
-  Rating: 0
-  UpgradeCount: 0
-  detectRange_List: []
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
-  targets: []
-  attackingTarget: {fileID: 0}
-  isTargetDetected: 0
-  isAttacking: 0
-  isBuff: 0
-  attackType: 0
-  ProjectilePrefab: {fileID: 0}
-  mySprite: {fileID: 0}
-  anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
-  unitKind: 6
---- !u!114 &220113774434618437
+  itemKind: 0
+--- !u!114 &6313896687950463634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225308598808450655}
+  m_GameObject: {fileID: 5035466986856987844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1373574f27e78448a8021bdfaa4811e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9edee1cee8bf4074f93ccfbdc943e086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pastTile: {fileID: 0}

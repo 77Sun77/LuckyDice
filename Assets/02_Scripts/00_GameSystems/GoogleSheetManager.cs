@@ -43,6 +43,13 @@ public class GoogleSheetManager : MonoBehaviour
     public GameObject Prayer;
     #endregion
 
+    #region Item
+    [Header("Item")]
+    public GameObject HealPotion;
+    public GameObject BombExplosion;
+    public GameObject Barrier;
+    #endregion
+
     public bool IsForYejun;
 
     const string AllyStatURL = "https://docs.google.com/spreadsheets/d/1Of--8G94QJGvuqsjvRTf7mtuzd7RifqTrVq14S6_hE4/export?format=csv";

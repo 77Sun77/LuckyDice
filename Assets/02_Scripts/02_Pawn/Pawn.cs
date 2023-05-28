@@ -7,9 +7,10 @@ public class Pawn : MonoBehaviour
 {
     public Tile pastTile;
     private Tile curTile;
-    private Action OnTileChanged;
+    protected private Action OnTileChanged;
 
     Unit unit;
+    Item item;
 
     public bool IsEnemy;
     public bool IsOverCenter;
@@ -23,6 +24,8 @@ public class Pawn : MonoBehaviour
     public bool isSearch;
 
     public bool isRegenerated;
+
+    public bool isItem;
     private void OnEnable()
     {
         OnTileChanged += AddTilePawn;
@@ -36,8 +39,12 @@ public class Pawn : MonoBehaviour
             if(!IsEnemy)
             unit.enabled = false;
         }
+        if(gameObject.TryGetComponent(out Item _item))
+        {
+            item = _item;
+        }
         if(!isRegenerated)
-        StartCoroutine(PreSpawnedPawnInitialize());
+            StartCoroutine(PreSpawnedPawnInitialize());
     }
 
     /// <summary>
@@ -56,7 +63,9 @@ public class Pawn : MonoBehaviour
         if (!IsEnemy)
         {
             GameObject go = null;
-            unitKindString = unit.GetComponent<Ally>().unitKind.ToString();
+            
+            if(unit != null)
+                unitKindString = unit.GetComponent<Ally>().unitKind.ToString();
 
             switch(unitKindString)
             {
@@ -78,6 +87,23 @@ public class Pawn : MonoBehaviour
                 case "Buffer":
                     go = Instantiate(GoogleSheetManager.instance.Buffer, transform.parent);
                     break;
+                case "ITEM":
+                    go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
+                    break;
+            }
+
+            if (isItem && item != null)
+            {
+                unitKindString = item.GetComponent<Item>().itemKind.ToString();
+                switch (unitKindString)
+                {
+                    case "HealPotion":
+                        go = Instantiate(GoogleSheetManager.instance.HealPotion, transform.parent);
+                        break;
+                    case "BombExplosion":
+                        go = Instantiate(GoogleSheetManager.instance.BombExplosion, transform.parent);
+                        break;
+                }
             }
             go.SetActive(false);
             go.transform.position = curPos;
@@ -134,7 +160,7 @@ public class Pawn : MonoBehaviour
         if(curTile!=null) pastTile = curTile;
     }
    
-    void CheckCenter()
+    protected void CheckCenter()
     {
         if(curTile)
         IsOverCenter = transform.position.x < curTile.transform.position.x;

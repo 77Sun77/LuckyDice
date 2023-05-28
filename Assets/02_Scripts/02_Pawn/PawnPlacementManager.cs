@@ -49,13 +49,14 @@ public class PawnPlacementManager : MonoBehaviour
             if (selectPawn) return;
 
             selectTarget = raycastHit.collider.transform.gameObject;
-            if (selectTarget.TryGetComponent(out Ally unit))
+
+            if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
             {
                 if (unit.isMove || unit.GetComponent<Pawn>().pastTile.IsTable)
                 {
                     unit.isMove = false;
                 }
-                //else
+                //else // 제한시 주석 해제
                 //    return;
             }
 
@@ -99,12 +100,12 @@ public class PawnPlacementManager : MonoBehaviour
                 }
                 else if (unit != null && unit.pawn != selectPawn)//다른 유닛이 있을 경우
                 {
-
-                    if (selectPawn.GetComponent<Unit>() && !selectPawn.GetComponent<Unit>().enabled)
+                    /*
+                    if (selectPawn.GetComponent<Unit>() && !selectPawn.GetComponent<Unit>().enabled) // 인벤토리 유닛과 맵 유닛의 교환을 제한하는 코드
                     {
                         CancelPawn();
                         return;
-                    }
+                    }*/
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     unit.pawn.MoveToTargetTile(selectPawn.pastTile);
                     selectPawn.Set_PastTile();

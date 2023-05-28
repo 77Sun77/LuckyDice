@@ -28,8 +28,8 @@ public class Pawn : MonoBehaviour
     public bool isItem;
     private void OnEnable()
     {
-        OnTileChanged += AddTilePawn;
         OnTileChanged += RemoveTilePawn;
+        OnTileChanged += AddTilePawn;
 
         if (gameObject.TryGetComponent(out Unit _unit))
         {
@@ -103,6 +103,9 @@ public class Pawn : MonoBehaviour
                     case "BombExplosion":
                         go = Instantiate(GoogleSheetManager.instance.BombExplosion, transform.parent);
                         break;
+                    case "CharacterMove":
+                        go = Instantiate(GoogleSheetManager.instance.CharMove, transform.parent);
+                        break;
                 }
             }
             go.SetActive(false);
@@ -110,7 +113,7 @@ public class Pawn : MonoBehaviour
             Pawn pawn = go.GetComponent<Pawn>();
             pawn.isRegenerated = true;
             pawn.Set_CurTile();
-            pawn.AddTilePawn();
+            if(!item) pawn.AddTilePawn();
             go.SetActive(true);
             Destroy(gameObject);
         }
@@ -146,11 +149,12 @@ public class Pawn : MonoBehaviour
         {
             //Debug.Log(raycastHit.collider.gameObject);
             raycastHit.collider.transform.TryGetComponent(out curTile);
-            if (curTile != pastTile) OnTileChanged.Invoke();
+            if (curTile != pastTile && !isItem) OnTileChanged.Invoke();
             pastTile = curTile;
 
             X = curTile.X;
             Y = curTile.Y;
+            
         }
         else Debug.Log("None Obj");
     }
@@ -178,6 +182,7 @@ public class Pawn : MonoBehaviour
             curTile.EnemyList.Add(unit);
         }
         else Debug.Log("Pawn에서 캐릭터 스크립터를 찾을 수 없습니다");
+
     }
 
     public void RemoveTilePawn()
@@ -185,8 +190,9 @@ public class Pawn : MonoBehaviour
         if (pastTile == null)
             return;
 
-        if(!IsEnemy) pastTile.Ally = null;
+        if(!IsEnemy && pastTile.Ally == unit) pastTile.Ally = null;
         else pastTile.EnemyList.Remove(unit);
+
     }
 
     public void MoveToTargetTile(Tile targetTile)

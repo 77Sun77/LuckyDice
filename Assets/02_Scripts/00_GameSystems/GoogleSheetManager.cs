@@ -48,6 +48,7 @@ public class GoogleSheetManager : MonoBehaviour
     public GameObject HealPotion;
     public GameObject BombExplosion;
     public GameObject Barrier;
+    public GameObject CharMove;
     #endregion
 
     public bool IsForYejun;

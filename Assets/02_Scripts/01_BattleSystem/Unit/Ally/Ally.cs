@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ally : Unit
 {
     public AllyKind unitKind;
+    public bool isMove;
 
     protected override void Update()
     {
@@ -61,4 +62,6 @@ public class Ally : Unit
 
         isTargetDetected = targets.Count != 0;
     }
+
+
 }

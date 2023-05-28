@@ -55,7 +55,7 @@ public abstract class Unit : MonoBehaviour
 
     }
 
-    protected void SpawnHPBar()
+    protected virtual void SpawnHPBar()
     {
         GameObject canvas = GameObject.Find("Canvas");
         GameObject go = Instantiate(HPBarPrefab, canvas.transform);

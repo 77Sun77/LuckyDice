@@ -7,7 +7,7 @@ public abstract class Item : MonoBehaviour
     public List<Vector2> AOERange_List;//광역 공격 범위
     public Pawn pawn;
 
-    public enum ItemKind { HealPotion, BombExplosion };
+    public enum ItemKind { HealPotion, BombExplosion, CharacterMove };
     public ItemKind itemKind;
     void Start()
     {

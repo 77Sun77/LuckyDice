@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPawn : Pawn
+public class Barrier : Ally
 {
-    
     void Update()
     {
-        Set_CurTile();
-        CheckCenter();
+        
     }
 }

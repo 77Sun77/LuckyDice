@@ -13,6 +13,6 @@ public class HealPotion : Item
                 print(Tile.Ally+" Heal");
             }
         }
-        Destroy(gameObject);
+       // Destroy(gameObject);
     }
 }

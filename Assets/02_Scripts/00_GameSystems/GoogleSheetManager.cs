@@ -17,9 +17,9 @@ public class GoogleSheetManager : MonoBehaviour
     public GameObject Buffer2;
     public GameObject Buffer3;
 
-    public GameObject Debuffer;
-    public GameObject Debuffer2;
-    public GameObject Debuffer3;
+    public GameObject Lancer;
+    public GameObject Lancer2;
+    public GameObject Lancer3;
 
     public GameObject Sorcerer;
     public GameObject Sorcerer2;
@@ -137,8 +137,8 @@ public class GoogleSheetManager : MonoBehaviour
             case "버퍼":
                 AdjustAllyStat(Buffer, allyInfo);
                 break;
-            case "디버퍼":
-                AdjustAllyStat(Debuffer, allyInfo);
+            case "랜서":
+                AdjustAllyStat(Lancer, allyInfo);
                 break;
             case "마법사":
                 AdjustAllyStat(Sorcerer, allyInfo);
@@ -163,8 +163,8 @@ public class GoogleSheetManager : MonoBehaviour
             case "버퍼":
                 AdjustAllyStat(Buffer2, allyInfo);
                 break;
-            case "디버퍼":
-                AdjustAllyStat(Debuffer2, allyInfo);
+            case "랜서":
+                AdjustAllyStat(Lancer2, allyInfo);
                 break;
             case "마법사":
                 AdjustAllyStat(Sorcerer2, allyInfo);
@@ -189,8 +189,8 @@ public class GoogleSheetManager : MonoBehaviour
             case "버퍼":
                 AdjustAllyStat(Buffer3, allyInfo);
                 break;
-            case "디버퍼":
-                AdjustAllyStat(Debuffer3, allyInfo);
+            case "랜서":
+                AdjustAllyStat(Lancer3, allyInfo);
                 break;
             case "마법사":
                 AdjustAllyStat(Sorcerer3, allyInfo);
@@ -265,7 +265,7 @@ public class GoogleSheetManager : MonoBehaviour
                 break;
             case "굶주린자":
                 AdjustEnemyStat(Eat, enemyInfo);
-                //debug.log("디버퍼");
+                //debug.log("랜서");
                 break;
         }
     }

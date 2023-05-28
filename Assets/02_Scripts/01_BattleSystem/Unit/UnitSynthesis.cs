@@ -65,7 +65,7 @@ public class UnitSynthesis : MonoBehaviour
             Ally unit = go.GetComponent<Ally>();
             if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);
             else if (unit.unitKind == AllyKind.Sorcerer) units[1].Add(unit);
-            else if (unit.unitKind == AllyKind.Debuffer) units[2].Add(unit);
+            else if (unit.unitKind == AllyKind.Lancer) units[2].Add(unit);
             else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
             else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
             else units[5].Add(unit);

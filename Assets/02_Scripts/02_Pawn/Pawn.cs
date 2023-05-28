@@ -32,6 +32,9 @@ public class Pawn : MonoBehaviour
         {
             unit = _unit;
             IsEnemy = _unit.isEnemy;
+
+            if(!IsEnemy)
+            unit.enabled = false;
         }
         if(!isRegenerated)
         StartCoroutine(PreSpawnedPawnInitialize());
@@ -58,22 +61,22 @@ public class Pawn : MonoBehaviour
             switch(unitKindString)
             {
                 case "Warrior":
-                    go = Instantiate(GoogleSheetManager.instance.Warrior, PawnGenerator.instance.UnitSpawn_Tf);
+                    go = Instantiate(GoogleSheetManager.instance.Warrior, transform.parent);
                     break;
                 case "Archer":
-                    go = Instantiate(GoogleSheetManager.instance.Archer, PawnGenerator.instance.UnitSpawn_Tf);
+                    go = Instantiate(GoogleSheetManager.instance.Archer, transform.parent);
                     break;
                 case "Tanker":
-                    go = Instantiate(GoogleSheetManager.instance.Tanker, PawnGenerator.instance.UnitSpawn_Tf);
+                    go = Instantiate(GoogleSheetManager.instance.Tanker, transform.parent);
                     break;
                 case "Sorcerer":
-                    go = Instantiate(GoogleSheetManager.instance.Sorcerer, PawnGenerator.instance.UnitSpawn_Tf);
+                    go = Instantiate(GoogleSheetManager.instance.Sorcerer, transform.parent);
                     break;
-                case "Debuffer":
-                    go = Instantiate(GoogleSheetManager.instance.Debuffer, PawnGenerator.instance.UnitSpawn_Tf);
+                case "Lancer":
+                    go = Instantiate(GoogleSheetManager.instance.Lancer, transform.parent);
                     break;
                 case "Buffer":
-                    go = Instantiate(GoogleSheetManager.instance.Buffer, PawnGenerator.instance.UnitSpawn_Tf);
+                    go = Instantiate(GoogleSheetManager.instance.Buffer, transform.parent);
                     break;
             }
             go.SetActive(false);

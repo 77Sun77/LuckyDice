@@ -1,0 +1,5 @@
+Wave,Name,Lv,Pos,MinDelay,MaxDelay
+1,Blind,1,0,0,0
+1,Blind,1,1,0,0
+1,Blind,1,2,0,0
+-1,,,,,

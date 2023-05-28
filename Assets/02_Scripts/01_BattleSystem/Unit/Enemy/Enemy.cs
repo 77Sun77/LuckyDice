@@ -152,9 +152,10 @@ public class Enemy : Unit
 {
     public EnemyKind enemyKind;
 
-    [Header("EnmeyOnly")]
+    [Header("EnemyOnly")]
     public int money;
     public float speed;
+    public int explosionStack;
 
     protected override void first_Setting()
     {
@@ -172,7 +173,7 @@ public class Enemy : Unit
     {
         targets.Clear();
 
-        foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
+        foreach (var Tile in detectRange_List.GetTileInRange(pawn.X, pawn.Y))
         {
             if (Tile.Ally != null) targets.Add(Tile.Ally);
         }

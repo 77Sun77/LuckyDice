@@ -89,7 +89,7 @@ public class Buffer : Ally
     {
         targets.Clear();
 
-        foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
+        foreach (var Tile in detectRange_List.GetTileInRange(pawn.X, pawn.Y))
         {
             if (Tile.Ally != null) targets.Add(Tile.Ally);
         }
@@ -103,7 +103,7 @@ public class Buffer : Ally
 
         AOEPos = new Vector2(pawn.X, pawn.Y);
 
-        foreach (var _tile in GetTileInRange((int)AOEPos.x, (int)AOEPos.y, AOERange_List))
+        foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
         {
             if (_tile.Ally != null)
             {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4583641822905203477}
   - component: {fileID: 1277837991714016459}
   - component: {fileID: 253870715672605402}
-  - component: {fileID: 3143115957796526109}
+  - component: {fileID: -887309423685119329}
   m_Layer: 0
   m_Name: Magic_B
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3143115957796526109
+--- !u!114 &-887309423685119329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7133068110475347916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bce47791fa0056418fd48bc257e2ea2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b8cb0c59c38c6246a83252f1848f4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 0}
-  speed: 0
+  Target: {fileID: 0}
+  speed: 2
   damage: 0
+  explosionRange:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}

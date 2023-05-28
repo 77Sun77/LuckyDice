@@ -234,11 +234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 50
-  hp: 50
+  maxHP: 40
+  hp: 40
   defense: 0
   minDamage: 0
-  damage: 11
+  damage: 15
   delayTime: 1
   time: 0
   Rating: 1
@@ -265,6 +265,7 @@ MonoBehaviour:
   - {x: 1, y: -1}
   AOEPos: {x: 0, y: 0}
   targets: []
+  attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 4
+  IsSteadyHealing: 1
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,3 +297,4 @@ MonoBehaviour:
   X: 0
   Y: 0
   isSearch: 0
+  isRegenerated: 0

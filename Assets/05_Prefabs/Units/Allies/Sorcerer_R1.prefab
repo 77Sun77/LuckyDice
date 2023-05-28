@@ -278,8 +278,8 @@ MonoBehaviour:
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 3
-  ProjectilePrefab: {fileID: 7133068110475347916, guid: 7a04b7e412da86c469bcb4f0dba27225, type: 3}
+  attackType: 2
+  ProjectilePrefab: {fileID: 7133068110475347916, guid: 518b827a0bfa66f4fafc16db929d1df2, type: 3}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}

@@ -87,7 +87,7 @@ public abstract class Unit : MonoBehaviour
         SyncHPBar();
     }
 
-    //나중에 확장으로 뺄것
+    //나중에 확장으로 빼기 완료
     protected virtual List<Tile> GetTileInRange(int targetX, int targetY, List<Vector2> targetRange)
     {
         List<Tile> TileList = new();
@@ -143,7 +143,7 @@ public abstract class Unit : MonoBehaviour
         List<Unit> targets = new();
 
         AOEPos = new Vector2(this.GetClosestTarget(this.targets).pawn.X, this.GetClosestTarget(this.targets).pawn.Y);
-        foreach (var _tile in GetTileInRange((int)AOEPos.x, (int)AOEPos.y, AOERange_List))
+        foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
         {
             if (_tile.EnemyList.Count != 0)
             {
@@ -166,7 +166,7 @@ public abstract class Unit : MonoBehaviour
     /// <param name="tileSR"></param>
     /// <param name="originColor"></param>
     /// <returns></returns>
-    protected IEnumerator Do_AOE_Effect(Tile _tile, Color effectColor)
+    protected IEnumerator Do_AOE_Effect(Tile _tile, Color effectColor) 
     {
         SpriteRenderer tileSR = _tile.GetComponent<SpriteRenderer>();
         tileSR.color = effectColor;
@@ -259,13 +259,13 @@ public abstract class Unit : MonoBehaviour
 
     IEnumerator Destroy_this()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.03f);
         Destroy(gameObject);
     }
 
 
 }
-public enum AllyKind { Warrior, Sorcerer, Debuffer, Tanker, Buffer, Archer, ITEM };
+public enum AllyKind { Warrior, Sorcerer, Lancer, Tanker, Buffer, Archer, ITEM };
 public enum EnemyKind { Blind, Eat, Head, Oppressed, Prayer };
 public enum AttackType { None , Active, Projectile, AreaOfEffect, AOE_Melee };//근접,투사체,광역,광역 근접
 

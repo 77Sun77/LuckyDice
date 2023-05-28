@@ -42,22 +42,24 @@ public class Projectile : MonoBehaviour
                 return;
 
             isContact = true;
+            Enemy enemy;
 
-            if (Mathf.Abs(coll.gameObject.transform.position.x - Target.gameObject.transform.position.x) < 0.05f)
+            if (Target != null && Mathf.Abs(coll.gameObject.transform.position.x - Target.gameObject.transform.position.x) < 0.05f)
             {
-                Enemy enemy = (Enemy)Target.GetComponent(typeof(Enemy));
-                Debug.Log(enemy.gameObject.name);
-                enemy.TakeDamage(damage);
-                Destroy(gameObject);
-
+                enemy = (Enemy)Target.GetComponent(typeof(Enemy));
+                OnAttack(enemy);
             }
             else
             {
-                Enemy enemy = (Enemy)coll.GetComponent(typeof(Enemy));
-                Debug.Log(enemy.gameObject.name);
-                enemy.TakeDamage(damage);
-                Destroy(gameObject);
+                enemy = (Enemy)coll.GetComponent(typeof(Enemy));
+                OnAttack(enemy);
             }
         }
+    }
+
+    public virtual void OnAttack(Enemy enemy)
+    {
+        enemy.TakeDamage(damage);
+        Destroy(gameObject);
     }
 }

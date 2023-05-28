@@ -53,7 +53,7 @@ public class Ally : Unit
         targets.Clear();
 
         //detectRange안의 Tile의 EnemyList 가져온후 추가
-        foreach (var Tile in GetTileInRange(pawn.X, pawn.Y, detectRange_List))
+        foreach (var Tile in detectRange_List.GetTileInRange(pawn.X, pawn.Y))
         {
             if (Tile.EnemyList.Count != 0)
                 targets.AddRange(Tile.EnemyList);

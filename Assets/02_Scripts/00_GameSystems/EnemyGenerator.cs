@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.Networking;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    public static EnemyGenerator instance;
+    [Header("Debugging Options")]
+    public bool IsDebuggingMode;
+    public int EnemySpawnNum_ForDebug;
 
+    public static EnemyGenerator instance;
+    [Space(35f)]
     public Transform Generate_Tf;
 
-    List<Dictionary<string, object>> data_Dialog;
+    const string WaveInfoURL = "https://docs.google.com/spreadsheets/d/1zAXyhM2QQsNdDdPuASgWsA2PUlmcSrFLpN3DMmnkAkw/export?format=csv";
+    const string WaveInfoURL_Yejun = "https://docs.google.com/spreadsheets/d/1O-LBZEwci2IgEfiPUMIP21uOMrQPIp10_xE33uk3noA/export?format=csv";
+    
     public GameObject[] enemyPrefabs;
     public List<Wave> WaveList = new();
     public int CurWaveIndex;
@@ -32,7 +39,17 @@ public class EnemyGenerator : MonoBehaviour
     IEnumerator Initialize_EnemyGenerator()
     {
         yield return GoogleSheetManager.instance;
-        ParseEnemyTable();
+
+        UnityWebRequest www;
+
+        if (GoogleSheetManager.instance.IsForYejun) www = UnityWebRequest.Get(WaveInfoURL_Yejun);
+        else www = UnityWebRequest.Get(WaveInfoURL);
+
+        yield return www.SendWebRequest();
+        string data = www.downloadHandler.text;
+        List<Dictionary<string, object>> data_Dialog = CSVReader.Read_String(data);
+
+        ParseWaveInfoTable(data_Dialog);
         DebugWaveList();
 
         yield return GameManager.instance;
@@ -40,11 +57,10 @@ public class EnemyGenerator : MonoBehaviour
         OnWaveEnd += () => { GameManager.instance.IsInBattle = false; };
     }
 
-
-    void ParseEnemyTable()
+    void ParseWaveInfoTable(List<Dictionary<string, object>> data_Dialog)
     {
-        if (GoogleSheetManager.instance.IsForYejun) data_Dialog = CSVReader.Read("WaveInfo_Yejun");
-        else data_Dialog = CSVReader.Read("WaveInfo");
+        //if (GoogleSheetManager.instance.IsForYejun) data_Dialog = CSVReader.Read("WaveInfo_Yejun");
+        //else data_Dialog = CSVReader.Read("WaveInfo");
 
         int waveIndex = 0;
         Wave wave = null;
@@ -101,16 +117,42 @@ public class EnemyGenerator : MonoBehaviour
     {
        if (Input.GetKeyDown(KeyCode.Return))
        {
-            StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
-            CurWaveIndex++;
+            if (IsDebuggingMode)
+            {
+                enemyIndex = 0;
+                OnWaveStart.Invoke();
+
+                for (int i = 0; i < EnemySpawnNum_ForDebug; i++)
+                {
+                    GameObject go = Instantiate(enemyPrefabs[0], Generate_Tf);
+                    go.name = $"{enemyPrefabs[0].name} {enemyIndex}";
+                    enemyIndex++;
+                    MoveEnemyToTile(go, 0);
+                }
+
+                StartCoroutine(EndWave_Cor());
+            }
+            else
+            {
+                StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
+                CurWaveIndex++;
+            }
        }
     }
+
+    IEnumerator EndWave_Cor()
+    {
+        Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
+        yield return new WaitUntil(IsAllEnemyDied);
+        OnWaveEnd.Invoke();
+    }
+
 
     IEnumerator SpawnWave(Wave wave)
     {
         enemyIndex = 0;
         OnWaveStart.Invoke();
-
+       
         foreach (var enemySpawnInfo in wave.enemySpawnInfo_List)
         {
             yield return new WaitForSeconds(enemySpawnInfo.GetRandomDelay());
@@ -125,7 +167,6 @@ public class EnemyGenerator : MonoBehaviour
         Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
         yield return new WaitUntil(IsAllEnemyDied);
         OnWaveEnd.Invoke();
-
     }
 
     void MoveEnemyToTile(GameObject go,int spawnLineIndex)

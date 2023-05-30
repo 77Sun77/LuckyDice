@@ -31,7 +31,6 @@ public class DiceManager : MonoBehaviour
     {
         isShot = true;
         this.number = number;
-        print(this.number);
         while (isShot)
         {
             if(count > 5)
@@ -64,7 +63,6 @@ public class DiceManager : MonoBehaviour
             {
                 diceTemp.OnDice();
                 isShot = false;
-                print(dirX + " " + dirY +" "+ dirZ + " " + ranXTorque + " " + ranYTorque + " " + ranZTorque + " ");
             }
             else
             {

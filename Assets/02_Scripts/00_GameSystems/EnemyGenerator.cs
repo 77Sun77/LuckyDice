@@ -30,6 +30,8 @@ public class EnemyGenerator : MonoBehaviour
     public Action OnWaveStart;
     public Action OnWaveEnd;
 
+    public List<Unit> SpawnedEnemies = new();
+
     public void Awake()
     {
         instance = this;
@@ -124,10 +126,9 @@ public class EnemyGenerator : MonoBehaviour
 
                 for (int i = 0; i < EnemySpawnNum_ForDebug; i++)
                 {
-                    GameObject go = Instantiate(enemyPrefabs[0], Generate_Tf);
-                    go.name = $"{enemyPrefabs[0].name} {enemyIndex}";
+                    Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnTile(0), SpawnedEnemies);
+                    unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
                     enemyIndex++;
-                    MoveEnemyToTile(go, 0);
                 }
 
                 StartCoroutine(EndWave_Cor());
@@ -142,7 +143,7 @@ public class EnemyGenerator : MonoBehaviour
 
     IEnumerator EndWave_Cor()
     {
-        Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
+        Func<bool> IsAllEnemyDied = () => { bool b = SpawnedEnemies.Count > 0; return !b; };
         yield return new WaitUntil(IsAllEnemyDied);
         OnWaveEnd.Invoke();
     }
@@ -157,11 +158,16 @@ public class EnemyGenerator : MonoBehaviour
         {
             yield return new WaitForSeconds(enemySpawnInfo.GetRandomDelay());
 
-            GameObject go = Instantiate(enemyPrefabs[(int)enemySpawnInfo.enemyKind], Generate_Tf);
-            go.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
+            //GameObject go = Instantiate(enemyPrefabs[(int)enemySpawnInfo.enemyKind], Generate_Tf);
+            //go.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
+
+            //enemyIndex++;
+            //MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
+
+            //½Å ÄÚµå
+            Unit unit= enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnTile(enemySpawnInfo.spawnLine), SpawnedEnemies);
+            unit.gameObject.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
             enemyIndex++;
-            MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
-            
         }
 
         Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
@@ -185,6 +191,21 @@ public class EnemyGenerator : MonoBehaviour
         pastSpawnLine = spawnLineIndex;
     }
 
+    Tile GetEnemySpawnTile(int spawnLineIndex)
+    {
+        if (spawnLineIndex == -1)
+        {
+            spawnLineIndex = UnityEngine.Random.Range(0, TileManager.Instance.MapY);
+        }
+        else if (spawnLineIndex == -2)
+        {
+            spawnLineIndex = pastSpawnLine;
+        }
+
+        pastSpawnLine = spawnLineIndex;
+
+        return TileManager.Instance.TileArray[spawnX, spawnLineIndex];
+    }
 
 
 }

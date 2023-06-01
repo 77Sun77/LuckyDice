@@ -63,5 +63,10 @@ public class Ally : Unit
         isTargetDetected = targets.Count != 0;
     }
 
+    protected override void Die()
+    {
+        PawnGenerator.instance.SpawnedAllies.Remove(this);
+        base.Die();
+    }
 
 }

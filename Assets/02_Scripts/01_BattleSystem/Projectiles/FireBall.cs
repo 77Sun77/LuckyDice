@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class FireBall : Projectile
 {
-    public List<Vector2> explosionRange; 
+    public List<Vector2> explosionRange;
+    public float DmgIncrFCTR;
 
     public override void OnAttack(Enemy enemy)
     {
         enemy.explosionStack++;
         
-        if (enemy.explosionStack >= 3)
+        if (enemy.explosionStack >= 4)
         {
             DoExplosionAttack(enemy);
             enemy.explosionStack = 0;
         }
-
-        enemy.TakeDamage(damage);
+        else enemy.TakeDamage(damage);
+      
         Destroy(gameObject);
     }
 
@@ -34,7 +35,7 @@ public class FireBall : Projectile
 
             foreach (Unit unit in targets)
             {
-                unit.TakeDamage(damage);
+                unit.TakeDamage(damage * DmgIncrFCTR);
             }
         }
     }

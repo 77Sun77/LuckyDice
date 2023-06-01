@@ -21,5 +21,22 @@ public static class ExtensionMethods
         return TileList;
     }
 
+    //public static void SpawnPawn(this GameObject go,Vector3 pos)
+    //{
+    //    GameObject.Instantiate(go, PawnGenerator.instance.UnitSpawn_Tf);
+    //    go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
+    //}
 
+    public static Unit SpawnUnit(this GameObject prefab,Transform parent,Tile tile,List<Unit> unitList)
+    {
+
+        GameObject go = GameObject.Instantiate(prefab, parent);
+        Pawn pawn = go.GetComponent<Pawn>();
+        pawn.MoveToTargetTile(tile);
+
+        Unit unit = go.GetComponent<Unit>();
+        unitList.Add(unit);
+
+        return unit;
+    }
 }

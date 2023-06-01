@@ -113,7 +113,11 @@ public class Pawn : MonoBehaviour
             Pawn pawn = go.GetComponent<Pawn>();
             pawn.isRegenerated = true;
             pawn.Set_CurTile();
-            if(!item) pawn.AddTilePawn();
+            if (!item)
+            {
+                pawn.AddTilePawn();
+                PawnGenerator.instance.SpawnedAllies.Add(go.GetComponent<Unit>());
+            }
             go.SetActive(true);
             Destroy(gameObject);
         }

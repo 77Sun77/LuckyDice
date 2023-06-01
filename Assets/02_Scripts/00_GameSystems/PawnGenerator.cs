@@ -10,12 +10,13 @@ public class PawnGenerator : MonoBehaviour
     public Transform UnitSpawn_Tf;
 
     public UnitList_Store[] Store;
-    public enum UnitList_Store {전사,마법사,디버퍼,탱커,힐러,아처,팔림};
+    public enum UnitList_Store {전사,마법사,랜서,탱커,힐러,아처,팔림};
     public int InputNum;
     public int ModifiedInput;
 
     public int TheNumberOfDice;
-    
+
+    public List<Unit> SpawnedAllies = new();
 
     private void Awake()
     {
@@ -63,7 +64,7 @@ public class PawnGenerator : MonoBehaviour
         TheNumberOfDice--;
 
         int randomInt = Random.Range(-1,2);
-        ModifiedInput = InputNum + randomInt;
+        ModifiedInput = InputNum /*+ randomInt*/;
 
         if (ModifiedInput == -1)
         {
@@ -86,9 +87,7 @@ public class PawnGenerator : MonoBehaviour
     }
     public void Roll(GameObject unit)
     {
-        GameObject go = Instantiate(unit, UnitSpawn_Tf);
-        go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
-
+       unit.SpawnUnit(UnitSpawn_Tf,TileManager.Instance.GetTableEmptySlot(),SpawnedAllies);
     }
     void OnEndWave()
     {

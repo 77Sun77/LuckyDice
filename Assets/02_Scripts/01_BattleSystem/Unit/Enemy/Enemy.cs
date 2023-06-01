@@ -218,6 +218,7 @@ public class Enemy : Unit
     protected override void Die()
     {
         GameManager.instance.Set_Money(money);
+        EnemyGenerator.instance.SpawnedEnemies.Remove(this);
         base.Die();
     }
 

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Buffer : Ally
 {
+    [Header("Buffer")]
     public bool IsSteadyHealing;
+    public float buffValue;
+
     private void Start()
     {
         first_Setting();
@@ -25,11 +28,12 @@ public class Buffer : Ally
         EnemyGenerator.instance.OnWaveEnd += HealAllies;
     }
 
-
-    private void OnDestroy()
+    public void OnDisable()
     {
         EnemyGenerator.instance.OnWaveStart -= HealAllies;
         EnemyGenerator.instance.OnWaveEnd -= HealAllies;
+
+        UnApplyDefenseBuff();
     }
 
     void Update()
@@ -73,16 +77,25 @@ public class Buffer : Ally
 
         if (!IsSteadyHealing)
             return;
-        if (isTargetDetected && time<0)
-        {
-            if(GameManager.instance.IsInBattle)
-            {
-                HealAllies();
-                time = delayTime;
-            }
-        }
-        time -= Time.deltaTime;
 
+        switch (Rating)
+        {
+            case 1:
+                break;
+            case 2:
+                GiveDefenseBuff();
+                break;
+            case 3:
+                GiveDefenseBuff();
+                break;
+        }
+
+        if (GameManager.instance.IsInBattle)
+        {
+            HealAllies();
+        }
+
+        time -= Time.deltaTime;
     }
 
     protected override void Search_Targets()//아군을 타겟으로 삼도록 재정의
@@ -95,11 +108,15 @@ public class Buffer : Ally
         }
         isTargetDetected = targets.Count != 0;
     }
-    
+
     public void HealAllies()
     {
-        
-        List<Unit> _targets = new();
+        if (!isTargetDetected || time >= 0)
+            return;
+
+        time = delayTime;
+
+        List<Unit> skillTargets = new();
 
         AOEPos = new Vector2(pawn.X, pawn.Y);
 
@@ -107,15 +124,59 @@ public class Buffer : Ally
         {
             if (_tile.Ally != null)
             {
-                _targets.Add(_tile.Ally);
+                skillTargets.Add(_tile.Ally);
             }
             //디버깅용 임시 코드
             _tile.Do_AOE_Effect(Color.green);
         }
 
-        foreach (var Ally in _targets)
+        foreach (var Ally in skillTargets)
         {
             Ally.HealHP(damage);
+        }
+    }
+
+    List<Unit> skillTargets_Last = new();
+    //현재 테이블 들어갈때,파괴시 예외 처리들을 해줘야함
+
+    public void GiveDefenseBuff()
+    {
+        List<Unit> skillTargets = new();
+
+        AOEPos = new Vector2(pawn.X, pawn.Y);
+
+        foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
+        {
+            if (_tile.Ally != null)
+            {
+                skillTargets.Add(_tile.Ally);
+            }
+        }
+
+        foreach (var Ally in skillTargets)
+        {
+            Ally.TakeDefenseBuff(buffValue);
+        }
+
+        for (int i = 0; i < skillTargets.Count; i++)
+        {
+            if (skillTargets_Last.Contains(skillTargets[i]))
+                skillTargets_Last.Remove(skillTargets[i]);     
+        }
+       
+        foreach (var unit_Last in skillTargets_Last)
+        {
+            unit_Last.isBuff = false;
+        }
+
+        skillTargets_Last = skillTargets;
+    }
+
+    public void UnApplyDefenseBuff()
+    {
+        foreach (var target in skillTargets_Last)
+        {
+            target.isBuff = false;
         }
     }
 

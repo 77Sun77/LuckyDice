@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1953436954116349612
 Transform:
   m_ObjectHideFlags: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   maxHP: 3
   hp: 3
   defense: 0
+  modifiedDefense: 0
   minDamage: 0
   damage: 1
   delayTime: 4
@@ -265,6 +266,7 @@ MonoBehaviour:
   - {x: 1, y: -1}
   AOEPos: {x: 0, y: 0}
   targets: []
+  attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
@@ -275,6 +277,9 @@ MonoBehaviour:
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 4
+  isMove: 0
+  IsSteadyHealing: 0
+  buffValue: 0
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,3 +300,5 @@ MonoBehaviour:
   X: 0
   Y: 0
   isSearch: 0
+  isRegenerated: 0
+  isItem: 0

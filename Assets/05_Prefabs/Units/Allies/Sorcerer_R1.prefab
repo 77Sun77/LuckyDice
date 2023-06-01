@@ -244,24 +244,15 @@ MonoBehaviour:
   Rating: 1
   UpgradeCount: 0
   detectRange_List:
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  - {x: 2, y: -1}
-  - {x: 3, y: -1}
-  - {x: 4, y: -1}
-  - {x: 5, y: -1}
   - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: 2, y: 0}
   - {x: 3, y: 0}
   - {x: 4, y: 0}
   - {x: 5, y: 0}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: 2, y: 1}
-  - {x: 3, y: 1}
-  - {x: 4, y: 1}
-  - {x: 5, y: 1}
+  - {x: 6, y: 0}
+  - {x: 7, y: 0}
+  - {x: 8, y: 0}
   AOERange_List:
   - {x: -1, y: -1}
   - {x: 0, y: -1}
@@ -285,6 +276,7 @@ MonoBehaviour:
   HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
   HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 1
+  isMove: 0
 --- !u!114 &876689905154425691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,3 +298,4 @@ MonoBehaviour:
   Y: 0
   isSearch: 0
   isRegenerated: 0
+  isItem: 0

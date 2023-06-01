@@ -8,7 +8,7 @@ public abstract class Unit : MonoBehaviour
     public Pawn pawn;
     public bool isEnemy;
 
-    public float maxHP, hp, defense;
+    public float maxHP, hp,defense,modifiedDefense;
     public float minDamage;
 
     public float damage;
@@ -84,10 +84,12 @@ public abstract class Unit : MonoBehaviour
         else isAttacking = false;
         time -= Time.deltaTime;
 
+        CheckDefenseBuff();
+
         SyncHPBar();
     }
 
-    //나중에 확장으로 빼기 완료
+    //사용하지 않는 코드(확장메서드의 GetTileInRange 사용할 것)
     protected virtual List<Tile> GetTileInRange(int targetX, int targetY, List<Vector2> targetRange)
     {
         List<Tile> TileList = new();
@@ -204,7 +206,7 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        float defense = this.defense;
+        float defense = this.modifiedDefense;
         if (isBuff)
         {
             //defense += 20;
@@ -219,6 +221,18 @@ public abstract class Unit : MonoBehaviour
         hp += value;
         if (hp > maxHP) hp = maxHP;
     }
+    public void TakeDefenseBuff(float value)
+    {
+       if (isBuff) return;
+       
+       isBuff = true;
+       modifiedDefense = defense + value;
+    }
+    public void CheckDefenseBuff()
+    {
+        if (!isBuff) modifiedDefense = defense;
+    }
+
 
     //public void EnableObj(GameObject original)
     //{

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public Tile pastTile;
-    private Tile curTile;
+    protected private Tile curTile;
     protected private Action OnTileChanged;
 
     Unit unit;

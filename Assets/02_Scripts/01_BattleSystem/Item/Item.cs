@@ -9,17 +9,17 @@ public abstract class Item : MonoBehaviour
 
     public enum ItemKind { HealPotion, BombExplosion, CharacterMove };
     public ItemKind itemKind;
+
     void Start()
     {
         pawn = GetComponent<Pawn>();
         pawn.isItem = true;
-        Invoke("Attack", 1f); // 애니메이션 등을 표현할 시간 텀
     }
 
-    void Update()
+    public abstract void Attack(); // 애니메이션 트리거를 통해 호출
+
+    public void DestroyThis() // 애니메이션 트리거를 통해 호출
     {
-        
+        Destroy(gameObject);
     }
-
-    public abstract void Attack();
 }

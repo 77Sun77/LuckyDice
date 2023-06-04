@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
             unitNumber[i] = i + 1;
         }
 
-        // unitNumber = ShuffleArray(unitNumber);
-
+        unitNumber = ShuffleArray(unitNumber); // À¯´Ö ´«²û ·£´ýÀ¸·Î µ¹¸®´Â ÄÚµå
+        
 
     }
 

@@ -7,6 +7,9 @@ public class Ally : Unit
     public AllyKind unitKind;
     public bool isMove;
 
+    public GameObject SynthesisPrefab;
+    public SynthesisIcon synthesis;
+
     protected override void Update()
     {
         base.Update();
@@ -69,4 +72,22 @@ public class Ally : Unit
         base.Die();
     }
 
+    public void SpawnSynthesis()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        GameObject go = Instantiate(SynthesisPrefab, canvas.transform);
+        go.name = $"{transform.name} Synthesis Icon";
+
+        synthesis = go.GetComponent<SynthesisIcon>();
+        synthesis.InitializeHPBar(this);
+    }
+    public void DestroySynthesis()
+    {
+        if (synthesis)
+        {
+            Destroy(synthesis.gameObject);
+            synthesis = null;
+        }
+        
+    }
 }

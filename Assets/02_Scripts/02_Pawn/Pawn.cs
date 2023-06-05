@@ -63,29 +63,33 @@ public class Pawn : MonoBehaviour
         if (!IsEnemy)
         {
             GameObject go = null;
-            
+            int index = 0;
             if(unit != null)
-                unitKindString = unit.GetComponent<Ally>().unitKind.ToString();
+            {
+                Ally ally = unit.GetComponent<Ally>();
+                unitKindString = ally.unitKind.ToString();
+                index = ally.Rating - 1;
+            }
 
             switch(unitKindString)
             {
                 case "Warrior":
-                    go = Instantiate(GoogleSheetManager.instance.Warrior, transform.parent);
+                    go = Instantiate(GoogleSheetManager.instance.Warrior[index], transform.parent);
                     break;
                 case "Archer":
-                    go = Instantiate(GoogleSheetManager.instance.Archer, transform.parent);
+                    go = Instantiate(GoogleSheetManager.instance.Archer[index], transform.parent);
                     break;
                 case "Tanker":
-                    go = Instantiate(GoogleSheetManager.instance.Tanker, transform.parent);
+                    go = Instantiate(GoogleSheetManager.instance.Tanker[index], transform.parent);
                     break;
                 case "Sorcerer":
-                    go = Instantiate(GoogleSheetManager.instance.Sorcerer, transform.parent);
+                    go = Instantiate(GoogleSheetManager.instance.Sorcerer[index], transform.parent);
                     break;
                 case "Lancer":
-                    go = Instantiate(GoogleSheetManager.instance.Lancer, transform.parent);
+                    go = Instantiate(GoogleSheetManager.instance.Lancer[index], transform.parent);
                     break;
                 case "Buffer":
-                    go = Instantiate(GoogleSheetManager.instance.Buffer, transform.parent);
+                    go = Instantiate(GoogleSheetManager.instance.Buffer[index], transform.parent);
                     break;
                 case "ITEM":
                     go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);

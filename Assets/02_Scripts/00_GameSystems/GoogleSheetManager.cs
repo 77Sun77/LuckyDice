@@ -9,29 +9,23 @@ public class GoogleSheetManager : MonoBehaviour
     public static GoogleSheetManager instance;
     #region Ally
     [Header("Ally")]
-    public GameObject Archer;
-    public GameObject Archer2;
-    public GameObject Archer3;
+    public GameObject[] Archer;
 
-    public GameObject Buffer;
-    public GameObject Buffer2;
-    public GameObject Buffer3;
 
-    public GameObject Lancer;
-    public GameObject Lancer2;
-    public GameObject Lancer3;
+    public GameObject[] Buffer;
 
-    public GameObject Sorcerer;
-    public GameObject Sorcerer2;
-    public GameObject Sorcerer3;
 
-    public GameObject Tanker;
-    public GameObject Tanker2;
-    public GameObject Tanker3;
+    public GameObject[] Lancer;
 
-    public GameObject Warrior;
-    public GameObject Warrior2;
-    public GameObject Warrior3;
+
+    public GameObject[] Sorcerer;
+
+
+    public GameObject[] Tanker;
+
+
+    public GameObject[] Warrior;
+
     #endregion
 
     #region Enemy
@@ -134,22 +128,22 @@ public class GoogleSheetManager : MonoBehaviour
         switch (s)
         {
             case "전사":
-                AdjustAllyStat(Warrior, allyInfo);
+                AdjustAllyStat(Warrior[0], allyInfo);
                 break;
             case "궁수":
-                AdjustAllyStat(Archer, allyInfo);
+                AdjustAllyStat(Archer[0], allyInfo);
                 break;
             case "탱커":
-                AdjustAllyStat(Tanker, allyInfo);
+                AdjustAllyStat(Tanker[0], allyInfo);
                 break;
             case "버퍼":
-                AdjustAllyStat(Buffer, allyInfo);
+                AdjustAllyStat(Buffer[0], allyInfo);
                 break;
             case "랜서":
-                AdjustAllyStat(Lancer, allyInfo);
+                AdjustAllyStat(Lancer[0], allyInfo);
                 break;
             case "마법사":
-                AdjustAllyStat(Sorcerer, allyInfo);
+                AdjustAllyStat(Sorcerer[0], allyInfo);
                 break;
         }
     }
@@ -160,22 +154,22 @@ public class GoogleSheetManager : MonoBehaviour
         switch (s)
         {
             case "전사":
-                AdjustAllyStat(Warrior2, allyInfo);
+                AdjustAllyStat(Warrior[1], allyInfo);
                 break;
             case "궁수":
-                AdjustAllyStat(Archer2, allyInfo);
+                AdjustAllyStat(Archer[1], allyInfo);
                 break;
             case "탱커":
-                AdjustAllyStat(Tanker2, allyInfo);
+                AdjustAllyStat(Tanker[1], allyInfo);
                 break;
             case "버퍼":
-                AdjustAllyStat(Buffer2, allyInfo);
+                AdjustAllyStat(Buffer[1], allyInfo);
                 break;
             case "랜서":
-                AdjustAllyStat(Lancer2, allyInfo);
+                AdjustAllyStat(Lancer[1], allyInfo);
                 break;
             case "마법사":
-                AdjustAllyStat(Sorcerer2, allyInfo);
+                AdjustAllyStat(Sorcerer[1], allyInfo);
                 break;
         }
     }
@@ -186,22 +180,22 @@ public class GoogleSheetManager : MonoBehaviour
         switch (s)
         {
             case "전사":
-                AdjustAllyStat(Warrior3, allyInfo);
+                AdjustAllyStat(Warrior[2], allyInfo);
                 break;
             case "궁수":
-                AdjustAllyStat(Archer3, allyInfo);
+                AdjustAllyStat(Archer[2], allyInfo);
                 break;
             case "탱커":
-                AdjustAllyStat(Tanker3, allyInfo);
+                AdjustAllyStat(Tanker[2], allyInfo);
                 break;
             case "버퍼":
-                AdjustAllyStat(Buffer3, allyInfo);
+                AdjustAllyStat(Buffer[2], allyInfo);
                 break;
             case "랜서":
-                AdjustAllyStat(Lancer3, allyInfo);
+                AdjustAllyStat(Lancer[2], allyInfo);
                 break;
             case "마법사":
-                AdjustAllyStat(Sorcerer3, allyInfo);
+                AdjustAllyStat(Sorcerer[2], allyInfo);
                 break;
         }
     }

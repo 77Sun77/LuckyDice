@@ -237,6 +237,7 @@ MonoBehaviour:
   maxHP: 40
   hp: 40
   defense: 0
+  modifiedDefense: 0
   minDamage: 0
   damage: 8
   delayTime: 1
@@ -277,6 +278,8 @@ MonoBehaviour:
   HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 1
   isMove: 0
+  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
+  synthesis: {fileID: 0}
 --- !u!114 &876689905154425691
 MonoBehaviour:
   m_ObjectHideFlags: 0

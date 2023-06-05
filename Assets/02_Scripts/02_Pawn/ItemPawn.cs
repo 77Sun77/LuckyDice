@@ -9,7 +9,7 @@ public class ItemPawn : Pawn
     {
         Set_CurTile();
         CheckCenter();
-        if (curTile != null && !IsGrabbed)
+        if (GetComponent<Animator>() && curTile != null && !IsGrabbed)
         {
             GetComponent<Animator>().enabled = !curTile.IsTable;
         }

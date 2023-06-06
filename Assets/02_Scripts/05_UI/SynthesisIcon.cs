@@ -6,11 +6,15 @@ public class SynthesisIcon : MonoBehaviour
 {
     Ally unit;
     public List<Ally> units = new List<Ally>();
-    int index;
+    int index, price;
     
     public void InitializeHPBar(Ally obj)
     {
         unit = obj;
+
+        if (unit.Rating == 1) price = 300; // 업그레이드 가격 (추후 다시 설정)
+        else if (unit.Rating == 2) price = 500;
+        else price = 1000;
 
         if (unit.unitKind == AllyKind.Warrior) index = 0;
         else if (unit.unitKind == AllyKind.Sorcerer) index = 1;
@@ -28,7 +32,8 @@ public class SynthesisIcon : MonoBehaviour
 
     public void Synthesis()
     {
-       // if (GameManager.instance.money < price) return;
+        if (GameManager.instance.money < price) return; // 현재 돈이 가격보다 적을 경우 실행 안함 (가격 설정 후 UI 연결 필요)
+
         GameObject[] unitsGO = GameObject.FindGameObjectsWithTag("Unit");
         foreach (GameObject go in unitsGO)
         {
@@ -42,6 +47,7 @@ public class SynthesisIcon : MonoBehaviour
             if (unit.Rating == this.unit.Rating) units.Add(unit);
         }
         GameManager.instance.pg.Roll(GameManager.instance.us.prefabs[index][this.unit.Rating - 1]);
+        GameManager.instance.money -= price;
         for (int i = 0; i < 3; i++)
         {
             Destroy(units[i].gameObject);

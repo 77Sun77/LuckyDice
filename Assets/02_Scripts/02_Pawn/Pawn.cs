@@ -67,30 +67,6 @@ public class Pawn : MonoBehaviour
             if(unit != null)
                 unitKindString = unit.GetComponent<Ally>().unitKind.ToString();
 
-            switch(unitKindString)
-            {
-                case "Warrior":
-                    go = Instantiate(GoogleSheetManager.instance.Warrior, transform.parent);
-                    break;
-                case "Archer":
-                    go = Instantiate(GoogleSheetManager.instance.Archer, transform.parent);
-                    break;
-                case "Tanker":
-                    go = Instantiate(GoogleSheetManager.instance.Tanker, transform.parent);
-                    break;
-                case "Sorcerer":
-                    go = Instantiate(GoogleSheetManager.instance.Sorcerer, transform.parent);
-                    break;
-                case "Lancer":
-                    go = Instantiate(GoogleSheetManager.instance.Lancer, transform.parent);
-                    break;
-                case "Buffer":
-                    go = Instantiate(GoogleSheetManager.instance.Buffer, transform.parent);
-                    break;
-                case "ITEM":
-                    go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
-                    break;
-            }
 
             if (isItem && item != null)
             {
@@ -125,6 +101,47 @@ public class Pawn : MonoBehaviour
         //Set_CurTile();
         //AddTilePawn();
     }
+
+    //void SpawnPawn(string pawnName,int rating,out GameObject go)
+    //{
+    //    switch (pawnName)
+    //    {
+    //        case "Warrior":
+    //            switch(rating)
+    //            {
+    //                case 1:
+    //                    go = Instantiate(GoogleSheetManager.instance.Warrior, transform.parent);
+    //                    break;
+    //                case 2:
+    //                    go = Instantiate(GoogleSheetManager.instance.Warrior2, transform.parent);
+    //                    break;
+    //                case 3:
+    //                    go = Instantiate(GoogleSheetManager.instance.Warrior3, transform.parent);
+    //                    break;
+    //            }
+               
+    //            break;
+    //        case "Archer":
+    //            go = Instantiate(GoogleSheetManager.instance.Archer, transform.parent);
+    //            break;
+    //        case "Tanker":
+    //            go = Instantiate(GoogleSheetManager.instance.Tanker, transform.parent);
+    //            break;
+    //        case "Sorcerer":
+    //            go = Instantiate(GoogleSheetManager.instance.Sorcerer, transform.parent);
+    //            break;
+    //        case "Lancer":
+    //            go = Instantiate(GoogleSheetManager.instance.Lancer, transform.parent);
+    //            break;
+    //        case "Buffer":
+    //            go = Instantiate(GoogleSheetManager.instance.Buffer, transform.parent);
+    //            break;
+    //        case "ITEM":
+    //            go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
+    //            break;
+    //    }
+    //}
+
 
     private void Update()
     {

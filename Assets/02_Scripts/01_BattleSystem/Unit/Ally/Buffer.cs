@@ -5,9 +5,8 @@ using UnityEngine;
 public class Buffer : Ally
 {
     [Header("Buffer")]
-    public bool IsSteadyHealing;
     public float buffValue;
-
+    List<Unit> skillTargets_Last = new();
     private void Start()
     {
         first_Setting();
@@ -15,9 +14,16 @@ public class Buffer : Ally
 
     private void OnEnable()
     {
-        if (IsSteadyHealing)
-            return;
-        StartCoroutine(OnEnable_Cor());
+        switch (Rating)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                StartCoroutine(OnEnable_Cor());
+                break;
+        }
     }
 
     IEnumerator OnEnable_Cor()
@@ -74,9 +80,6 @@ public class Buffer : Ally
         //}
         #endregion
         Search_Targets();
-
-        if (!IsSteadyHealing)
-            return;
 
         switch (Rating)
         {
@@ -135,9 +138,6 @@ public class Buffer : Ally
             Ally.HealHP(damage);
         }
     }
-
-    List<Unit> skillTargets_Last = new();
-    //현재 테이블 들어갈때,파괴시 예외 처리들을 해줘야함
 
     public void GiveDefenseBuff()
     {

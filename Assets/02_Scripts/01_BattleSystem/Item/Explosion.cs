@@ -20,6 +20,6 @@ public class Explosion : Item
                 unit.TakeDamage(damage);
             }
         }
-        //Destroy(gameObject);
+        
     }
 }

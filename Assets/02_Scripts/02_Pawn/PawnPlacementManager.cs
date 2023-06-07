@@ -115,6 +115,10 @@ public class PawnPlacementManager : MonoBehaviour
                     Debug.Log("Switch Positon");
                     return;
                 }
+                else if(tile.EnemyList.Count > 0)
+                {
+                    selectPawn.IsGrabbed = false;
+                }
             }   
         }
         selectPawn.transform.position = selectPawn.pastTile.GetPos();

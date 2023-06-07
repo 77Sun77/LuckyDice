@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     public Tile pastTile;
-    private Tile curTile;
+    protected private Tile curTile;
     protected private Action OnTileChanged;
 
     Unit unit;
@@ -63,10 +63,38 @@ public class Pawn : MonoBehaviour
         if (!IsEnemy)
         {
             GameObject go = null;
-            
+            int index = 0;
             if(unit != null)
-                unitKindString = unit.GetComponent<Ally>().unitKind.ToString();
+            {
+                Ally ally = unit.GetComponent<Ally>();
+                unitKindString = ally.unitKind.ToString();
+                index = ally.Rating - 1;
+            }
 
+            switch(unitKindString)
+            {
+                case "Warrior":
+                    go = Instantiate(GoogleSheetManager.instance.Warrior[index], transform.parent);
+                    break;
+                case "Archer":
+                    go = Instantiate(GoogleSheetManager.instance.Archer[index], transform.parent);
+                    break;
+                case "Tanker":
+                    go = Instantiate(GoogleSheetManager.instance.Tanker[index], transform.parent);
+                    break;
+                case "Sorcerer":
+                    go = Instantiate(GoogleSheetManager.instance.Sorcerer[index], transform.parent);
+                    break;
+                case "Lancer":
+                    go = Instantiate(GoogleSheetManager.instance.Lancer[index], transform.parent);
+                    break;
+                case "Buffer":
+                    go = Instantiate(GoogleSheetManager.instance.Buffer[index], transform.parent);
+                    break;
+                case "ITEM":
+                    go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
+                    break;
+            }
 
             if (isItem && item != null)
             {
@@ -101,47 +129,6 @@ public class Pawn : MonoBehaviour
         //Set_CurTile();
         //AddTilePawn();
     }
-
-    //void SpawnPawn(string pawnName,int rating,out GameObject go)
-    //{
-    //    switch (pawnName)
-    //    {
-    //        case "Warrior":
-    //            switch(rating)
-    //            {
-    //                case 1:
-    //                    go = Instantiate(GoogleSheetManager.instance.Warrior, transform.parent);
-    //                    break;
-    //                case 2:
-    //                    go = Instantiate(GoogleSheetManager.instance.Warrior2, transform.parent);
-    //                    break;
-    //                case 3:
-    //                    go = Instantiate(GoogleSheetManager.instance.Warrior3, transform.parent);
-    //                    break;
-    //            }
-               
-    //            break;
-    //        case "Archer":
-    //            go = Instantiate(GoogleSheetManager.instance.Archer, transform.parent);
-    //            break;
-    //        case "Tanker":
-    //            go = Instantiate(GoogleSheetManager.instance.Tanker, transform.parent);
-    //            break;
-    //        case "Sorcerer":
-    //            go = Instantiate(GoogleSheetManager.instance.Sorcerer, transform.parent);
-    //            break;
-    //        case "Lancer":
-    //            go = Instantiate(GoogleSheetManager.instance.Lancer, transform.parent);
-    //            break;
-    //        case "Buffer":
-    //            go = Instantiate(GoogleSheetManager.instance.Buffer, transform.parent);
-    //            break;
-    //        case "ITEM":
-    //            go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
-    //            break;
-    //    }
-    //}
-
 
     private void Update()
     {

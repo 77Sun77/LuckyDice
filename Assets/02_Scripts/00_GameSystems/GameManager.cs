@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Base _base;
     public UnitSynthesis us;
     public PawnGenerator pg;
-    public int[] unitNumber = new int[6]; // 0:Warrior, 1:Sorcerer, 2:Debuffer, 3:Tanker, 4:Buffer, 5:Archer 
+    public int[] unitNumber = new int[6]; // 0:Warrior, 1:Sorcerer, 2:Lancer, 3:Tanker, 4:Buffer, 5:Archer 
 
     public int money;
 
@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
             unitNumber[i] = i + 1;
         }
 
-        // unitNumber = ShuffleArray(unitNumber);
-
+        unitNumber = ShuffleArray(unitNumber); // À¯´Ö ´«²û ·£´ýÀ¸·Î µ¹¸®´Â ÄÚµå
+        
 
     }
 
@@ -68,5 +68,19 @@ public class GameManager : MonoBehaviour
         }
 
         return array;
+    }
+
+    public int AllyIndex_Return(int num)
+    {
+        int index = 0;
+        for(int i=0; i< unitNumber.Length; i++)
+        {
+            if(unitNumber[i] == num)
+            {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }

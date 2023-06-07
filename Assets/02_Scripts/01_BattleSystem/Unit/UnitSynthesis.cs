@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UnitSynthesis : MonoBehaviour
 {
-    public List<List<Ally>> units = new List<List<Ally>>(); // 0:Warrior, 1:Sorcerer, 2:Debuffer, 3:Tanker, 4:Buffer, 5:Archer
-    
-    public List<GameObject[]> prefabs = new List<GameObject[]>(); // 0:Warrior, 1:Sorcerer, 2:Debuffer, 3:Tanker, 4:Buffer, 5:Archer
+    public List<List<Ally>> units = new List<List<Ally>>(); // 0:Warrior, 1:Sorcerer, 2:Lancer, 3:Tanker, 4:Buffer, 5:Archer
+
+    public List<GameObject[]> prefabs = new List<GameObject[]>(); // 0:Warrior, 1:Sorcerer, 2:Lancer, 3:Tanker, 4:Buffer, 5:Archer
     public List<GameObject> unitPrefabs = new List<GameObject>();
     
     bool NextRating;
@@ -83,36 +83,56 @@ public class UnitSynthesis : MonoBehaviour
         {
             Rating[unit.Rating - 1]++;
         }
-        List<GameObject> distroyList = new List<GameObject>();
+        List<GameObject> sysnthelsTarget = new List<GameObject>();
         
         for(int i = 0; i < 2; i++)
         {
-            distroyList.Clear();
+            sysnthelsTarget.Clear();
+            
+            Rating[i] -= Rating[i] % 3;
             if (Rating[i] >= 3)
             {
-                foreach (Ally unit in units)
+                for (int j = 0; j < units.Count; j++)
                 {
-                    if (unit.Rating == i+1)
+
+                    if (units[j].Rating == i + 1)
                     {
-                        print(unit.name + " À¯´Ö »èÁ¦");
-                        distroyList.Add(unit.gameObject);
+
+                        sysnthelsTarget.Add(units[j].gameObject);
                         Rating[i]--;
                         if (Rating[i] == 0)
                         {
-                            
+
                             NextRating = true;
                             break;
                         }
                     }
                 }
             }
+                
+
             if (NextRating)
             {
-                GameManager.instance.pg.Roll(prefabs[index][i]);
+                //GameManager.instance.pg.Roll(prefabs[index][i]);
                 NextRating = false;
-                foreach (GameObject unit in distroyList) Destroy(unit);
+                foreach (GameObject unit in sysnthelsTarget)
+                {
+                    if (!unit.GetComponent<Ally>().synthesis)
+                    {
+                        unit.GetComponent<Ally>().SpawnSynthesis();
+                        
+                    }
+                    units.Remove(unit.GetComponent<Ally>());
+                    //Destroy(unit);
+                }
+                foreach(Ally unit in units)
+                {
+                    unit.DestroySynthesis();
+                }
             }
         }
 
     }
+
+    
 }

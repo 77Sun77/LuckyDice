@@ -239,8 +239,8 @@ MonoBehaviour:
   defense: 0
   modifiedDefense: 0
   minDamage: 0
-  damage: 1
-  delayTime: 4
+  damage: -1
+  delayTime: -1
   time: 0
   Rating: 2
   UpgradeCount: 0
@@ -278,6 +278,8 @@ MonoBehaviour:
   HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 4
   isMove: 0
+  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
+  synthesis: {fileID: 0}
   IsSteadyHealing: 0
   buffValue: 0
 --- !u!114 &8923402529169717202

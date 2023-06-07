@@ -10,7 +10,7 @@ public class DiceRotation : MonoBehaviour
 
     float ranXTorque, ranYTorque, ranZTorque;
 
-    public bool isSimulated;
+    public bool isSimulated, notSimulated;
 
     GameObject target;
 
@@ -18,6 +18,7 @@ public class DiceRotation : MonoBehaviour
     public int Graduation;
     float min;
 
+    bool roll;
     public void SetDice(int count, float x, float y, float z, GameObject target)
     {
         if (count == 0)
@@ -65,21 +66,35 @@ public class DiceRotation : MonoBehaviour
     void Update()
     {
 
-        if (Vector3.Magnitude(rigid.velocity) < 0.1f && isSimulated)
+        if (Vector3.Magnitude(rigid.velocity) < 0.1f)
         {
-            min = dice.transform.GetChild(0).transform.position.z;
-            Graduation = 1;
-            for (int i = 0; i < 6; i++)
+            if (isSimulated)
             {
-                float z = dice.transform.GetChild(i).transform.position.z;
-                if (min > z)
+                min = dice.transform.GetChild(0).transform.position.z;
+                Graduation = 1;
+                for (int i = 0; i < 6; i++)
                 {
-                    min = z;
-                    Graduation = i + 1;
+                    float z = dice.transform.GetChild(i).transform.position.z;
+                    if (min > z)
+                    {
+                        min = z;
+                        Graduation = i + 1;
+                    }
                 }
+                Physics.autoSimulation = true;
+                isSimulated = false;
             }
-            Physics.autoSimulation = true;
-            isSimulated = false;
+            if(!roll && notSimulated)
+            {
+                int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
+                if (num == 0) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
+                else if(num == 1) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
+                else if (num == 2) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
+                else if (num == 3) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Tanker[0]);
+                else if (num == 4) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Buffer[0]);
+                else PawnGenerator.instance.Roll(GoogleSheetManager.instance.Archer[0]);
+                roll = true;
+            }
         }
 
 
@@ -95,6 +110,7 @@ public class DiceRotation : MonoBehaviour
         target.SetActive(true);
         Destroy(target, 4f);
         Destroy(gameObject);
+        target.GetComponent<DiceRotation>().notSimulated = true;
     }
     private void OnCollisionEnter(Collision collision)
     {

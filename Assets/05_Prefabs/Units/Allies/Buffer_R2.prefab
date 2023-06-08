@@ -280,8 +280,7 @@ MonoBehaviour:
   isMove: 0
   SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
   synthesis: {fileID: 0}
-  IsSteadyHealing: 0
-  buffValue: 0
+  buffValue: 5
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0

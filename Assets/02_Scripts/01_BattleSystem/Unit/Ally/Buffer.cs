@@ -6,7 +6,9 @@ public class Buffer : Ally
 {
     [Header("Buffer")]
     public float buffValue;
+    public float WaveHealValue;
     List<Unit> skillTargets_Last = new();
+
     private void Start()
     {
         first_Setting();
@@ -30,14 +32,14 @@ public class Buffer : Ally
     {
         yield return EnemyGenerator.instance;
 
-        EnemyGenerator.instance.OnWaveStart += HealAllies;
-        EnemyGenerator.instance.OnWaveEnd += HealAllies;
+        EnemyGenerator.instance.OnWaveStart += HealOnWaveStart_N_End;
+        EnemyGenerator.instance.OnWaveEnd += HealOnWaveStart_N_End;
     }
 
     public void OnDisable()
     {
-        EnemyGenerator.instance.OnWaveStart -= HealAllies;
-        EnemyGenerator.instance.OnWaveEnd -= HealAllies;
+        EnemyGenerator.instance.OnWaveStart -= HealOnWaveStart_N_End;
+        EnemyGenerator.instance.OnWaveEnd -= HealOnWaveStart_N_End;
 
         UnApplyDefenseBuff();
     }
@@ -138,6 +140,15 @@ public class Buffer : Ally
             Ally.HealHP(damage);
         }
     }
+
+    public void HealOnWaveStart_N_End()
+    {
+        foreach (var ally in PawnGenerator.instance.SpawnedAllies)
+        {
+            ally.HealHP(WaveHealValue);
+        }
+    }
+
 
     public void GiveDefenseBuff()
     {

@@ -7,10 +7,15 @@ public class FireBall : Projectile
     public List<Vector2> explosionRange;
     public float DmgIncrFCTR;
 
+    public bool HasSlowDebuff;
+    public float SlowValue;
+    public float SlowDuration;
+    
     public override void OnAttack(Enemy enemy)
     {
         enemy.explosionStack++;
-        
+        if(HasSlowDebuff) enemy.GetSlow(SlowValue, SlowDuration);
+
         if (enemy.explosionStack >= 4)
         {
             DoExplosionAttack(enemy);

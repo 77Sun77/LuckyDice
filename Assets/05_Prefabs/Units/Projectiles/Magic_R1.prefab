@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 253870715672605402}
   - component: {fileID: -887309423685119329}
   m_Layer: 0
-  m_Name: Magic_B
+  m_Name: Magic_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,3 +150,5 @@ MonoBehaviour:
   - {x: 0, y: -1}
   - {x: 1, y: -1}
   DmgIncrFCTR: 4
+  SlowValue: 1
+  SlowDuration: 2

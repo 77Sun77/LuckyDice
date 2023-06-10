@@ -6,7 +6,7 @@ public class DiceManager : MonoBehaviour
 {
     public static DiceManager instance;
 
-    public GameObject prefab;
+    public GameObject AllyDice, ItemDice;
 
     public float MaxTorqueScale;
 
@@ -18,7 +18,7 @@ public class DiceManager : MonoBehaviour
     DiceRotation diceTemp;
     bool isShot;
 
-    public GameObject[] Dices;
+    public GameObject[] AllyDices, ItemDices;
     void Start()
     {
         instance = this;
@@ -27,7 +27,7 @@ public class DiceManager : MonoBehaviour
     {
 
     }
-    IEnumerator LoopDice(int number)
+    IEnumerator LoopDice(int number, DiceRotation.DIceKind _DiceKind)
     {
         isShot = true;
         this.number = number;
@@ -35,7 +35,8 @@ public class DiceManager : MonoBehaviour
         {
             if(count > 5)
             {
-                Instantiate(Dices[number - 1]);
+                if(_DiceKind == DiceRotation.DIceKind.Ally) Instantiate(AllyDices[number - 1]);
+                else Instantiate(ItemDices[number - 1]);
                 isShot = false;
                 break;
             }
@@ -46,10 +47,20 @@ public class DiceManager : MonoBehaviour
             ranYTorque = Random.Range(0f, MaxTorqueScale);
             ranZTorque = Random.Range(0f, MaxTorqueScale);
             temp = null;
+            
             for (int i = 0; i < 2; i++)
             {
-                GameObject go = Instantiate(prefab, new Vector3(4, 0f, -2f), Quaternion.Euler(dirX, dirY, dirZ));
-                go.GetComponent<DiceRotation>().SetDice(i, ranXTorque, ranYTorque, ranZTorque, temp);
+                GameObject go = null;
+                if (_DiceKind == DiceRotation.DIceKind.Ally)
+                {
+                    go = Instantiate(AllyDice, new Vector3(4, 0f, -2f), Quaternion.Euler(dirX, dirY, dirZ));
+                    
+                }
+                else
+                {
+                    go = Instantiate(ItemDice, new Vector3(4, 0f, -2f), Quaternion.Euler(dirX, dirY, dirZ));
+                }
+                go.GetComponent<DiceRotation>().SetDice(i, ranXTorque, ranYTorque, ranZTorque, temp, _DiceKind);
                 if (i == 0) temp = go;
                 else diceTemp = go.GetComponent<DiceRotation>();
             }
@@ -74,8 +85,8 @@ public class DiceManager : MonoBehaviour
         count = 0;
     }
 
-    public void DiceControl(int number)
+    public void DiceControl(int number, DiceRotation.DIceKind _DiceKind)
     {
-        StartCoroutine(LoopDice(number));
+        StartCoroutine(LoopDice(number, _DiceKind));
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6703543287228541007}
   - component: {fileID: 7913587481739251378}
   - component: {fileID: 2290057582730104027}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 8977089303778719471}
   - component: {fileID: 5588409454936807950}
   - component: {fileID: 3461506691780162079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,8 +173,9 @@ GameObject:
   - component: {fileID: 935290345039073750}
   - component: {fileID: 935290345039073749}
   - component: {fileID: 935290345039073737}
-  m_Layer: 0
-  m_Name: 4DIce
+  - component: {fileID: 8755392690984077415}
+  m_Layer: 6
+  m_Name: Item Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,11 +193,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3982398857159937229}
-  - {fileID: 5455027873730813357}
-  - {fileID: 891254095979480051}
-  - {fileID: 1903591703309059508}
   - {fileID: 1078169565954547644}
+  - {fileID: 8239769743010518265}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -282,6 +280,24 @@ MonoBehaviour:
   size: 1
   height: 1.5
   offset: {x: 0, y: 0, z: 0}
+--- !u!114 &8755392690984077415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935290345039073736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0502ac9572260468caf6323c868225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 0
+  isSimulated: 0
+  notSimulated: 0
+  dice: {fileID: 8239769743010518265}
+  Graduation: 0
+  _DiceKind: 1
 --- !u!1 &1104249505150032168
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3982398857159937229}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 935290345039073748}
+  m_Father: {fileID: 8239769743010518265}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2445900177847906707
@@ -324,7 +340,7 @@ GameObject:
   - component: {fileID: 5564272002668462963}
   - component: {fileID: 8485439965302726002}
   - component: {fileID: 4714662112402498675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5455027873730813357}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,11 +433,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2710318210119427727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -0.7499999, z: -0.86}
+  m_LocalPosition: {x: -0.5, y: -0.7499999, z: -0.8599999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 935290345039073748}
+  m_Father: {fileID: 8239769743010518265}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3251872259499598930
@@ -436,7 +452,7 @@ GameObject:
   - component: {fileID: 2924308542607541076}
   - component: {fileID: 748901918974966492}
   - component: {fileID: 6183749346197317449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Texts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +484,7 @@ RectTransform:
   - {fileID: 5564272002668462963}
   - {fileID: 7379524728490753629}
   m_Father: {fileID: 935290345039073748}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -545,7 +561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1903591703309059508}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,7 +580,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 935290345039073748}
+  m_Father: {fileID: 8239769743010518265}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4587666664647518050
@@ -576,7 +592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891254095979480051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 935290345039073748}
+  m_Father: {fileID: 8239769743010518265}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5155222234537384100
@@ -609,7 +625,7 @@ GameObject:
   - component: {fileID: 4098022907221274123}
   - component: {fileID: 3312580532216485266}
   - component: {fileID: 4065826303487225931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +705,7 @@ GameObject:
   - component: {fileID: 6913315587989419019}
   - component: {fileID: 8112880118783182669}
   - component: {fileID: 2774042205479202712}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +787,7 @@ GameObject:
   - component: {fileID: 4411116332481317230}
   - component: {fileID: 6381615520517203272}
   - component: {fileID: 4020163645078777959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +869,7 @@ GameObject:
   - component: {fileID: 30789708434498980}
   - component: {fileID: 9082539601031269741}
   - component: {fileID: 4250705052383551367}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -935,7 +951,7 @@ GameObject:
   - component: {fileID: 5214299517691194447}
   - component: {fileID: 3069188685754613354}
   - component: {fileID: 2031267924291391415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1015,7 +1031,7 @@ GameObject:
   - component: {fileID: 6569767380927968545}
   - component: {fileID: 4838801032523955689}
   - component: {fileID: 6193980295176652320}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1084,6 +1100,41 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 3
+--- !u!1 &8425404619466215095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8239769743010518265}
+  m_Layer: 6
+  m_Name: Dice
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8239769743010518265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425404619466215095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3982398857159937229}
+  - {fileID: 5455027873730813357}
+  - {fileID: 891254095979480051}
+  - {fileID: 1903591703309059508}
+  m_Father: {fileID: 935290345039073748}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8511430277428772773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,7 +1146,7 @@ GameObject:
   - component: {fileID: 6135624321901445209}
   - component: {fileID: 1537694936630947901}
   - component: {fileID: 3738198424691711364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1177,7 +1228,7 @@ GameObject:
   - component: {fileID: 1969386517678476586}
   - component: {fileID: 5277400793951597134}
   - component: {fileID: 1362089527048196190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1257,7 +1308,7 @@ GameObject:
   - component: {fileID: 7379524728490753629}
   - component: {fileID: 4680744445575925018}
   - component: {fileID: 2782985520254824461}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (Legacy) (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

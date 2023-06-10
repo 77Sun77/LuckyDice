@@ -142,37 +142,24 @@ public abstract class Unit : MonoBehaviour
     /// </summary>
     public void AOE_Attack()
     {
-        List<Unit> targets = new();
+        List<Unit> attackTargets = new();
 
         AOEPos = new Vector2(this.GetClosestTarget(this.targets).pawn.X, this.GetClosestTarget(this.targets).pawn.Y);
         foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
         {
             if (_tile.EnemyList.Count != 0)
             {
-                targets.AddRange(_tile.EnemyList);
+                attackTargets.AddRange(_tile.EnemyList);
             }
             //디버깅용 임시 코드
             _tile.Do_AOE_Effect(Color.red);
         }
 
-        foreach (var _enemy in targets)
+        foreach (var _enemy in attackTargets)
         {
             _enemy.TakeDamage(damage);
         }
         time = delayTime;
-    }
-    /// <summary>
-    /// Tile에서 실행하는 것으로 수정
-    /// </summary>
-    /// <param name="tileSR"></param>
-    /// <param name="originColor"></param>
-    /// <returns></returns>
-    protected IEnumerator Do_AOE_Effect(Tile _tile, Color effectColor) 
-    {
-        SpriteRenderer tileSR = _tile.GetComponent<SpriteRenderer>();
-        tileSR.color = effectColor;
-        yield return new WaitForSeconds(0.3f);
-        tileSR.color = _tile.originColor;
     }
     //0.05내외
     public Unit GetClosestTarget(List<Unit> targets)
@@ -232,19 +219,6 @@ public abstract class Unit : MonoBehaviour
     {
         if (!isBuff) modifiedDefense = defense;
     }
-
-
-    //public void EnableObj(GameObject original)
-    //{
-    //    enabled = false;
-    //    GetComponent<SynthesisUnit>().unitKind = unitKind;
-    //    GetComponent<SynthesisUnit>().Original = original;
-
-    //    SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
-    //    Color color = mySprite.color;
-    //    color.a = 0.5f;
-    //    mySprite.color = color;
-    //}
 
     protected void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
     {

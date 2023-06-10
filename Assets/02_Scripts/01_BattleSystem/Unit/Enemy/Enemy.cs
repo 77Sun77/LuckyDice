@@ -154,18 +154,26 @@ public class Enemy : Unit
 
     [Header("EnemyOnly")]
     public int money;
+    
     public float speed;
+    public float ModifiedSpeed;
+    public float slowValue;
+    public float slowDuration;
+
     public int explosionStack;
 
     protected override void first_Setting()
     {
         base.first_Setting();
         isEnemy = true;
+        ModifiedSpeed = speed;
     }
 
     protected override void Update()
     {
         base.Update();
+
+        CheckSlow();
         Move();
     }
     
@@ -226,9 +234,24 @@ public class Enemy : Unit
     {
         if (!isAttacking)
         {
-            transform.Translate(Vector2.left * (speed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
+            transform.Translate(Vector2.left * (ModifiedSpeed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
         }
     }
+    public void GetSlow(float _slowValue,float _slowDuration)
+    {
+        slowValue = _slowValue;
+        slowDuration = _slowDuration;
+    }
+    public void CheckSlow()
+    {
+        if (slowDuration > 0)
+        {
+            slowDuration -= Time.deltaTime;
+            ModifiedSpeed = speed - slowValue;
+        }
+        else ModifiedSpeed = speed;
+    }
+
 
     public void TakeDamageByBomb()
     {

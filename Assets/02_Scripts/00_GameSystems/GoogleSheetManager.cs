@@ -44,6 +44,7 @@ public class GoogleSheetManager : MonoBehaviour
     public GameObject Barrier;
     public GameObject CharMove;
     #endregion
+    
 
     public bool IsForYejun;
 
@@ -108,94 +109,27 @@ public class GoogleSheetManager : MonoBehaviour
     }
     void ApplyAllyInfo(AllyInfo allyInfo)
     {
-        switch(allyInfo.rating)
-        {
-            case 1:
-                ApplyAllyInfo_Rating_1(allyInfo);
-                break;
-            case 2:
-                ApplyAllyInfo_Rating_2(allyInfo);
-                break;
-            case 3:
-                ApplyAllyInfo_Rating_3(allyInfo);
-                break;
-        }
-    }
-    void ApplyAllyInfo_Rating_1(AllyInfo allyInfo)
-    {
         string s = allyInfo.name;
-
+        int rating = allyInfo.rating - 1;
         switch (s)
         {
             case "전사":
-                AdjustAllyStat(Warrior[0], allyInfo);
+                AdjustAllyStat(Warrior[rating], allyInfo);
                 break;
             case "궁수":
-                AdjustAllyStat(Archer[0], allyInfo);
+                AdjustAllyStat(Archer[rating], allyInfo);
                 break;
             case "탱커":
-                AdjustAllyStat(Tanker[0], allyInfo);
+                AdjustAllyStat(Tanker[rating], allyInfo);
                 break;
             case "버퍼":
-                AdjustAllyStat(Buffer[0], allyInfo);
+                AdjustAllyStat(Buffer[rating], allyInfo);
                 break;
             case "랜서":
-                AdjustAllyStat(Lancer[0], allyInfo);
+                AdjustAllyStat(Lancer[rating], allyInfo);
                 break;
             case "마법사":
-                AdjustAllyStat(Sorcerer[0], allyInfo);
-                break;
-        }
-    }
-    void ApplyAllyInfo_Rating_2(AllyInfo allyInfo)
-    {
-        string s = allyInfo.name;
-
-        switch (s)
-        {
-            case "전사":
-                AdjustAllyStat(Warrior[1], allyInfo);
-                break;
-            case "궁수":
-                AdjustAllyStat(Archer[1], allyInfo);
-                break;
-            case "탱커":
-                AdjustAllyStat(Tanker[1], allyInfo);
-                break;
-            case "버퍼":
-                AdjustAllyStat(Buffer[1], allyInfo);
-                break;
-            case "랜서":
-                AdjustAllyStat(Lancer[1], allyInfo);
-                break;
-            case "마법사":
-                AdjustAllyStat(Sorcerer[1], allyInfo);
-                break;
-        }
-    }
-    void ApplyAllyInfo_Rating_3(AllyInfo allyInfo)
-    {
-        string s = allyInfo.name;
-
-        switch (s)
-        {
-            case "전사":
-                AdjustAllyStat(Warrior[2], allyInfo);
-                break;
-            case "궁수":
-                AdjustAllyStat(Archer[2], allyInfo);
-                break;
-            case "탱커":
-                AdjustAllyStat(Tanker[2], allyInfo);
-                break;
-            case "버퍼":
-                AdjustAllyStat(Buffer[2], allyInfo);
-                break;
-            case "랜서":
-                AdjustAllyStat(Lancer[2], allyInfo);
-                break;
-            case "마법사":
-                AdjustAllyStat(Sorcerer[2], allyInfo);
+                AdjustAllyStat(Sorcerer[rating], allyInfo);
                 break;
         }
     }
@@ -288,11 +222,12 @@ public class GoogleSheetManager : MonoBehaviour
 public struct AllyInfo
 {
     public string name;
-    public float rating, HP, defense, damage, AS;
+    public int rating;
+    public float HP, defense, damage, AS;
 
     public AllyInfo(string _rating, string _name, string _HP, string _defense, string _damage, string _AS)
     {
-        rating = float.Parse(_rating);
+        rating = int.Parse(_rating);
         name = _name;
         HP = float.Parse(_HP);
         defense = float.Parse(_defense);

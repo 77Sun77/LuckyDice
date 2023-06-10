@@ -278,8 +278,10 @@ MonoBehaviour:
   HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 4
   isMove: 0
-  IsSteadyHealing: 0
-  buffValue: 0
+  SynthesisPrefab: {fileID: 0}
+  synthesis: {fileID: 0}
+  buffValue: 10
+  WaveHealValue: 30
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0

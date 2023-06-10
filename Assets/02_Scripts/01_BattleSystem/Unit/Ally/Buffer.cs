@@ -5,8 +5,9 @@ using UnityEngine;
 public class Buffer : Ally
 {
     [Header("Buffer")]
-    public bool IsSteadyHealing;
     public float buffValue;
+    public float WaveHealValue;
+    List<Unit> skillTargets_Last = new();
 
     private void Start()
     {
@@ -15,23 +16,30 @@ public class Buffer : Ally
 
     private void OnEnable()
     {
-        if (IsSteadyHealing)
-            return;
-        StartCoroutine(OnEnable_Cor());
+        switch (Rating)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                StartCoroutine(OnEnable_Cor());
+                break;
+        }
     }
 
     IEnumerator OnEnable_Cor()
     {
         yield return EnemyGenerator.instance;
 
-        EnemyGenerator.instance.OnWaveStart += HealAllies;
-        EnemyGenerator.instance.OnWaveEnd += HealAllies;
+        EnemyGenerator.instance.OnWaveStart += HealOnWaveStart_N_End;
+        EnemyGenerator.instance.OnWaveEnd += HealOnWaveStart_N_End;
     }
 
     public void OnDisable()
     {
-        EnemyGenerator.instance.OnWaveStart -= HealAllies;
-        EnemyGenerator.instance.OnWaveEnd -= HealAllies;
+        EnemyGenerator.instance.OnWaveStart -= HealOnWaveStart_N_End;
+        EnemyGenerator.instance.OnWaveEnd -= HealOnWaveStart_N_End;
 
         UnApplyDefenseBuff();
     }
@@ -74,9 +82,6 @@ public class Buffer : Ally
         //}
         #endregion
         Search_Targets();
-
-        if (!IsSteadyHealing)
-            return;
 
         switch (Rating)
         {
@@ -136,8 +141,14 @@ public class Buffer : Ally
         }
     }
 
-    List<Unit> skillTargets_Last = new();
-    //현재 테이블 들어갈때,파괴시 예외 처리들을 해줘야함
+    public void HealOnWaveStart_N_End()
+    {
+        foreach (var ally in PawnGenerator.instance.SpawnedAllies)
+        {
+            ally.HealHP(WaveHealValue);
+        }
+    }
+
 
     public void GiveDefenseBuff()
     {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7647019490625122927}
   - component: {fileID: 7647019490625122926}
   - component: {fileID: 7647019490625122929}
-  - component: {fileID: 7647019490625122928}
+  - component: {fileID: 6312834506059734799}
   - component: {fileID: -8378796134601819673}
   m_Layer: 8
   m_Name: Tanker_R2
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7647019490625122931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7647019490625122928
+--- !u!114 &6312834506059734799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,40 +145,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 7647019490625122931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f250e731c093fe7478777e0fdb35ae8e, type: 3}
+  m_Script: {fileID: 11500000, guid: b062b76d18977444e92191dea7fcc4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 10
-  hp: 10
-  defense: 2
+  maxHP: 0
+  hp: 0
+  defense: 0
   modifiedDefense: 0
   minDamage: 0
-  damage: 1
-  delayTime: 1
+  damage: 0
+  delayTime: 0
   time: 0
   Rating: 2
   UpgradeCount: 0
-  detectRange_List:
-  - {x: 1, y: 0}
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
+  detectRange_List: []
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 1
-  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 3
   isMove: 0
-  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
   synthesis: {fileID: 0}
+  AOERange: []
+  SelfDestructionFCTR: 10
 --- !u!114 &-8378796134601819673
 MonoBehaviour:
   m_ObjectHideFlags: 0

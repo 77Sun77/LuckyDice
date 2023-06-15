@@ -2,165 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public class Enemy : MonoBehaviour
-//{
-//    public new string name;
-//    public float damage,maxHP,hp, defense, speed;
-//    public float delayTime, time;
-//    public int money;
-
-//    public bool isAttack;
-//    public List<Vector2> detectRange_List;
-//    public List<Unit> UnitList = new();
-
-//    private Unit unit;
-//    public Pawn pawn;
-
-//    public enum Debuff { None, Damage, Defense, Speed };
-//    public Debuff debuff;
-
-//    public float minDamage;
-
-//    [Header("HPBar 관련")]
-//    public GameObject HPBarPrefab;
-//    protected HPBar hPBar;
-//    public Vector3 HPBarOffset;
-
-//    void Start()
-//    {
-//        SpawnHPBar();
-//        pawn = GetComponent<Pawn>();
-//    }
-
-//    protected void SpawnHPBar()
-//    {
-//        GameObject canvas = GameObject.Find("Canvas");
-//        GameObject go = Instantiate(HPBarPrefab, canvas.transform);
-//        go.name = $"{transform.name} HPBar";
-//        hPBar = go.GetComponent<HPBar>();
-
-//        HPBarOffset = new Vector3(0, -0.6f);
-//        hPBar.InitializeHPBar(this);
-//    }
-
-//    protected void Update()
-//    {
-//        Search_New();
-//        Move();
-
-//        if(isAttack)
-//        {
-//            if(time <= 0)
-//            {
-//                Attack();
-//                time = delayTime;
-//            }
-//            time -= Time.deltaTime;
-//        }
-//    }
-
-//    void Move()
-//    {
-//        if(!isAttack)
-//        {
-//            transform.Translate(Vector2.left * (speed*TileManager.Instance.XScale_Tile) * Time.deltaTime);
-//        }
-//    }
-
-//    void Search()
-//    {
-//        int layerMask = 1 << LayerMask.NameToLayer("Unit");
-//        RaycastHit2D hit = Physics2D.Raycast(transform.position+new Vector3(0.5f, 0, 0), Vector2.left, 1.75f, layerMask); // distance == 칸 x
-//        if (hit)
-//        {
-//            if (hit.collider.CompareTag("Unit") && unit == null) // && unit == null 추가
-//            {
-//                this.unit = hit.collider.GetComponent<Unit>(); // 타겟을 지정
-//                // 애니메이션 발동
-//                isAttack = true;
-//            }
-//        }
-//        else
-//        {
-//            isAttack = false;
-//            // 애니메이션 초기화
-//            time = delayTime;
-//        }
-//    }
-
-//    protected void Search_New()
-//    {
-//        UnitList.Clear();
-//        //detectRange안의 Tile의 Unit 가져오기
-//        foreach (var _detectRange in detectRange_List)
-//        {
-//            int x = pawn.X + (int)_detectRange.x;
-//            int y = pawn.Y + (int)_detectRange.y;
-//            if (!TileManager.Instance.IsRightRange(x, y)) continue;
-//            var TileUnit = TileManager.Instance.TileArray[x, y].TileUnit;
-//            if(TileUnit != null)
-//            UnitList.Add(TileUnit);
-//            //Debug.Log($"{x},{y}");
-//        }
-
-//        isAttack = UnitList.Count != 0 && pawn.IsOverCenter;
-//    }
-
-//    public void Attack() // 타겟 타입 구분, 애니메이션 이벤트 키프레임
-//    {
-//        foreach (var _unit in UnitList)
-//        {
-//            _unit.TakeDamage(damage);
-//        }
-//    }
-
-//    public void TakeDamage(float damage)
-//    {
-//        damage -= defense;
-//        if (damage < minDamage) damage = minDamage;
-//        hp -= damage;
-//        DIe();
-//    }
-
-//    public void TakeDamageByBomb()
-//    {
-//        hp -= 50;
-//        DIe();
-//    }
-
-//    void DIe()
-//    {
-//        if (hp <= 0)
-//        {
-//            GameManager.instance.Set_Money(money);
-//            pawn.RemoveTilePawn();
-//            Destroy(gameObject);
-//        }
-//    }
-
-//    private void OnTriggerEnter2D(Collider2D coll)
-//    {
-//        if (coll.CompareTag("Base"))
-//        {
-//            coll.gameObject.GetComponent<Base>().HP -= 1;
-//            pawn.RemoveTilePawn();
-//            Destroy(gameObject);
-//        }
-//    }
-//}
 public class Enemy : Unit
 {
     public EnemyKind enemyKind;
 
     [Header("EnemyOnly")]
     public int money;
-    
+
     public float speed;
     public float ModifiedSpeed;
-    public float slowValue;
-    public float slowDuration;
 
     public int explosionStack;
+    public bool isOnCC;
+
+    Coroutine runnigCor_Slow;
+    Coroutine runnigCor_DotDamage;
+    float curTick;
+
+    private void Awake()
+    {
+        first_Setting();
+    }
 
     protected override void first_Setting()
     {
@@ -173,10 +35,9 @@ public class Enemy : Unit
     {
         base.Update();
 
-        CheckSlow();
         Move();
     }
-    
+
     protected override void Search_Targets()
     {
         targets.Clear();
@@ -192,34 +53,12 @@ public class Enemy : Unit
     {
         bool _canAttack = false;
 
-        switch (attackType)
+        if (pawn.IsOverCenter)
         {
-            case AttackType.Active:
-                if (pawn.IsOverCenter)
-                {
-                    Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
-                    _canAttack = true;
-                }
-                break;
-
-            case AttackType.Projectile:
-                Projectile_Attack();
-                _canAttack = true;
-                break;
-
-            case AttackType.AreaOfEffect:
-                AOE_Attack();
-                _canAttack = true;
-                break;
-
-            case AttackType.AOE_Melee:
-                if (pawn.IsOverCenter)
-                {
-                    AOE_Attack();
-                    _canAttack = true;
-                }
-                break;
+            Active_Attack(damage);//적이 중앙을 넘어왔을때 근접 발동
+            _canAttack = true;
         }
+
         return _canAttack;
     }
 
@@ -232,24 +71,73 @@ public class Enemy : Unit
 
     void Move()
     {
-        if (!isAttacking)
+        if (!isAttacking && !isOnCC)
         {
             transform.Translate(Vector2.left * (ModifiedSpeed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
         }
     }
-    public void GetSlow(float _slowValue,float _slowDuration)
+    public void GetSlow(float _slowValue, float _slowDuration)
     {
-        slowValue = _slowValue;
-        slowDuration = _slowDuration;
+        if (runnigCor_Slow != null)
+            StopCoroutine(runnigCor_Slow);
+
+        runnigCor_Slow = StartCoroutine(GetSlow_Cor(_slowValue, _slowDuration));
     }
-    public void CheckSlow()
+    IEnumerator GetSlow_Cor(float _slowValue, float _slowDuration)
     {
-        if (slowDuration > 0)
+        float curTime = _slowDuration;
+
+        while (curTime > 0f)
         {
-            slowDuration -= Time.deltaTime;
-            ModifiedSpeed = speed - slowValue;
+            ModifiedSpeed = speed - _slowValue;
+            curTime -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
         }
-        else ModifiedSpeed = speed;
+
+        ModifiedSpeed = speed;
+    }
+    public void GetKnockBack(float forceValue)
+    {
+        StartCoroutine(GetKnockBack_Cor(forceValue));
+    }
+    IEnumerator GetKnockBack_Cor(float forceValue)
+    {
+        isOnCC = true;
+
+        while (forceValue > 0)
+        {
+            transform.Translate(Vector2.right * forceValue * Time.deltaTime);
+            forceValue -= Time.deltaTime*5;
+            yield return new WaitForFixedUpdate();
+        }
+
+        isOnCC = false;
+    }
+
+
+    public void TakeDotDamage(float dotDamage, float duration, float tickRate)
+    {
+        if(runnigCor_DotDamage!=null)
+        StopCoroutine(runnigCor_DotDamage);
+
+        runnigCor_DotDamage = StartCoroutine(TakeDotDamage_Cor(dotDamage, duration, tickRate));
+    }
+    IEnumerator TakeDotDamage_Cor(float dotDamage,float duration,float tickRate)
+    {
+        float curTime = duration;
+        
+        while (curTime > 0f)
+        {
+            curTick -= Time.deltaTime;
+            curTime -= Time.deltaTime;
+
+            if (curTick < 0f)
+            {
+                TakeDamage(dotDamage,this.gameObject);
+                curTick = tickRate;
+            }
+            yield return new WaitForFixedUpdate();
+        }        
     }
 
 

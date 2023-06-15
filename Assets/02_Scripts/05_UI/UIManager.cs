@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI HP_Txt;
     public TextMeshProUGUI Gold_Txt;
 
+    [Header("Prefab Container")]
+    public GameObject HPBar_Prefab;
+    public GameObject SysthesisIcon_Prefab;
+
     private void Awake()
     {
         instance = this;

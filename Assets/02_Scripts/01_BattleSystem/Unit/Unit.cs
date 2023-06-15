@@ -16,60 +16,63 @@ public abstract class Unit : MonoBehaviour
     public int Rating, UpgradeCount;
 
     public List<Vector2> detectRange_List;
-    public List<Vector2> AOERange_List;//광역 공격 범위
-    public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
-
+    
     public List<Unit> targets = new List<Unit>();
     public Unit attackingTarget;
 
-    public bool isTargetDetected,isAttacking,isBuff;
-
-    public AttackType attackType;
-
-    public GameObject ProjectilePrefab;
+    public bool isTargetDetected,isAttacking,isBuff;//isAttacking의 쓰임이 모호함 분석해볼것
 
     public SpriteRenderer mySprite;
     public Animator anim;
 
-    [Header("HPBar 관련")]
-    public GameObject HPBarPrefab;
     protected HPBar hPBar;
-    public Vector3 HPBarOffset;
 
-    
+    //public AttackType attackType;
 
-    //public bool flag;
-    //public int i;
+    //public GameObject ProjectilePrefab;
 
+    //public List<Vector2> AOERange_List;//광역 공격 범위
+    //public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
+    protected virtual void Start()
+    {
+        first_Setting();
+    }
     protected virtual void first_Setting()
     {
+        Debug.Log($"{gameObject.name} first setting");
+
         mySprite = GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
 
         SpawnHPBar();
 
-       // Rating = 1;
+        //Rating = 1;
         UpgradeCount = 1;
-
-
     }
 
     protected virtual void SpawnHPBar()
     {
+        Debug.Log($"{gameObject.name} Spawn HPBar");
+        StartCoroutine(nameof(SpawnHPBar_Cor));
+    }
+    IEnumerator SpawnHPBar_Cor()
+    {
+        Debug.Log($"{gameObject.name} Waiting UIMan");
+        yield return UIManager.instance;
+
         GameObject canvas = GameObject.Find("Canvas");
-        GameObject go = Instantiate(HPBarPrefab, canvas.transform);
+        GameObject go = Instantiate(UIManager.instance.HPBar_Prefab, canvas.transform);
         go.name = $"{transform.name} HPBar";
         hPBar = go.GetComponent<HPBar>();
 
-        HPBarOffset = new Vector3(0, -0.6f);
-        hPBar.InitializeHPBar(this);
+        Vector3 HPBarOffset = new Vector3(0, -0.6f);
+        hPBar.InitializeHPBar(this, HPBarOffset);
+
+        Debug.Log($"{gameObject.name} Spawn HPBar_Cor");
     }
 
-    void Awake()
-    {
-        first_Setting();
-    }
+    
     protected virtual void Update()
     {
         Search_Targets();
@@ -89,25 +92,6 @@ public abstract class Unit : MonoBehaviour
         SyncHPBar();
     }
 
-    //사용하지 않는 코드(확장메서드의 GetTileInRange 사용할 것)
-    protected virtual List<Tile> GetTileInRange(int targetX, int targetY, List<Vector2> targetRange)
-    {
-        List<Tile> TileList = new();
-
-        foreach (var targetTile in targetRange)
-        {
-            int x = targetX + (int)targetTile.x;
-            int y = targetY + (int)targetTile.y;
-            if (!TileManager.Instance.IsRightRange(x, y)) continue;
-
-            var Tile = TileManager.Instance.TileArray[x, y];
-            TileList.Add(Tile);
-
-            //Debug.Log($"{x},{y}");
-        }
-        return TileList;
-    }
-
     protected abstract void Search_Targets();
     protected abstract bool TryAttack();
     
@@ -115,37 +99,35 @@ public abstract class Unit : MonoBehaviour
     /// <summary>
     /// 단일 근접
     /// </summary>
-    public void Active_Attack() // 타겟 타입 구분, 애니메이션 이벤트 키프레임
+    public GameObject Active_Attack(float _damage) // 타겟 타입 구분, 애니메이션 이벤트 키프레임
     {
-        float damage = this.damage;
-        if (isBuff)
-        {
-            //damage += 20;
-        }
-        GetClosestTarget(targets).TakeDamage(damage);
+        GetClosestTarget(targets).TakeDamage(_damage, this.gameObject);
         time = delayTime;
         Debug.Log(gameObject.name);
+        return GetClosestTarget(targets).gameObject;
     }
     /// <summary>
     /// 유도 투사체
     /// </summary> 
-    public void Projectile_Attack()
+    public GameObject Projectile_Attack(float _damage, GameObject projectile)
     {
         // 투사체 프리팹 소환
-        GameObject bullet = Instantiate(ProjectilePrefab, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
-        bullet.GetComponent<Projectile>().SetProjectile(damage, GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
+        GameObject bullet = Instantiate(projectile, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
+        bullet.GetComponent<Projectile>().SetProjectile(_damage, GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
         Debug.Log("Shot");
+        
+        return bullet;
     }
     /// <summary>
     /// 광역 공격
     /// </summary>
-    public void AOE_Attack()
+    public virtual List<Unit> AOE_Attack(float _damage, Vector2 AOEPos, List<Vector2> aoeRange)
     {
         List<Unit> attackTargets = new();
 
-        AOEPos = new Vector2(this.GetClosestTarget(this.targets).pawn.X, this.GetClosestTarget(this.targets).pawn.Y);
-        foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
+        //Vector2 AOEPos = new Vector2(this.GetClosestTarget(this.targets).pawn.X, this.GetClosestTarget(this.targets).pawn.Y);
+        foreach (var _tile in aoeRange.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
         {
             if (_tile.EnemyList.Count != 0)
             {
@@ -157,10 +139,13 @@ public abstract class Unit : MonoBehaviour
 
         foreach (var _enemy in attackTargets)
         {
-            _enemy.TakeDamage(damage);
+            _enemy.TakeDamage(_damage, this.gameObject);
         }
         time = delayTime;
+
+        return attackTargets;
     }
+
     //0.05내외
     public Unit GetClosestTarget(List<Unit> targets)
     {
@@ -191,16 +176,13 @@ public abstract class Unit : MonoBehaviour
         return attackingTarget;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float _damage,GameObject atkTarget)
     {
         float defense = this.modifiedDefense;
-        if (isBuff)
-        {
-            //defense += 20;
-        }
-        damage -= defense;
-        if (damage < minDamage) damage = minDamage;
-        hp -= damage;
+      
+        _damage -= defense;
+        if (_damage < minDamage) _damage = minDamage;
+        hp -= _damage;
         if (hp <= 0) Die();
     }
     public void HealHP(float value)
@@ -220,8 +202,11 @@ public abstract class Unit : MonoBehaviour
         if (!isBuff) modifiedDefense = defense;
     }
 
-    protected void SyncHPBar()//Buffer랑 Debuffer에게도 적용되게 수정해주세용
+    protected void SyncHPBar()
     {
+        if (hPBar == null)
+            return;
+
         hPBar.curHP = hp;
     }
 
@@ -249,7 +234,6 @@ public abstract class Unit : MonoBehaviour
         yield return new WaitForSeconds(0.03f);
         Destroy(gameObject);
     }
-
 
 }
 public enum AllyKind { Warrior, Sorcerer, Lancer, Tanker, Buffer, Archer, ITEM };

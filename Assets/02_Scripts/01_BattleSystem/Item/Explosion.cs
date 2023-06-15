@@ -17,7 +17,7 @@ public class Explosion : Item
 
             foreach (Unit unit in targets)
             {
-                unit.TakeDamage(damage);
+                unit.TakeDamage(damage,this.gameObject);
             }
         }
         

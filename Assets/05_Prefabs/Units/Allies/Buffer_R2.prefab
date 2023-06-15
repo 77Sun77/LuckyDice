@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1953436954116349613}
   - component: {fileID: 1953436954116349610}
   - component: {fileID: 1953436954116349614}
-  - component: {fileID: 721288180009403741}
+  - component: {fileID: -8734923340497821713}
   - component: {fileID: 8923402529169717202}
   m_Layer: 8
   m_Name: Buffer_R2
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &721288180009403741
+--- !u!114 &-8734923340497821713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953436954116349608}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69590d96d6df2054f84354d9c28fd7e1, type: 3}
+  m_Script: {fileID: 11500000, guid: cbc5439369ad79146851b3d25cbcbb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
@@ -244,7 +244,16 @@ MonoBehaviour:
   time: 0
   Rating: 2
   UpgradeCount: 0
-  detectRange_List: []
+  detectRange_List:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
@@ -255,17 +264,9 @@ MonoBehaviour:
   unitKind: 4
   isMove: 0
   synthesis: {fileID: 0}
-  AOERange:
-  - {x: -1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: -1, y: 0}
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: -1, y: -1}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  DefenseBuffValue: 5
+  AOERange: []
+  DefenseBuffValue: 0
+  WaveHealValue: 0
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0

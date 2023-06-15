@@ -55,7 +55,7 @@ public class Enemy : Unit
 
         if (pawn.IsOverCenter)
         {
-            Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
+            Active_Attack(damage);//적이 중앙을 넘어왔을때 근접 발동
             _canAttack = true;
         }
 

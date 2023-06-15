@@ -31,8 +31,17 @@ public class Tanker_New : Ally
 
     protected override void Die()
     {
-        Vector2 targetPos = new Vector2(pawn.X, pawn.Y);
-        AOE_Attack(targetPos, AOERange);
+        switch (Rating)
+        {
+            case 1:
+                break;
+            case 2:
+            case 3:
+                Vector2 targetPos = new Vector2(pawn.X, pawn.Y);
+                AOE_Attack(damage * SelfDestructionFCTR, targetPos, AOERange);
+                break;
+        }
+        base.Die();
     }
 
 }

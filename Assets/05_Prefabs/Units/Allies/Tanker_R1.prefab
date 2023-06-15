@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7647019490625122927}
   - component: {fileID: 7647019490625122926}
   - component: {fileID: 7647019490625122929}
-  - component: {fileID: 7647019490625122928}
+  - component: {fileID: 5554028250906357306}
   - component: {fileID: -8378796134601819673}
   m_Layer: 8
   m_Name: Tanker_R1
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7647019490625122928
+--- !u!114 &5554028250906357306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,23 +145,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7647019490625122931}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f250e731c093fe7478777e0fdb35ae8e, type: 3}
+  m_Script: {fileID: 11500000, guid: b062b76d18977444e92191dea7fcc4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
   maxHP: 300
   hp: 300
-  defense: 5
+  defense: 2
   modifiedDefense: 0
   minDamage: 0
-  damage: 10
+  damage: 1
   delayTime: 1
   time: 0
   Rating: 1
   UpgradeCount: 0
-  detectRange_List:
-  - {x: 1, y: 0}
+  detectRange_List: []
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
@@ -172,6 +171,8 @@ MonoBehaviour:
   unitKind: 3
   isMove: 0
   synthesis: {fileID: 0}
+  AOERange: []
+  SelfDestructionFCTR: 0
 --- !u!114 &-8378796134601819673
 MonoBehaviour:
   m_ObjectHideFlags: 0

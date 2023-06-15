@@ -171,6 +171,8 @@ MonoBehaviour:
   unitKind: 3
   isMove: 0
   synthesis: {fileID: 0}
+  AOERange: []
+  SelfDestructionFCTR: 10
 --- !u!114 &-8378796134601819673
 MonoBehaviour:
   m_ObjectHideFlags: 0

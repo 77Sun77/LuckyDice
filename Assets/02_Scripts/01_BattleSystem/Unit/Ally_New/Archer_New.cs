@@ -29,7 +29,7 @@ public class Archer_New : Ally
         switch(Rating)
         {
             case 1:
-                Projectile_Attack(damage,damage,Arrow);
+                Projectile_Attack(damage,Arrow);
                 return true;
 
             case 2:

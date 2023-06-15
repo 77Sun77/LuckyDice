@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7696597218292851331}
   - component: {fileID: 7696597218292851332}
   - component: {fileID: 7696597218292851328}
-  - component: {fileID: 5195659623449952388}
+  - component: {fileID: 4305239396989049989}
   - component: {fileID: 2393364730516908464}
   m_Layer: 8
   m_Name: Warrior_R1
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5195659623449952388
+--- !u!114 &4305239396989049989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,18 +229,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7696597218292851334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b004d2c7e7f2d2d41867fec18dc5c8f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 608f21812457d2742b69f9c6baef8150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 120
-  hp: 120
+  maxHP: 0
+  hp: 0
   defense: 0
   modifiedDefense: 0
   minDamage: 0
-  damage: 50
-  delayTime: 1
+  damage: 0
+  delayTime: 0
   time: 0
   Rating: 1
   UpgradeCount: 0
@@ -256,6 +256,8 @@ MonoBehaviour:
   unitKind: 0
   isMove: 0
   synthesis: {fileID: 0}
+  AOERange: []
+  vampPercent: 0
 --- !u!114 &2393364730516908464
 MonoBehaviour:
   m_ObjectHideFlags: 0

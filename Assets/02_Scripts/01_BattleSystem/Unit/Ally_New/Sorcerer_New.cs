@@ -35,9 +35,9 @@ public class Sorcerer_New : Ally
                 return true;
             case 3:
                 Vector2 targetPos = new Vector2(this.GetClosestTarget(this.targets).pawn.X, this.GetClosestTarget(this.targets).pawn.Y);
-                AOE_Attack(targetPos, MeteorRange);
+                AOE_Attack(damage,targetPos, MeteorRange);
 
-                foreach (var unit in AOE_Attack(targetPos, MeteorRange))
+                foreach (var unit in AOE_Attack(damage,targetPos, MeteorRange))
                 {
                     Enemy enemy = unit.GetComponent<Enemy>();
 

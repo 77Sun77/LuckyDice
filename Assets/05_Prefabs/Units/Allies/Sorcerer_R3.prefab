@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5893044212061490221}
   - component: {fileID: 7956036229267279621}
   - component: {fileID: 2496488320836765499}
-  - component: {fileID: 5773678470402737378}
+  - component: {fileID: -8809928584612388570}
   - component: {fileID: 876689905154425691}
   m_Layer: 8
   m_Name: Sorcerer_R3
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5773678470402737378
+--- !u!114 &-8809928584612388570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7154396063005979274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e76d917d0c7e6499ea6e48834ecf09, type: 3}
+  m_Script: {fileID: 11500000, guid: f3d30a8cd517e3c40867c133ba69edc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
@@ -244,14 +244,7 @@ MonoBehaviour:
   time: 0
   Rating: 3
   UpgradeCount: 0
-  detectRange_List:
-  - {x: 1, y: 0}
-  - {x: 2, y: 0}
-  - {x: 3, y: 0}
-  - {x: 4, y: 0}
-  - {x: 5, y: 0}
-  - {x: 6, y: 0}
-  - {x: 7, y: 0}
+  detectRange_List: []
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
@@ -262,7 +255,9 @@ MonoBehaviour:
   unitKind: 1
   isMove: 0
   synthesis: {fileID: 0}
-  MeteorRange:
+  FireBall: {fileID: 0}
+  MaxExploStack: 0
+  explosionRange:
   - {x: -1, y: 1}
   - {x: 0, y: 1}
   - {x: 1, y: 1}
@@ -272,10 +267,13 @@ MonoBehaviour:
   - {x: -1, y: -1}
   - {x: 0, y: -1}
   - {x: 1, y: -1}
-  MeteorFCTR: 0
-  DotDamageFCTR: 0
-  SlowValue: 1
-  SlowDuration: 2
+  explosionFCTR: 0
+  SlowValue: 0
+  SlowDuration: 0
+  MeteorRange: []
+  DotDmgFCTR: 0
+  DotDmgDuration: 0
+  DotDmgTick: 0
 --- !u!114 &876689905154425691
 MonoBehaviour:
   m_ObjectHideFlags: 0

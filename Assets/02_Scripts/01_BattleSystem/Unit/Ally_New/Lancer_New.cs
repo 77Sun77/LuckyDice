@@ -33,7 +33,7 @@ public class Lancer_New : Ally
                 {
                     curAtkCount = 0;
                     Vector2 targetPos = new Vector2(pawn.X + 1,pawn.Y);
-                    List<Unit> units = AOE_Attack(targetPos, AOERange);
+                    List<Unit> units = AOE_Attack(damage,targetPos, AOERange);
 
                     foreach (Unit unit in units)
                     {
@@ -65,7 +65,7 @@ public class Lancer_New : Ally
             {
                 curTickTimer = rangeAtkTickDelay;
                 Vector2 targetPos = new Vector2(pawn.X + 2, pawn.Y);
-                List<Unit> units = AOE_Attack(targetPos, AOERange);
+                List<Unit> units = AOE_Attack(damage,targetPos, AOERange);
 
                 foreach (Unit unit in units)
                 {

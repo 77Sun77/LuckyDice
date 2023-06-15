@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 1953436954116349613}
   - component: {fileID: 1953436954116349610}
   - component: {fileID: 1953436954116349614}
-  - component: {fileID: 8136487534278741808}
   - component: {fileID: 8923402529169717202}
+  - component: {fileID: 7414884733135529744}
   m_Layer: 8
   m_Name: Buffer_R3
   m_TagString: Unit
@@ -220,53 +220,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8136487534278741808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953436954116349608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a030281d57bf5a742b93bdf7df86a066, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pawn: {fileID: 0}
-  isEnemy: 0
-  maxHP: 0
-  hp: 0
-  defense: 0
-  modifiedDefense: 0
-  minDamage: 0
-  damage: 0
-  delayTime: 0
-  time: 0
-  Rating: 3
-  UpgradeCount: 0
-  detectRange_List: []
-  targets: []
-  attackingTarget: {fileID: 0}
-  isTargetDetected: 0
-  isAttacking: 0
-  isBuff: 0
-  mySprite: {fileID: 0}
-  anim: {fileID: 0}
-  unitKind: 4
-  isMove: 0
-  synthesis: {fileID: 0}
-  AOERange:
-  - {x: -1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: -1, y: 0}
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: -1, y: -1}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  DefenseBuffValue: 5
-  WaveHealValue: 5
 --- !u!114 &8923402529169717202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,3 +242,50 @@ MonoBehaviour:
   isSearch: 0
   isRegenerated: 0
   isItem: 0
+--- !u!114 &7414884733135529744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953436954116349608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc5439369ad79146851b3d25cbcbb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawn: {fileID: 0}
+  isEnemy: 0
+  maxHP: 0
+  hp: 0
+  defense: 0
+  modifiedDefense: 0
+  minDamage: 0
+  damage: 0
+  delayTime: 0
+  time: 0
+  Rating: 3
+  UpgradeCount: 0
+  detectRange_List:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  targets: []
+  attackingTarget: {fileID: 0}
+  isTargetDetected: 0
+  isAttacking: 0
+  isBuff: 0
+  mySprite: {fileID: 0}
+  anim: {fileID: 0}
+  unitKind: 4
+  isMove: 0
+  synthesis: {fileID: 0}
+  AOERange: []
+  DefenseBuffValue: 0
+  WaveHealValue: 0

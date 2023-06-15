@@ -32,7 +32,7 @@ public class Warrior_New : Ally
                 if (GetClosestTarget(targets).pawn.IsOverCenter)//적이 중앙을 넘어왔을때 근접 발동
                 {
                     Vector2 targetPos = new Vector2(pawn.X + 1, pawn.Y);
-                    AOE_Attack(targetPos, AOERange);
+                    AOE_Attack(damage,targetPos, AOERange);
                     _canAttack = true;
                 }
                 break;
@@ -40,9 +40,9 @@ public class Warrior_New : Ally
                 if (GetClosestTarget(targets).pawn.IsOverCenter)//적이 중앙을 넘어왔을때 근접 발동
                 {
                     Vector2 targetPos = new Vector2(pawn.X + 1, pawn.Y);
-                    AOE_Attack(targetPos, AOERange);
+                    AOE_Attack(damage,targetPos, AOERange);
 
-                    for (int i = 0; i < AOE_Attack(targetPos, AOERange).Count; i++)
+                    for (int i = 0; i < AOE_Attack(damage,targetPos, AOERange).Count; i++)
                     {
                         HealHP(damage / vampPercent / 100);
                     }

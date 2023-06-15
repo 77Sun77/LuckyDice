@@ -176,13 +176,13 @@ public abstract class Unit : MonoBehaviour
         return attackingTarget;
     }
 
-    public virtual void TakeDamage(float damage,GameObject atkTarget)
+    public virtual void TakeDamage(float _damage,GameObject atkTarget)
     {
         float defense = this.modifiedDefense;
       
-        damage -= defense;
-        if (damage < minDamage) damage = minDamage;
-        hp -= damage;
+        _damage -= defense;
+        if (_damage < minDamage) _damage = minDamage;
+        hp -= _damage;
         if (hp <= 0) Die();
     }
     public void HealHP(float value)

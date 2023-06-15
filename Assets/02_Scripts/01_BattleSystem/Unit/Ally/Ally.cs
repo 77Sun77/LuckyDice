@@ -20,25 +20,25 @@ public class Ally : Unit
     //        case AttackType.Active:
     //            if (GetClosestTarget(targets).pawn.IsOverCenter)
     //            {
-    //                Active_Attack();//적이 중앙을 넘어왔을때 근접 발동
+    //                Active_Attack(damage);//적이 중앙을 넘어왔을때 근접 발동
     //                _canAttack = true;
     //            }
     //            break;
 
     //        case AttackType.Projectile:
-    //            Projectile_Attack(ProjectilePrefab);
+    //            Projectile_Attack(damage,ProjectilePrefab);
     //            _canAttack = true;
     //            break;
 
     //        case AttackType.AreaOfEffect:
-    //            AOE_Attack(AOERange_List);
+    //            AOE_Attack(damage,AOERange_List);
     //            _canAttack = true;
     //            break;
 
     //        case AttackType.AOE_Melee:
     //            if (GetClosestTarget(targets).pawn.IsOverCenter)
     //            {
-    //                AOE_Attack(AOERange_List);
+    //                AOE_Attack(damage,AOERange_List);
     //                _canAttack = true;
     //            }
     //            break;

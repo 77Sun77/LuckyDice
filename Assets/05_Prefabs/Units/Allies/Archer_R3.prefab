@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5161478708710330667}
   - component: {fileID: 5161478708710330668}
   - component: {fileID: 5161478708710330664}
-  - component: {fileID: 4479584006168597312}
+  - component: {fileID: 2500980612163588554}
   - component: {fileID: 5278243932145574865}
   m_Layer: 8
   m_Name: Archer_R3
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4479584006168597312
+--- !u!114 &2500980612163588554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5161478708710330670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9d1c71499ab43948bcfa9afcb2c1ac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 01e2005b615c1ff4cb13f2993f970bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
@@ -182,7 +182,8 @@ MonoBehaviour:
   isMove: 0
   synthesis: {fileID: 0}
   Arrow: {fileID: 5388325044995908961, guid: 80a0c6d6275ed904aac1d58fc16bb526, type: 3}
-  DoubleShotDelay: 0.2
+  DoubleShotDelay: 0
+  CanPass: 0
 --- !u!114 &5278243932145574865
 MonoBehaviour:
   m_ObjectHideFlags: 0

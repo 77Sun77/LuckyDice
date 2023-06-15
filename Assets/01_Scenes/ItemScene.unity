@@ -6966,12 +6966,10 @@ MonoBehaviour:
   - {fileID: 7820702717522260758, guid: ef1164ebbd480c24c8c06ff0a8cf008a, type: 3}
   - {fileID: 7820702717522260758, guid: c6e1ff5bb918dc54d84edb0f0bc3dd6d, type: 3}
   ItemDices:
-  - {fileID: 7820702717522260758, guid: 463f8cd7f62cd2d4a9cd8bef3a6b0240, type: 3}
-  - {fileID: 7820702717522260758, guid: 0341211f1dd34064aa07e5a547c6380b, type: 3}
-  - {fileID: 7820702717522260758, guid: be0da23d354ee0042a6d2e01c86f10a5, type: 3}
-  - {fileID: 7820702717522260758, guid: 31ddcae26d15e3a4aba22f26261c3f4a, type: 3}
-  - {fileID: 7820702717522260758, guid: ef1164ebbd480c24c8c06ff0a8cf008a, type: 3}
-  - {fileID: 7820702717522260758, guid: c6e1ff5bb918dc54d84edb0f0bc3dd6d, type: 3}
+  - {fileID: 2970251993228209291, guid: ebf94a037b2c25c458b90f33f47af4ab, type: 3}
+  - {fileID: 3700938071685917994, guid: f2c3e7d4a3eeaf449ac95a5d9bc4b64d, type: 3}
+  - {fileID: 4171124841196673379, guid: 1100e4d9bab11264e9dfe11d084b1a52, type: 3}
+  - {fileID: 9217371503391754874, guid: 08eb601c686c5a74b9e6d137e4f13abe, type: 3}
 --- !u!1 &1258959416
 GameObject:
   m_ObjectHideFlags: 0

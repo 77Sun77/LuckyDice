@@ -14,6 +14,8 @@ public class Tile : MonoBehaviour
     public bool CanPlacement;
 
     public Color originColor;
+
+    public GameObject item;
     /// <summary>
     /// Tile의 X,Y값 할당
     /// </summary>
@@ -37,6 +39,7 @@ public class Tile : MonoBehaviour
     private void Update()
     {
         CanPlacement = EnemyList.Count == 0 && Ally == null;
+        if (item) CanPlacement = false;
 
         if (!TileManager.Instance.IsUpdatingTilePos)
             return;

@@ -68,7 +68,7 @@ public class UnitSynthesis : MonoBehaviour
             else if (unit.unitKind == AllyKind.Lancer) units[2].Add(unit);
             else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
             else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
-            else units[5].Add(unit);
+            else if(unit.unitKind == AllyKind.Archer) units[5].Add(unit);
         }
 
         for (int i = 0; i < units.Count; i++)

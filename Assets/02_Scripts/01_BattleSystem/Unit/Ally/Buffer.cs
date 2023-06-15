@@ -7,6 +7,8 @@ public class Buffer : Ally
     [Header("Buffer")]
     public float buffValue;
     public float WaveHealValue;
+    public List<Vector2> AOERange;
+
     List<Unit> skillTargets_Last = new();
 
     private void Start()
@@ -14,73 +16,8 @@ public class Buffer : Ally
         first_Setting();
     }
 
-    private void OnEnable()
+    new void Update()
     {
-        switch (Rating)
-        {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                StartCoroutine(OnEnable_Cor());
-                break;
-        }
-    }
-
-    IEnumerator OnEnable_Cor()
-    {
-        yield return EnemyGenerator.instance;
-
-        EnemyGenerator.instance.OnWaveStart += HealOnWaveStart_N_End;
-        EnemyGenerator.instance.OnWaveEnd += HealOnWaveStart_N_End;
-    }
-
-    public void OnDisable()
-    {
-        EnemyGenerator.instance.OnWaveStart -= HealOnWaveStart_N_End;
-        EnemyGenerator.instance.OnWaveEnd -= HealOnWaveStart_N_End;
-
-        UnApplyDefenseBuff();
-    }
-
-    void Update()
-    {
-        #region legacy Code
-        //int layerMask = 1 << LayerMask.NameToLayer("Unit");
-
-        //Vector2 pos = transform.position;
-
-        //pos.x -= 0.875f; // ƒ≠ x/2
-        //Vector2 range = detectRange; // ªı∑ŒøÓ ∫Øºˆ
-        //range.x += (detectRange.x * 0.75f) + 1.25f; // ƒ≠ x*ƒ≠ √ﬂ∞° π¸¿ß(«√∑π¿ÃæÓ : 1, ƒ≠ : 1.75) + (ƒ≠x-0.5)
-
-        //RaycastHit2D[] hits = Physics2D.BoxCastAll(pos, range, 0, Vector2.zero, 0, layerMask);
-
-        //if (hits.Length != 0)
-        //{
-        //    List<Unit> units = new List<Unit>();
-        //    foreach (RaycastHit2D hit in hits)
-        //    {
-        //        if (hit.collider.gameObject != gameObject) units.Add((Unit)hit.collider.GetComponent(typeof(Unit)));
-        //    }
-
-        //    if(this.units.Count != 0)
-        //    {
-        //        foreach (Unit unit in this.units)
-        //        {
-        //            if (!units.Contains(unit)) unit.isBuff = false;
-        //        }
-        //    }
-        //    this.units.Clear();
-        //    foreach (Unit unit in units)
-        //    {
-        //        unit.isBuff = true;
-        //        this.units.Add(unit);
-        //    }
-
-        //}
-        #endregion
         Search_Targets();
 
         switch (Rating)
@@ -103,6 +40,35 @@ public class Buffer : Ally
         time -= Time.deltaTime;
     }
 
+    private void OnEnable()
+    {
+        switch (Rating)
+        {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                StartCoroutine(OnEnable_Cor());
+                break;
+        }
+    }
+    IEnumerator OnEnable_Cor()
+    {
+        yield return EnemyGenerator.instance;
+
+        EnemyGenerator.instance.OnWaveStart += HealOnWaveStart_N_End;
+        EnemyGenerator.instance.OnWaveEnd += HealOnWaveStart_N_End;
+    }
+
+    public void OnDisable()
+    {
+        EnemyGenerator.instance.OnWaveStart -= HealOnWaveStart_N_End;
+        EnemyGenerator.instance.OnWaveEnd -= HealOnWaveStart_N_End;
+
+        UnApplyDefenseBuff();
+    }
+
     protected override void Search_Targets()//æ∆±∫¿ª ≈∏∞Ÿ¿∏∑Œ ªÔµµ∑œ ¿Á¡§¿«
     {
         targets.Clear();
@@ -123,9 +89,9 @@ public class Buffer : Ally
 
         List<Unit> skillTargets = new();
 
-        AOEPos = new Vector2(pawn.X, pawn.Y);
+        Vector2 AOEPos = new Vector2(pawn.X, pawn.Y);
 
-        foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
+        foreach (var _tile in AOERange.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
         {
             if (_tile.Ally != null)
             {
@@ -154,9 +120,9 @@ public class Buffer : Ally
     {
         List<Unit> skillTargets = new();
 
-        AOEPos = new Vector2(pawn.X, pawn.Y);
+        Vector2 AOEPos = new Vector2(pawn.X, pawn.Y);
 
-        foreach (var _tile in AOERange_List.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
+        foreach (var _tile in AOERange.GetTileInRange((int)AOEPos.x, (int)AOEPos.y))
         {
             if (_tile.Ally != null)
             {
@@ -172,9 +138,9 @@ public class Buffer : Ally
         for (int i = 0; i < skillTargets.Count; i++)
         {
             if (skillTargets_Last.Contains(skillTargets[i]))
-                skillTargets_Last.Remove(skillTargets[i]);     
+                skillTargets_Last.Remove(skillTargets[i]);
         }
-       
+
         foreach (var unit_Last in skillTargets_Last)
         {
             unit_Last.isBuff = false;

@@ -4,24 +4,36 @@ using UnityEngine;
 
 public class FireBall : Projectile
 {
-    public List<Vector2> explosionRange;
-    public float DmgIncrFCTR;
+    public int MaxExploStack;
 
-    public bool HasSlowDebuff;
+    public List<Vector2> explosionRange;
+    public float explosionFCTR;
+
     public float SlowValue;
     public float SlowDuration;
     
+    public void SetFireBall(int _maxExploStack, List<Vector2> _explosionRange, float _explosionFCTR, float _slowValue, float _slowDuration)
+    {
+        MaxExploStack = _maxExploStack;
+
+        explosionRange = _explosionRange;
+        explosionFCTR = _explosionFCTR;
+
+        SlowValue = _slowValue;
+        SlowDuration = _slowDuration;
+    }
+
     public override void OnAttack(Enemy enemy)
     {
         enemy.explosionStack++;
-        if(HasSlowDebuff) enemy.GetSlow(SlowValue, SlowDuration);
+        enemy.GetSlow(SlowValue, SlowDuration);
 
-        if (enemy.explosionStack >= 4)
+        if (enemy.explosionStack >= MaxExploStack)
         {
             DoExplosionAttack(enemy);
             enemy.explosionStack = 0;
         }
-        else enemy.TakeDamage(damage);
+        else enemy.TakeDamage(damage,this.gameObject);
       
         Destroy(gameObject);
     }
@@ -40,9 +52,8 @@ public class FireBall : Projectile
 
             foreach (Unit unit in targets)
             {
-                unit.TakeDamage(damage * DmgIncrFCTR);
+                unit.TakeDamage(damage * explosionFCTR,this.gameObject);
             }
         }
     }
-
 }

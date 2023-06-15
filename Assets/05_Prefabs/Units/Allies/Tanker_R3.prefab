@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7647019490625122931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -153,27 +153,25 @@ MonoBehaviour:
   maxHP: 10
   hp: 10
   defense: 2
+  modifiedDefense: 0
   minDamage: 0
   damage: 1
-  delayTime: 1.5
+  delayTime: 1
   time: 0
   Rating: 3
   UpgradeCount: 0
   detectRange_List:
   - {x: 1, y: 0}
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
   targets: []
+  attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 1
-  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 3
+  isMove: 0
+  synthesis: {fileID: 0}
 --- !u!114 &-8378796134601819673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +192,8 @@ MonoBehaviour:
   X: 0
   Y: 0
   isSearch: 0
+  isRegenerated: 0
+  isItem: 0
 --- !u!1 &8266803180323639652
 GameObject:
   m_ObjectHideFlags: 0

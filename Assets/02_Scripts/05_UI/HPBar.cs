@@ -10,12 +10,15 @@ public class HPBar : MonoBehaviour
     public GameObject HPBar_Cur;
     public Object Target;
 
+    public Vector3 HPBarOffset;
+
     Unit unit;
     Enemy enemy;
 
-    public void InitializeHPBar(Object obj)
+    public void InitializeHPBar(Object obj, Vector3 _hPBarOffset)
     {
         Target = obj;
+        HPBarOffset = _hPBarOffset;
 
         if (Target is Unit)
         {
@@ -38,7 +41,7 @@ public class HPBar : MonoBehaviour
         {
             curHP = unit.hp;
             maxHP = unit.maxHP;
-            transform.position = Camera.main.WorldToScreenPoint(unit.transform.position + unit.HPBarOffset);
+            transform.position = Camera.main.WorldToScreenPoint(unit.transform.position + HPBarOffset);
 
         }
         else if (enemy)
@@ -46,7 +49,7 @@ public class HPBar : MonoBehaviour
             curHP = enemy.hp;
 
             maxHP = enemy.maxHP;
-            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + enemy.HPBarOffset);
+            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + HPBarOffset);
         }
         else
         {
@@ -56,8 +59,6 @@ public class HPBar : MonoBehaviour
 
         Vector3 curHP_X_Scale = new Vector3(curHP / maxHP, 1, 1);
         HPBar_Cur.transform.localScale = curHP_X_Scale;
-
-        
     }
 
 

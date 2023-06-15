@@ -9,7 +9,6 @@ public class Warrior : Ally
         first_Setting();
     }
 
-    // Update is called once per frame
     new void Update()
     {
         base.Update();

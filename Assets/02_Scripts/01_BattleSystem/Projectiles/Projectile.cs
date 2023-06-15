@@ -6,8 +6,10 @@ public class Projectile : MonoBehaviour
 {
     public GameObject Target;
     public float speed, damage;
-    bool isContact;
-    public void SetProjectile(float dmg, GameObject go)
+    protected List<Enemy> HitEnemy;
+    public bool IsGuided;
+    public bool CanPass;
+    public virtual void SetProjectile(float dmg, GameObject go)
     {
         damage = dmg;
         Target = go;
@@ -24,7 +26,8 @@ public class Projectile : MonoBehaviour
 
         if (!Target)
             return;
-        LookTarget();
+
+        if(IsGuided) LookTarget();
     }
 
     void LookTarget()
@@ -34,14 +37,10 @@ public class Projectile : MonoBehaviour
         //transform.rotation.SetLookRotation(Target.transform.position);
     }
 
-    private void OnTriggerEnter2D(Collider2D coll)
+    protected virtual void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.CompareTag("Enemy"))
         {
-            if (isContact)
-                return;
-
-            isContact = true;
             Enemy enemy;
 
             if (Target != null && Mathf.Abs(coll.gameObject.transform.position.x - Target.gameObject.transform.position.x) < 0.05f)
@@ -59,7 +58,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnAttack(Enemy enemy)
     {
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(damage,this.gameObject);
         Destroy(gameObject);
     }
 }

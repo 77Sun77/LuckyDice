@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6762594484259883105}
   - component: {fileID: 278622755164898787}
   - component: {fileID: 8811064077427257265}
-  - component: {fileID: 6235716871363650791}
+  - component: {fileID: 8146041226162722649}
   - component: {fileID: 6434187431763836486}
   m_Layer: 8
   m_Name: Lancer_R1
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6235716871363650791
+--- !u!114 &8146041226162722649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5124941803456547265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a7565d050aec7a4a8c1ea930ac67651, type: 3}
+  m_Script: {fileID: 11500000, guid: 3920846fd36b07547a91d4a210847e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
@@ -161,32 +161,31 @@ MonoBehaviour:
   Rating: 1
   UpgradeCount: 0
   detectRange_List:
-  - {x: 0, y: 1}
   - {x: 1, y: 1}
   - {x: 2, y: 1}
-  - {x: 0, y: 0}
+  - {x: 3, y: 1}
   - {x: 1, y: 0}
   - {x: 2, y: 0}
-  - {x: 0, y: -1}
+  - {x: 3, y: 0}
   - {x: 1, y: -1}
   - {x: 2, y: -1}
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
+  - {x: 3, y: -1}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 1
-  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 2
   isMove: 0
-  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
   synthesis: {fileID: 0}
+  AOERange: []
+  curAtkCount: 0
+  RangeAtkDelay: 0
+  KnockBackValue: 0
+  RangeAtkTickDelay: 0
+  RangeAtkDuration: 0
 --- !u!114 &6434187431763836486
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,8 +36,8 @@ public class Pawn : MonoBehaviour
             unit = _unit;
             IsEnemy = _unit.isEnemy;
 
-            if(!IsEnemy)
-            unit.enabled = false;
+            if (!IsEnemy)
+                unit.enabled = false;
         }
         if(gameObject.TryGetComponent(out Item _item))
         {

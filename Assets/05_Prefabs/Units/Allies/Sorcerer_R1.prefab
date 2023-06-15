@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5893044212061490221}
   - component: {fileID: 7956036229267279621}
   - component: {fileID: 2496488320836765499}
-  - component: {fileID: 7848237183192597083}
+  - component: {fileID: 7737170575807626322}
   - component: {fileID: 876689905154425691}
   m_Layer: 8
   m_Name: Sorcerer_R1
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7848237183192597083
+--- !u!114 &7737170575807626322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,23 +229,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7154396063005979274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8095205d829ff2d4bbe00286899e68af, type: 3}
+  m_Script: {fileID: 11500000, guid: e11633737e783ca49bef261ce85ba5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 40
-  hp: 40
+  maxHP: 0
+  hp: 0
   defense: 0
   modifiedDefense: 0
   minDamage: 0
-  damage: 8
-  delayTime: 1
-  time: 5
+  damage: 0
+  delayTime: 0
+  time: 0
   Rating: 1
   UpgradeCount: 0
   detectRange_List:
-  - {x: 0, y: 0}
   - {x: 1, y: 0}
   - {x: 2, y: 0}
   - {x: 3, y: 0}
@@ -253,33 +252,29 @@ MonoBehaviour:
   - {x: 5, y: 0}
   - {x: 6, y: 0}
   - {x: 7, y: 0}
-  - {x: 8, y: 0}
-  AOERange_List:
-  - {x: -1, y: -1}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  - {x: -1, y: 0}
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: -1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  AOEPos: {x: 0, y: 0}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 2
-  ProjectilePrefab: {fileID: 7133068110475347916, guid: 518b827a0bfa66f4fafc16db929d1df2, type: 3}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 1
   isMove: 0
-  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
   synthesis: {fileID: 0}
+  FireBall: {fileID: 7133068110475347916, guid: 518b827a0bfa66f4fafc16db929d1df2, type: 3}
+  MaxExploStack: 4
+  explosionRange:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  explosionFCTR: 5
 --- !u!114 &876689905154425691
 MonoBehaviour:
   m_ObjectHideFlags: 0

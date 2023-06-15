@@ -8,7 +8,7 @@ public class SynthesisIcon : MonoBehaviour
     public List<Ally> units = new List<Ally>();
     int index, price;
     
-    public void InitializeHPBar(Ally obj)
+    public void Initialize_SynthesisIcon(Ally obj)
     {
         unit = obj;
 

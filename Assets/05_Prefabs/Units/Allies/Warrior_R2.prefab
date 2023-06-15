@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7696597218292851331}
   - component: {fileID: 7696597218292851332}
   - component: {fileID: 7696597218292851328}
-  - component: {fileID: 7696597218292851071}
+  - component: {fileID: 4302542301055980251}
   - component: {fileID: 2393364730516908464}
   m_Layer: 8
   m_Name: Warrior_R2
@@ -113,7 +113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7696597218292851334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 1.71, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7696597218292851071
+--- !u!114 &4302542301055980251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7696597218292851334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dd6d299673cdcd4ab0074b28ff1f439, type: 3}
+  m_Script: {fileID: 11500000, guid: 15251275e42729b4096ecfd2228ac17c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
@@ -246,24 +246,18 @@ MonoBehaviour:
   UpgradeCount: 0
   detectRange_List:
   - {x: 1, y: 0}
-  AOERange_List:
-  - {x: 0, y: 0}
-  AOEPos: {x: 0, y: 0}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 4
-  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 0
   isMove: 0
-  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
   synthesis: {fileID: 0}
+  AOERange:
+  - {x: 0, y: 0}
 --- !u!114 &2393364730516908464
 MonoBehaviour:
   m_ObjectHideFlags: 0

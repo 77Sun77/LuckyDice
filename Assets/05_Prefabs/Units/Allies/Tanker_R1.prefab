@@ -162,22 +162,15 @@ MonoBehaviour:
   UpgradeCount: 0
   detectRange_List:
   - {x: 1, y: 0}
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
-  attackType: 1
-  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: -37, z: 0}
   unitKind: 3
   isMove: 0
-  SynthesisPrefab: {fileID: 8296571728141360069, guid: c8a04a76ef9646049bd4883fb98ef9fb, type: 3}
   synthesis: {fileID: 0}
 --- !u!114 &-8378796134601819673
 MonoBehaviour:

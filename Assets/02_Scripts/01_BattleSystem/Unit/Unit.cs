@@ -39,8 +39,6 @@ public abstract class Unit : MonoBehaviour
     }
     protected virtual void first_Setting()
     {
-        Debug.Log($"{gameObject.name} first setting");
-
         mySprite = GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
@@ -53,12 +51,10 @@ public abstract class Unit : MonoBehaviour
 
     protected virtual void SpawnHPBar()
     {
-        Debug.Log($"{gameObject.name} Spawn HPBar");
         StartCoroutine(nameof(SpawnHPBar_Cor));
     }
     IEnumerator SpawnHPBar_Cor()
     {
-        Debug.Log($"{gameObject.name} Waiting UIMan");
         yield return UIManager.instance;
 
         GameObject canvas = GameObject.Find("Canvas");
@@ -68,8 +64,6 @@ public abstract class Unit : MonoBehaviour
 
         Vector3 HPBarOffset = new Vector3(0, -0.6f);
         hPBar.InitializeHPBar(this, HPBarOffset);
-
-        Debug.Log($"{gameObject.name} Spawn HPBar_Cor");
     }
 
     

@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public GameObject Target;
     public float speed, damage;
-    protected List<Enemy> HitEnemy;
+    protected List<Enemy> HitEnemy = new();
     public bool IsGuided;
     public bool CanPass;
     public virtual void SetProjectile(float dmg, GameObject go)
@@ -58,7 +58,11 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnAttack(Enemy enemy)
     {
+        if (HitEnemy.Contains(enemy))
+            return;
+
+        HitEnemy.Add(enemy);
         enemy.TakeDamage(damage,this.gameObject);
-        Destroy(gameObject);
+        if (!CanPass) Destroy(gameObject);
     }
 }

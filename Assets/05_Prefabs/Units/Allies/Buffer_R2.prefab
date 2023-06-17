@@ -234,13 +234,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 0
-  hp: 0
+  maxHP: 20
+  hp: 20
   defense: 0
   modifiedDefense: 0
   minDamage: 0
-  damage: 0
-  delayTime: 0
+  damage: 15
+  delayTime: 0.5
   time: 0
   Rating: 2
   UpgradeCount: 0
@@ -264,8 +264,17 @@ MonoBehaviour:
   unitKind: 4
   isMove: 0
   synthesis: {fileID: 0}
-  AOERange: []
-  DefenseBuffValue: 0
+  AOERange:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  DefenseBuffValue: 20
   WaveHealValue: 0
 --- !u!114 &8923402529169717202
 MonoBehaviour:

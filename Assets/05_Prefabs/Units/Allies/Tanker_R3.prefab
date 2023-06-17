@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 0
-  maxHP: 300
-  hp: 300
+  maxHP: 10
+  hp: 10
   defense: 2
   modifiedDefense: 0
   minDamage: 0
@@ -171,7 +171,16 @@ MonoBehaviour:
   unitKind: 3
   isMove: 0
   synthesis: {fileID: 0}
-  AOERange: []
+  AOERange:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
   SelfDestructionFCTR: 0
 --- !u!114 &-8378796134601819673
 MonoBehaviour:

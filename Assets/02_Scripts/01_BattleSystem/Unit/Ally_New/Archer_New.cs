@@ -16,7 +16,7 @@ public class Archer_New : Ally
     protected override void Start()
     {
         base.Start();
-        Arrow.GetComponent<Arrow>().CanPass = CanPass;
+        Arrow.GetComponent<Projectile>().CanPass = CanPass;
     }
 
     protected override void Update()

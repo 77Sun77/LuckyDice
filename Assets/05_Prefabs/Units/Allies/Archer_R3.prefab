@@ -182,8 +182,8 @@ MonoBehaviour:
   isMove: 0
   synthesis: {fileID: 0}
   Arrow: {fileID: 5388325044995908961, guid: 80a0c6d6275ed904aac1d58fc16bb526, type: 3}
-  DoubleShotDelay: 0
-  CanPass: 0
+  DoubleShotDelay: 0.1
+  CanPass: 1
 --- !u!114 &5278243932145574865
 MonoBehaviour:
   m_ObjectHideFlags: 0

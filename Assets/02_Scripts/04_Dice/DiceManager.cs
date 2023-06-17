@@ -40,12 +40,22 @@ public class DiceManager : MonoBehaviour
                 isShot = false;
                 break;
             }
+
             dirX = Random.Range(0, 360);
             dirY = Random.Range(0, 360);
             dirZ = Random.Range(0, 360);
-            ranXTorque = Random.Range(0f, MaxTorqueScale);
-            ranYTorque = Random.Range(0f, MaxTorqueScale);
-            ranZTorque = Random.Range(0f, MaxTorqueScale);
+            if(_DiceKind == DiceRotation.DIceKind.Ally)
+            {
+                ranXTorque = Random.Range(0f, MaxTorqueScale);
+                ranYTorque = Random.Range(0f, MaxTorqueScale);
+                ranZTorque = Random.Range(0f, MaxTorqueScale);
+            }
+            else
+            {
+                ranXTorque = Random.Range(MaxTorqueScale, MaxTorqueScale*2);
+                ranYTorque = Random.Range(MaxTorqueScale, MaxTorqueScale*2);
+                ranZTorque = Random.Range(MaxTorqueScale, MaxTorqueScale*2);
+            }
             temp = null;
             
             for (int i = 0; i < 2; i++)
@@ -64,6 +74,7 @@ public class DiceManager : MonoBehaviour
                 if (i == 0) temp = go;
                 else diceTemp = go.GetComponent<DiceRotation>();
             }
+            
             yield return new WaitForFixedUpdate();
             while (diceTemp.Graduation == 0)
             {
@@ -74,6 +85,8 @@ public class DiceManager : MonoBehaviour
             {
                 diceTemp.OnDice();
                 isShot = false;
+                print(dirX + " " + dirY + " " + dirZ);
+                print(ranXTorque + " " + ranYTorque + " " + ranZTorque);
             }
             else
             {

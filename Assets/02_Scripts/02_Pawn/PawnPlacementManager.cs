@@ -119,6 +119,10 @@ public class PawnPlacementManager : MonoBehaviour
                 {
                     selectPawn.IsGrabbed = false;
                 }
+                else if (selectPawn.isItem)
+                {
+                    selectPawn.IsGrabbed = false;
+                }
             }   
         }
         selectPawn.transform.position = selectPawn.pastTile.GetPos();

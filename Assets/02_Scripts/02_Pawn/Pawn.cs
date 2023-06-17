@@ -39,11 +39,11 @@ public class Pawn : MonoBehaviour
             if (!IsEnemy)
                 unit.enabled = false;
         }
-        if(gameObject.TryGetComponent(out Item _item))
+        if (gameObject.TryGetComponent(out Item _item))
         {
             item = _item;
         }
-        if(!isRegenerated)
+        if (!isRegenerated)
             StartCoroutine(PreSpawnedPawnInitialize());
     }
 
@@ -59,19 +59,19 @@ public class Pawn : MonoBehaviour
         yield return PawnGenerator.instance;
         Vector3 curPos = gameObject.transform.position;
         string unitKindString = "";
-        
+
         if (!IsEnemy)
         {
             GameObject go = null;
             int index = 0;
-            if(unit != null)
+            if (unit != null)
             {
                 Ally ally = unit.GetComponent<Ally>();
                 unitKindString = ally.unitKind.ToString();
                 index = ally.Rating - 1;
             }
 
-            switch(unitKindString)
+            switch (unitKindString)
             {
                 case "Warrior":
                     go = Instantiate(GoogleSheetManager.instance.Warrior[index], transform.parent);
@@ -125,7 +125,7 @@ public class Pawn : MonoBehaviour
             go.SetActive(true);
             Destroy(gameObject);
         }
-        
+
         //Set_CurTile();
         //AddTilePawn();
     }
@@ -142,7 +142,7 @@ public class Pawn : MonoBehaviour
                 isSearch = true;
             }*/
         }
-        
+
         if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 
         CheckCenter();
@@ -157,37 +157,45 @@ public class Pawn : MonoBehaviour
         {
             //Debug.Log(raycastHit.collider.gameObject);
             raycastHit.collider.transform.TryGetComponent(out curTile);
-            if (curTile != pastTile && !isItem) OnTileChanged.Invoke();
+            if (curTile != pastTile) OnTileChanged.Invoke();
             pastTile = curTile;
 
             X = curTile.X;
             Y = curTile.Y;
-            
+
         }
         else Debug.Log("None Obj");
     }
 
     public void Set_PastTile()
     {
-        if(curTile!=null) pastTile = curTile;
+        if (curTile != null) pastTile = curTile;
     }
-   
+
     protected void CheckCenter()
     {
-        if(curTile)
-        IsOverCenter = transform.position.x < curTile.transform.position.x;
+        if (curTile)
+            IsOverCenter = transform.position.x < curTile.transform.position.x;
     }
 
     public void AddTilePawn()
     {
         if (!IsEnemy)
         {
-            curTile.Ally = unit;
+            if (isItem)
+            {
+                curTile.item = gameObject;
+            }
+            else
+            {
+                curTile.Ally = unit;
+            }
+
         }
-        else if (IsEnemy)
+        else if (IsEnemy && !isItem)
         {
-            if(!curTile.EnemyList.Contains(unit))
-            curTile.EnemyList.Add(unit);
+            if (!curTile.EnemyList.Contains(unit))
+                curTile.EnemyList.Add(unit);
         }
         else Debug.Log("Pawn에서 캐릭터 스크립터를 찾을 수 없습니다");
 
@@ -198,8 +206,16 @@ public class Pawn : MonoBehaviour
         if (pastTile == null)
             return;
 
-        if(!IsEnemy && pastTile.Ally == unit) pastTile.Ally = null;
-        else pastTile.EnemyList.Remove(unit);
+        if (isItem)
+        {
+            pastTile.item = null;
+        }
+        else
+        {
+            if (!IsEnemy && pastTile.Ally == unit) pastTile.Ally = null;
+            else pastTile.EnemyList.Remove(unit);
+        }
+
 
     }
 

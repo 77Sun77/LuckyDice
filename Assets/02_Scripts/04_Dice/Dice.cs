@@ -10,6 +10,8 @@ public class Dice : MonoBehaviour
     int count;
 
     bool roll;
+
+    public DiceRotation.DIceKind _DiceKind;
     void Start()
     {
         transform.eulerAngles = new Vector3(dirX, dirY, dirZ);
@@ -25,23 +27,29 @@ public class Dice : MonoBehaviour
         {
             if (!roll)
             {
-                int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
-                if (num == 0) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
-                else if (num == 1) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
-                else if (num == 2) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
-                else if (num == 3) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Tanker[0]);
-                else if (num == 4) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Buffer[0]);
-                else PawnGenerator.instance.Roll(GoogleSheetManager.instance.Archer[0]);
-                roll = true;
+                if(_DiceKind == DiceRotation.DIceKind.Ally)
+                {
+                    int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
+                    if (num == 0) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
+                    else if (num == 1) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
+                    else if (num == 2) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
+                    else if (num == 3) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Tanker[0]);
+                    else if (num == 4) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Buffer[0]);
+                    else PawnGenerator.instance.Roll(GoogleSheetManager.instance.Archer[0]);
+                    roll = true;
+                }
+                else
+                {
+                    int num = DiceManager.instance.number;
+                    if (num == 0) PawnGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion);
+                    else if (num == 1) PawnGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion);
+                    else if (num == 2) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Barrier);
+                    else PawnGenerator.instance.Roll(GoogleSheetManager.instance.CharMove);
+
+                    roll = true;
+                }
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (count == 0)
-        {
-            count++;
-           // rigid.AddForce(Vector3.back * 100f);
-        }
-    }
+
 }

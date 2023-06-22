@@ -65,7 +65,7 @@ public class Enemy : Unit
     protected override void Die()
     {
         GameManager.instance.Set_Money(money);
-        EnemyGenerator.instance.SpawnedEnemies.Remove(this);
+        GameManager.instance.SpawnedEnemies.Remove(this);
         base.Die();
     }
 
@@ -153,6 +153,7 @@ public class Enemy : Unit
         {
             coll.gameObject.GetComponent<Base>().HP -= 1;
             pawn.RemoveTilePawn();
+            GameManager.instance.SpawnedEnemies.Remove(this);
             Destroy(gameObject);
         }
     }

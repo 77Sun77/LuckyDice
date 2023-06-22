@@ -178,7 +178,7 @@ MonoBehaviour:
   isBuff: 0
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  unitKind: 5
+  allyKind: 5
   isMove: 0
   synthesis: {fileID: 0}
   Arrow: {fileID: 5388325044995908961, guid: 80a0c6d6275ed904aac1d58fc16bb526, type: 3}

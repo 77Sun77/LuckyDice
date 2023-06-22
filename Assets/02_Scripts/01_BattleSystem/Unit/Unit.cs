@@ -33,7 +33,7 @@ public abstract class Unit : MonoBehaviour
 
     //public List<Vector2> AOERange_List;//광역 공격 범위
     //public Vector2 AOEPos;//광역 공격 시전 위치(중심점)
-    protected virtual void Start()
+    protected virtual void OnEnable()
     {
         first_Setting();
     }
@@ -49,7 +49,7 @@ public abstract class Unit : MonoBehaviour
         UpgradeCount = 1;
     }
 
-    protected virtual void SpawnHPBar()
+    public virtual void SpawnHPBar()
     {
         StartCoroutine(nameof(SpawnHPBar_Cor));
     }

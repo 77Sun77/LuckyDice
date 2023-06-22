@@ -23,14 +23,17 @@ public static class ExtensionMethods
 
     public static Unit SpawnUnit(this GameObject prefab,Transform parent,Tile tile,List<Unit> unitList)
     {
-
         GameObject go = GameObject.Instantiate(prefab, parent);
+        Unit unit = go.GetComponent<Unit>();
+        unit.enabled = false;
+        unit.SpawnHPBar();
+        
+        unitList.Add(unit);
         Pawn pawn = go.GetComponent<Pawn>();
         pawn.MoveToTargetTile(tile);
-
-        Unit unit = go.GetComponent<Unit>();
-        unitList.Add(unit);
-
+        pawn.isRegenerated = true;
+        pawn.Set_CurTile();
+        pawn.AddTilePawn();
         return unit;
     }
 }

@@ -55,8 +55,12 @@ public class GoogleSheetManager : MonoBehaviour
     const string EnemyStatURL_Yejun = "https://docs.google.com/spreadsheets/d/1mhmDgZ3wlzvaSLT2FGiKzDny4IMAr5krRHk6N6RrEK4/export?format=csv";
 
 
-    List<AllyInfo> allyInfoList = new();
+   
     List<EnemyInfo> enemyInfoList = new();
+
+    Dictionary<string,List<AllyInfo>> allyInfoList_Dic = new();
+    
+    
     private void Awake()
     {
         instance = this;
@@ -87,12 +91,8 @@ public class GoogleSheetManager : MonoBehaviour
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read_String(data);
 
         Parse_AllyInfo(data_Dialog);
-
-        foreach (var allyInfo in allyInfoList)
-        {
-            ApplyAllyInfo(allyInfo);
-        }
     }
+   
     void Parse_AllyInfo(List<Dictionary<string, object>> data_Dialog)
     {
         for (int i = 0; i < data_Dialog.Count; i++)
@@ -103,35 +103,36 @@ public class GoogleSheetManager : MonoBehaviour
             string defense = data_Dialog[i]["방어력"].ToString();
             string damage = data_Dialog[i]["공격력"].ToString();
             string AS = data_Dialog[i]["공격속도"].ToString();
-            AllyInfo unitInfo = new(rating, name, HP, defense, damage, AS);
-            allyInfoList.Add(unitInfo);
+            AllyInfo allyInfo = new(rating, name, HP, defense, damage, AS);
+
+            AddToAllyInfoList_Dic(name, allyInfo);
         }
     }
-    void ApplyAllyInfo(AllyInfo allyInfo)
+    void AddToAllyInfoList_Dic(string name,AllyInfo allyInfo)
     {
-        string s = allyInfo.name;
-        int rating = allyInfo.rating - 1;
-        switch (s)
+        List<AllyInfo> allyInfoList = new();
+
+        if (allyInfoList_Dic.ContainsKey(name))
         {
-            case "전사":
-                AdjustAllyStat(Warrior[rating], allyInfo);
-                break;
-            case "궁수":
-                AdjustAllyStat(Archer[rating], allyInfo);
-                break;
-            case "탱커":
-                AdjustAllyStat(Tanker[rating], allyInfo);
-                break;
-            case "버퍼":
-                AdjustAllyStat(Buffer[rating], allyInfo);
-                break;
-            case "랜서":
-                AdjustAllyStat(Lancer[rating], allyInfo);
-                break;
-            case "마법사":
-                AdjustAllyStat(Sorcerer[rating], allyInfo);
-                break;
+            allyInfoList_Dic.TryGetValue(name, out allyInfoList);
+            allyInfoList.Add(allyInfo);
         }
+        else
+        {
+            allyInfoList.Add(allyInfo);
+            allyInfoList_Dic.Add(name, allyInfoList);
+        }
+    }
+    public void ApplyAllyInfo(GameObject unit_Prefab,int _rating)
+    {
+        Ally ally = unit_Prefab.GetComponent<Ally>();
+        ally.Rating = _rating;
+        string name = ally.allyKind.ToString();
+        allyInfoList_Dic.TryGetValue(name, out List<AllyInfo> allyInfoList);
+        AdjustAllyStat(unit_Prefab, allyInfoList[_rating - 1]);
+
+        Debug.Log(name + ally.Rating);
+        Debug.Log(allyInfoList.Count);
     }
     void AdjustAllyStat(GameObject unit_Prefab, AllyInfo allyInfo)
     {
@@ -143,6 +144,7 @@ public class GoogleSheetManager : MonoBehaviour
         unit.damage = allyInfo.damage;
         unit.delayTime = allyInfo.AS;
     }
+
 
     IEnumerator SetEnemyInfo()
     {

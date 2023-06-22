@@ -16,11 +16,11 @@ public class SynthesisIcon : MonoBehaviour
         else if (unit.Rating == 2) price = 500;
         else price = 1000;
 
-        if (unit.unitKind == AllyKind.Warrior) index = 0;
-        else if (unit.unitKind == AllyKind.Sorcerer) index = 1;
-        else if (unit.unitKind == AllyKind.Lancer) index = 2;
-        else if (unit.unitKind == AllyKind.Tanker) index = 3;
-        else if (unit.unitKind == AllyKind.Buffer) index = 4;
+        if (unit.allyKind == AllyKind.Warrior) index = 0;
+        else if (unit.allyKind == AllyKind.Sorcerer) index = 1;
+        else if (unit.allyKind == AllyKind.Lancer) index = 2;
+        else if (unit.allyKind == AllyKind.Tanker) index = 3;
+        else if (unit.allyKind == AllyKind.Buffer) index = 4;
         else index = 5;
     }
     void Update()
@@ -38,7 +38,7 @@ public class SynthesisIcon : MonoBehaviour
         foreach (GameObject go in unitsGO)
         {
             Ally unit = go.GetComponent<Ally>();
-            if (unit.unitKind == this.unit.unitKind) this.units.Add(unit);
+            if (unit.allyKind == this.unit.allyKind) this.units.Add(unit);
 
         }
         List<Ally> units = new List<Ally>();
@@ -46,7 +46,8 @@ public class SynthesisIcon : MonoBehaviour
         {
             if (unit.Rating == this.unit.Rating) units.Add(unit);
         }
-        GameManager.instance.pg.Roll(GameManager.instance.us.prefabs[index][this.unit.Rating - 1]);
+        //GameManager.instance.pg.Roll(GameManager.instance.us.prefabs[index][this.unit.Rating - 1]);
+        AllyGenerator.instance.SpawnAlly(unit.allyKind, unit.Rating);
         GameManager.instance.money -= price;
         for (int i = 0; i < 3; i++)
         {

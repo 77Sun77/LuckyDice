@@ -26,6 +26,13 @@ public class Pawn : MonoBehaviour
     public bool isRegenerated;
 
     public bool isItem;
+
+    private void Start()
+    {
+        if (!isRegenerated)
+            StartCoroutine(PreSpawnedPawnInitialize());
+    }
+
     private void OnEnable()
     {
         OnTileChanged += RemoveTilePawn;
@@ -43,8 +50,6 @@ public class Pawn : MonoBehaviour
         {
             item = _item;
         }
-        if (!isRegenerated)
-            StartCoroutine(PreSpawnedPawnInitialize());
     }
 
     /// <summary>
@@ -56,51 +61,27 @@ public class Pawn : MonoBehaviour
         yield return TileManager.Instance;
         yield return TileManager.Instance.IsMapGeneratingOver;
         yield return GoogleSheetManager.instance;
-        yield return PawnGenerator.instance;
+        yield return AllyGenerator.instance;
         Vector3 curPos = gameObject.transform.position;
-        string unitKindString = "";
 
         if (!IsEnemy)
         {
             GameObject go = null;
-            int index = 0;
+
             if (unit != null)
             {
                 Ally ally = unit.GetComponent<Ally>();
-                unitKindString = ally.unitKind.ToString();
-                index = ally.Rating - 1;
-            }
-
-            switch (unitKindString)
-            {
-                case "Warrior":
-                    go = Instantiate(GoogleSheetManager.instance.Warrior[index], transform.parent);
-                    break;
-                case "Archer":
-                    go = Instantiate(GoogleSheetManager.instance.Archer[index], transform.parent);
-                    break;
-                case "Tanker":
-                    go = Instantiate(GoogleSheetManager.instance.Tanker[index], transform.parent);
-                    break;
-                case "Sorcerer":
-                    go = Instantiate(GoogleSheetManager.instance.Sorcerer[index], transform.parent);
-                    break;
-                case "Lancer":
-                    go = Instantiate(GoogleSheetManager.instance.Lancer[index], transform.parent);
-                    break;
-                case "Buffer":
-                    go = Instantiate(GoogleSheetManager.instance.Buffer[index], transform.parent);
-                    break;
-                case "ITEM":
-                    go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
-                    break;
+                AllyGenerator.instance.SpawnAlly(ally.allyKind, ally.Rating);
             }
 
             if (isItem && item != null)
             {
-                unitKindString = item.GetComponent<Item>().itemKind.ToString();
-                switch (unitKindString)
+                string itemKindString = item.GetComponent<Item>().itemKind.ToString();
+                switch (itemKindString)
                 {
+                    case "Barrier":
+                        go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
+                        break;
                     case "HealPotion":
                         go = Instantiate(GoogleSheetManager.instance.HealPotion, transform.parent);
                         break;
@@ -111,23 +92,18 @@ public class Pawn : MonoBehaviour
                         go = Instantiate(GoogleSheetManager.instance.CharMove, transform.parent);
                         break;
                 }
-            }
-            go.SetActive(false);
-            go.transform.position = curPos;
-            Pawn pawn = go.GetComponent<Pawn>();
-            pawn.isRegenerated = true;
-            pawn.Set_CurTile();
-            if (!item)
-            {
+
+                go.SetActive(false);
+                go.transform.position = curPos;
+                Pawn pawn = go.GetComponent<Pawn>();
+                pawn.isRegenerated = true;
+                pawn.Set_CurTile();
                 pawn.AddTilePawn();
-                PawnGenerator.instance.SpawnedAllies.Add(go.GetComponent<Unit>());
+                go.SetActive(true);
             }
-            go.SetActive(true);
+          
             Destroy(gameObject);
         }
-
-        //Set_CurTile();
-        //AddTilePawn();
     }
 
     private void Update()

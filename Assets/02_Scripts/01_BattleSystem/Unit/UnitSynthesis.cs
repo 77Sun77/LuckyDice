@@ -63,12 +63,15 @@ public class UnitSynthesis : MonoBehaviour
         foreach (GameObject go in unitsGO)
         {
             Ally unit = go.GetComponent<Ally>();
-            if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);
-            else if (unit.unitKind == AllyKind.Sorcerer) units[1].Add(unit);
-            else if (unit.unitKind == AllyKind.Lancer) units[2].Add(unit);
-            else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
-            else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
-            else if(unit.unitKind == AllyKind.Archer) units[5].Add(unit);
+
+            units[(int)unit.allyKind].Add(unit);
+
+            //if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);
+            //else if (unit.unitKind == AllyKind.Sorcerer) units[1].Add(unit);
+            //else if (unit.unitKind == AllyKind.Lancer) units[2].Add(unit);
+            //else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
+            //else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
+            //else if(unit.unitKind == AllyKind.Archer) units[5].Add(unit);
         }
 
         for (int i = 0; i < units.Count; i++)

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PawnGenerator : MonoBehaviour
+public class AllyGenerator : MonoBehaviour
 {
-    public static PawnGenerator instance;
+    public static AllyGenerator instance;
 
     public GameObject[] UnitPrefabs;
     public Transform UnitSpawn_Tf;
@@ -16,7 +16,7 @@ public class PawnGenerator : MonoBehaviour
 
     public int TheNumberOfDice;
 
-    public List<Unit> SpawnedAllies = new();
+    
 
     private void Awake()
     {
@@ -64,7 +64,7 @@ public class PawnGenerator : MonoBehaviour
         TheNumberOfDice--;
 
         int randomInt = Random.Range(-1,2);
-        ModifiedInput = InputNum /*+ randomInt*/;
+        ModifiedInput = InputNum + randomInt;
 
         if (ModifiedInput == -1)
         {
@@ -81,15 +81,26 @@ public class PawnGenerator : MonoBehaviour
             return;
         }
 
-        GameObject go = Instantiate(UnitPrefabs[(int)Store[ModifiedInput]],UnitSpawn_Tf);
-        go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
+        //GameObject go = Instantiate(UnitPrefabs[(int)Store[ModifiedInput]],UnitSpawn_Tf);
+        //go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
+        var allyKind = UnitPrefabs[(int)Store[ModifiedInput]].GetComponent<Ally>().allyKind;
+        SpawnAlly(allyKind, 1);
         Store.SetValue(UnitList_Store.팔림, ModifiedInput);
     }
+
+    public void SpawnAlly(AllyKind allyKind,int rating)
+    {
+        var unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
+        GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
+        Debug.Log("SpawnAlly");
+    }
+
+
     public void Roll(GameObject unit)
     {
-       unit.SpawnUnit(UnitSpawn_Tf,TileManager.Instance.GetTableEmptySlot(),SpawnedAllies);
+       unit.SpawnUnit(UnitSpawn_Tf,TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
     }
-    void OnEndWave()
+    void OnEndWave_Store()//나중에 WaveManager의 event로 추가
     {
         TheNumberOfDice += 2;
         ResetStore();

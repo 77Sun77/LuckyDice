@@ -30,21 +30,21 @@ public class Dice : MonoBehaviour
                 if(_DiceKind == DiceRotation.DIceKind.Ally)
                 {
                     int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
-                    if (num == 0) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
-                    else if (num == 1) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
-                    else if (num == 2) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
-                    else if (num == 3) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Tanker[0]);
-                    else if (num == 4) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Buffer[0]);
-                    else PawnGenerator.instance.Roll(GoogleSheetManager.instance.Archer[0]);
+                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
+                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
+                    else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
+                    else if (num == 3) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Tanker[0]);
+                    else if (num == 4) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Buffer[0]);
+                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.Archer[0]);
                     roll = true;
                 }
                 else
                 {
                     int num = DiceManager.instance.number;
-                    if (num == 0) PawnGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion);
-                    else if (num == 1) PawnGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion);
-                    else if (num == 2) PawnGenerator.instance.Roll(GoogleSheetManager.instance.Barrier);
-                    else PawnGenerator.instance.Roll(GoogleSheetManager.instance.CharMove);
+                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion);
+                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion);
+                    else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Barrier);
+                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.CharMove);
 
                     roll = true;
                 }

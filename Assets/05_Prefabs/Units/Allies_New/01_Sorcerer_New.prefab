@@ -96,10 +96,10 @@ GameObject:
   - component: {fileID: 5893044212061490221}
   - component: {fileID: 7956036229267279621}
   - component: {fileID: 2496488320836765499}
-  - component: {fileID: 4778329412334585338}
+  - component: {fileID: 8793176486900763189}
   - component: {fileID: 876689905154425691}
   m_Layer: 8
-  m_Name: Sorcerer_R2
+  m_Name: 01_Sorcerer_New
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4778329412334585338
+--- !u!114 &8793176486900763189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,7 +242,7 @@ MonoBehaviour:
   damage: 15
   delayTime: 2
   time: 0
-  Rating: 2
+  Rating: 1
   UpgradeCount: 0
   detectRange_List:
   - {x: 1, y: 0}
@@ -259,10 +259,10 @@ MonoBehaviour:
   isBuff: 0
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  unitKind: 1
+  allyKind: 1
   isMove: 0
   synthesis: {fileID: 0}
-  FireBall: {fileID: 0}
+  FireBall: {fileID: 7133068110475347916, guid: 518b827a0bfa66f4fafc16db929d1df2, type: 3}
   MaxExploStack: 3
   explosionRange:
   - {x: -1, y: 1}
@@ -275,8 +275,8 @@ MonoBehaviour:
   - {x: 0, y: -1}
   - {x: 1, y: -1}
   explosionFCTR: 4
-  SlowValue: 0.5
-  SlowDuration: 1
+  SlowValue: 0
+  SlowDuration: 0
   MeteorRange: []
   DotDmgFCTR: 0
   DotDmgDuration: 0

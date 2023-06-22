@@ -1,4 +1,4 @@
-//using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +8,18 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Base _base;
     public UnitSynthesis us;
-    public PawnGenerator pg;
+    public AllyGenerator pg;
+
     public int[] unitNumber = new int[6]; // 0:Warrior, 1:Sorcerer, 2:Lancer, 3:Tanker, 4:Buffer, 5:Archer 
 
     public int money;
 
+    public Action OnWaveStart;
+    public Action OnWaveEnd;
     public bool IsInBattle;
+
+    public List<Unit> SpawnedAllies = new();
+    public List<Unit> SpawnedEnemies = new();
 
     void Start()
     {
@@ -59,8 +65,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < array.Length; ++i)
         {
-            random1 = Random.Range(0, array.Length);
-            random2 = Random.Range(0, array.Length);
+            random1 = UnityEngine.Random.Range(0, array.Length);
+            random2 = UnityEngine.Random.Range(0, array.Length);
 
             temp = array[random1];
             array[random1] = array[random2];

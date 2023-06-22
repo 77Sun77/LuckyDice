@@ -24,7 +24,7 @@ public class HPBar : MonoBehaviour
         {
             unit = Target as Unit;
             maxHP = unit.maxHP;
-            //Debug.Log("РЏДж");
+            Debug.Log("РЏДж");
         }
         else if (Target is Enemy)
         {
@@ -60,7 +60,4 @@ public class HPBar : MonoBehaviour
         Vector3 curHP_X_Scale = new Vector3(curHP / maxHP, 1, 1);
         HPBar_Cur.transform.localScale = curHP_X_Scale;
     }
-
-
-
 }

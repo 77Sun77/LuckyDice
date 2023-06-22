@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ally : Unit
 {
-    public AllyKind unitKind;
+    public AllyKind allyKind;
     public bool isMove;
     [HideInInspector]
     public SynthesisIcon synthesis;
@@ -65,7 +65,7 @@ public class Ally : Unit
     
     protected override void Die()
     {
-        PawnGenerator.instance.SpawnedAllies.Remove(this);
+        GameManager.instance.SpawnedAllies.Remove(this);
         base.Die();
     }
 

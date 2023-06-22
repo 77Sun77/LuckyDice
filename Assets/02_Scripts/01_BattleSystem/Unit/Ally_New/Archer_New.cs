@@ -13,9 +13,9 @@ public class Archer_New : Ally
     [Header("Archer_R3")]
     public bool CanPass;
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         Arrow.GetComponent<Projectile>().CanPass = CanPass;
     }
 

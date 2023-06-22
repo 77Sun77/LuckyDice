@@ -29,14 +29,14 @@ public class Buffer_New : Ally
     }
     IEnumerator OnEnable_Cor()
     {
-        yield return EnemyGenerator.instance;
+        yield return GameManager.instance;
 
-        EnemyGenerator.instance.OnWaveStart += HealOnWaveStart_N_End;
-        EnemyGenerator.instance.OnWaveEnd += HealOnWaveStart_N_End;
+        GameManager.instance.OnWaveStart += HealOnWaveStart_N_End;
+        GameManager.instance.OnWaveEnd += HealOnWaveStart_N_End;
     }
     public void HealOnWaveStart_N_End()
     {
-        foreach (var ally in PawnGenerator.instance.SpawnedAllies)
+        foreach (var ally in GameManager.instance.SpawnedAllies)
         {
             ally.HealHP(WaveHealValue);
         }
@@ -115,8 +115,8 @@ public class Buffer_New : Ally
             case 2:
                 break;
             case 3:
-                EnemyGenerator.instance.OnWaveStart -= HealOnWaveStart_N_End;
-                EnemyGenerator.instance.OnWaveEnd -= HealOnWaveStart_N_End;
+                GameManager.instance.OnWaveStart -= HealOnWaveStart_N_End;
+                GameManager.instance.OnWaveEnd -= HealOnWaveStart_N_End;
                 break;
         }
         

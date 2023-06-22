@@ -27,11 +27,6 @@ public class EnemyGenerator : MonoBehaviour
 
     int enemyIndex;
 
-    public Action OnWaveStart;
-    public Action OnWaveEnd;
-
-    public List<Unit> SpawnedEnemies = new();
-
     public void Awake()
     {
         instance = this;
@@ -55,8 +50,8 @@ public class EnemyGenerator : MonoBehaviour
         DebugWaveList();
 
         yield return GameManager.instance;
-        OnWaveStart += () => { GameManager.instance.IsInBattle = true; };
-        OnWaveEnd += () => { GameManager.instance.IsInBattle = false; };
+        GameManager.instance.OnWaveStart += () => { GameManager.instance.IsInBattle = true; };
+        GameManager.instance.OnWaveEnd += () => { GameManager.instance.IsInBattle = false; };
     }
 
     void ParseWaveInfoTable(List<Dictionary<string, object>> data_Dialog)
@@ -111,8 +106,8 @@ public class EnemyGenerator : MonoBehaviour
             Debug.Log(s);
         }
 
-        OnWaveStart += () => { Debug.Log("Wave Start"); };
-        OnWaveEnd += () => { Debug.Log("Wave End"); };
+        GameManager.instance.OnWaveStart += () => { Debug.Log("Wave Start"); };
+        GameManager.instance.OnWaveEnd += () => { Debug.Log("Wave End"); };
     }
 
     private void Update()
@@ -122,37 +117,36 @@ public class EnemyGenerator : MonoBehaviour
             if (IsDebuggingMode)
             {
                 enemyIndex = 0;
-                OnWaveStart.Invoke();
+                GameManager.instance.OnWaveStart.Invoke();
 
                 for (int i = 0; i < EnemySpawnNum_ForDebug; i++)
                 {
-                    Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnTile(0), SpawnedEnemies);
+                    Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnLine(0), GameManager.instance.SpawnedEnemies);
                     unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
                     enemyIndex++;
                 }
-
-                StartCoroutine(EndWave_Cor());
             }
             else
             {
                 StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
                 CurWaveIndex++;
             }
-       }
+            StartCoroutine(EndWave_Cor());
+        }
     }
 
     IEnumerator EndWave_Cor()
     {
-        Func<bool> IsAllEnemyDied = () => { bool b = SpawnedEnemies.Count > 0; return !b; };
+        Func<bool> IsAllEnemyDied = () => { bool b = GameManager.instance.SpawnedEnemies.Count > 0; return !b; };
         yield return new WaitUntil(IsAllEnemyDied);
-        OnWaveEnd.Invoke();
+        GameManager.instance.OnWaveEnd.Invoke();
     }
 
 
     IEnumerator SpawnWave(Wave wave)
     {
         enemyIndex = 0;
-        OnWaveStart.Invoke();
+        GameManager.instance.OnWaveStart.Invoke();
        
         foreach (var enemySpawnInfo in wave.enemySpawnInfo_List)
         {
@@ -165,17 +159,17 @@ public class EnemyGenerator : MonoBehaviour
             //MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
 
             //½Å ÄÚµå
-            Unit unit= enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnTile(enemySpawnInfo.spawnLine), SpawnedEnemies);
+            Unit unit= enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnLine(enemySpawnInfo.spawnLine), GameManager.instance.SpawnedEnemies);
             unit.gameObject.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
             enemyIndex++;
         }
 
         Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
         yield return new WaitUntil(IsAllEnemyDied);
-        OnWaveEnd.Invoke();
+        GameManager.instance.OnWaveEnd.Invoke();
     }
 
-    void MoveEnemyToTile(GameObject go,int spawnLineIndex)
+    void SpawnEnemyToLine(GameObject go,int spawnLineIndex)
     {
         if (spawnLineIndex == -1)
         {
@@ -191,7 +185,7 @@ public class EnemyGenerator : MonoBehaviour
         pastSpawnLine = spawnLineIndex;
     }
 
-    Tile GetEnemySpawnTile(int spawnLineIndex)
+    Tile GetEnemySpawnLine(int spawnLineIndex)
     {
         if (spawnLineIndex == -1)
         {

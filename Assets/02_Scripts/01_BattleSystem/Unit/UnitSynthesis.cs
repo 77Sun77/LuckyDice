@@ -63,7 +63,7 @@ public class UnitSynthesis : MonoBehaviour
         foreach (GameObject go in unitsGO)
         {
             Ally unit = go.GetComponent<Ally>();
-
+            if (unit.allyKind == AllyKind.ITEM) continue;
             units[(int)unit.allyKind].Add(unit);
 
             //if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);

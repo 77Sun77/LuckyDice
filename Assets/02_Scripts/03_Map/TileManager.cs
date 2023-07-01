@@ -58,8 +58,8 @@ public class TileManager : MonoBehaviour
 
         XDistance = XScale_Tile;
         YDistance = YScale_Tile;
-        
-        GenerateMap();
+
+        GenerateMap(); // 맵 사이즈에 맞춰서 다시 배치하기 위해 주석처리
         GenerateTable();
 
     }
@@ -70,21 +70,23 @@ public class TileManager : MonoBehaviour
 
         for (int i = 1; i < tfs.Length; i++)
         {
-            DestroyImmediate(tfs[i].gameObject);
+           // DestroyImmediate(tfs[i].gameObject);
         }
      
         TileArray = new Tile[MapX,MapY];
-
+        int count = 0;
         for (int x = 0; x < MapX; x++)
         {
             for (int y = 0; y < MapY; y++)
             {
-                GameObject go = Instantiate(Tile_Prefab,Map_Tf);
+                /*
+                GameObject go = Instantiate(Tile_Prefab,Map_Tf); // 맵 사이즈에 맞춰서 다시 배치하기 위해 주석처리
                 go.name = $"Tile {x},{y}";
                 go.transform.position = GetTilePos(x, y);
                 go.transform.localScale = new Vector3(XScale_Tile, YScale_Tile, 1);
 
                 SpriteRenderer sr = go.GetComponent<SpriteRenderer>();
+                
                 int colorIndex = x + y;
                 
                 if (colorIndex % 2 == 0) sr.color = Color1;
@@ -94,7 +96,15 @@ public class TileManager : MonoBehaviour
                 tile.Initialize_Tile(x, y, sr.color);
                 TileArray.SetValue(tile, x, y);
 
-                sr.enabled = false;
+                sr.enabled = false; */
+
+                GameObject go = Map_Tf.GetChild(count).gameObject; // 맵 사이즈에 맞춰서 다시 배치하기 위해 추가한 부분
+                
+                Tile tile = go.GetComponent<Tile>();
+                tile.Initialize_Tile(x, y, Color.black);
+                TileArray.SetValue(tile, x, y);
+
+                count++;
             }
         }
 
@@ -102,7 +112,7 @@ public class TileManager : MonoBehaviour
         {
             for (int y = (int)VisibleTile_Start.y; y <= (int)VisibleTile_End.y; y++)
             {
-                TileArray[x,y].GetComponent<SpriteRenderer>().enabled = true;
+                //TileArray[x,y].GetComponent<SpriteRenderer>().enabled = true;
                 TileArray[x, y].CanPlacement = true;
             }
         }

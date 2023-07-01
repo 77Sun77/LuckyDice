@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AOERange_List: []
   pawn: {fileID: 0}
-  itemKind: 2
+  itemKind: 3
 --- !u!114 &815596187179623116
 MonoBehaviour:
   m_ObjectHideFlags: 0

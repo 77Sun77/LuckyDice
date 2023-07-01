@@ -46,7 +46,7 @@ public abstract class Unit : MonoBehaviour
         SpawnHPBar();
 
         //Rating = 1;
-        UpgradeCount = 1;
+        //UpgradeCount = 1;
     }
 
     public virtual void SpawnHPBar()
@@ -56,14 +56,17 @@ public abstract class Unit : MonoBehaviour
     IEnumerator SpawnHPBar_Cor()
     {
         yield return UIManager.instance;
+        if (!hPBar)
+        {
+            GameObject canvas = GameObject.Find("Canvas");
+            GameObject go = Instantiate(UIManager.instance.HPBar_Prefab, canvas.transform);
+            go.name = $"{transform.name} HPBar";
+            hPBar = go.GetComponent<HPBar>();
 
-        GameObject canvas = GameObject.Find("Canvas");
-        GameObject go = Instantiate(UIManager.instance.HPBar_Prefab, canvas.transform);
-        go.name = $"{transform.name} HPBar";
-        hPBar = go.GetComponent<HPBar>();
-
-        Vector3 HPBarOffset = new Vector3(0, -0.6f);
-        hPBar.InitializeHPBar(this, HPBarOffset);
+            Vector3 HPBarOffset = new Vector3(0, -0.6f);
+            hPBar.InitializeHPBar(this, HPBarOffset);
+        }
+            
     }
 
     

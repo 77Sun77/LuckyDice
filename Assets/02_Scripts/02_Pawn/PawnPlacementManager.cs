@@ -91,8 +91,8 @@ public class PawnPlacementManager : MonoBehaviour
                 
                 if (tile.CanPlacement)//빈자리인 경우
                 {
-                    selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     
+                    selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     selectPawn.Set_CurTile();
                     selectPawn.IsGrabbed = false;
                     
@@ -115,14 +115,18 @@ public class PawnPlacementManager : MonoBehaviour
                     Debug.Log("Switch Positon");
                     return;
                 }
-                else if(tile.EnemyList.Count > 0)
+                else if(tile.EnemyList.Count > 0 || selectPawn.isItem)
                 {
+                    if (selectPawn.GetComponent<CharacterMove>()) // 빈자리에 캐릭터 이동 아이템 사용 시 사용이 불가하여 인벤토리로 리턴하는 코드
+                    {
+                        CancelPawn();
+                        return;
+                    }
                     selectPawn.IsGrabbed = false;
+                    
                 }
-                else if (selectPawn.isItem)
-                {
-                    selectPawn.IsGrabbed = false;
-                }
+                
+                
             }   
         }
         selectPawn.transform.position = selectPawn.pastTile.GetPos();

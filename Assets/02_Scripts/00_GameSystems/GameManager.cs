@@ -21,8 +21,15 @@ public class GameManager : MonoBehaviour
     public List<Unit> SpawnedAllies = new();
     public List<Unit> SpawnedEnemies = new();
 
+    public List<GameObject> inventory = new();
+    public List<GameObject> unit_Inventory = new();
+    public List<GameObject> item_Inventory = new();
+    public List<GameObject> dice_Inventory = new();
+
     void Start()
     {
+        SetResolution.Set_Resolution(); // 초기에 게임 해상도 고정
+
         if (instance == null)
         {
             instance = this;
@@ -89,4 +96,5 @@ public class GameManager : MonoBehaviour
         }
         return index;
     }
+   
 }

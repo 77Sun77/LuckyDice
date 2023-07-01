@@ -93,7 +93,7 @@ public class DiceRotation : MonoBehaviour
                 }
                 if (!roll && notSimulated)
                 {
-                    int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
+                    int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number)-1;
                     if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
                     else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
                     else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
@@ -123,11 +123,11 @@ public class DiceRotation : MonoBehaviour
                 }
                 if (!roll && notSimulated)
                 {
-                    int num = DiceManager.instance.number;
-                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion);
-                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion);
+                    int num = DiceManager.instance.number-1;
+                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion, 1);
+                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion, 1);
                     else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Barrier);
-                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.CharMove);
+                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.CharMove, 1);
 
                     roll = true;
                 }

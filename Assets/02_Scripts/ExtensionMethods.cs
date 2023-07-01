@@ -8,7 +8,7 @@ public static class ExtensionMethods
     {
         List<Tile> TileList = new();
 
-        foreach(Vector2 targetTile in v2_list)
+        foreach (Vector2 targetTile in v2_list)
         {
             int x = targetX + (int)targetTile.x;
             int y = targetY + (int)targetTile.y;
@@ -21,13 +21,13 @@ public static class ExtensionMethods
         return TileList;
     }
 
-    public static Unit SpawnUnit(this GameObject prefab,Transform parent,Tile tile,List<Unit> unitList)
+    public static Unit SpawnUnit(this GameObject prefab, Transform parent, Tile tile, List<Unit> unitList)
     {
         GameObject go = GameObject.Instantiate(prefab, parent);
         Unit unit = go.GetComponent<Unit>();
         unit.enabled = false;
         unit.SpawnHPBar();
-        
+
         unitList.Add(unit);
         Pawn pawn = go.GetComponent<Pawn>();
         pawn.MoveToTargetTile(tile);
@@ -35,5 +35,16 @@ public static class ExtensionMethods
         pawn.Set_CurTile();
         pawn.AddTilePawn();
         return unit;
+    }
+
+    public static void SpawnItem(this GameObject prefab, Transform parent, Tile tile)
+    {
+        GameObject go = GameObject.Instantiate(prefab, parent);
+        Pawn pawn = go.GetComponent<Pawn>();
+        pawn.MoveToTargetTile(tile);
+        pawn.isRegenerated = true;
+        pawn.Set_CurTile();
+        pawn.AddTilePawn();
+
     }
 }

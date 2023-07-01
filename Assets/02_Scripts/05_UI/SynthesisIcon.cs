@@ -21,7 +21,7 @@ public class SynthesisIcon : MonoBehaviour
         else if (unit.allyKind == AllyKind.Lancer) index = 2;
         else if (unit.allyKind == AllyKind.Tanker) index = 3;
         else if (unit.allyKind == AllyKind.Buffer) index = 4;
-        else index = 5;
+        else if(unit.allyKind == AllyKind.Archer) index = 5;
     }
     void Update()
     {
@@ -47,7 +47,7 @@ public class SynthesisIcon : MonoBehaviour
             if (unit.Rating == this.unit.Rating) units.Add(unit);
         }
         //GameManager.instance.pg.Roll(GameManager.instance.us.prefabs[index][this.unit.Rating - 1]);
-        AllyGenerator.instance.SpawnAlly(unit.allyKind, unit.Rating);
+        AllyGenerator.instance.SpawnAlly(unit.allyKind, unit.Rating+1);
         GameManager.instance.money -= price;
         for (int i = 0; i < 3; i++)
         {

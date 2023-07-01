@@ -41,10 +41,10 @@ public class Dice : MonoBehaviour
                 else
                 {
                     int num = DiceManager.instance.number;
-                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion);
-                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion);
+                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion, 1);
+                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion, 1);
                     else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Barrier);
-                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.CharMove);
+                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.CharMove, 1);
 
                     roll = true;
                 }

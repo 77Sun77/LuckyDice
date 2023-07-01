@@ -51,29 +51,29 @@ public class DiceControl : MonoBehaviour
         enable = false;
         int number = 0;
         
-        if (value < 0.083f)
+        if (value < 0.1428571f)
         {
             number = 1;
         }
-        else if (value < 0.249f) // 0.083 ~ 0.249
+        else if (value < 0.2857142f) // 0.1428571 ~ 0.2857142
         {
-            number = ValueCalculator(value, 0.249f, 0.083f, 1, 2);
+            number = ValueCalculator(value, 0.2857142f, 0.1428571f, 1, 2);
         }
-        else if (value < 0.415f) // 0.249 ~ 0.415
+        else if (value < 0.4285713f) // 0.2857142f ~ 0.4285713
         {
-            number = ValueCalculator(value, 0.415f, 0.249f, 2, 3);
+            number = ValueCalculator(value, 0.4285713f, 0.2857142f, 2, 3);
         }
-        else if (value < 0.581f) // 0.415 ~ 0.581
+        else if (value < 0.5714284f) // 0.4285713 ~ 0.5714284
         {
-            number = ValueCalculator(value, 0.581f, 0.415f, 3, 4);
+            number = ValueCalculator(value, 0.5714284f, 0.4285713f, 3, 4);
         }
-        else if (value < 0.747f) // 0.581 ~ 0.747
+        else if (value < 0.7142855f) // 0.5714284 ~ 0.7142855
         {
-            number = ValueCalculator(value, 0.747f, 0.581f, 4, 5);
+            number = ValueCalculator(value, 0.7142855f, 0.5714284f, 4, 5);
         }
-        else if (value < 0.913f) // 0.747 ~ 0.913
+        else if (value < 0.8571426f) // 0.7142855 ~ 0.8571426
         {
-            number = ValueCalculator(value, 0.913f, 0.747f, 5, 6);
+            number = ValueCalculator(value, 0.8571426f, 0.7142855f, 5, 6);
         }
         else
         {
@@ -86,28 +86,29 @@ public class DiceControl : MonoBehaviour
     {
         enable = false;
         int number = 0;
-
-        if (value < 0.125f)
+        
+        if (value < 0.2f)
         {
             number = 1;
         }
-        else if (value < 0.375f) // 0.125 ~ 0.375
+        else if (value < 0.4f) // 0.2 ~ 0.4
         {
-            number = ValueCalculator(value, 0.375f, 0.125f, 1, 2);
+            number = ValueCalculator(value, 0.4f, 0.2f, 1, 2);
         }
-        else if (value < 0.625f) // 0.375 ~ 0.625
+        else if (value < 0.6f) // 0.4 ~ 0.6
         {
-            number = ValueCalculator(value, 0.625f, 0.375f, 2, 3);
+            number = ValueCalculator(value, 0.6f, 0.4f, 2, 3);
         }
-        else if (value < 0.875f) // 0.875 ~ 0.625
+        else if (value < 0.8f) // 0.6 ~ 0.8
         {
-            number = ValueCalculator(value, 0.875f, 0.625f, 3, 4);
+            number = ValueCalculator(value, 0.8f, 0.6f, 3, 4);
         }
         else
         {
             number = 4;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Item);
+        print("Value : "+value+", Number : "+number);
         gameObject.SetActive(false);
     }
     int ValueCalculator(float value, float max, float min, int blink1, int blink2) // value, ÃÖ´ñ°ª, ÃÖ¼Ú°ª, ÃÖ¼Ò ´«²û, ÃÖ´ë ´«²û

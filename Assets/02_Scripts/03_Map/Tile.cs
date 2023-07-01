@@ -44,10 +44,12 @@ public class Tile : MonoBehaviour
         if (!TileManager.Instance.IsUpdatingTilePos)
             return;
 
-        if(!IsTable) transform.position = TileManager.Instance.GetTilePos(X, Y);
+        if (IsTable) transform.position = TileManager.Instance.GetTablePos(X);
+        /*
+        if (!IsTable) transform.position = TileManager.Instance.GetTilePos(X, Y);  // 맵 사이즈에 맞춰서 다시 배치하기 위해 주석처리
         else if (IsTable) transform.position = TileManager.Instance.GetTablePos(X);
-
-        transform.localScale = new Vector3(TileManager.Instance.XScale_Tile, TileManager.Instance.YScale_Tile, 1);
+        */
+       // transform.localScale = new Vector3(TileManager.Instance.XScale_Tile, TileManager.Instance.YScale_Tile, 1);
     }
 
     public Vector3 GetPos()

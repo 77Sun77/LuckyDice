@@ -213,12 +213,7 @@ public abstract class Unit : MonoBehaviour
         UpgradeCount++;
     }
 
-    protected void Upgrade(float maxHP, float damage, float defense) // 각각 캐릭터의 Update에서 UpgradeCount에 맞게 능력치 맞춰서 호출
-    {
-        this.maxHP = maxHP;
-        this.damage = damage;
-        this.defense = defense;
-    }
+    
 
     protected virtual void Die()
     {

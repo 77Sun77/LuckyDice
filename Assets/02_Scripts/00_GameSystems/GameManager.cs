@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public AllyGenerator pg;
 
     public int[] unitNumber = new int[6]; // 0:Warrior, 1:Sorcerer, 2:Lancer, 3:Tanker, 4:Buffer, 5:Archer 
+    public int[] unitUpgrade = new int[6]; // 0:Warrior, 1:Sorcerer, 2:Lancer, 3:Tanker, 4:Buffer, 5:Archer 
 
     public int money;
 

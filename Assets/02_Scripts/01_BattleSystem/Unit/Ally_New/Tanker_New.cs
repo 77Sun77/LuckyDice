@@ -10,6 +10,19 @@ public class Tanker_New : Ally
 
     protected override void Update()
     {
+        switch (GameManager.instance.unitUpgrade[3]) // 업글 능력치 적용
+        {
+            case 1:
+                Upgrade(0, 0, 0);
+                break;
+            case 2:
+                Upgrade(0, 0, 0);
+                break;
+            case 3:
+                Upgrade(0, 0, 0);
+                break;
+
+        }
         base.Update();
     }
 

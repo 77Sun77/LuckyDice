@@ -11,6 +11,7 @@ public class Archer : Ally
 
     new void Update()
     {
+
         base.Update();        
     }
 }

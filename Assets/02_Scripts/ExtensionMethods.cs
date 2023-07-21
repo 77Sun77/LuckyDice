@@ -34,6 +34,8 @@ public static class ExtensionMethods
         pawn.isRegenerated = true;
         pawn.Set_CurTile();
         pawn.AddTilePawn();
+        PawnPlacementManager.instance.createObj.Add(go);
+        PawnPlacementManager.instance.Set_Target(go);
         return unit;
     }
 
@@ -45,6 +47,8 @@ public static class ExtensionMethods
         pawn.isRegenerated = true;
         pawn.Set_CurTile();
         pawn.AddTilePawn();
+        PawnPlacementManager.instance.createObj.Add(go);
+        PawnPlacementManager.instance.Set_Target(go);
 
     }
 }

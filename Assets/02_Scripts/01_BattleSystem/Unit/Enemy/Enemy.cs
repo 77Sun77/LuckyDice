@@ -73,7 +73,11 @@ public class Enemy : Unit
     {
         if (!isAttacking && !isOnCC)
         {
-            transform.Translate(Vector2.left * (ModifiedSpeed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
+            if (isTargetDetected && pawn.IsOverCenter)
+            {
+                return;
+            }
+            else transform.Translate(Vector2.left * (ModifiedSpeed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
         }
     }
     public void GetSlow(float _slowValue, float _slowDuration)

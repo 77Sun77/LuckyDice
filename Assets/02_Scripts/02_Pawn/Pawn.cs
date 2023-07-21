@@ -11,6 +11,7 @@ public class Pawn : MonoBehaviour
 
     Unit unit;
     Item item;
+    Animator anim;
 
     public bool IsEnemy;
     public bool IsOverCenter;
@@ -27,10 +28,13 @@ public class Pawn : MonoBehaviour
 
     public bool isItem;
 
+    public Tile tempTile;
     private void Start()
     {
         if (!isRegenerated)
             StartCoroutine(PreSpawnedPawnInitialize());
+
+        if(!isItem) anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -66,42 +70,45 @@ public class Pawn : MonoBehaviour
 
         if (!IsEnemy)
         {
+            
             GameObject go = null;
 
-            if (unit != null)
-            {
-                Ally ally = unit.GetComponent<Ally>();
-                AllyGenerator.instance.SpawnAlly(ally.allyKind, ally.Rating);
-            }
+            
 
-            if (isItem && item != null)
+            if (isItem)
             {
                 string itemKindString = item.GetComponent<Item>().itemKind.ToString();
                 switch (itemKindString)
                 {
                     case "Barrier":
-                        go = Instantiate(GoogleSheetManager.instance.Barrier, transform.parent);
+                        go = GoogleSheetManager.instance.Barrier;
                         break;
                     case "HealPotion":
-                        go = Instantiate(GoogleSheetManager.instance.HealPotion, transform.parent);
+                        go = GoogleSheetManager.instance.HealPotion;
                         break;
                     case "BombExplosion":
-                        go = Instantiate(GoogleSheetManager.instance.BombExplosion, transform.parent);
+                        go = GoogleSheetManager.instance.BombExplosion;
                         break;
                     case "CharacterMove":
-                        go = Instantiate(GoogleSheetManager.instance.CharMove, transform.parent);
+                        go = GoogleSheetManager.instance.CharMove;
                         break;
                 }
-
-                go.SetActive(false);
+                AllyGenerator.instance.SpawnItem(gameObject, tempTile);
+                /*go.SetActive(false);
                 go.transform.position = curPos;
                 Pawn pawn = go.GetComponent<Pawn>();
                 pawn.isRegenerated = true;
                 pawn.Set_CurTile();
                 pawn.AddTilePawn();
-                go.SetActive(true);
+                go.SetActive(true);*/
             }
-          
+            else if (unit != null)
+            {
+                Ally ally = unit.GetComponent<Ally>();
+                AllyGenerator.instance.SpawnAlly(ally.allyKind, ally.Rating, tempTile);
+                Destroy(GetComponent<Unit>().hPBar.gameObject);
+            }
+
             Destroy(gameObject);
         }
     }
@@ -111,6 +118,7 @@ public class Pawn : MonoBehaviour
         if (curTile != null && !IsEnemy)
         {
             unit.enabled = !curTile.IsTable;
+            anim.enabled = !curTile.IsTable;
             /*
             if (!isSearch && unit.enabled)
             {

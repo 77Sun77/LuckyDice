@@ -17,7 +17,8 @@ public class Buffer_New : Ally
 
     private void OnEnable()
     {
-        switch(Rating)
+        base.OnEnable();
+        switch (Rating)
         {
             case 1:
             case 2:
@@ -26,6 +27,7 @@ public class Buffer_New : Ally
                 StartCoroutine(OnEnable_Cor());
                 break;
         }
+        
     }
     IEnumerator OnEnable_Cor()
     {
@@ -77,6 +79,8 @@ public class Buffer_New : Ally
         SyncHPBar();
 
         CheckDefenseBuff();
+
+        if (pawn.pastTile) mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
     }
     protected override void Search_Targets()//아군을 타겟으로 삼도록 재정의
     {

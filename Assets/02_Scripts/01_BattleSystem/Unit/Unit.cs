@@ -25,7 +25,7 @@ public abstract class Unit : MonoBehaviour
     public SpriteRenderer mySprite;
     public Animator anim;
 
-    protected HPBar hPBar;
+    public HPBar hPBar;
 
     //public AttackType attackType;
 
@@ -39,7 +39,7 @@ public abstract class Unit : MonoBehaviour
     }
     protected virtual void first_Setting()
     {
-        mySprite = GetComponent<SpriteRenderer>();
+        mySprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
 
@@ -47,6 +47,8 @@ public abstract class Unit : MonoBehaviour
 
         //Rating = 1;
         //UpgradeCount = 1;
+        mySprite.sortingLayerName = "Grab";
+
     }
 
     public virtual void SpawnHPBar()
@@ -87,6 +89,9 @@ public abstract class Unit : MonoBehaviour
         CheckDefenseBuff();
 
         SyncHPBar();
+
+        if (pawn.pastTile) mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+        
     }
 
     protected abstract void Search_Targets();

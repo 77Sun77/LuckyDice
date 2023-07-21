@@ -22,10 +22,8 @@ public class GameManager : MonoBehaviour
     public List<Unit> SpawnedAllies = new();
     public List<Unit> SpawnedEnemies = new();
 
-    public List<GameObject> inventory = new();
-    public List<GameObject> unit_Inventory = new();
-    public List<GameObject> item_Inventory = new();
-    public List<GameObject> dice_Inventory = new();
+    public Inventory inventory;
+    public Inventory dice_Inventory;
 
     void Start()
     {

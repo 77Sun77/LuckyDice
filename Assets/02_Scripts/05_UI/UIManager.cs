@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public GameObject HPBar_Prefab;
     public GameObject SysthesisIcon_Prefab;
 
+    public GameObject UI;
+
     private void Awake()
     {
         instance = this;

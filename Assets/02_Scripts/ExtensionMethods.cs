@@ -25,7 +25,7 @@ public static class ExtensionMethods
     {
         GameObject go = GameObject.Instantiate(prefab, parent);
         Unit unit = go.GetComponent<Unit>();
-        unit.enabled = false;
+        //unit.enabled = false;
         unit.SpawnHPBar();
 
         unitList.Add(unit);

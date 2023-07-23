@@ -57,7 +57,11 @@ public class HPBar : MonoBehaviour
             return;
         }
 
-        Vector3 curHP_X_Scale = new Vector3(curHP / maxHP, 1, 1);
-        HPBar_Cur.transform.localScale = curHP_X_Scale;
+        if(curHP != 0 && maxHP != 0)
+        {
+            Vector3 curHP_X_Scale = new Vector3(curHP / maxHP, 1, 1);
+            HPBar_Cur.transform.localScale = curHP_X_Scale;
+        }
+        
     }
 }

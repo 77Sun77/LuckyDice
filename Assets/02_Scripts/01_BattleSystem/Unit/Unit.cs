@@ -23,9 +23,12 @@ public abstract class Unit : MonoBehaviour
     public bool isTargetDetected,isAttacking,isBuff;//isAttacking의 쓰임이 모호함 분석해볼것
 
     public SpriteRenderer mySprite;
-    public Animator anim;
+    public Animator anim, shadowAnim;
+    public GameObject shadow;
 
-    protected HPBar hPBar;
+    public HPBar hPBar;
+    
+
 
     //public AttackType attackType;
 
@@ -39,7 +42,9 @@ public abstract class Unit : MonoBehaviour
     }
     protected virtual void first_Setting()
     {
-        mySprite = GetComponent<SpriteRenderer>();
+        mySprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        if(shadow) shadowAnim = shadow.GetComponent<Animator>();
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
 
@@ -47,6 +52,8 @@ public abstract class Unit : MonoBehaviour
 
         //Rating = 1;
         //UpgradeCount = 1;
+        mySprite.sortingLayerName = "Grab";
+
     }
 
     public virtual void SpawnHPBar()
@@ -87,6 +94,9 @@ public abstract class Unit : MonoBehaviour
         CheckDefenseBuff();
 
         SyncHPBar();
+
+        if (pawn.pastTile) mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+        
     }
 
     protected abstract void Search_Targets();
@@ -213,12 +223,7 @@ public abstract class Unit : MonoBehaviour
         UpgradeCount++;
     }
 
-    protected void Upgrade(float maxHP, float damage, float defense) // 각각 캐릭터의 Update에서 UpgradeCount에 맞게 능력치 맞춰서 호출
-    {
-        this.maxHP = maxHP;
-        this.damage = damage;
-        this.defense = defense;
-    }
+    
 
     protected virtual void Die()
     {

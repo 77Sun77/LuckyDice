@@ -56,8 +56,10 @@ public class PawnPlacementManager : MonoBehaviour
             List<GameObject> DestroyObj = new List<GameObject>();
             if (AllDstroy)
             {
-                Destroy(createObj[0]);
-                Destroy(createObj[1]);
+                foreach (GameObject go in createObj)
+                {
+                    Destroy(go);
+                }
                 AllDstroy = false;
                 return;
             }
@@ -235,7 +237,7 @@ public class PawnPlacementManager : MonoBehaviour
                 {
                     tile.Ally.GetComponent<Ally>().isMove = true;
                     GameManager.instance.inventory.Delete_Inventory(ObjTemp);
-                    print(1);
+
                     return;
                 }
 
@@ -249,7 +251,7 @@ public class PawnPlacementManager : MonoBehaviour
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     selectPawn.Set_CurTile();
                     selectPawn.IsGrabbed = false;
-                    print(ObjTemp);
+    
                     GameManager.instance.inventory.Delete_Inventory(ObjTemp);
                     return;
                 }
@@ -260,7 +262,7 @@ public class PawnPlacementManager : MonoBehaviour
                     {
                         return;
                     }
-                    print(3);
+                    
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     unit.pawn.MoveToTargetTile(selectPawn.pastTile);
                     selectPawn.Set_PastTile();

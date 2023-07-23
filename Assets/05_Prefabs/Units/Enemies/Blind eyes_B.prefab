@@ -162,20 +162,23 @@ MonoBehaviour:
   UpgradeCount: 0
   detectRange_List:
   - {x: -1, y: 0}
+  AOERange_List: []
+  AOEPos: {x: 0, y: 0}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
+  attackType: 1
+  ProjectilePrefab: {fileID: 0}
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  hPBar: {fileID: 0}
+  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
+  HPBarOffset: {x: 0, y: 0, z: 0}
   enemyKind: 0
   money: 15
   speed: 1
-  ModifiedSpeed: 0
   explosionStack: 0
-  isOnCC: 0
 --- !u!114 &1443519734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +201,6 @@ MonoBehaviour:
   isSearch: 0
   isRegenerated: 0
   isItem: 0
-  tempTile: {fileID: 0}
 --- !u!1 &4454790940553778428
 GameObject:
   m_ObjectHideFlags: 0

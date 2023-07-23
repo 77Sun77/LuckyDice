@@ -74,9 +74,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -78991513
-  m_SortingLayer: 7
-  m_SortingOrder: 10
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b1619094f5f6aa49ac44b14efcfa3fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 0, y: -1}
   pawn: {fileID: 0}
-  itemKind: 2
+  itemKind: 1
   damage: 5
 --- !u!114 &6594050802441722281
 MonoBehaviour:
@@ -177,4 +177,3 @@ MonoBehaviour:
   isSearch: 0
   isRegenerated: 0
   isItem: 1
-  tempTile: {fileID: 0}

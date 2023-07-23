@@ -13,7 +13,8 @@ public class TileManager : MonoBehaviour
     public int TableCount;
     public Tile[] TableArray;
 
-    public GameObject Tile_Prefab;
+    [SerializeField]
+    private GameObject Tile_Prefab;
     
     public Color Color1, Color2;
 

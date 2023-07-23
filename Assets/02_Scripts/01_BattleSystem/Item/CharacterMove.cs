@@ -14,14 +14,13 @@ public class CharacterMove : Item
     {
         if (Input.GetMouseButtonUp(0))
         {
-            int layerMask = (1 << LayerMask.NameToLayer("Tile"));
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, 0, layerMask);
-            if (hit && hit.collider.GetComponent<Tile>().Ally)
+            int layerMask = (1 << LayerMask.NameToLayer("Unit"));
+            RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one, 0, Vector2.zero, 0, layerMask);
+            if (hit)
             {
-                hit.collider.GetComponent<Tile>().Ally.GetComponent<Ally>().isMove = true;
+                hit.collider.GetComponent<Ally>().isMove = true;
                 Destroy(gameObject);
             }
-            else Destroy(gameObject);
         }
         
     }

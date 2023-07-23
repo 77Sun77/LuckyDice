@@ -22,7 +22,7 @@ public abstract class Unit : MonoBehaviour
 
     public bool isTargetDetected,isAttacking,isBuff;//isAttacking의 쓰임이 모호함 분석해볼것
 
-    public SpriteRenderer mySprite;
+    public SpriteRenderer mySprite, shadowSR;
     public Animator anim, shadowAnim;
     public GameObject shadow;
 
@@ -44,7 +44,14 @@ public abstract class Unit : MonoBehaviour
     {
         mySprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
         anim = transform.GetChild(0).GetComponent<Animator>();
-        if(shadow) shadowAnim = shadow.GetComponent<Animator>();
+        if(shadow)
+        {
+            shadowAnim = shadow.GetComponent<Animator>();
+            shadowSR = shadow.GetComponent<SpriteRenderer>();
+            shadowSR.sortingLayerName = "Grab";
+        }
+        mySprite.sortingLayerName = "Grab";
+
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
 
@@ -52,7 +59,7 @@ public abstract class Unit : MonoBehaviour
 
         //Rating = 1;
         //UpgradeCount = 1;
-        mySprite.sortingLayerName = "Grab";
+        
 
     }
 
@@ -95,7 +102,12 @@ public abstract class Unit : MonoBehaviour
 
         SyncHPBar();
 
-        if (pawn.pastTile) mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+        if (pawn.pastTile)
+        {
+            mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+            if(shadowSR)shadowSR.sortingLayerName = mySprite.sortingLayerName;
+        }
+
         
     }
 

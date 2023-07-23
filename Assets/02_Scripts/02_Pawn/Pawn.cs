@@ -117,7 +117,7 @@ public class Pawn : MonoBehaviour
         if (curTile != null && !IsEnemy)
         {
             unit.enabled = !curTile.IsTable;
-            unit.anim.enabled = !curTile.IsTable;
+            if(unit.anim) unit.anim.enabled = !curTile.IsTable;
             if(unit.shadow) unit.shadow.SetActive(!curTile.IsTable);
             /*
             if (!isSearch && unit.enabled)

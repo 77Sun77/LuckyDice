@@ -9,7 +9,7 @@ public class PawnPlacementManager : MonoBehaviour
     public static PawnPlacementManager instance;
     public GameObject selectTarget;
     public Pawn selectPawn;
-    public bool IsHoldingMouse;
+    public bool IsHoldingMouse, isInventoryHold;
 
     Vector3 clickPoint;
     Vector3 deltaVec;
@@ -31,6 +31,8 @@ public class PawnPlacementManager : MonoBehaviour
     public GameObject ObjTemp;
 
     public List<GameObject> createObj = new List<GameObject>();
+
+    Vector3 inventoryPos;
     private void Start()
     {
         instance = this;
@@ -74,6 +76,7 @@ public class PawnPlacementManager : MonoBehaviour
             createObj.Clear();
             timer = 0.2f;
             Disable = false;
+            isInventoryHold = false;
             ObjTemp = null;
         }
 
@@ -85,28 +88,36 @@ public class PawnPlacementManager : MonoBehaviour
 
     void SetSelectPawn()
     {
-        timer -= Time.deltaTime;
-        pe = new PointerEventData(es);
-        pe.position = Input.mousePosition;
-        List<RaycastResult> results = new List<RaycastResult>();
-        gr.Raycast(pe, results);
-        if (results.Count != 0)
+        if (!isInventoryHold)
         {
-            GameObject go = null;
-            foreach(RaycastResult result in results)
+            timer -= Time.deltaTime;
+            pe = new PointerEventData(es);
+            pe.position = Input.mousePosition;
+            List<RaycastResult> results = new List<RaycastResult>();
+            gr.Raycast(pe, results);
+            if (results.Count != 0)
             {
-                if(result.gameObject.CompareTag("Inventory"))
+                GameObject go = null;
+                foreach (RaycastResult result in results)
                 {
-                    go = result.gameObject;
-                    break;
+                    if (result.gameObject.CompareTag("Inventory"))
+                    {
+                        go = result.gameObject;
+                        break;
+                    }
+                }
+                if (go && !ObjTemp)
+                {
+                    ObjTemp = go;
+                    inventoryPos = ObjTemp.transform.parent.position;
+                }
+                else if (go != ObjTemp || (ObjTemp && Vector3.Distance(inventoryPos, ObjTemp.transform.parent.position) >= 20))
+                {
+                    Disable = true;
+                    ObjTemp = null;
                 }
             }
-            if(go && !ObjTemp) ObjTemp = go;
-            else if (go != ObjTemp)
-            {
-                Disable = true;
-                ObjTemp = null;
-            }
+        
         }
 
         if (!isTrigger && timer < 0 && !Disable)
@@ -122,11 +133,14 @@ public class PawnPlacementManager : MonoBehaviour
                 pawn.tempTile = tile;
                 createObj.Add(tile.gameObject);
                 createObj.Add(pawn.gameObject);
-                isTrigger = true;
+                
                 UIManager.instance.UI.SetActive(false);
 
                 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pawnPos_OnClick = Camera.main.ScreenToWorldPoint(ObjTemp.transform.position);
+
+                isTrigger = true;
+                isInventoryHold = true;
                 return;
             }
 
@@ -201,8 +215,16 @@ public class PawnPlacementManager : MonoBehaviour
                 Unit unit = tile.Ally;
                 if (tile.EnemySpawn)
                 {
-                    selectPawn.GetComponent<Ally>().isMove = true;
-                    CancelPawn();
+                    if (!selectPawn.isItem)
+                    {
+                        selectPawn.GetComponent<Ally>().isMove = true;
+                        CancelPawn();
+                    }
+                    else
+                    {
+                        AllDstroy = true;
+                    }
+                    
                     
                     return;
                 }
@@ -213,10 +235,11 @@ public class PawnPlacementManager : MonoBehaviour
                 {
                     tile.Ally.GetComponent<Ally>().isMove = true;
                     GameManager.instance.inventory.Delete_Inventory(ObjTemp);
+                    print(1);
                     return;
                 }
 
-                if (tile.CanPlacement || selectPawn.isItem)//后磊府牢 版快
+                if ((tile.CanPlacement || selectPawn.isItem) && !tile.IsTable && !tile.EnemySpawn)//后磊府牢 版快
                 {
                     if (selectPawn.GetComponent<CharacterMove>())
                     {
@@ -226,7 +249,7 @@ public class PawnPlacementManager : MonoBehaviour
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     selectPawn.Set_CurTile();
                     selectPawn.IsGrabbed = false;
-
+                    print(ObjTemp);
                     GameManager.instance.inventory.Delete_Inventory(ObjTemp);
                     return;
                 }
@@ -237,7 +260,7 @@ public class PawnPlacementManager : MonoBehaviour
                     {
                         return;
                     }
-                   
+                    print(3);
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     unit.pawn.MoveToTargetTile(selectPawn.pastTile);
                     selectPawn.Set_PastTile();

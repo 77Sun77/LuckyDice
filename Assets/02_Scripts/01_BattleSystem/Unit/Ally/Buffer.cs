@@ -38,6 +38,12 @@ public class Buffer : Ally
         }
 
         time -= Time.deltaTime;
+
+        if (pawn.pastTile)
+        {
+            mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+            if (shadowSR) shadowSR.sortingLayerName = mySprite.sortingLayerName;
+        }
     }
 
     private void OnEnable()

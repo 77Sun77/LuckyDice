@@ -80,7 +80,11 @@ public class Buffer_New : Ally
 
         CheckDefenseBuff();
 
-        if (pawn.pastTile) mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+        if (pawn.pastTile)
+        {
+            mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
+            if (shadowSR) shadowSR.sortingLayerName = mySprite.sortingLayerName;
+        }
     }
     protected override void Search_Targets()//아군을 타겟으로 삼도록 재정의
     {

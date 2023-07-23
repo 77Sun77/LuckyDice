@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Unit
   - Base
+  - Inventory
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 5_Hierarchy
+    uniqueID: 1867010287
+    locked: 0
+  - name: 4_Hierarchy
+    uniqueID: 3822204877
+    locked: 0
+  - name: 3_Hierarchy
+    uniqueID: 2459585669
+    locked: 0
+  - name: 2_Hierarchy
+    uniqueID: 2269718163
+    locked: 0
+  - name: 1_Hierarchy
+    uniqueID: 79373189
+    locked: 0
+  - name: Grab
+    uniqueID: 2340634017
+    locked: 0
+  - name: ITEM
+    uniqueID: 2864535513
     locked: 0

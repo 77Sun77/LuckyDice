@@ -23,9 +23,12 @@ public abstract class Unit : MonoBehaviour
     public bool isTargetDetected,isAttacking,isBuff;//isAttacking의 쓰임이 모호함 분석해볼것
 
     public SpriteRenderer mySprite;
-    public Animator anim;
+    public Animator anim, shadowAnim;
+    public GameObject shadow;
 
     public HPBar hPBar;
+    
+
 
     //public AttackType attackType;
 
@@ -40,6 +43,8 @@ public abstract class Unit : MonoBehaviour
     protected virtual void first_Setting()
     {
         mySprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        if(shadow) shadowAnim = shadow.GetComponent<Animator>();
         // anim = GetComponent<Animator>();
         pawn = GetComponent<Pawn>();
 

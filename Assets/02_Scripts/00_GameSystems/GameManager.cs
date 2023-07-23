@@ -25,7 +25,10 @@ public class GameManager : MonoBehaviour
     public Inventory inventory;
     public Inventory dice_Inventory;
 
-    void Start()
+    public bool isStart;
+
+
+    void Awake()
     {
         SetResolution.Set_Resolution(); // 초기에 게임 해상도 고정
 
@@ -40,8 +43,14 @@ public class GameManager : MonoBehaviour
         }
 
         unitNumber = ShuffleArray(unitNumber); // 유닛 눈끔 랜덤으로 돌리는 코드
-        
 
+        OnWaveStart += () => { isStart = true; };
+        
+        OnWaveEnd += () => { isStart = false; };
+        OnWaveEnd += () => {
+            for (int i = 0; i < 2; i++)
+                dice_Inventory.Add_Inventory("UnitDIce");
+        };
     }
 
     private void Update()
@@ -95,5 +104,12 @@ public class GameManager : MonoBehaviour
         }
         return index;
     }
-   
+    
+
+    public void StartGame()
+    {
+        // GameManager속 변수 등 정보 처리
+        
+        OnWaveStart.Invoke();
+    }
 }

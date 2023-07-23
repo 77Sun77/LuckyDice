@@ -159,6 +159,9 @@ public class Enemy : Unit
             pawn.RemoveTilePawn();
             GameManager.instance.SpawnedEnemies.Remove(this);
             Destroy(gameObject);
+            
+            Handheld.Vibrate(); // Áøµ¿
+            CameraShake.instance.CamShake(); // Èçµé¸²
         }
     }
 }

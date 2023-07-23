@@ -11,7 +11,6 @@ public class Pawn : MonoBehaviour
 
     Unit unit;
     Item item;
-    Animator anim;
 
     public bool IsEnemy;
     public bool IsOverCenter;
@@ -34,7 +33,7 @@ public class Pawn : MonoBehaviour
         if (!isRegenerated)
             StartCoroutine(PreSpawnedPawnInitialize());
 
-        if(!isItem) anim = transform.GetChild(0).GetComponent<Animator>();
+
     }
 
     private void OnEnable()
@@ -118,7 +117,8 @@ public class Pawn : MonoBehaviour
         if (curTile != null && !IsEnemy)
         {
             unit.enabled = !curTile.IsTable;
-            anim.enabled = !curTile.IsTable;
+            unit.anim.enabled = !curTile.IsTable;
+            if(unit.shadow) unit.shadow.SetActive(!curTile.IsTable);
             /*
             if (!isSearch && unit.enabled)
             {

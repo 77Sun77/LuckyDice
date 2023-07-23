@@ -149,28 +149,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
+  isEnemy: 1
   maxHP: 10
   hp: 10
   defense: 0
+  modifiedDefense: 0
   minDamage: 0
   damage: 2
-  delayTime: 0.5
+  delayTime: 2
   time: 0
   Rating: 0
   UpgradeCount: 0
   detectRange_List: []
-  AOERange_List: []
-  AOEPos: {x: 0, y: 0}
-  attackType: 0
-  ProjectilePrefab: {fileID: 0}
+  targets: []
+  attackingTarget: {fileID: 0}
+  isTargetDetected: 0
+  isAttacking: 0
+  isBuff: 0
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  HPBarPrefab: {fileID: 5840428606061952720, guid: 55345785ce6f89e4099b8751d68d0869, type: 3}
-  HPBarOffset: {x: 0, y: 0, z: 0}
-  isEnemy: 0
+  hPBar: {fileID: 0}
+  enemyKind: 1
   money: 25
   speed: 1.5
-  enemyKind: 1
+  ModifiedSpeed: 0
+  explosionStack: 0
+  isOnCC: 0
 --- !u!114 &5137764286694307837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +194,10 @@ MonoBehaviour:
   IsMoveGrid: 0
   X: 0
   Y: 0
+  isSearch: 0
+  isRegenerated: 0
+  isItem: 0
+  tempTile: {fileID: 0}
 --- !u!1 &7290269373475264665
 GameObject:
   m_ObjectHideFlags: 0

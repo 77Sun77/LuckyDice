@@ -198,8 +198,16 @@ public class PawnPlacementManager : MonoBehaviour
             if (raycastHit.collider.gameObject.layer.Equals(LayerMask.NameToLayer("Tile")))
             {
                 var tile = raycastHit.collider.transform.GetComponent<Tile>();
-
                 Unit unit = tile.Ally;
+                if (tile.EnemySpawn)
+                {
+                    selectPawn.GetComponent<Ally>().isMove = true;
+                    CancelPawn();
+                    
+                    return;
+                }
+
+                
 
                 if (selectPawn.GetComponent<CharacterMove>() && unit)
                 {

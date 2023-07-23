@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     
     public bool IsTable;
     public bool CanPlacement;
+    public bool EnemySpawn;
 
     public Color originColor;
 

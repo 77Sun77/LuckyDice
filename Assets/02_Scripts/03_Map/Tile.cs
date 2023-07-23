@@ -12,7 +12,6 @@ public class Tile : MonoBehaviour
     
     public bool IsTable;
     public bool CanPlacement;
-    public bool EnemySpawn;
 
     public Color originColor;
 
@@ -40,12 +39,12 @@ public class Tile : MonoBehaviour
     private void Update()
     {
         CanPlacement = EnemyList.Count == 0 && Ally == null;
-        //if (item) CanPlacement = false;
+        if (item) CanPlacement = false;
 
         if (!TileManager.Instance.IsUpdatingTilePos)
             return;
 
-       // if (IsTable) transform.position = TileManager.Instance.GetTablePos(X);
+        if (IsTable) transform.position = TileManager.Instance.GetTablePos(X);
         /*
         if (!IsTable) transform.position = TileManager.Instance.GetTilePos(X, Y);  // 맵 사이즈에 맞춰서 다시 배치하기 위해 주석처리
         else if (IsTable) transform.position = TileManager.Instance.GetTablePos(X);

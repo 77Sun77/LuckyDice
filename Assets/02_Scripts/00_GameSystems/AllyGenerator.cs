@@ -94,25 +94,6 @@ public class AllyGenerator : MonoBehaviour
         GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
         Debug.Log("SpawnAlly");
     }
-    public void SpawnAlly(AllyKind allyKind, int rating, Tile tile)
-    {
-        if (allyKind != AllyKind.ITEM)
-        {
-            var unit = UnitPrefabs[((int)allyKind*3) + (rating - 1)].SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
-            GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
-        }
-        else
-        {
-            GoogleSheetManager.instance.Barrier.SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
-        }
-        Debug.Log("SpawnAlly");
-    }
-    public void SpawnItem(GameObject go, Tile tile)
-    {
-        go.SpawnItem(UnitSpawn_Tf, tile);
-
-    }
-
     public void Roll(GameObject go, int goType = 0)
     {
         if(goType == 0)

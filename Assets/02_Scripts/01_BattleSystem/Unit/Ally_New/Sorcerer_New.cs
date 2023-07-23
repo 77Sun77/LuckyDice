@@ -22,19 +22,6 @@ public class Sorcerer_New : Ally
 
     new void Update()
     {
-        switch (GameManager.instance.unitUpgrade[1]) // 업글 능력치 적용
-        {
-            case 1:
-                Upgrade(0, 0, 0);
-                break;
-            case 2:
-                Upgrade(0, 0, 0);
-                break;
-            case 3:
-                Upgrade(0, 0, 0);
-                break;
-
-        }
         base.Update();
     }
 

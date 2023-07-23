@@ -17,8 +17,7 @@ public class Buffer_New : Ally
 
     private void OnEnable()
     {
-        base.OnEnable();
-        switch (Rating)
+        switch(Rating)
         {
             case 1:
             case 2:
@@ -27,7 +26,6 @@ public class Buffer_New : Ally
                 StartCoroutine(OnEnable_Cor());
                 break;
         }
-        
     }
     IEnumerator OnEnable_Cor()
     {
@@ -46,20 +44,6 @@ public class Buffer_New : Ally
 
     protected override void Update()
     {
-        switch (GameManager.instance.unitUpgrade[4]) // 업글 능력치 적용
-        {
-            case 1:
-                Upgrade(0, 0, 0);
-                break;
-            case 2:
-                Upgrade(0, 0, 0);
-                break;
-            case 3:
-                Upgrade(0, 0, 0);
-                break;
-
-        }
-
         time -= Time.deltaTime;
 
         Search_Targets();
@@ -79,8 +63,6 @@ public class Buffer_New : Ally
         SyncHPBar();
 
         CheckDefenseBuff();
-
-        if (pawn.pastTile) mySprite.sortingLayerName = (pawn.pastTile.Y + 1) + "_Hierarchy";
     }
     protected override void Search_Targets()//아군을 타겟으로 삼도록 재정의
     {

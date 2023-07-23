@@ -73,11 +73,7 @@ public class Enemy : Unit
     {
         if (!isAttacking && !isOnCC)
         {
-            if (isTargetDetected && pawn.IsOverCenter)
-            {
-                return;
-            }
-            else transform.Translate(Vector2.left * (ModifiedSpeed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
+            transform.Translate(Vector2.left * (ModifiedSpeed * TileManager.Instance.XScale_Tile) * Time.deltaTime);
         }
     }
     public void GetSlow(float _slowValue, float _slowDuration)
@@ -159,9 +155,6 @@ public class Enemy : Unit
             pawn.RemoveTilePawn();
             GameManager.instance.SpawnedEnemies.Remove(this);
             Destroy(gameObject);
-            
-            Handheld.Vibrate(); // Áøµ¿
-            CameraShake.instance.CamShake(); // Èçµé¸²
         }
     }
 }

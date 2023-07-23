@@ -31,13 +31,6 @@ public class EnemyGenerator : MonoBehaviour
     {
         instance = this;
         StartCoroutine(Initialize_EnemyGenerator());
-
-    }
-
-    private void Start()
-    {
-
-        GameManager.instance.OnWaveStart += StartGame;
     }
 
     IEnumerator Initialize_EnemyGenerator()
@@ -128,7 +121,7 @@ public class EnemyGenerator : MonoBehaviour
 
                 for (int i = 0; i < EnemySpawnNum_ForDebug; i++)
                 {
-                    Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnLine(0), GameManager.instance.SpawnedEnemies, true);
+                    Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnLine(0), GameManager.instance.SpawnedEnemies);
                     unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
                     enemyIndex++;
                 }
@@ -153,7 +146,7 @@ public class EnemyGenerator : MonoBehaviour
     IEnumerator SpawnWave(Wave wave)
     {
         enemyIndex = 0;
-        //GameManager.instance.OnWaveStart.Invoke();
+        GameManager.instance.OnWaveStart.Invoke();
        
         foreach (var enemySpawnInfo in wave.enemySpawnInfo_List)
         {
@@ -166,7 +159,7 @@ public class EnemyGenerator : MonoBehaviour
             //MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
 
             //½Å ÄÚµå
-            Unit unit= enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnLine(enemySpawnInfo.spawnLine), GameManager.instance.SpawnedEnemies, true);
+            Unit unit= enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnLine(enemySpawnInfo.spawnLine), GameManager.instance.SpawnedEnemies);
             unit.gameObject.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
             enemyIndex++;
         }
@@ -208,12 +201,5 @@ public class EnemyGenerator : MonoBehaviour
         return TileManager.Instance.TileArray[spawnX, spawnLineIndex];
     }
 
-    public void StartGame()
-    {
-        StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
-        CurWaveIndex++;
-        //StartCoroutine(EndWave_Cor());
-    }
-    
 
 }

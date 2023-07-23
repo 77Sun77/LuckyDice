@@ -177,8 +177,7 @@ MonoBehaviour:
   isBuff: 0
   mySprite: {fileID: 0}
   anim: {fileID: 0}
-  hPBar: {fileID: 0}
-  allyKind: 2
+  unitKind: 2
   isMove: 0
   synthesis: {fileID: 0}
   AOERange:
@@ -212,7 +211,6 @@ MonoBehaviour:
   isSearch: 0
   isRegenerated: 0
   isItem: 0
-  tempTile: {fileID: 0}
 --- !u!1 &5358839955765971022
 GameObject:
   m_ObjectHideFlags: 0

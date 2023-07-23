@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Unit
   - Base
+  - Inventory
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Item
   - 
   - SimulateDice
-  - 
+  - Inventory
   - 
   - 
   - 
@@ -43,4 +44,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 5_Hierarchy
+    uniqueID: 572130441
+    locked: 0
+  - name: 4_Hierarchy
+    uniqueID: 553986197
+    locked: 0
+  - name: 3_Hierarchy
+    uniqueID: 198590757
+    locked: 0
+  - name: 2_Hierarchy
+    uniqueID: 705036119
+    locked: 0
+  - name: 1_Hierarchy
+    uniqueID: 3303398213
+    locked: 0
+  - name: Grab
+    uniqueID: 3238641511
+    locked: 0
+  - name: ITEM
+    uniqueID: 4215975783
     locked: 0

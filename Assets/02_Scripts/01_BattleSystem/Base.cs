@@ -13,7 +13,7 @@ public class Base : MonoBehaviour
     }
     void Start()
     {
-        
+        HP = 100;
     }
     
     void Update()

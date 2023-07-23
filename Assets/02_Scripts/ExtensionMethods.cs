@@ -35,12 +35,12 @@ public static class ExtensionMethods
         pawn.Set_CurTile();
         pawn.AddTilePawn();
 
-        if (!isEnemy)
-        {
-            PawnPlacementManager.instance.createObj.Add(go);
-            PawnPlacementManager.instance.Set_Target(go);
-            unit.enabled = false;
-        }
+        //if (!isEnemy)
+        //{
+        //    PawnPlacementManager.instance.createObj.Add(go);
+        //    PawnPlacementManager.instance.Set_Target(go);
+        //    unit.enabled = false;
+        //}
 
         return unit;
     }

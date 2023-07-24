@@ -14,7 +14,11 @@ public class Inventory : MonoBehaviour
     {
         foreach (GameObject go in prefabs) // 테스트용
         {
-            Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
+            if(go.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Unit)
+            {
+                for(int i=1; i<=3;i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
+            }
+            else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
         }
 
         SetInventory();
@@ -76,14 +80,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Add_Inventory(string objName) // 아이템과 유닛의 경우 주사위 코드에서 연결
+    public void Add_Inventory(string objName, int Rating = 0) // 아이템과 유닛의 경우 주사위 코드에서 연결
     {
-        foreach(GameObject go in prefabs)
+        foreach(GameObject Prefab in prefabs)
         {
-            if(go.GetComponent<Inventory_Prefab>().objectType == objName)
+            if(Prefab.GetComponent<Inventory_Prefab>().objectType == objName)
             {
-                
-                inventory.Add(Instantiate(go, contents));
+                GameObject go = Instantiate(Prefab, contents);
+                go.GetComponent<Inventory_Prefab>().Rating = Rating;
+                inventory.Add(go);
                 break;
             }
         }

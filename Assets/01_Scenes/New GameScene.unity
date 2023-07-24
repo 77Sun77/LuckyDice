@@ -14020,7 +14020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5254902, g: 0.24705882, b: 0.67058825, a: 1}
+  m_Color: {r: 0.3764706, g: 0.5294118, b: 0.7058824, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16354,21 +16354,12 @@ MonoBehaviour:
   - {fileID: 6930098797037316896, guid: b15790ce087945e40b40e0016d832093, type: 3}
   - {fileID: 7178668658658295276, guid: c0c6804724b43254ea380da2749018ca, type: 3}
   - {fileID: 1588260858671502220, guid: 102bd3e392d943d45b655103923d1fdf, type: 3}
-  - {fileID: 6415414123500773693, guid: 4636e754c0e96554fab70a875080d94d, type: 3}
-  - {fileID: 9021220254529393676, guid: 64070cc8286dec246b382e65e9147a50, type: 3}
-  - {fileID: 3543845618873586904, guid: 76b4018e223311d4482814bb286a429b, type: 3}
-  - {fileID: 8293284160007499007, guid: 97c633ff40710b94585386e0da985467, type: 3}
-  - {fileID: 9190320845384424572, guid: 34ae81065dffaae4f9cc8d82f1cce8a0, type: 3}
-  - {fileID: 44936139257275217, guid: 2004226fcf2c75942a829deb74f7fb1c, type: 3}
-  - {fileID: 3435402381580292606, guid: dfa6afd299d813a478a9ce22179ca96f, type: 3}
-  - {fileID: 8681740555062642417, guid: ee15c5f45d7d2e4418df97af4b51c4dd, type: 3}
-  - {fileID: 4399315065655115832, guid: a83e2dbece4713a4c8065a35fb9655cf, type: 3}
-  - {fileID: 8687589018676273040, guid: a0eb174cb3818d745a053ee38d14dec0, type: 3}
-  - {fileID: 4799224295829997148, guid: e8077b3c113feb24e9453fdb636d312e, type: 3}
-  - {fileID: 7333182808419423645, guid: 6f6884f8ce3fe3042b45c5f2717d364b, type: 3}
   - {fileID: 8692799436574425961, guid: b6f2c892b945c8c4fa7b3f677def13e9, type: 3}
-  - {fileID: 3889877887204518655, guid: d57e35f75c9bce640b2d28dcf3d5acc2, type: 3}
-  - {fileID: 1567371862350718877, guid: 7ee1643319480aa449e115f743aaac6f, type: 3}
+  - {fileID: 3435402381580292606, guid: dfa6afd299d813a478a9ce22179ca96f, type: 3}
+  - {fileID: 8687589018676273040, guid: 004b19135682dec4587eb61cf44795fe, type: 3}
+  - {fileID: 8687589018676273040, guid: a0eb174cb3818d745a053ee38d14dec0, type: 3}
+  - {fileID: 8293284160007499007, guid: 97c633ff40710b94585386e0da985467, type: 3}
+  - {fileID: 3543845618873586904, guid: 76b4018e223311d4482814bb286a429b, type: 3}
   Objects: []
 --- !u!114 &1287499889
 MonoBehaviour:
@@ -24945,6 +24936,7 @@ MonoBehaviour:
   selectTarget: {fileID: 0}
   selectPawn: {fileID: 0}
   IsHoldingMouse: 0
+  isInventoryHold: 0
   DebugObj: {fileID: 0}
   canvas: {fileID: 1101097384}
   gr: {fileID: 1101097385}

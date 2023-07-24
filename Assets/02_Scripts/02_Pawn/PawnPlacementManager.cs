@@ -113,7 +113,7 @@ public class PawnPlacementManager : MonoBehaviour
                     ObjTemp = go;
                     inventoryPos = ObjTemp.transform.parent.position;
                 }
-                else if (go != ObjTemp || (ObjTemp && Vector3.Distance(inventoryPos, ObjTemp.transform.parent.position) >= 20))
+                else if (!go || go != ObjTemp || (ObjTemp && Vector3.Distance(inventoryPos, ObjTemp.transform.parent.position) >= 20))
                 {
                     Disable = true;
                     ObjTemp = null;
@@ -131,7 +131,9 @@ public class PawnPlacementManager : MonoBehaviour
                 tile.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, 0);
                 tile.GetComponent<SpriteRenderer>().enabled = false;
                 tile.IsTable = true;
-                Pawn pawn = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity).GetComponent<Pawn>();
+                GameObject go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) go.GetComponent<Ally>().Rating = contents.Rating;
+                Pawn pawn = go.GetComponent<Pawn>();
                 pawn.tempTile = tile;
                 createObj.Add(tile.gameObject);
                 createObj.Add(pawn.gameObject);

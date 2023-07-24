@@ -98,7 +98,7 @@ public class AllyGenerator : MonoBehaviour
     {
         if (allyKind != AllyKind.ITEM)
         {
-            var unit = UnitPrefabs[((int)allyKind*3) + (rating - 1)].SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
+            var unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
             GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
         }
         else

@@ -9363,11 +9363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b064e1c6be352954b9b46c15fe86e331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllyDice: {fileID: 7820702717522260758, guid: 899d154248e108e408082de6a47c1929, type: 3}
-  ItemDice: {fileID: 935290345039073736, guid: bd622336797724f4d901a6b54114fff2, type: 3}
-  MaxTorqueScale: 10
   number: 0
-  count: 0
   AllyDices:
   - {fileID: 7820702717522260758, guid: 463f8cd7f62cd2d4a9cd8bef3a6b0240, type: 3}
   - {fileID: 7820702717522260758, guid: 0341211f1dd34064aa07e5a547c6380b, type: 3}
@@ -14881,6 +14877,8 @@ MonoBehaviour:
   fade: {fileID: 679506478}
   startBtn: {fileID: 2036714958}
   startTxt: {fileID: 206074260}
+  allyDiceControl: {fileID: 0}
+  itemDiceControl: {fileID: 0}
 --- !u!1 &1185061507
 GameObject:
   m_ObjectHideFlags: 0

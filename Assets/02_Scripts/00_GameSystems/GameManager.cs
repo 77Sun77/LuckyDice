@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         OnWaveEnd += () => { isStart = false; };
         OnWaveEnd += () => {
             for (int i = 0; i < 2; i++)
-                dice_Inventory.Add_Inventory("UnitDIce");
+                dice_Inventory.Add_Inventory("AllyDIce");
         };
     }
 

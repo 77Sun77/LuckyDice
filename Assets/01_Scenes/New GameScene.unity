@@ -14020,7 +14020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3764706, g: 0.5294118, b: 0.7058824, a: 1}
+  m_Color: {r: 0.5254902, g: 0.24705882, b: 0.67058825, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16354,12 +16354,21 @@ MonoBehaviour:
   - {fileID: 6930098797037316896, guid: b15790ce087945e40b40e0016d832093, type: 3}
   - {fileID: 7178668658658295276, guid: c0c6804724b43254ea380da2749018ca, type: 3}
   - {fileID: 1588260858671502220, guid: 102bd3e392d943d45b655103923d1fdf, type: 3}
-  - {fileID: 8692799436574425961, guid: b6f2c892b945c8c4fa7b3f677def13e9, type: 3}
-  - {fileID: 3435402381580292606, guid: dfa6afd299d813a478a9ce22179ca96f, type: 3}
-  - {fileID: 8687589018676273040, guid: 004b19135682dec4587eb61cf44795fe, type: 3}
-  - {fileID: 8687589018676273040, guid: a0eb174cb3818d745a053ee38d14dec0, type: 3}
-  - {fileID: 8293284160007499007, guid: 97c633ff40710b94585386e0da985467, type: 3}
+  - {fileID: 6415414123500773693, guid: 4636e754c0e96554fab70a875080d94d, type: 3}
+  - {fileID: 9021220254529393676, guid: 64070cc8286dec246b382e65e9147a50, type: 3}
   - {fileID: 3543845618873586904, guid: 76b4018e223311d4482814bb286a429b, type: 3}
+  - {fileID: 8293284160007499007, guid: 97c633ff40710b94585386e0da985467, type: 3}
+  - {fileID: 9190320845384424572, guid: 34ae81065dffaae4f9cc8d82f1cce8a0, type: 3}
+  - {fileID: 44936139257275217, guid: 2004226fcf2c75942a829deb74f7fb1c, type: 3}
+  - {fileID: 3435402381580292606, guid: dfa6afd299d813a478a9ce22179ca96f, type: 3}
+  - {fileID: 8681740555062642417, guid: ee15c5f45d7d2e4418df97af4b51c4dd, type: 3}
+  - {fileID: 4399315065655115832, guid: a83e2dbece4713a4c8065a35fb9655cf, type: 3}
+  - {fileID: 8687589018676273040, guid: a0eb174cb3818d745a053ee38d14dec0, type: 3}
+  - {fileID: 4799224295829997148, guid: e8077b3c113feb24e9453fdb636d312e, type: 3}
+  - {fileID: 7333182808419423645, guid: 6f6884f8ce3fe3042b45c5f2717d364b, type: 3}
+  - {fileID: 8692799436574425961, guid: b6f2c892b945c8c4fa7b3f677def13e9, type: 3}
+  - {fileID: 3889877887204518655, guid: d57e35f75c9bce640b2d28dcf3d5acc2, type: 3}
+  - {fileID: 1567371862350718877, guid: 7ee1643319480aa449e115f743aaac6f, type: 3}
   Objects: []
 --- !u!114 &1287499889
 MonoBehaviour:
@@ -19235,24 +19244,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitPrefabs:
-  - {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
-  - {fileID: 7696597218292851334, guid: 73629890c7f06b74db5a1725b7a049f3, type: 3}
-  - {fileID: 7696597218292851334, guid: eebe5fc5f1702614a9107d613365f00a, type: 3}
-  - {fileID: 7154396063005979274, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
-  - {fileID: 7154396063005979274, guid: 85c8671b26f26d8499345b47c984fbe7, type: 3}
-  - {fileID: 7154396063005979274, guid: a871e738524eae844993db37c0e3d605, type: 3}
-  - {fileID: 5124941803456547265, guid: cfe65c47910ad2e42add18d3a3f30d36, type: 3}
-  - {fileID: 5124941803456547265, guid: c6c35a9986e5a934287d197379e5ba43, type: 3}
-  - {fileID: 5124941803456547265, guid: 98205d778038fc14b9baa0d5c8d5d344, type: 3}
-  - {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
-  - {fileID: 7647019490625122931, guid: a5ddc43a361c88245bf681d7c1ed51ad, type: 3}
-  - {fileID: 7647019490625122931, guid: af2711241162f1a4b978899d563ce03d, type: 3}
-  - {fileID: 1953436954116349608, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
-  - {fileID: 1953436954116349608, guid: b33d317cafee8d6418283f82cd825e2d, type: 3}
-  - {fileID: 1953436954116349608, guid: 2b3c98377943100459c655c0869ddfcd, type: 3}
-  - {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
-  - {fileID: 5161478708710330670, guid: b5a510a7f72d23942bfcd3c5f86b0587, type: 3}
-  - {fileID: 5161478708710330670, guid: 9d127955ad57edd4db63ffa6c0e22d31, type: 3}
+  - {fileID: 7696597218292851334, guid: 5ef4d9f933d4d5f4899d6f4bb1b0a30b, type: 3}
+  - {fileID: 7154396063005979274, guid: f0dcb24351c96a04bb4fe4520fab82c9, type: 3}
+  - {fileID: 5124941803456547265, guid: b9a5ece94f3e9504cb12546e2f37e603, type: 3}
+  - {fileID: 7647019490625122931, guid: 0ee930df2af44d3448bd80441ce1b834, type: 3}
+  - {fileID: 1953436954116349608, guid: 568cc171479ced64cbaf78ea303b1833, type: 3}
+  - {fileID: 5161478708710330670, guid: ed4b0e60130824d47b42f00c9e0cac8f, type: 3}
   UnitSpawn_Tf: {fileID: 1453006439}
   Store: 
   InputNum: 0

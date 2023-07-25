@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1990663592043559787}
   - component: {fileID: 1990663592043559780}
   m_Layer: 15
-  m_Name: UnitDIce
+  m_Name: AllyDIce
   m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,4 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Kind: 0
   prefab: {fileID: 0}
-  objectType: UnitDIce
+  objectType: AllyDice
+  Rating: 0
+  d_Kind: 0

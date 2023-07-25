@@ -15,11 +15,27 @@ public class Inventory_Prefab : MonoBehaviour
 
     TextMeshProUGUI text;
 
+    public enum Dice_Kind { Ally, Item}
+    public Dice_Kind d_Kind;
+
     private void Start()
     {
         if (Kind == Obj_Kind.Unit)
         {
             text = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+            
+        }
+        else if(Kind == Obj_Kind.Dice)
+        {
+            if(d_Kind == Dice_Kind.Ally)
+            {
+                prefab = UIManager.instance.allyDiceControl;
+            }
+            else
+            {
+                prefab = UIManager.instance.itemDiceControl;
+            }
         }
         
     }

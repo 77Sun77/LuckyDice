@@ -7,7 +7,6 @@ public class Dice : MonoBehaviour
     Rigidbody rigid;
     public float ranXTorque, ranYTorque, ranZTorque;
     public float dirX, dirY, dirZ;
-    int count;
 
     bool roll;
 
@@ -19,6 +18,7 @@ public class Dice : MonoBehaviour
         rigid.AddForce(Vector3.left * 200);
         rigid.AddTorque(new Vector3(ranXTorque, ranYTorque, ranZTorque));
         Destroy(gameObject, 4);
+        UIManager.instance.Invoke_ResetUI(); // 이 자리에 나중에 얻은 애니메이션 호출하는 함수 실행
     }
 
     private void Update()
@@ -30,21 +30,21 @@ public class Dice : MonoBehaviour
                 if(_DiceKind == DiceRotation.DIceKind.Ally)
                 {
                     int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
-                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Warrior[0]);
-                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Sorcerer[0]);
-                    else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Lancer[0]);
-                    else if (num == 3) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Tanker[0]);
-                    else if (num == 4) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Buffer[0]);
-                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.Archer[0]);
+                    if (num == 0) GameManager.instance.inventory.Add_Inventory("Warrior", 1);
+                    else if (num == 1) GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
+                    else if (num == 2) GameManager.instance.inventory.Add_Inventory("Lancer", 1);
+                    else if (num == 3) GameManager.instance.inventory.Add_Inventory("Tanker", 1);
+                    else if (num == 4) GameManager.instance.inventory.Add_Inventory("Buffer", 1);
+                    else GameManager.instance.inventory.Add_Inventory("Archer", 1);
                     roll = true;
                 }
                 else
                 {
                     int num = DiceManager.instance.number;
-                    if (num == 0) AllyGenerator.instance.Roll(GoogleSheetManager.instance.HealPotion, 1);
-                    else if (num == 1) AllyGenerator.instance.Roll(GoogleSheetManager.instance.BombExplosion, 1);
-                    else if (num == 2) AllyGenerator.instance.Roll(GoogleSheetManager.instance.Barrier);
-                    else AllyGenerator.instance.Roll(GoogleSheetManager.instance.CharMove, 1);
+                    if (num == 0) GameManager.instance.inventory.Add_Inventory("HealPotion");
+                    else if (num == 1) GameManager.instance.inventory.Add_Inventory("Bomb");
+                    else if (num == 2) GameManager.instance.inventory.Add_Inventory("Barrier");
+                    else GameManager.instance.inventory.Add_Inventory("CharMove");
 
                     roll = true;
                 }

@@ -230,6 +230,7 @@ MonoBehaviour:
   prefab: {fileID: 7154396063005979274, guid: f0dcb24351c96a04bb4fe4520fab82c9, type: 3}
   objectType: Sorcerer
   Rating: 0
+  d_Kind: 0
 --- !u!1 &3435402382044789561
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -520369835, guid: 604953ad9ddf5aa49aa33a76c7785be5, type: 3}
+  m_Sprite: {fileID: 3575745, guid: b6188f73edc08114b8a34d6534c6fec2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

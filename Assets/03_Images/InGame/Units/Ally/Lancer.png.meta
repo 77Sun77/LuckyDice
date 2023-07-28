@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b6188f73edc08114b8a34d6534c6fec2
+guid: 604953ad9ddf5aa49aa33a76c7785be5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sorcerer_0
+      name: Lancer_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e8d1c9530610ec4a81b8ec7d2ca0704
-      internalID: 3575745
+      spriteID: 35d74c74b407cb345ad8ff180898e0b3
+      internalID: -520369835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_1
+      name: Lancer_1
       rect:
         serializedVersion: 2
         x: 48
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f969957cb379b04bbe4e8deb13515d7
-      internalID: -1343752533
+      spriteID: 82d2a8803b60bbc4ca03726b9e6777ab
+      internalID: 1420619870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_2
+      name: Lancer_2
       rect:
         serializedVersion: 2
         x: 96
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36751b186cb01e94785c7e183612f7c0
-      internalID: 132763041
+      spriteID: 7713b7c1fd080dc42868bcb4a8e352f3
+      internalID: 1684036228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_3
+      name: Lancer_3
       rect:
         serializedVersion: 2
         x: 144
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bb20ecf2c530344bb102b4c896098f0
-      internalID: -1253737384
+      spriteID: c64ec79fc6e04db4ba701aa96d2d6ef6
+      internalID: 1245472361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_4
+      name: Lancer_4
       rect:
         serializedVersion: 2
         x: 0
@@ -214,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 369e878cf7d68284ead7d88dda25a067
-      internalID: 1204041491
+      spriteID: 283e31211580c024dbfbd0045d17e9d5
+      internalID: -523556833
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_5
+      name: Lancer_5
       rect:
         serializedVersion: 2
         x: 48
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af91562387d8cc44e9fae146d56b986f
-      internalID: 1797476465
+      spriteID: f4ef21e146115dc419d7f19e7f36c622
+      internalID: 1776234069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_6
+      name: Lancer_6
       rect:
         serializedVersion: 2
         x: 96
@@ -256,8 +256,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec9fcd9cba476f34fa2a5fbb77348d96
-      internalID: -1988717207
+      spriteID: a5d8b7d06281105459ebc00a3bedc404
+      internalID: 179586510
       vertices: []
       indices: 
       edges: []
@@ -273,13 +273,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sorcerer_0: -1343752533
-      Sorcerer_2: 132763041
-      Sorcerer_3: -1253737384
-      Sorcerer_1: -1343752533
-      Sorcerer_5: 1797476465
-      Sorcerer_6: -1988717207
-      Sorcerer_4: 1204041491
+      Lancer_4: -523556833
+      Lancer_2: 1684036228
+      Lancer_5: 1776234069
+      Lancer_1: 1420619870
+      Lancer_6: 179586510
+      Lancer_0: -520369835
+      Lancer_3: 1245472361
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

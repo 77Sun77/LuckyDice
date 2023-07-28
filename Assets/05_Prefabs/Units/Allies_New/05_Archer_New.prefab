@@ -283,10 +283,10 @@ MonoBehaviour:
   isAttacking: 0
   isBuff: 0
   mySprite: {fileID: 6338752620212293040}
-  shadowSR: {fileID: 7816520509486537960}
+  shadowSR: {fileID: 0}
   anim: {fileID: 0}
   shadowAnim: {fileID: 0}
-  shadow: {fileID: 0}
+  shadow: {fileID: 4823716379216245918}
   hPBar: {fileID: 0}
   allyKind: 5
   isMove: 0

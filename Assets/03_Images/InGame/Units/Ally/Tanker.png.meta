@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b6188f73edc08114b8a34d6534c6fec2
+guid: 4f2c11e012f1f4d4485b084b359a90a5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 36
+  spritePixelsToUnits: 39
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,148 +116,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sorcerer_0
+      name: Tanker_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
+        y: 65
         width: 48
-        height: 60
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e8d1c9530610ec4a81b8ec7d2ca0704
-      internalID: 3575745
+      spriteID: d0f8873fa1d28c846bbb2939093f4a4d
+      internalID: 138451005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_1
+      name: Tanker_1
       rect:
         serializedVersion: 2
         x: 48
-        y: 60
+        y: 65
         width: 48
-        height: 60
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f969957cb379b04bbe4e8deb13515d7
-      internalID: -1343752533
+      spriteID: 4823b5015fc3b4e49a149a45d95d2dcb
+      internalID: -1232985207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_2
+      name: Tanker_2
       rect:
         serializedVersion: 2
         x: 96
-        y: 60
+        y: 65
         width: 48
-        height: 60
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36751b186cb01e94785c7e183612f7c0
-      internalID: 132763041
+      spriteID: 5d1fe3dd48eae594189b3ddf9a974bae
+      internalID: -271939271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 60
-        width: 48
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bb20ecf2c530344bb102b4c896098f0
-      internalID: -1253737384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sorcerer_4
+      name: Tanker_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 48
-        height: 60
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 369e878cf7d68284ead7d88dda25a067
-      internalID: 1204041491
+      spriteID: 41f7c83536bb989499640bda4f59ad99
+      internalID: 344451918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_5
+      name: Tanker_4
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 48
-        height: 60
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af91562387d8cc44e9fae146d56b986f
-      internalID: 1797476465
+      spriteID: 1786726d77909ce48960888d63013ab0
+      internalID: 2129281444
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sorcerer_6
+      name: Tanker_5
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 48
-        height: 60
+        height: 65
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec9fcd9cba476f34fa2a5fbb77348d96
-      internalID: -1988717207
+      spriteID: f8d4c95b1da2caf4981b22abdf1a5f84
+      internalID: 523314810
       vertices: []
       indices: 
       edges: []
@@ -273,13 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sorcerer_0: -1343752533
-      Sorcerer_2: 132763041
-      Sorcerer_3: -1253737384
-      Sorcerer_1: -1343752533
-      Sorcerer_5: 1797476465
-      Sorcerer_6: -1988717207
-      Sorcerer_4: 1204041491
+      Tanker_5: 523314810
+      Tanker_4: 2129281444
+      Tanker_2: -271939271
+      Tanker_1: -1232985207
+      Tanker_3: 344451918
+      Tanker_0: 138451005
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

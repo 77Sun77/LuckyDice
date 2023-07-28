@@ -95,6 +95,7 @@ MonoBehaviour:
   prefab: {fileID: 7647019490625122931, guid: 0ee930df2af44d3448bd80441ce1b834, type: 3}
   objectType: Tanker
   Rating: 0
+  d_Kind: 0
 --- !u!1 &8687589018982316731
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -520369835, guid: 604953ad9ddf5aa49aa33a76c7785be5, type: 3}
+  m_Sprite: {fileID: 138451005, guid: 4f2c11e012f1f4d4485b084b359a90a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

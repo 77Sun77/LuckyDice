@@ -17,6 +17,7 @@ public class Pawn : MonoBehaviour
 
     public bool IsGrabbed;
     public bool IsMoveGrid;
+    public bool firstSetting;
     public int X, Y;
 
     public Action OnInitialize_SetTile;
@@ -130,6 +131,10 @@ public class Pawn : MonoBehaviour
         if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 
         CheckCenter();
+        RangeView();
+
+
+
     }
 
     public void Set_CurTile()
@@ -210,4 +215,66 @@ public class Pawn : MonoBehaviour
         Set_CurTile();
     }
 
+    public void RangeView()
+    {
+        if (IsGrabbed)
+        {
+            int layerMask = (1 << LayerMask.NameToLayer("Tile"));
+            RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, Vector2.zero, 0f, layerMask);
+
+            if (raycastHit.collider)
+            {
+                Tile tile = raycastHit.collider.GetComponent<Tile>();
+                if (tile.IsTable) return;
+                Tile[,] tiles = TileManager.Instance.TileArray;
+                List<Tile> tilesTemp = new();
+                if (!tile.EnemySpawn) tilesTemp.Add(TileManager.Instance.TileArray[tile.X, tile.Y]);
+
+                var list = new List<Vector2>();
+                if (isItem) list = item.AOERange_List;
+                else list = unit.detectRange_List;
+
+                foreach (Vector2 range in list)
+                {
+                    int x = (int)(tile.X + range.x);
+                    int y = (int)(tile.Y + range.y);
+                    
+                    if (x > 9 || y > 4 || x < 0 || y < 0) continue;
+                    tilesTemp.Add(TileManager.Instance.TileArray[x, y]);
+                }
+                int count = 0;
+                foreach (Tile t in TileManager.Instance.TileArray)
+                {
+                    SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
+                    if (tilesTemp.Contains(t))
+                    {
+                        if (count == 0 && !isItem) sr.color = TileManager.Instance.Color2;
+                        else sr.color = TileManager.Instance.Color1;
+                        sr.enabled = true;
+                        count++;
+                    }
+                    else
+                    {
+                        sr.enabled = false;
+                    }
+
+                }
+            }
+            else
+            {
+                foreach (Tile t in TileManager.Instance.TileArray)
+                {
+                    t.GetComponent<SpriteRenderer>().enabled = false;
+                }
+            }
+        }
+        else if (!firstSetting)
+        {
+            foreach (Tile t in TileManager.Instance.TileArray)
+            {
+                t.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            firstSetting = true;
+        }
+    }
 }

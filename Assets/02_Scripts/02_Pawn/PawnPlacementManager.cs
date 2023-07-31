@@ -9,7 +9,7 @@ public class PawnPlacementManager : MonoBehaviour
     public static PawnPlacementManager instance;
     public GameObject selectTarget;
     public Pawn selectPawn;
-    public bool IsHoldingMouse, isInventoryHold;
+    public bool IsHoldingMouse, isInventoryHold, isActive;
 
     Vector3 clickPoint;
     Vector3 deltaVec;
@@ -51,6 +51,7 @@ public class PawnPlacementManager : MonoBehaviour
             {
                 if (selectPawn.IsMoveGrid) MoveOrSwitchPawn();
                 ClearVars();
+                isActive = false;
             }
             isTrigger = false;
             List<GameObject> DestroyObj = new List<GameObject>();
@@ -79,7 +80,7 @@ public class PawnPlacementManager : MonoBehaviour
             timer = 0.2f;
             Disable = false;
             isInventoryHold = false;
-            ObjTemp = null;
+            if(!isActive) ObjTemp = null;
         }
 
         if (selectPawn)
@@ -108,6 +109,8 @@ public class PawnPlacementManager : MonoBehaviour
                         break;
                     }
                 }
+
+                /*
                 if (go && !ObjTemp)
                 {
                     ObjTemp = go;
@@ -117,7 +120,19 @@ public class PawnPlacementManager : MonoBehaviour
                 {
                     Disable = true;
                     ObjTemp = null;
+                }*/
+
+                if (ObjTemp && go != ObjTemp)
+                {
+                    if (go)
+                    {
+                        go.GetComponent<Inventory_Prefab>().OnClick_Btn();
+                    }
+                    
+                    timer = 0.2f;
+                    Disable = true;
                 }
+                if(ObjTemp && ObjTemp.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Dice) Disable = true;
             }
         
         }

@@ -21,6 +21,9 @@ public class UIManager : MonoBehaviour
     TextMeshProUGUI startText;
 
     public GameObject allyDiceControl, itemDiceControl;
+
+    public GameObject Blind, MapMask;
+    public Material UI_Mat;
     private void Awake()
     {
         instance = this;

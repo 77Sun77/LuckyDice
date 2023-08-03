@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
             else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
         }
 
-        SetInventory();
+        
         SetSize();
 
 
@@ -36,31 +36,10 @@ public class Inventory : MonoBehaviour
     {
         SetSize();
 
-        SetInventory();
 
         
     }
-    void SetInventory()
-    {
-        Objects.Clear();
-        foreach (RectTransform content in contents)
-        {
-            Objects.Add(content.gameObject);
-        }
 
-        if (inventory.Count != Objects.Count)
-        {
-            Vector3 posTemp = contents.position;
-            foreach (GameObject obj in Objects) Destroy(obj);
-            foreach (GameObject obj in inventory)
-            {
-                Instantiate(obj, contents);
-
-            }
-            contents.position = posTemp;
-        }
-
-    }
     void SetSize()
     {
         int count = contents.childCount / 5;
@@ -119,6 +98,7 @@ public class Inventory : MonoBehaviour
     {
         inventory.Remove(obj);
         Destroy(obj);
+        print(obj);
     }
 
     public void OpenInventory()

@@ -24,9 +24,10 @@ public static class ExtensionMethods
     public static Unit SpawnUnit(this GameObject prefab, Transform parent, Tile tile, List<Unit> unitList, bool isEnemy = false)
     {
         GameObject go = GameObject.Instantiate(prefab, parent);
+        go.transform.position = prefab.transform.position;
         Unit unit = go.GetComponent<Unit>();
         unit.SpawnHPBar();
-
+        bool istouchSpawn = tile.Ally;
         unitList.Add(unit);
         Pawn pawn = go.GetComponent<Pawn>();
         pawn.MoveToTargetTile(tile);
@@ -35,7 +36,8 @@ public static class ExtensionMethods
         pawn.AddTilePawn();
         if (!isEnemy)
         {
-            PawnPlacementManager.instance.createObj.Add(go);
+            if (!istouchSpawn) PawnPlacementManager.instance.createObj.Add(go);
+            Debug.Log(tile.Ally == go);
             PawnPlacementManager.instance.Set_Target(go);
             unit.enabled = false;
         }

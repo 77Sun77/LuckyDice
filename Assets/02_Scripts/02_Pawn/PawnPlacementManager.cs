@@ -33,6 +33,8 @@ public class PawnPlacementManager : MonoBehaviour
     public List<GameObject> createObj = new List<GameObject>();
 
     Vector3 inventoryPos;
+
+    GameObject tileTemp;
     private void Start()
     {
         instance = this;
@@ -42,6 +44,19 @@ public class PawnPlacementManager : MonoBehaviour
     private void Update()
     {
         IsHoldingMouse = Input.GetKey(KeyCode.Mouse0);//나중에 터치로 바꿀것
+
+        if (isActive)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Touch();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                Touch(true);
+                
+            }
+        }
 
         if (IsHoldingMouse) SetSelectPawn();
         else if(!IsHoldingMouse)
@@ -80,7 +95,8 @@ public class PawnPlacementManager : MonoBehaviour
             timer = 0.2f;
             Disable = false;
             isInventoryHold = false;
-            if(!isActive) ObjTemp = null;
+            TileManager.Instance.ResetTile();
+            if (!isActive) ObjTemp = null;
         }
 
         if (selectPawn)
@@ -209,6 +225,60 @@ public class PawnPlacementManager : MonoBehaviour
 
 
     }
+
+    void Touch(bool isUp = false)
+    {
+        pe = new PointerEventData(es);
+        pe.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        gr.Raycast(pe, results);
+        if (results.Count != 0)
+        {
+            foreach (RaycastResult result in results)
+            {
+                if (result.gameObject.CompareTag("Inventory"))
+                {
+                    return;
+
+                }
+            }
+        }
+        
+        clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        int layerMask = 1 << LayerMask.NameToLayer("Tile");
+        RaycastHit2D raycastHit = Physics2D.Raycast(clickPoint, Vector2.zero, 0f, layerMask);
+
+        if (raycastHit.collider)
+        {
+            if (!isUp)
+            {
+                isInventoryHold = true;
+                Disable = true;
+                tileTemp = raycastHit.collider.gameObject;
+
+            }
+            else if(tileTemp == raycastHit.collider.gameObject)
+            {
+                bool isItem = ObjTemp.GetComponent<Inventory_Prefab>().prefab.GetComponent<Pawn>().isItem;
+                if (!isItem && (tileTemp.GetComponent<Tile>().Ally || tileTemp.GetComponent<Tile>().EnemyList.Count != 0)) return;
+                else if (isItem && ObjTemp.GetComponent<Inventory_Prefab>().prefab.GetComponent<Item>().itemKind == Item.ItemKind.CharacterMove && !tileTemp.GetComponent<Tile>().Ally) return;
+
+                Inventory_Prefab contents = ObjTemp.GetComponent<Inventory_Prefab>();
+                GameObject go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) go.GetComponent<Ally>().Rating = contents.Rating;
+                Pawn pawn = go.GetComponent<Pawn>();
+                //pawn.MoveToTargetTile(tileTemp.GetComponent<Tile>());
+                
+                createObj.Add(pawn.gameObject);
+                selectPawn = pawn;
+                selectPawn.Set_PastTile();
+                selectPawn.Set_CurTile();
+                selectPawn.tempTile = tileTemp.GetComponent<Tile>();
+                //GameManager.instance.inventory.Delete_Inventory(ObjTemp);
+            }
+            
+        }
+    }
     public void Set_Target(GameObject go)
     {
         selectTarget = go;
@@ -254,8 +324,14 @@ public class PawnPlacementManager : MonoBehaviour
                 {
                     tile.Ally.GetComponent<Ally>().isMove = true;
                     GameManager.instance.inventory.Delete_Inventory(ObjTemp);
-
+                    AllDstroy = true;
                     return;
+                }
+
+                if(!selectPawn.isItem && unit == selectPawn.GetComponent<Unit>())
+                {
+                    selectPawn.IsGrabbed = false;
+                    tile.Ally.GetComponent<Ally>().isMove = true;
                 }
 
                 if ((tile.CanPlacement || selectPawn.isItem) && !tile.IsTable && !tile.EnemySpawn)//빈자리인 경우
@@ -268,8 +344,8 @@ public class PawnPlacementManager : MonoBehaviour
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     selectPawn.Set_CurTile();
                     selectPawn.IsGrabbed = false;
-    
                     GameManager.instance.inventory.Delete_Inventory(ObjTemp);
+
                     return;
                 }
                 else if (unit != null && unit.pawn != selectPawn)//다른 유닛이 있을 경우
@@ -294,6 +370,7 @@ public class PawnPlacementManager : MonoBehaviour
         }
         AllDstroy = true;
         selectPawn.transform.position = selectPawn.pastTile.GetPos();
+        selectPawn = null;
     }
 
     void ClearVars()

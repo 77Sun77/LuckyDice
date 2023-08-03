@@ -176,4 +176,12 @@ public class TileManager : MonoBehaviour
         }
         else return false;
     }
+
+    public void ResetTile()
+    {
+        foreach (Tile tile in TileArray)
+        {
+            tile.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
 }

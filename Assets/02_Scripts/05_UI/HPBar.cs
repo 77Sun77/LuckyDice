@@ -24,7 +24,7 @@ public class HPBar : MonoBehaviour
         {
             unit = Target as Unit;
             maxHP = unit.maxHP;
-            Debug.Log("РЏДж");
+            //Debug.Log("РЏДж");
         }
         else if (Target is Enemy)
         {

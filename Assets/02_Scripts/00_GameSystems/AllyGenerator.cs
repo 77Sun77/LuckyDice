@@ -90,7 +90,7 @@ public class AllyGenerator : MonoBehaviour
 
     public void SpawnAlly(AllyKind allyKind,int rating)
     {
-        var unit = UnitPrefabs[(int)allyKind+(rating-1)].SpawnUnit(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
+        var unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
         GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
         Debug.Log("SpawnAlly");
     }
@@ -119,6 +119,8 @@ public class AllyGenerator : MonoBehaviour
             go.SpawnUnit(UnitSpawn_Tf,TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
         else
             go.SpawnItem(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot());
+
+        Debug.Log("Roll");
     }
     void OnEndWave_Store()//나중에 WaveManager의 event로 추가
     {

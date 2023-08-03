@@ -33,8 +33,6 @@ public class Pawn : MonoBehaviour
     {
         if (!isRegenerated)
             StartCoroutine(PreSpawnedPawnInitialize());
-
-
     }
 
     private void OnEnable()
@@ -72,8 +70,6 @@ public class Pawn : MonoBehaviour
         {
             
             GameObject go = null;
-
-            
 
             if (isItem)
             {

@@ -271,6 +271,7 @@ public class Pawn : MonoBehaviour
                 t.GetComponent<SpriteRenderer>().enabled = false;
             }
             firstSetting = true;
+            if (unit) unit.GetComponent<Ally>().isMove = false;
         }
     }
 }

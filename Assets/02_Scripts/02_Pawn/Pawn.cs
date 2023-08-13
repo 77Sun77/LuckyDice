@@ -60,10 +60,9 @@ public class Pawn : MonoBehaviour
     /// <returns></returns>
     IEnumerator PreSpawnedPawnInitialize()
     {
-        yield return TileManager.Instance;
-        yield return TileManager.Instance.IsMapGeneratingOver;
-        yield return GoogleSheetManager.instance;
-        yield return AllyGenerator.instance;
+        
+        //TileManager,GoogleSheetmanager,AllyGenerator가 준비 완료 될때까지 대기
+        yield return new WaitUntil(() => { return TileManager.Instance && TileManager.Instance.IsMapGeneratingOver && GoogleSheetManager.instance.IsParsingDone; });
         Vector3 curPos = gameObject.transform.position;
 
         if (!IsEnemy)
@@ -101,8 +100,14 @@ public class Pawn : MonoBehaviour
             else if (unit != null)
             {
                 Ally ally = unit.GetComponent<Ally>();
+                if (tempTile == null)
+                {
+                    Set_CurTile();
+                    tempTile = curTile;
+                }
+                Debug.Log($"{ally.allyKind}");
                 AllyGenerator.instance.SpawnAlly(ally.allyKind, ally.Rating, tempTile);
-                Destroy(GetComponent<Unit>().hPBar.gameObject);
+                //Destroy(GetComponent<Unit>().hPBar.gameObject);
             }
 
             Destroy(gameObject);

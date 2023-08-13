@@ -16,14 +16,14 @@ public class Inventory : MonoBehaviour
     public RectTransform btn;
     void Start()
     {
-        foreach (GameObject go in prefabs) // 테스트용
-        {
-            if(go.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Unit)
-            {
-                for(int i=1; i<=3;i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
-            }
-            else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
-        }
+        //foreach (GameObject go in prefabs) // 테스트용
+        //{
+        //    if(go.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Unit)
+        //    {
+        //        for(int i=1; i<=3;i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
+        //    }
+        //    else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
+        //}
 
         
         SetSize();

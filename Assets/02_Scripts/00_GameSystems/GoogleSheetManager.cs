@@ -47,6 +47,7 @@ public class GoogleSheetManager : MonoBehaviour
     
 
     public bool IsForYejun;
+    public bool IsParsingDone;//구글 시트 매니저 파싱이 끝났는지의 여부 판독
 
     const string AllyStatURL = "https://docs.google.com/spreadsheets/d/1Of--8G94QJGvuqsjvRTf7mtuzd7RifqTrVq14S6_hE4/export?format=csv";
     const string EnemyStatURL = "https://docs.google.com/spreadsheets/d/18LIGb_ar1AT4Qgk5Vvv52Xe6aAFpy0jgApOpOYw9Txo/export?format=csv";
@@ -91,6 +92,7 @@ public class GoogleSheetManager : MonoBehaviour
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read_String(data);
 
         Parse_AllyInfo(data_Dialog);
+        IsParsingDone = true;
     }
    
     void Parse_AllyInfo(List<Dictionary<string, object>> data_Dialog)
@@ -131,8 +133,8 @@ public class GoogleSheetManager : MonoBehaviour
         allyInfoList_Dic.TryGetValue(name, out List<AllyInfo> allyInfoList);
         AdjustAllyStat(unit_Prefab, allyInfoList[_rating - 1]);
 
-        Debug.Log(name + ally.Rating);
-        Debug.Log(allyInfoList.Count);
+        //Debug.Log(name + ally.Rating);
+        //Debug.Log(allyInfoList.Count);
     }
     void AdjustAllyStat(GameObject unit_Prefab, AllyInfo allyInfo)
     {

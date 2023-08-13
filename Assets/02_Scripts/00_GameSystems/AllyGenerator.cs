@@ -16,7 +16,8 @@ public class AllyGenerator : MonoBehaviour
 
     public int TheNumberOfDice;
 
-    
+    public bool IsDebuggingMode;
+    public int DebugNum;
 
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class AllyGenerator : MonoBehaviour
 
     private void Update()
     {
+        IsDebuggingMode = Input.GetKey(KeyCode.LeftShift);
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Roll();
@@ -46,8 +50,16 @@ public class AllyGenerator : MonoBehaviour
 
     void MakeKeyEvent(KeyCode keyCode)
     {
-        if(Input.GetKeyDown(keyCode))
-        InputNum = (int)keyCode - 48;
+        if (Input.GetKeyDown(keyCode))
+        {
+            if (IsDebuggingMode)
+            {
+                DebugNum = (int)keyCode - 48;
+                Roll_Debug();
+                return;
+            }
+            InputNum = (int)keyCode - 48;
+        }
     }
 
     void ResetStore()
@@ -83,29 +95,86 @@ public class AllyGenerator : MonoBehaviour
 
         //GameObject go = Instantiate(UnitPrefabs[(int)Store[ModifiedInput]],UnitSpawn_Tf);
         //go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
-        var allyKind = UnitPrefabs[(int)Store[ModifiedInput]].GetComponent<Ally>().allyKind;
-        SpawnAlly(allyKind, 1);
+        //var allyKind = UnitPrefabs[(int)Store[ModifiedInput]].GetComponent<Ally>().allyKind;
+        //SpawnAlly(allyKind, 1);
+
+        switch (Store[ModifiedInput])
+        {
+            case UnitList_Store.Àü»ç:
+                GameManager.instance.inventory.Add_Inventory("Warrior",1);
+                break;
+            case UnitList_Store.¸¶¹ý»ç:
+                GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
+                break;
+            case UnitList_Store.·£¼­:
+                GameManager.instance.inventory.Add_Inventory("Lancer", 1);
+                break;
+            case UnitList_Store.ÅÊÄ¿:
+                GameManager.instance.inventory.Add_Inventory("Tanker", 1);
+                break; 
+            case UnitList_Store.Èú·¯:
+                GameManager.instance.inventory.Add_Inventory("Healer", 1);
+                break;
+            case UnitList_Store.¾ÆÃ³:
+                GameManager.instance.inventory.Add_Inventory("Archer", 1);
+                break;
+            case UnitList_Store.ÆÈ¸²:
+                break;
+        }
+
         Store.SetValue(UnitList_Store.ÆÈ¸², ModifiedInput);
     }
 
-    public void SpawnAlly(AllyKind allyKind,int rating)
+    void Roll_Debug()
+    {
+        switch (DebugNum)
+        {
+            case 0:
+                GameManager.instance.inventory.Add_Inventory("Warrior", 1);
+                break;
+            case 1:
+                GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
+                break;
+            case 2:
+                GameManager.instance.inventory.Add_Inventory("Lancer", 1);
+                break;
+            case 3:
+                GameManager.instance.inventory.Add_Inventory("Tanker", 1);
+                break;
+            case 4:
+                GameManager.instance.inventory.Add_Inventory("Buffer", 1);
+                break;
+            case 5:
+                GameManager.instance.inventory.Add_Inventory("Archer", 1);
+                break;
+        }
+    }
+
+    public GameObject SpawnAlly(AllyKind allyKind,int rating)
     {
         var unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
         GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
         Debug.Log("SpawnAlly");
+
+        return unit.gameObject;
     }
-    public void SpawnAlly(AllyKind allyKind, int rating, Tile tile)
+    public GameObject SpawnAlly(AllyKind allyKind, int rating, Tile tile)
     {
+        Unit unit = null;
         if (allyKind != AllyKind.ITEM)
         {
-            var unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
+            unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
+            Debug.Log(unit);
             GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
+         
         }
         else
         {
-            GoogleSheetManager.instance.Barrier.SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
+            unit = GoogleSheetManager.instance.Barrier.SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
         }
+
         Debug.Log("SpawnAlly");
+        return unit.gameObject;
     }
     public void SpawnItem(GameObject go, Tile tile)
     {

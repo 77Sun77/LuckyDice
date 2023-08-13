@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class PawnPlacementManager : MonoBehaviour
 {
@@ -54,7 +55,6 @@ public class PawnPlacementManager : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
             {
                 Touch(true);
-                
             }
         }
 
@@ -125,7 +125,7 @@ public class PawnPlacementManager : MonoBehaviour
                         break;
                     }
                 }
-
+                #region
                 /*
                 if (go && !ObjTemp)
                 {
@@ -137,7 +137,7 @@ public class PawnPlacementManager : MonoBehaviour
                     Disable = true;
                     ObjTemp = null;
                 }*/
-
+                #endregion
                 if (ObjTemp && go != ObjTemp)
                 {
                     if (go)
@@ -162,8 +162,13 @@ public class PawnPlacementManager : MonoBehaviour
                 tile.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, 0);
                 tile.GetComponent<SpriteRenderer>().enabled = false;
                 tile.IsTable = true;
-                GameObject go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) go.GetComponent<Ally>().Rating = contents.Rating;
+
+                GameObject go;
+                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) go = SpawnUnitByName(contents.objectType, contents.Rating, tile);
+                else go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+
+                Debug.Log("SetSelectPawn");
+
                 Pawn pawn = go.GetComponent<Pawn>();
                 pawn.tempTile = tile;
                 createObj.Add(tile.gameObject);
@@ -264,11 +269,16 @@ public class PawnPlacementManager : MonoBehaviour
                 else if (isItem && ObjTemp.GetComponent<Inventory_Prefab>().prefab.GetComponent<Item>().itemKind == Item.ItemKind.CharacterMove && !tileTemp.GetComponent<Tile>().Ally) return;
 
                 Inventory_Prefab contents = ObjTemp.GetComponent<Inventory_Prefab>();
-                GameObject go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) go.GetComponent<Ally>().Rating = contents.Rating;
+                
+                
+                
+                GameObject go = null;
+                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) Debug.Log("SpawnUnitByName");/*go = SpawnUnitByName(contents.objectType, contents.Rating,)*/
+                else go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+
                 Pawn pawn = go.GetComponent<Pawn>();
                 //pawn.MoveToTargetTile(tileTemp.GetComponent<Tile>());
-                
+
                 createObj.Add(pawn.gameObject);
                 selectPawn = pawn;
                 selectPawn.Set_PastTile();
@@ -406,4 +416,10 @@ public class PawnPlacementManager : MonoBehaviour
         target.transform.position = origin.transform.position;
         ClearVars();
     }
+
+    GameObject SpawnUnitByName(string unitName,int rating,Tile tile)
+    {
+       return AllyGenerator.instance.SpawnAlly((AllyKind)Enum.Parse(typeof(AllyKind), unitName), rating,tile);
+    }
+
 }

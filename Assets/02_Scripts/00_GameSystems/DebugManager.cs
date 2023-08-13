@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class DebugManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> Inventory_Prefabs;
+    
+    public bool IsDebugEnemySpawning
+    {
+        get 
+        { 
+            return isDebugEnemySpawning; 
+        }
+        set
+        {
+            Debug.Log("Changed");
+            isDebugEnemySpawning = value;
+        }
+    }
+        
+    private bool isDebugEnemySpawning;
+
+    int ranNum;
+
+
+    private void Update()
     {
         
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

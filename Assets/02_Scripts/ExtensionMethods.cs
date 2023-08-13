@@ -37,7 +37,7 @@ public static class ExtensionMethods
         if (!isEnemy)
         {
             if (!istouchSpawn) PawnPlacementManager.instance.createObj.Add(go);
-            Debug.Log(tile.Ally == go);
+            //Debug.Log(tile.Ally == go);
             PawnPlacementManager.instance.Set_Target(go);
             unit.enabled = false;
         }

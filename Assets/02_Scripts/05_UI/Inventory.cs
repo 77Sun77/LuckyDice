@@ -20,7 +20,8 @@ public class Inventory : MonoBehaviour
         {
             if(go.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Unit)
             {
-                for(int i=1; i<=3;i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
+                //for(int i=1; i<=3;i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
+                
             }
             else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
         }
@@ -37,7 +38,7 @@ public class Inventory : MonoBehaviour
         SetSize();
 
 
-        
+        if(Input.GetKeyDown(KeyCode.M)) Add_Inventory("Warrior", 1);
     }
 
     void SetSize()

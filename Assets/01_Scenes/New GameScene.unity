@@ -7965,19 +7965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d0c717bd4f7b1448ce82bff40f20f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefabs:
-  - {fileID: 7696597218292851334, guid: 73629890c7f06b74db5a1725b7a049f3, type: 3}
-  - {fileID: 7696597218292851334, guid: eebe5fc5f1702614a9107d613365f00a, type: 3}
-  - {fileID: 7154396063005979274, guid: 85c8671b26f26d8499345b47c984fbe7, type: 3}
-  - {fileID: 7154396063005979274, guid: a871e738524eae844993db37c0e3d605, type: 3}
-  - {fileID: 5124941803456547265, guid: c4b03150a8730934ea59a46ecffab1b2, type: 3}
-  - {fileID: 5124941803456547265, guid: 9ec9e56e3adc1e2459991231fe5d849e, type: 3}
-  - {fileID: 7647019490625122931, guid: a5ddc43a361c88245bf681d7c1ed51ad, type: 3}
-  - {fileID: 7647019490625122931, guid: af2711241162f1a4b978899d563ce03d, type: 3}
-  - {fileID: 1953436954116349608, guid: b33d317cafee8d6418283f82cd825e2d, type: 3}
-  - {fileID: 1953436954116349608, guid: 2b3c98377943100459c655c0869ddfcd, type: 3}
-  - {fileID: 5161478708710330670, guid: b5a510a7f72d23942bfcd3c5f86b0587, type: 3}
-  - {fileID: 5161478708710330670, guid: 9d127955ad57edd4db63ffa6c0e22d31, type: 3}
 --- !u!1 &573465351
 GameObject:
   m_ObjectHideFlags: 0
@@ -11512,7 +11499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &873855557
 RectTransform:
   m_ObjectHideFlags: 0

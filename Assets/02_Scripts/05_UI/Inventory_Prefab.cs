@@ -20,6 +20,10 @@ public class Inventory_Prefab : MonoBehaviour
     public Dice_Kind d_Kind;
 
     GameObject img;
+
+    // Ally Àü¿ë
+    public bool isSynthesis;
+    public List<GameObject> SynthesisUnits;
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick_Btn);
@@ -57,6 +61,24 @@ public class Inventory_Prefab : MonoBehaviour
 
         if (PawnPlacementManager.instance.ObjTemp == gameObject) img.SetActive(true);
         else img.SetActive(false);
+
+        if (isSynthesis)
+        {
+            isSynthesis = SynthesisUnits.Count == 3 ? true : false;
+            foreach(GameObject go in SynthesisUnits)
+            {
+                if (go == null)
+                {
+                    isSynthesis = false;
+                    break;
+                }
+            }
+            
+        }
+        else 
+        {
+            SynthesisUnits.Clear();
+        }
     }
 
     public void OnClick_Btn()

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Ally : Unit
 {
     public AllyKind allyKind;
-    public bool isMove;
+    public bool isMove, isSynthesis;
+    public List<GameObject> SynthesisUnits;
     [HideInInspector]
     public SynthesisIcon synthesis;
 
@@ -120,5 +121,20 @@ public class Ally : Unit
         this.maxHP += maxHP;
         this.damage += damage;
         this.defense += defense;
+    }
+
+    protected override void Update()
+    {
+        if (isSynthesis)
+        {
+            isSynthesis = SynthesisUnits.Count == 3 ? true : false;
+        }
+        else
+        {
+            SynthesisUnits.Clear();
+        }
+
+
+        base.Update();
     }
 }

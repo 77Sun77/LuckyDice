@@ -18,33 +18,11 @@ public class UnitSynthesis : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            
-        }
-        /*
-        for (int i = 0; i < 6; i++)
-        {
-            units[i].Clear();
-        }
-        GameObject[] unitsGO = GameObject.FindGameObjectsWithTag("Unit");
-        foreach (GameObject go in unitsGO)
-        {
-            Ally unit = go.GetComponent<Ally>();
-            if (unit.unitKind == AllyKind.Warrior) units[0].Add(unit);
-            else if (unit.unitKind == AllyKind.Sorcerer) units[1].Add(unit);
-            else if (unit.unitKind == AllyKind.Debuffer) units[2].Add(unit);
-            else if (unit.unitKind == AllyKind.Tanker) units[3].Add(unit);
-            else if (unit.unitKind == AllyKind.Buffer) units[4].Add(unit);
-            else units[5].Add(unit);
-        }
-        foreach (List<Ally> units in this.units)
-        {
-            Synthesis(units);
-        }*/
-        Search();
+        
+        //Search();
+        //Search(true);
     }
-    public void Search()
+    public void Search(bool isAuto = false)
     {
         for(int n = 0; n<3; n++)
         {
@@ -57,8 +35,7 @@ public class UnitSynthesis : MonoBehaviour
 
             foreach (GameObject go in unitsGO)
             {
-                print(unitsGO.Count);
-                if (!go.GetComponent<Ally>()) break;
+                if (!go.GetComponent<Ally>() || go.GetComponent<Pawn>().pastTile.IsTable) break;
                 Ally unit = go.GetComponent<Ally>();
                 if (unit.Rating != n + 1 || unit.isSynthesis) continue;
                 units[ReturnIndex(unit.allyKind)].Add(unit.gameObject);
@@ -74,22 +51,44 @@ public class UnitSynthesis : MonoBehaviour
 
             }
 
+
             foreach(List<GameObject> go in units)
             {
                 if (go.Count >= 3)
                 {
                     List<GameObject> objects = go.GetRange(0, 3);
-                    foreach(GameObject g in objects)
+                    
+                    string allyName = objects[0].GetComponent<Ally>() ? objects[0].GetComponent<Ally>().allyKind.ToString() : objects[0].GetComponent<Inventory_Prefab>().objectType;
+                    int Rating = objects[0].GetComponent<Ally>() ? objects[0].GetComponent<Ally>().Rating : objects[0].GetComponent<Inventory_Prefab>().Rating;
+                    if (Rating == 3) break;
+                    if (isAuto) GameManager.instance.inventory.Add_Inventory(allyName, Rating+1);
+                    foreach (GameObject g in objects)
                     {
                         if (g.GetComponent<Ally>())
                         {
-                            g.GetComponent<Ally>().SynthesisUnits = objects;
-                            g.GetComponent<Ally>().isSynthesis = true;
+                            if (isAuto)
+                            {
+                                Destroy(g);
+                            }
+                            else
+                            {
+                                g.GetComponent<Ally>().SynthesisUnits = objects;
+                                g.GetComponent<Ally>().isSynthesis = true;
+                            }
+
                         }
                         else
                         {
-                            g.GetComponent<Inventory_Prefab>().SynthesisUnits = objects;
-                            g.GetComponent<Inventory_Prefab>().isSynthesis = true;
+                            if (isAuto)
+                            {
+                                Destroy(g);
+                                GameManager.instance.inventory.Delete_Inventory(g);
+                            }
+                            else
+                            {
+                                g.GetComponent<Inventory_Prefab>().SynthesisUnits = objects;
+                                g.GetComponent<Inventory_Prefab>().isSynthesis = true;
+                            }
                         }
                     }
                 } 

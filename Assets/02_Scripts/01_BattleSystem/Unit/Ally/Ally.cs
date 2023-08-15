@@ -72,12 +72,16 @@ public class Ally : Unit
 
     public void SpawnSynthesis()
     {
-        GameObject canvas = GameObject.Find("Canvas");
-        GameObject go = Instantiate(UIManager.instance.SysthesisIcon_Prefab, canvas.transform);
-        go.name = $"{transform.name} Synthesis Icon";
+        if (!synthesis)
+        {
+            GameObject canvas = GameObject.Find("Canvas");
+            GameObject go = Instantiate(UIManager.instance.SysthesisIcon_Prefab, canvas.transform);
+            go.name = $"{transform.name} Synthesis Icon";
 
-        synthesis = go.GetComponent<SynthesisIcon>();
-        synthesis.Initialize_SynthesisIcon(this);
+            synthesis = go.GetComponent<SynthesisIcon>();
+            synthesis.Initialize_SynthesisIcon(this);
+        }
+        
     }
     public void DestroySynthesis()
     {
@@ -128,12 +132,22 @@ public class Ally : Unit
         if (isSynthesis)
         {
             isSynthesis = SynthesisUnits.Count == 3 ? true : false;
+            foreach (GameObject go in SynthesisUnits)
+            {
+                if (go == null)
+                {
+                    isSynthesis = false;
+                    break;
+                }
+            }
+
+            SpawnSynthesis();
         }
         else
         {
             SynthesisUnits.Clear();
+            DestroySynthesis();
         }
-
 
         base.Update();
     }

@@ -19,7 +19,7 @@ public class UnitSynthesis : MonoBehaviour
     void Update()
     {
         
-        //Search();
+        Search();
         //Search(true);
     }
     public void Search(bool isAuto = false)

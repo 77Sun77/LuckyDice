@@ -24,6 +24,8 @@ public class Inventory_Prefab : MonoBehaviour
     // Ally Àü¿ë
     public bool isSynthesis;
     public List<GameObject> SynthesisUnits;
+
+    SynthesisIcon synthesis;
     private void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick_Btn);
@@ -65,7 +67,7 @@ public class Inventory_Prefab : MonoBehaviour
         if (isSynthesis)
         {
             isSynthesis = SynthesisUnits.Count == 3 ? true : false;
-            foreach(GameObject go in SynthesisUnits)
+            foreach (GameObject go in SynthesisUnits)
             {
                 if (go == null)
                 {
@@ -73,11 +75,13 @@ public class Inventory_Prefab : MonoBehaviour
                     break;
                 }
             }
-            
+
+            SpawnSynthesis();
         }
-        else 
+        else
         {
             SynthesisUnits.Clear();
+            DestroySynthesis();
         }
     }
 
@@ -108,5 +112,28 @@ public class Inventory_Prefab : MonoBehaviour
         if (GameManager.instance.inventory.inventoryCount == 15) return;
         prefab.SetActive(true);
         UIManager.instance.UI.SetActive(false);
+    }
+
+    public void SpawnSynthesis()
+    {
+        if (!synthesis)
+        {
+            GameObject canvas = GameObject.Find("Canvas");
+            GameObject go = Instantiate(UIManager.instance.SysthesisIcon_Prefab, canvas.transform);
+            go.name = $"{transform.name} Synthesis Icon";
+
+            synthesis = go.GetComponent<SynthesisIcon>();
+            synthesis.Initialize_SynthesisIcon(_obj:this);
+        }
+
+    }
+    public void DestroySynthesis()
+    {
+        if (synthesis)
+        {
+            Destroy(synthesis.gameObject);
+            synthesis = null;
+        }
+
     }
 }

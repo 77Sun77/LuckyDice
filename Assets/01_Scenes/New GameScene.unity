@@ -17937,6 +17937,7 @@ MonoBehaviour:
   Barrier: {fileID: 1225308598808450655, guid: a1c778e48e2837545a358e42d591a354, type: 3}
   CharMove: {fileID: 815596187179623110, guid: 62c3c4ea7459e0745934bc1a0718c88a, type: 3}
   IsForYejun: 0
+  IsParsingDone: 0
 --- !u!1 &1377017855
 GameObject:
   m_ObjectHideFlags: 0
@@ -19398,6 +19399,8 @@ MonoBehaviour:
   InputNum: 0
   ModifiedInput: 0
   TheNumberOfDice: 0
+  IsDebuggingMode: 0
+  DebugNum: 0
 --- !u!1 &1500109690
 GameObject:
   m_ObjectHideFlags: 0

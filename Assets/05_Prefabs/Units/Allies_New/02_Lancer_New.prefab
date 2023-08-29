@@ -394,13 +394,15 @@ MonoBehaviour:
   hPBar: {fileID: 0}
   allyKind: 2
   isMove: 0
+  isSynthesis: 0
+  SynthesisUnits: []
   synthesis: {fileID: 0}
   AOERange: []
   curAtkCount: 0
-  RangeAtkDelay: 0
-  KnockBackValue: 0
-  RangeAtkTickDelay: 0
-  RangeAtkDuration: 0
+  RangeAtkDelay: 2
+  KnockBackValue: 2
+  RangeAtkTickDelay: 0.1
+  RangeAtkDuration: 1.5
 --- !u!114 &6434187431763836486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +420,7 @@ MonoBehaviour:
   IsOverCenter: 0
   IsGrabbed: 0
   IsMoveGrid: 1
+  firstSetting: 0
   X: 0
   Y: 0
   isSearch: 0

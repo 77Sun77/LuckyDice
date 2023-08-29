@@ -75,7 +75,7 @@ public class AllyGenerator : MonoBehaviour
     {
         TheNumberOfDice--;
 
-        int randomInt = Random.Range(-1,2);
+        int randomInt = /*Random.Range(-1,2)*/0;
         ModifiedInput = InputNum + randomInt;
 
         if (ModifiedInput == -1)
@@ -113,7 +113,7 @@ public class AllyGenerator : MonoBehaviour
                 GameManager.instance.inventory.Add_Inventory("Tanker", 1);
                 break; 
             case UnitList_Store.Èú·¯:
-                GameManager.instance.inventory.Add_Inventory("Healer", 1);
+                GameManager.instance.inventory.Add_Inventory("Buffer", 1);
                 break;
             case UnitList_Store.¾ÆÃ³:
                 GameManager.instance.inventory.Add_Inventory("Archer", 1);

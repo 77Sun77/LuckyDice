@@ -102,7 +102,9 @@ public class PawnPlacementManager : MonoBehaviour
         if (selectPawn)
         {
             GrabPawn();
+            if (Input.GetKeyDown(KeyCode.Mouse1)) Destroy(selectPawn.gameObject);
         }
+
     }
 
     void SetSelectPawn()
@@ -205,15 +207,15 @@ public class PawnPlacementManager : MonoBehaviour
             selectTarget = raycastHit.collider.transform.gameObject;
 
 
-            if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
-            {
-                if (unit.isMove || (unit.GetComponent<Pawn>().pastTile && unit.GetComponent<Pawn>().pastTile.IsTable))
-                {
-                    unit.isMove = false;
-                }
-                else // 제한시 주석 해제
-                    return;
-            }
+            //if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
+            //{
+            //    if (unit.isMove || (unit.GetComponent<Pawn>().pastTile && unit.GetComponent<Pawn>().pastTile.IsTable))
+            //    {
+            //        unit.isMove = false;
+            //    }
+            //    else // 제한시 주석 해제
+            //        return;
+            //}
 
             if (selectTarget.TryGetComponent(out Pawn pawn)) selectPawn = pawn;
             else selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();

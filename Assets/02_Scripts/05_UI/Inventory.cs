@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour
                 //for(int i=1; i<=3;i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
                 
             }
-            else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
+            //else Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
         }
         //foreach (GameObject go in prefabs) // 테스트용
         //{

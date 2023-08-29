@@ -210,7 +210,7 @@ public class EnemyGenerator : MonoBehaviour
 
     public void StartGame()
     {
-        StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
+        if(!IsDebuggingMode) StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
         CurWaveIndex++;
         //StartCoroutine(EndWave_Cor());
     }

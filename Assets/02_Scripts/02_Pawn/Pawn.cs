@@ -132,10 +132,7 @@ public class Pawn : MonoBehaviour
         if (IsEnemy) Set_CurTile(); //Enemy는 자동이동을 함으로 자동 갱신,Unit은 클릭에 의해서 갱신
 
         CheckCenter();
-        RangeView();
-
-
-
+        if(!IsEnemy) RangeView();
     }
 
     public void Set_CurTile()
@@ -154,7 +151,7 @@ public class Pawn : MonoBehaviour
             Y = curTile.Y;
 
         }
-        else Debug.Log("None Obj");
+        //else Debug.Log("None Obj");
     }
 
     public void Set_PastTile()

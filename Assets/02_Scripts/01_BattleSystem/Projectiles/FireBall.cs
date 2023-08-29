@@ -25,6 +25,11 @@ public class FireBall : Projectile
 
     public override void OnAttack(Enemy enemy)
     {
+        if (HitEnemy.Contains(enemy))
+            return;
+
+        HitEnemy.Add(enemy);
+
         enemy.explosionStack++;
         enemy.GetSlow(SlowValue, SlowDuration);
 

@@ -57,7 +57,7 @@ public class UnitSynthesis : MonoBehaviour
 
             foreach (GameObject go in unitsGO)
             {
-                print(unitsGO.Count);
+                //print(unitsGO.Count);
                 if (!go.GetComponent<Ally>()) break;
                 Ally unit = go.GetComponent<Ally>();
                 if (unit.Rating != n + 1 || unit.isSynthesis) continue;

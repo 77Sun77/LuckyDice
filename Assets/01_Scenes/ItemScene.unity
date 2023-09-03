@@ -236,7 +236,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &37930984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -635,7 +637,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &146838242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -899,7 +903,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &217147320
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1028,7 +1034,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &225015766
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1157,7 +1165,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &233309391
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1286,7 +1296,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &236515999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1512,7 +1524,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &269517917
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1641,7 +1655,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &294421748
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1770,7 +1786,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &305228453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1945,7 +1963,6 @@ MonoBehaviour:
   - {fileID: 257893174279120274, guid: ad2d8eb016016264fb713111334304a3, type: 3}
   CurWaveIndex: 0
   spawnX: 11
-  SpawnedEnemies: []
 --- !u!1001 &333768381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2188,7 +2205,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &348923160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2317,7 +2336,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &355359094
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2513,7 +2534,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &383311788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2642,7 +2665,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &401174528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2771,7 +2796,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &421332716
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2900,7 +2927,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &459729136
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3261,7 +3290,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &493258188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3390,7 +3421,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &546740944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3519,7 +3552,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &557911406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3648,7 +3683,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &566485461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3735,8 +3772,14 @@ MonoBehaviour:
   us: {fileID: 571522659}
   pg: {fileID: 1497752898}
   unitNumber: 000000000000000000000000000000000000000000000000
+  unitUpgrade: 000000000000000000000000000000000000000000000000
   money: 0
   IsInBattle: 0
+  SpawnedAllies: []
+  SpawnedEnemies: []
+  inventory: {fileID: 0}
+  dice_Inventory: {fileID: 0}
+  isStart: 0
 --- !u!4 &571522658
 Transform:
   m_ObjectHideFlags: 0
@@ -3764,19 +3807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d0c717bd4f7b1448ce82bff40f20f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefabs:
-  - {fileID: 7696597218292851334, guid: 73629890c7f06b74db5a1725b7a049f3, type: 3}
-  - {fileID: 7696597218292851334, guid: eebe5fc5f1702614a9107d613365f00a, type: 3}
-  - {fileID: 7154396063005979274, guid: 85c8671b26f26d8499345b47c984fbe7, type: 3}
-  - {fileID: 7154396063005979274, guid: a871e738524eae844993db37c0e3d605, type: 3}
-  - {fileID: 5124941803456547265, guid: c6c35a9986e5a934287d197379e5ba43, type: 3}
-  - {fileID: 5124941803456547265, guid: 98205d778038fc14b9baa0d5c8d5d344, type: 3}
-  - {fileID: 7647019490625122931, guid: a5ddc43a361c88245bf681d7c1ed51ad, type: 3}
-  - {fileID: 7647019490625122931, guid: af2711241162f1a4b978899d563ce03d, type: 3}
-  - {fileID: 1953436954116349608, guid: b33d317cafee8d6418283f82cd825e2d, type: 3}
-  - {fileID: 1953436954116349608, guid: 2b3c98377943100459c655c0869ddfcd, type: 3}
-  - {fileID: 5161478708710330670, guid: b5a510a7f72d23942bfcd3c5f86b0587, type: 3}
-  - {fileID: 5161478708710330670, guid: 9d127955ad57edd4db63ffa6c0e22d31, type: 3}
 --- !u!1 &573465351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,7 +3959,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &609041062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4058,7 +4090,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &612840282
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4187,7 +4221,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &622306908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4452,7 +4488,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &669856528
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4731,7 +4769,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &738790508
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4917,7 +4957,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &820727874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5079,7 +5121,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &853113835
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5282,7 +5326,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &898519128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5442,7 +5488,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &931147540
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5756,7 +5804,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1002219781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5999,7 +6049,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1050364620
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6233,7 +6285,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1111889843
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6460,7 +6514,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1137494037
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6589,7 +6645,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1137854971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6719,6 +6777,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP_Txt: {fileID: 461604150}
   Gold_Txt: {fileID: 147448705}
+  HPBar_Prefab: {fileID: 0}
+  SysthesisIcon_Prefab: {fileID: 0}
+  UI: {fileID: 0}
+  fade: {fileID: 0}
+  startBtn: {fileID: 0}
+  startTxt: {fileID: 0}
+  allyDiceControl: {fileID: 0}
+  itemDiceControl: {fileID: 0}
+  Blind: {fileID: 0}
+  MapMask: {fileID: 0}
+  UI_Mat: {fileID: 0}
 --- !u!1 &1198020249
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,7 +6864,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1198020253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6953,11 +7024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b064e1c6be352954b9b46c15fe86e331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllyDice: {fileID: 7820702717522260758, guid: 899d154248e108e408082de6a47c1929, type: 3}
-  ItemDice: {fileID: 935290345039073736, guid: bd622336797724f4d901a6b54114fff2, type: 3}
-  MaxTorqueScale: 10
   number: 0
-  count: 0
   AllyDices:
   - {fileID: 7820702717522260758, guid: 463f8cd7f62cd2d4a9cd8bef3a6b0240, type: 3}
   - {fileID: 7820702717522260758, guid: 0341211f1dd34064aa07e5a547c6380b, type: 3}
@@ -7046,7 +7113,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1258959420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7175,7 +7244,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1279340743
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7304,7 +7375,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1325066215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7433,7 +7506,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1326937384
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7562,7 +7637,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1340763033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7691,7 +7768,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1342314927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7822,6 +7901,7 @@ MonoBehaviour:
   Barrier: {fileID: 1225308598808450655, guid: a1c778e48e2837545a358e42d591a354, type: 3}
   CharMove: {fileID: 815596187179623110, guid: 62c3c4ea7459e0745934bc1a0718c88a, type: 3}
   IsForYejun: 0
+  IsParsingDone: 0
 --- !u!1 &1382779482
 GameObject:
   m_ObjectHideFlags: 0
@@ -7898,7 +7978,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1382779486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8405,7 +8487,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1454787427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8534,7 +8618,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1456954268
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8621,19 +8707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6508f3da35ce09d418db059c248ad66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitPrefabs:
-  - {fileID: 7696597218292851334, guid: b3b6fcb2074e2ec4e97542a5908ed4a8, type: 3}
-  - {fileID: 7154396063005979274, guid: 25651b9de4009d142b1d7235853606e0, type: 3}
-  - {fileID: 5124941803456547265, guid: cfe65c47910ad2e42add18d3a3f30d36, type: 3}
-  - {fileID: 7647019490625122931, guid: c600dbbb59c9a9343983115c56d18712, type: 3}
-  - {fileID: 1953436954116349608, guid: 1caf98f5526481046a8eca97dfbee917, type: 3}
-  - {fileID: 5161478708710330670, guid: ce18b2061e812314aa116c24d69a6214, type: 3}
-  UnitSpawn_Tf: {fileID: 1453006439}
-  Store: 
-  InputNum: 0
-  ModifiedInput: 0
-  TheNumberOfDice: 0
-  SpawnedAllies: []
 --- !u!4 &1497752899
 Transform:
   m_ObjectHideFlags: 0
@@ -8725,7 +8798,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 0
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1500109694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9071,7 +9146,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1711008982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9200,7 +9277,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1711996179
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9362,7 +9441,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1735378711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9491,7 +9572,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1735830688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9620,7 +9703,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1749851908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9749,7 +9834,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1757453198
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9878,7 +9965,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1765921464
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10007,7 +10096,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1776363927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10136,7 +10227,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1804898142
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10265,7 +10358,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1806144238
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10394,7 +10489,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1817318479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10822,7 +10919,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1898928735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10951,7 +11050,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1918536033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11080,7 +11181,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1967870461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11275,7 +11378,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &1992240357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11360,7 +11465,14 @@ MonoBehaviour:
   selectTarget: {fileID: 0}
   selectPawn: {fileID: 0}
   IsHoldingMouse: 0
+  isInventoryHold: 0
+  isActive: 0
   DebugObj: {fileID: 0}
+  canvas: {fileID: 0}
+  gr: {fileID: 0}
+  es: {fileID: 0}
+  ObjTemp: {fileID: 0}
+  createObj: []
 --- !u!4 &2010208508
 Transform:
   m_ObjectHideFlags: 0
@@ -11452,7 +11564,9 @@ MonoBehaviour:
   EnemyList: []
   IsTable: 0
   CanPlacement: 1
+  EnemySpawn: 0
   originColor: {r: 0, g: 0, b: 0, a: 0}
+  item: {fileID: 0}
 --- !u!212 &2017166278
 SpriteRenderer:
   m_ObjectHideFlags: 0

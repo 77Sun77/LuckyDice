@@ -7,18 +7,15 @@ public class DiceManager : MonoBehaviour
     public static DiceManager instance;
 
     public int number;
+    public int TheNumberOfDice;
 
     public GameObject[] AllyDices, ItemDices;
     void Start()
     {
         instance = this;
+        //GameManager.instance.OnWaveEnd += 
     }
-    void Update()
-    {
-
-    }
-    
-
+   
     public void DiceControl(int number, DiceRotation.DIceKind _DiceKind)
     {
         this.number = number-1;

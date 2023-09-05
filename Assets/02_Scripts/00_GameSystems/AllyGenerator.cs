@@ -12,9 +12,6 @@ public class AllyGenerator : MonoBehaviour
     public UnitList_Store[] Store;
     public enum UnitList_Store {Àü»ç,¸¶¹ý»ç,·£¼­,ÅÊÄ¿,Èú·¯,¾ÆÃ³,ÆÈ¸²};
     public int InputNum;
-    public int ModifiedInput;
-
-    public int TheNumberOfDice;
 
     public bool IsDebuggingMode;
     public int DebugNum;
@@ -26,6 +23,11 @@ public class AllyGenerator : MonoBehaviour
         ResetStore();
     }
 
+    private void Start()
+    {
+        GameManager.instance.OnWaveEnd += OnEndWave_Store;
+    }
+
     private void Update()
     {
         IsDebuggingMode = Input.GetKey(KeyCode.LeftShift);
@@ -33,7 +35,7 @@ public class AllyGenerator : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Roll();
+            //Roll();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -69,36 +71,21 @@ public class AllyGenerator : MonoBehaviour
             int randomInt = Random.Range(0, 6);
             Store.SetValue(randomInt,i);
         }
+        UIManager.instance.SetStoreImg();
     }
 
-    void Roll()
+    public void Roll(int inputNum)
     {
-        TheNumberOfDice--;
-
-        int randomInt = /*Random.Range(-1,2)*/0;
-        ModifiedInput = InputNum + randomInt;
-
-        if (ModifiedInput == -1)
-        {
-            ModifiedInput = 5;
-        }
-        else if(ModifiedInput == 6)
-        {
-            ModifiedInput = 0;
-        }
-        
-        if(Store[ModifiedInput]==UnitList_Store.ÆÈ¸²)
+        //inputNum--;
+        DiceManager.instance.TheNumberOfDice--;
+  
+        if(Store[inputNum] ==UnitList_Store.ÆÈ¸²)
         {
             Debug.Log("²Î");
             return;
         }
 
-        //GameObject go = Instantiate(UnitPrefabs[(int)Store[ModifiedInput]],UnitSpawn_Tf);
-        //go.GetComponent<Pawn>().MoveToTargetTile(TileManager.Instance.GetTableEmptySlot());
-        //var allyKind = UnitPrefabs[(int)Store[ModifiedInput]].GetComponent<Ally>().allyKind;
-        //SpawnAlly(allyKind, 1);
-
-        switch (Store[ModifiedInput])
+        switch (Store[inputNum])
         {
             case UnitList_Store.Àü»ç:
                 GameManager.instance.inventory.Add_Inventory("Warrior",1);
@@ -122,7 +109,14 @@ public class AllyGenerator : MonoBehaviour
                 break;
         }
 
-        Store.SetValue(UnitList_Store.ÆÈ¸², ModifiedInput);
+        Store.SetValue(UnitList_Store.ÆÈ¸², inputNum);
+        UIManager.instance.SetStoreImg();
+        if (DiceManager.instance.TheNumberOfDice == 0)
+        {
+            UIManager.instance.UnActive_StorePanel();
+            UIManager.instance.ResetUI();
+        }
+
     }
 
     void Roll_Debug()
@@ -191,9 +185,10 @@ public class AllyGenerator : MonoBehaviour
 
         Debug.Log("Roll");
     }
+
     void OnEndWave_Store()//³ªÁß¿¡ WaveManagerÀÇ event·Î Ãß°¡
     {
-        TheNumberOfDice += 2;
+        DiceManager.instance.TheNumberOfDice += 2;
         ResetStore();
     }
 

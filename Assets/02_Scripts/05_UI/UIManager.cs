@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -24,16 +25,23 @@ public class UIManager : MonoBehaviour
 
     public GameObject Blind, MapMask;
     public Material UI_Mat;
+
+    [Header("Store")]
+    public GameObject StorePanel;
+    public Sprite[] StoreImg;
+    public Image[] StoreSlots;
+    int StoreNum;
+    public bool IsStorePanelOn;
+
     private void Awake()
     {
         instance = this;
 
         startText = startTxt.GetComponent<TextMeshProUGUI>();
-
-        
     }
     private void Start()
     {
+        Initialize_Store();
         GameManager.instance.OnWaveStart += StartGame;
         GameManager.instance.OnWaveEnd += EndGame;
     }
@@ -67,6 +75,38 @@ public class UIManager : MonoBehaviour
 
     public void Invoke_ResetUI() // 나중에 얻은 아이템 띄우는 함수로 교체
     {
-        Invoke("ResetUI", 4);
+        Invoke(nameof(ResetUI), 4);
     }
+
+    public void Initialize_Store()
+    {
+        SetStoreImg();
+        GameManager.instance.OnWaveEnd += Active_StorePanel;
+    }
+
+    public void Active_StorePanel()
+    {
+        IsStorePanelOn = true;
+        StorePanel.SetActive(true);
+        SetStoreImg();
+    }
+    
+    public void UnActive_StorePanel()
+    {
+        IsStorePanelOn = false;
+        StorePanel.SetActive(false);
+    }
+    /// <summary>
+    /// 상점의 이미지 재설정
+    /// </summary>
+    public void SetStoreImg()
+    {
+        for (int i = 0; i < StoreSlots.Length; i++)
+        {
+            int imgNum = (int)AllyGenerator.instance.Store[i];
+
+            StoreSlots[i].sprite = StoreImg[imgNum];
+        }
+    }
+
 }

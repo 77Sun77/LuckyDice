@@ -9,8 +9,10 @@ public class DiceControl : MonoBehaviour
     public Image fillImage;
 
     float value;
+    public float Value_A, Value_B;
 
     bool valueUp, enable;
+
     void OnEnable()
     {
         value = 0;
@@ -23,10 +25,31 @@ public class DiceControl : MonoBehaviour
     {
         if (enable)
         {
-            fillImage.fillAmount = value;
+            #region
+            //fillImage.fillAmount = value;
+            //if (valueUp)
+            //{
+            //    value += Time.deltaTime * 1;
+            //    if (value >= 1)
+            //    {
+            //        value = 1;
+            //        valueUp = false;
+            //    }
+            //}
+            //else
+            //{
+            //    value -= Time.deltaTime * 1;
+            //    if (value <= 0)
+            //    {
+            //        value = 0;
+            //        valueUp = true;
+            //    }
+            //}
+            #endregion
+
             if (valueUp)
             {
-                value += Time.deltaTime * 1;
+                value += (Value_A + value / Value_B)*Time.deltaTime;
                 if (value >= 1)
                 {
                     value = 1;
@@ -35,20 +58,21 @@ public class DiceControl : MonoBehaviour
             }
             else
             {
-                value -= Time.deltaTime * 1;
+                value -= (Value_A + value / Value_B) * Time.deltaTime;
                 if (value <= 0)
                 {
                     value = 0;
                     valueUp = true;
                 }
             }
+
+            fillImage.fillAmount = value;
         }
-        
     }
 
     public void OnClick_Ally_Btn()
     {
-        enable = false;
+        //enable = false;
         int number = 0;
         
         if (value < 0.1428571f)
@@ -80,7 +104,9 @@ public class DiceControl : MonoBehaviour
             number = 6;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Ally);
-        gameObject.SetActive(false);
+        
+        Debug.Log("DiceNumber is " + number);
+        //gameObject.SetActive(false);
     }
     public void OnClick_Item_Btn()
     {

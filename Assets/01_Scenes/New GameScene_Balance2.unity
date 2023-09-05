@@ -4322,7 +4322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f0b40e1126e94d90fe1eeb02b7c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDebuggingMode: 1
+  IsDebuggingMode: 0
   EnemySpawnNum_ForDebug: 2
   Generate_Tf: {fileID: 1151737341}
   enemyPrefabs:
@@ -7931,7 +7931,7 @@ MonoBehaviour:
   pg: {fileID: 0}
   unitNumber: 000000000000000000000000000000000000000000000000
   unitUpgrade: 000000000000000000000000000000000000000000000000
-  money: 0
+  money: 9999
   IsInBattle: 0
   SpawnedAllies: []
   SpawnedEnemies: []

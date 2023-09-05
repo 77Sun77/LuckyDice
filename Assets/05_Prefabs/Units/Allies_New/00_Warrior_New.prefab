@@ -386,8 +386,11 @@ MonoBehaviour:
   hPBar: {fileID: 0}
   allyKind: 0
   isMove: 0
+  isSynthesis: 0
+  SynthesisUnits: []
   synthesis: {fileID: 0}
-  AOERange: []
+  AOERange:
+  - {x: 1, y: 0}
   vampPercent: 0
 --- !u!114 &2393364730516908464
 MonoBehaviour:
@@ -406,6 +409,7 @@ MonoBehaviour:
   IsOverCenter: 0
   IsGrabbed: 0
   IsMoveGrid: 1
+  firstSetting: 0
   X: 0
   Y: 0
   isSearch: 0

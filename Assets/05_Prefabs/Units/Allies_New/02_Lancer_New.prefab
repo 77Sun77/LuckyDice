@@ -397,10 +397,13 @@ MonoBehaviour:
   isSynthesis: 0
   SynthesisUnits: []
   synthesis: {fileID: 0}
-  AOERange: []
+  AOERange:
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: -1}
   curAtkCount: 0
   RangeAtkDelay: 2
-  KnockBackValue: 2
+  KnockBackValue: 3
   RangeAtkTickDelay: 0.1
   RangeAtkDuration: 1.5
 --- !u!114 &6434187431763836486

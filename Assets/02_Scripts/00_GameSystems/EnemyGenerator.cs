@@ -30,14 +30,12 @@ public class EnemyGenerator : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        StartCoroutine(Initialize_EnemyGenerator());
-
     }
 
     private void Start()
     {
-
         GameManager.instance.OnWaveStart += StartGame;
+        StartCoroutine(Initialize_EnemyGenerator());
     }
 
     IEnumerator Initialize_EnemyGenerator()
@@ -54,9 +52,9 @@ public class EnemyGenerator : MonoBehaviour
         List<Dictionary<string, object>> data_Dialog = CSVReader.Read_String(data);
 
         ParseWaveInfoTable(data_Dialog);
-        DebugWaveList();
-
         yield return GameManager.instance;
+
+        DebugWaveList();
         GameManager.instance.OnWaveStart += () => { GameManager.instance.IsInBattle = true; };
         GameManager.instance.OnWaveEnd += () => { GameManager.instance.IsInBattle = false; };
     }
@@ -121,11 +119,11 @@ public class EnemyGenerator : MonoBehaviour
     {
        if (Input.GetKeyDown(KeyCode.Return))
        {
+            GameManager.instance.OnWaveStart.Invoke();
+
             if (IsDebuggingMode)
             {
                 enemyIndex = 0;
-                GameManager.instance.OnWaveStart.Invoke();
-
                 for (int i = 0; i < EnemySpawnNum_ForDebug; i++)
                 {
                     Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnLine(0), GameManager.instance.SpawnedEnemies, true);
@@ -133,12 +131,12 @@ public class EnemyGenerator : MonoBehaviour
                     enemyIndex++;
                 }
             }
-            else
-            {
-                StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
-                CurWaveIndex++;
-            }
-            StartCoroutine(EndWave_Cor());
+            //else
+            //{
+            //    StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
+            //    CurWaveIndex++;
+            //}
+            //StartCoroutine(EndWave_Cor());
         }
     }
 

@@ -184,6 +184,8 @@ MonoBehaviour:
   hPBar: {fileID: 0}
   allyKind: 4
   isMove: 0
+  isSynthesis: 0
+  SynthesisUnits: []
   synthesis: {fileID: 0}
   AOERange:
   - {x: -1, y: 1}
@@ -195,7 +197,7 @@ MonoBehaviour:
   - {x: -1, y: -1}
   - {x: 0, y: -1}
   - {x: 1, y: -1}
-  DefenseBuffValue: 0
+  DefenseBuffValue: 2
   WaveHealValue: 0
 --- !u!114 &8923402529169717202
 MonoBehaviour:
@@ -214,6 +216,7 @@ MonoBehaviour:
   IsOverCenter: 0
   IsGrabbed: 0
   IsMoveGrid: 1
+  firstSetting: 0
   X: 0
   Y: 0
   isSearch: 0

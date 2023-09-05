@@ -182,6 +182,8 @@ MonoBehaviour:
   hPBar: {fileID: 0}
   allyKind: 1
   isMove: 0
+  isSynthesis: 0
+  SynthesisUnits: []
   synthesis: {fileID: 0}
   FireBall: {fileID: 7133068110475347916, guid: 518b827a0bfa66f4fafc16db929d1df2, type: 3}
   MaxExploStack: 3
@@ -196,8 +198,8 @@ MonoBehaviour:
   - {x: 0, y: -1}
   - {x: 1, y: -1}
   explosionFCTR: 4
-  SlowValue: 0
-  SlowDuration: 0
+  SlowValue: 0.5
+  SlowDuration: 2
   MeteorRange: []
   DotDmgFCTR: 0
   DotDmgDuration: 0
@@ -219,6 +221,7 @@ MonoBehaviour:
   IsOverCenter: 0
   IsGrabbed: 0
   IsMoveGrid: 1
+  firstSetting: 0
   X: 0
   Y: 0
   isSearch: 0

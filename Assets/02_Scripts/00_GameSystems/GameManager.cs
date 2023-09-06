@@ -21,12 +21,15 @@ public class GameManager : MonoBehaviour
 
     public List<Unit> SpawnedAllies = new();
     public List<Unit> SpawnedEnemies = new();
+    public List<Ally> DeadAllies = new();
 
     public Inventory inventory;
     public Inventory dice_Inventory;
 
     public bool isStart;
 
+    public float WaveEndHealPercent;
+    public float RevivePercent;
 
     void Awake()
     {
@@ -51,6 +54,8 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < 2; i++)
                 dice_Inventory.Add_Inventory("AllyDIce");
         };
+
+        OnWaveEnd += ReviveNHealAllies;
     }
 
     private void Update()
@@ -112,4 +117,22 @@ public class GameManager : MonoBehaviour
         
         OnWaveStart.Invoke();
     }
+
+
+    public void ReviveNHealAllies()
+    {
+        foreach (var ally in SpawnedAllies)
+        {
+            ally.HealHP(ally.maxHP * WaveEndHealPercent / 100);
+        }
+
+        foreach (var ally in DeadAllies)
+        {
+            ally.pawn.AddTilePawn();
+            ally.hp = ally.maxHP * RevivePercent / 100;
+            ally.gameObject.SetActive(true);
+            SpawnedAllies.Add(ally);
+        }
+    }
+
 }

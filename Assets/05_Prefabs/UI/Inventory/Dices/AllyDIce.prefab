@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Kind: 0
   prefab: {fileID: 0}
-  objectType: AllyDice
+  objectType: AllyDIce
   Rating: 0
   d_Kind: 0
   isSynthesis: 0

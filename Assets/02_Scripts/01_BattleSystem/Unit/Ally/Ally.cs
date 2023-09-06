@@ -67,7 +67,9 @@ public class Ally : Unit
     protected override void Die()
     {
         GameManager.instance.SpawnedAllies.Remove(this);
-        base.Die();
+        GameManager.instance.DeadAllies.Add(this);
+        pawn.RemoveTilePawn();
+        gameObject.SetActive(false);
     }
 
     public void SpawnSynthesis()

@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
     {
         Initialize_Store();
         GameManager.instance.OnWaveStart += StartGame;
+        GameManager.instance.OnWaveStart += UnActive_StorePanel;
+
         GameManager.instance.OnWaveEnd += EndGame;
     }
 
@@ -52,7 +54,7 @@ public class UIManager : MonoBehaviour
         Gold_Txt.text = GameManager.instance.money.ToString();
         startText.text = "Wave " + EnemyGenerator.instance.CurWaveIndex;
 
-        if (Input.GetKeyDown(KeyCode.Tab)) Trigger_StorePanel();//»óÁ¡ ²¯´ÙÄ×´Ù
+        if (Input.GetKeyDown(KeyCode.Tab)&&!PawnPlacementManager.instance.isInventoryHold) Trigger_StorePanel();//»óÁ¡ ²¯´ÙÄ×´Ù
 
         if (IsStorePanelOn && Input.GetKeyDown(KeyCode.Escape)) UnActive_StorePanel();
             

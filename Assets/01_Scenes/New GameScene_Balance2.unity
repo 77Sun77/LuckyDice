@@ -4513,7 +4513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f0b40e1126e94d90fe1eeb02b7c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDebuggingMode: 0
+  IsDebuggingMode: 1
   EnemySpawnNum_ForDebug: 2
   Generate_Tf: {fileID: 1151737341}
   enemyPrefabs:
@@ -8203,9 +8203,12 @@ MonoBehaviour:
   IsInBattle: 0
   SpawnedAllies: []
   SpawnedEnemies: []
+  DeadAllies: []
   inventory: {fileID: 1287499888}
   dice_Inventory: {fileID: 873855558}
   isStart: 0
+  WaveEndHealPercent: 30
+  RevivePercent: 30
 --- !u!4 &571522658
 Transform:
   m_ObjectHideFlags: 0

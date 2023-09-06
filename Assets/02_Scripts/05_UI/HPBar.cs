@@ -43,6 +43,8 @@ public class HPBar : MonoBehaviour
             maxHP = unit.maxHP;
             transform.position = Camera.main.WorldToScreenPoint(unit.transform.position + HPBarOffset);
 
+            gameObject.SetActive(unit.gameObject.activeSelf);
+
         }
         else if (enemy)
         {

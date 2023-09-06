@@ -80,7 +80,7 @@ public abstract class Unit : MonoBehaviour
             Vector3 HPBarOffset = new Vector3(0, -0.6f);
             hPBar.InitializeHPBar(this, HPBarOffset);
         }
-            
+        else hPBar.gameObject.SetActive(true);
     }
 
     

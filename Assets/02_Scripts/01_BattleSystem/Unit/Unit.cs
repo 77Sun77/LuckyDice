@@ -134,7 +134,7 @@ public abstract class Unit : MonoBehaviour
         GameObject bullet = Instantiate(projectile, transform.position + new Vector3(0.5f, 0, 0), Quaternion.identity);
         bullet.GetComponent<Projectile>().SetProjectile(_damage, GetClosestTarget(targets).gameObject);//투사체 자체에서 설정할 수 있도록 바꾸기
         time = delayTime;
-        Debug.Log("Shot");
+        //Debug.Log("Shot");
         
         return bullet;
     }

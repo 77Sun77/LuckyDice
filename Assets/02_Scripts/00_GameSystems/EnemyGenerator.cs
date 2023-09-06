@@ -130,13 +130,9 @@ public class EnemyGenerator : MonoBehaviour
                     unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
                     enemyIndex++;
                 }
+
+                StartCoroutine(EndWave_Cor());
             }
-            //else
-            //{
-            //    StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
-            //    CurWaveIndex++;
-            //}
-            //StartCoroutine(EndWave_Cor());
         }
     }
 
@@ -169,7 +165,7 @@ public class EnemyGenerator : MonoBehaviour
             enemyIndex++;
         }
 
-        Func<bool> IsAllEnemyDied = () => { bool b = FindObjectsOfType<Enemy>().Length > 0; return !b; };
+        Func<bool> IsAllEnemyDied = () => { bool b = GameManager.instance.SpawnedEnemies.Count <= 0; return b; };
         yield return new WaitUntil(IsAllEnemyDied);
         GameManager.instance.OnWaveEnd.Invoke();
     }
@@ -210,7 +206,6 @@ public class EnemyGenerator : MonoBehaviour
     {
         if(!IsDebuggingMode) StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
         CurWaveIndex++;
-        //StartCoroutine(EndWave_Cor());
     }
     
 

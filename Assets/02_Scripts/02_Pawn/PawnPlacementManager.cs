@@ -177,6 +177,7 @@ public class PawnPlacementManager : MonoBehaviour
                 createObj.Add(pawn.gameObject);
                 
                 UIManager.instance.UI.SetActive(false);
+                UIManager.instance.UnActive_StorePanel();
 
                 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pawnPos_OnClick = Camera.main.ScreenToWorldPoint(ObjTemp.transform.position);

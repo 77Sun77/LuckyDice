@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour
 
     public void Add_Inventory(string objName, int Rating = 0) // 아이템과 유닛의 경우 주사위 코드에서 연결
     {
-        if(contents.childCount == inventoryCount) return; // Start에서 사용하는 인벤토리 테스트용 코드를 제한하는 디버깅 코드
+        //if(contents.childCount == inventoryCount) return; // Start에서 사용하는 인벤토리 테스트용 코드를 제한하는 디버깅 코드
 
         foreach(GameObject Prefab in prefabs)
         {

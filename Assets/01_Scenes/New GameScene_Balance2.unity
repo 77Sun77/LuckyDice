@@ -8203,6 +8203,7 @@ MonoBehaviour:
   IsInBattle: 0
   SpawnedAllies: []
   SpawnedEnemies: []
+  DeadAllies: []
   inventory: {fileID: 1287499888}
   dice_Inventory: {fileID: 873855558}
   isStart: 0
@@ -12259,7 +12260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &873855557
 RectTransform:
   m_ObjectHideFlags: 0

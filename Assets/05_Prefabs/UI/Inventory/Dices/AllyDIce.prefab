@@ -226,9 +226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Kind: 0
   prefab: {fileID: 0}
-  objectType: AllyDice
+  objectType: AllyDIce
   Rating: 0
   d_Kind: 0
+  isSynthesis: 0
+  SynthesisUnits: []
 --- !u!1 &7431315995186379530
 GameObject:
   m_ObjectHideFlags: 0

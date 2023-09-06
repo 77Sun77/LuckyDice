@@ -9086,13 +9086,16 @@ MonoBehaviour:
   pg: {fileID: 0}
   unitNumber: 000000000000000000000000000000000000000000000000
   unitUpgrade: 000000000000000000000000000000000000000000000000
-  money: 0
+  money: 90000
   IsInBattle: 0
   SpawnedAllies: []
   SpawnedEnemies: []
+  DeadAllies: []
   inventory: {fileID: 794762281}
   dice_Inventory: {fileID: 873855558}
   isStart: 0
+  WaveEndHealPercent: 0
+  RevivePercent: 0
 --- !u!4 &571522658
 Transform:
   m_ObjectHideFlags: 0

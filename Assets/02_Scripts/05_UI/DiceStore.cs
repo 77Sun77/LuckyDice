@@ -26,7 +26,7 @@ public class DiceStore : MonoBehaviour
 
     public void OnClick_Btn()
     {
-        if (price <= GameManager.instance.money && GameManager.instance.dice_Inventory.inventoryCount < 10)
+        if (price <= GameManager.instance.money && GameManager.instance.dice_Inventory.contents.childCount < 10)
         {
             GameManager.instance.dice_Inventory.Add_Inventory(dicePrefab.objectType);
             GameManager.instance.money -= price;

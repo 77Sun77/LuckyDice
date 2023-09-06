@@ -16,7 +16,7 @@ public class PawnPlacementManager : MonoBehaviour
     Vector3 deltaVec;
 
     Vector3 pawnPos_OnClick;
-    
+
     Tile origin;
     Transform target;
 
@@ -59,9 +59,9 @@ public class PawnPlacementManager : MonoBehaviour
         }
 
         if (IsHoldingMouse) SetSelectPawn();
-        else if(!IsHoldingMouse)
+        else if (!IsHoldingMouse)
         {
-            
+
             if (selectPawn)
             {
                 if (selectPawn.IsMoveGrid) MoveOrSwitchPawn();
@@ -79,13 +79,13 @@ public class PawnPlacementManager : MonoBehaviour
                 AllDstroy = false;
                 return;
             }
-            if(createObj.Count != 0) UIManager.instance.UI.SetActive(true);
+            if (createObj.Count != 0) UIManager.instance.UI.SetActive(true);
             foreach (GameObject go in createObj)
             {
-                if(go && go.TryGetComponent(out Pawn pawn) && (pawn.pastTile.CanPlacement || pawn.isItem) && !pawn.pastTile.IsTable)
+                if (go && go.TryGetComponent(out Pawn pawn) && (pawn.pastTile.CanPlacement || pawn.isItem) && !pawn.pastTile.IsTable)
                 {
 
-                    break;
+                    continue;
                 }
                 DestroyObj.Add(go);
             }
@@ -146,13 +146,13 @@ public class PawnPlacementManager : MonoBehaviour
                     {
                         go.GetComponent<Inventory_Prefab>().OnClick_Btn();
                     }
-                    
+
                     timer = 0.2f;
                     Disable = true;
                 }
-                if(ObjTemp && ObjTemp.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Dice) Disable = true;
+                if (ObjTemp && ObjTemp.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Dice) Disable = true;
             }
-        
+
         }
 
         if (!isTrigger && timer < 0 && !Disable)
@@ -175,7 +175,7 @@ public class PawnPlacementManager : MonoBehaviour
                 pawn.tempTile = tile;
                 createObj.Add(tile.gameObject);
                 createObj.Add(pawn.gameObject);
-                
+
                 UIManager.instance.UI.SetActive(false);
 
                 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -192,12 +192,12 @@ public class PawnPlacementManager : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         int layerMask = (1 << LayerMask.NameToLayer("Pawn")) + (1 << LayerMask.NameToLayer("Enemy")) + (1 << LayerMask.NameToLayer("Unit")) + (1 << LayerMask.NameToLayer("Item"));
-        RaycastHit2D raycastHit = Physics2D.Raycast(mousePos,Vector2.zero,0f, layerMask);
+        RaycastHit2D raycastHit = Physics2D.Raycast(mousePos, Vector2.zero, 0f, layerMask);
 
         if (raycastHit.collider)
         {
             //Debug.Log(raycastHit.collider.gameObject);
-            
+
 
             if (selectPawn)
             {
@@ -207,22 +207,22 @@ public class PawnPlacementManager : MonoBehaviour
             selectTarget = raycastHit.collider.transform.gameObject;
 
 
-            //if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
-            //{
-            //    if (unit.isMove || (unit.GetComponent<Pawn>().pastTile && unit.GetComponent<Pawn>().pastTile.IsTable))
-            //    {
-            //        unit.isMove = false;
-            //    }
-            //    else // 제한시 주석 해제
-            //        return;
-            //}
+            if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
+            {
+                if (unit.isMove || (unit.GetComponent<Pawn>().pastTile && unit.GetComponent<Pawn>().pastTile.IsTable))
+                {
+                    unit.isMove = false;
+                }
+                else // 제한시 주석 해제
+                    return;
+            }
 
             if (selectTarget.TryGetComponent(out Pawn pawn)) selectPawn = pawn;
             else selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();
 
             origin = selectPawn.pastTile;
             target = selectTarget.transform;
-            
+
             clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pawnPos_OnClick = selectPawn.gameObject.transform.position;
 
@@ -250,7 +250,7 @@ public class PawnPlacementManager : MonoBehaviour
                 }
             }
         }
-        
+
         clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         int layerMask = 1 << LayerMask.NameToLayer("Tile");
         RaycastHit2D raycastHit = Physics2D.Raycast(clickPoint, Vector2.zero, 0f, layerMask);
@@ -264,19 +264,25 @@ public class PawnPlacementManager : MonoBehaviour
                 tileTemp = raycastHit.collider.gameObject;
 
             }
-            else if(tileTemp == raycastHit.collider.gameObject)
+            else if (tileTemp == raycastHit.collider.gameObject)
             {
-                bool isItem = ObjTemp.GetComponent<Inventory_Prefab>().prefab.GetComponent<Pawn>().isItem;
-                if (!isItem && (tileTemp.GetComponent<Tile>().Ally || tileTemp.GetComponent<Tile>().EnemyList.Count != 0)) return;
-                else if (isItem && ObjTemp.GetComponent<Inventory_Prefab>().prefab.GetComponent<Item>().itemKind == Item.ItemKind.CharacterMove && !tileTemp.GetComponent<Tile>().Ally) return;
+                Inventory_Prefab temp = ObjTemp.GetComponent<Inventory_Prefab>();
+                if (temp.Kind == Inventory_Prefab.Obj_Kind.Dice)
+                {
+                    temp.OnClick_Dice();
+                    temp.OnClick_Btn();
+                    return;
+                }
 
-                Inventory_Prefab contents = ObjTemp.GetComponent<Inventory_Prefab>();
-                
-                
-                
+                bool isItem = temp.prefab.GetComponent<Pawn>().isItem;
+                if (!isItem && (tileTemp.GetComponent<Tile>().Ally || tileTemp.GetComponent<Tile>().EnemyList.Count != 0)) return;
+                else if (isItem && temp.prefab.GetComponent<Item>().itemKind == Item.ItemKind.CharacterMove && !tileTemp.GetComponent<Tile>().Ally) return;
+
+
+
                 GameObject go = null;
-                if (contents.Kind == Inventory_Prefab.Obj_Kind.Unit) Debug.Log("SpawnUnitByName");/*go = SpawnUnitByName(contents.objectType, contents.Rating,)*/
-                else go = Instantiate(contents.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+                if (temp.Kind == Inventory_Prefab.Obj_Kind.Unit) go = SpawnUnitByName(temp.objectType, temp.Rating, tileTemp.GetComponent<Tile>());
+                else go = Instantiate(temp.prefab, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
 
                 Pawn pawn = go.GetComponent<Pawn>();
                 //pawn.MoveToTargetTile(tileTemp.GetComponent<Tile>());
@@ -288,7 +294,7 @@ public class PawnPlacementManager : MonoBehaviour
                 selectPawn.tempTile = tileTemp.GetComponent<Tile>();
                 //GameManager.instance.inventory.Delete_Inventory(ObjTemp);
             }
-            
+
         }
     }
     public void Set_Target(GameObject go)
@@ -297,7 +303,7 @@ public class PawnPlacementManager : MonoBehaviour
 
         if (selectTarget.TryGetComponent(out Pawn pawn)) selectPawn = pawn;
         else selectPawn = selectTarget.transform.parent.GetComponent<Pawn>();
-        
+
         origin = selectPawn.pastTile;
         target = selectTarget.transform;
     }
@@ -320,17 +326,18 @@ public class PawnPlacementManager : MonoBehaviour
                     {
                         selectPawn.GetComponent<Ally>().isMove = true;
                         CancelPawn();
+                        AllDstroy = true;
                     }
                     else
                     {
                         AllDstroy = true;
                     }
-                    
-                    
+
+
                     return;
                 }
 
-                
+
 
                 if (selectPawn.GetComponent<CharacterMove>() && unit)
                 {
@@ -340,7 +347,7 @@ public class PawnPlacementManager : MonoBehaviour
                     return;
                 }
 
-                if(!selectPawn.isItem && unit == selectPawn.GetComponent<Unit>())
+                if (!selectPawn.isItem && unit == selectPawn.GetComponent<Unit>())
                 {
                     selectPawn.IsGrabbed = false;
                     tile.Ally.GetComponent<Ally>().isMove = true;
@@ -362,12 +369,12 @@ public class PawnPlacementManager : MonoBehaviour
                 }
                 else if (unit != null && unit.pawn != selectPawn)//다른 유닛이 있을 경우
                 {
-                    
+
                     if (selectPawn.GetComponent<Unit>() && selectPawn.GetComponent<Pawn>().pastTile.IsTable) // 인벤토리 유닛과 맵 유닛의 교환을 제한하는 코드
                     {
                         return;
                     }
-                    
+
                     selectPawn.transform.position = raycastHit.collider.gameObject.transform.position;
                     unit.pawn.MoveToTargetTile(selectPawn.pastTile);
                     selectPawn.Set_PastTile();
@@ -376,9 +383,9 @@ public class PawnPlacementManager : MonoBehaviour
                     Debug.Log("Switch Positon");
                     return;
                 }
-                
 
-            }   
+
+            }
         }
         AllDstroy = true;
         selectPawn.transform.position = selectPawn.pastTile.GetPos();
@@ -409,7 +416,7 @@ public class PawnPlacementManager : MonoBehaviour
         {
             selectPawn.Set_PastTile();
             selectPawn.IsGrabbed = true;
-        }    
+        }
 
     }
 
@@ -419,9 +426,9 @@ public class PawnPlacementManager : MonoBehaviour
         ClearVars();
     }
 
-    GameObject SpawnUnitByName(string unitName,int rating,Tile tile)
+    GameObject SpawnUnitByName(string unitName, int rating, Tile tile)
     {
-       return AllyGenerator.instance.SpawnAlly((AllyKind)Enum.Parse(typeof(AllyKind), unitName), rating,tile);
+        return AllyGenerator.instance.SpawnAlly((AllyKind)Enum.Parse(typeof(AllyKind), unitName), rating, tile);
     }
 
 }

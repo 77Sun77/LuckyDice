@@ -109,8 +109,9 @@ public class Inventory_Prefab : MonoBehaviour
 
     public void OnClick_Dice()
     {
-        if (GameManager.instance.inventory.inventoryCount == 15) return;
-        prefab.SetActive(true);
+        if (GameManager.instance.inventory.contents.childCount == 15) return; 
+        UIManager.instance.Trigger_StorePanel();
+        prefab.GetComponent<DiceControl>().temp = gameObject;
         UIManager.instance.UI.SetActive(false);
     }
 

@@ -126,4 +126,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+
+    public void OnClick_Toggle(GameObject go)
+    {
+        go.SetActive(!go.activeInHierarchy);
+    }
+
 }

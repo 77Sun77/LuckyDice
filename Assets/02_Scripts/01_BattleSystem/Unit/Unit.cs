@@ -202,6 +202,8 @@ public abstract class Unit : MonoBehaviour
         _damage -= defense;
         if (_damage < minDamage) _damage = minDamage;
         hp -= _damage;
+        Vector3 vec = Vector3.up * 0.75f + Vector3.right * 0.5f;
+        Instantiate((GameObject)Resources.Load("Damage"), transform.position + vec, Quaternion.identity).GetComponent<DamageCount>().damage = _damage;
         if (hp <= 0) Die();
     }
     public void HealHP(float value)

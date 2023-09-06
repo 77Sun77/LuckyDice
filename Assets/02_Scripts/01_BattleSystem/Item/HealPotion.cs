@@ -10,7 +10,7 @@ public class HealPotion : Item
         {
             if (Tile.Ally != null)
             {
-                print(Tile.Ally+" Heal");
+                Tile.Ally.HealHP(30); // 수치는 임시
             }
         }
        // Destroy(gameObject);

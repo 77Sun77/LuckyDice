@@ -12,7 +12,7 @@ public class DiceControl : MonoBehaviour
     public float Value_A, Value_B;
 
     public bool valueUp, enable , IsRollingDice;
-
+    public GameObject temp;
     void OnEnable()
     {
         value = 0;
@@ -109,7 +109,7 @@ public class DiceControl : MonoBehaviour
             number = 6;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Ally);
-
+        GameManager.instance.dice_Inventory.Delete_Inventory(temp);
         Debug.Log("DiceNumber is " + number);
         //gameObject.SetActive(false);
     }
@@ -139,6 +139,7 @@ public class DiceControl : MonoBehaviour
             number = 4;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Item);
+        GameManager.instance.dice_Inventory.Delete_Inventory(temp);
         print("Value : " + value + ", Number : " + number);
         gameObject.SetActive(false);
     }

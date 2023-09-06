@@ -52,6 +52,10 @@ public class UIManager : MonoBehaviour
         Gold_Txt.text = GameManager.instance.money.ToString();
         startText.text = "Wave " + EnemyGenerator.instance.CurWaveIndex;
 
+        if (Input.GetKeyDown(KeyCode.Tab)) Trigger_StorePanel();//상점 껏다켰다
+
+        if (IsStorePanelOn && Input.GetKeyDown(KeyCode.Escape)) UnActive_StorePanel();
+            
     }
 
     public void StartGame()
@@ -88,6 +92,7 @@ public class UIManager : MonoBehaviour
     {
         IsStorePanelOn = true;
         StorePanel.SetActive(true);
+        allyDiceControl.SetActive(true);
         SetStoreImg();
     }
     
@@ -95,7 +100,19 @@ public class UIManager : MonoBehaviour
     {
         IsStorePanelOn = false;
         StorePanel.SetActive(false);
+        allyDiceControl.SetActive(false);
     }
+
+    public void Trigger_StorePanel()
+    {
+        IsStorePanelOn = !IsStorePanelOn;
+        StorePanel.SetActive(IsStorePanelOn);
+        allyDiceControl.SetActive(IsStorePanelOn);
+        SetStoreImg();
+    }
+
+
+
     /// <summary>
     /// 상점의 이미지 재설정
     /// </summary>

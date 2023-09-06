@@ -8,36 +8,33 @@ public class Dice : MonoBehaviour
     public float ranXTorque, ranYTorque, ranZTorque;
     public float dirX, dirY, dirZ;
 
-    bool roll;
+    bool IsStart;
 
     public DiceRotation.DIceKind _DiceKind;
     void Start()
     {
+        IsStart = false;
         transform.eulerAngles = new Vector3(dirX, dirY, dirZ);
         rigid = transform.GetComponent<Rigidbody>();
         rigid.AddForce(Vector3.left * 200);
         rigid.AddTorque(new Vector3(ranXTorque, ranYTorque, ranZTorque));
-        Destroy(gameObject, 4);
+        Invoke(nameof(Check_Starting),1f);
         //UIManager.instance.Invoke_ResetUI(); // 이 자리에 나중에 얻은 애니메이션 호출하는 함수 실행
     }
 
     private void Update()
     {
-        if (Vector3.Magnitude(rigid.velocity) < 0.1f)
+        if (rigid.angularVelocity.sqrMagnitude == 0f)
         {
-            if (!roll)
+            if (DiceManager.instance.allyDiceControl.IsRollingDice && IsStart)
             {
                 if(_DiceKind == DiceRotation.DIceKind.Ally)
                 {
                     int num = GameManager.instance.AllyIndex_Return(DiceManager.instance.number);
-                    //if (num == 0) GameManager.instance.inventory.Add_Inventory("Warrior", 1);
-                    //else if (num == 1) GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
-                    //else if (num == 2) GameManager.instance.inventory.Add_Inventory("Lancer", 1);
-                    //else if (num == 3) GameManager.instance.inventory.Add_Inventory("Tanker", 1);
-                    //else if (num == 4) GameManager.instance.inventory.Add_Inventory("Buffer", 1);
-                    //else GameManager.instance.inventory.Add_Inventory("Archer", 1);
                     AllyGenerator.instance.Roll(DiceManager.instance.number);
-                    roll = true;
+                    DiceManager.instance.allyDiceControl.enable = true;//멈췄던 주사위 게이지 다시 재생
+                    DiceManager.instance.allyDiceControl.IsRollingDice = false;
+                    Destroy(gameObject);
                 }
                 else
                 {
@@ -47,10 +44,16 @@ public class Dice : MonoBehaviour
                     else if (num == 2) GameManager.instance.inventory.Add_Inventory("Barrier");
                     else GameManager.instance.inventory.Add_Inventory("CharMove");
 
-                    roll = true;
+                    DiceManager.instance.allyDiceControl.IsRollingDice = false;
                 }
             }
+
         }
+    }
+
+    void Check_Starting()//주사위가 스폰되자마자 발동되는 것 방지
+    {
+        IsStart = true;
     }
 
 }

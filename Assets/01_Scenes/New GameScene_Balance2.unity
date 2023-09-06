@@ -9997,6 +9997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b064e1c6be352954b9b46c15fe86e331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allyDiceControl: {fileID: 1352333017}
   number: 0
   TheNumberOfDice: 2
   AllyDices:
@@ -15994,7 +15995,7 @@ MonoBehaviour:
   - {fileID: 609212129}
   - {fileID: 706990256}
   - {fileID: 642229281}
-  IsStorePanelOn: 0
+  IsStorePanelOn: 1
 --- !u!1 &1185061507
 GameObject:
   m_ObjectHideFlags: 0
@@ -18706,6 +18707,18 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -18739,7 +18752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -242
+      value: -311
       objectReference: {fileID: 0}
     - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18753,6 +18766,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4027566416026017365, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
       propertyPath: m_Name
       value: Ally DiceControl
@@ -18764,6 +18781,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4027566416026017364, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
   m_PrefabInstance: {fileID: 1352333015}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1352333017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 734708485764138936, guid: f13696cd18def524ca4f9570d0df8ab1, type: 3}
+  m_PrefabInstance: {fileID: 1352333015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353782994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898efd61c17e9ab4abaabc57a2a75119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1365029602
 GameObject:
   m_ObjectHideFlags: 0

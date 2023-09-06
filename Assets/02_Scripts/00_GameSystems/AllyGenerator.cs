@@ -10,7 +10,7 @@ public class AllyGenerator : MonoBehaviour
     public Transform UnitSpawn_Tf;
 
     public UnitList_Store[] Store;
-    public enum UnitList_Store {Àü»ç,¸¶¹ý»ç,·£¼­,ÅÊÄ¿,Èú·¯,¾ÆÃ³,ÆÈ¸²};
+    public enum UnitList_Store { Àü»ç, ¸¶¹ý»ç, ·£¼­, ÅÊÄ¿, Èú·¯, ¾ÆÃ³, ÆÈ¸² };
     public int InputNum;
 
     public bool IsDebuggingMode;
@@ -69,54 +69,53 @@ public class AllyGenerator : MonoBehaviour
         for (int i = 0; i < Store.Length; i++)
         {
             int randomInt = Random.Range(0, 6);
-            Store.SetValue(randomInt,i);
+            Store.SetValue(randomInt, i);
         }
         UIManager.instance.SetStoreImg();
     }
 
     public void Roll(int inputNum)
     {
-        //inputNum--;
-        DiceManager.instance.TheNumberOfDice--;
-  
-        if(Store[inputNum] ==UnitList_Store.ÆÈ¸²)
+        if (DiceManager.instance.TheNumberOfDice > 0)
         {
-            Debug.Log("²Î");
-            return;
+            DiceManager.instance.TheNumberOfDice--;
+
+            if (Store[inputNum] != UnitList_Store.ÆÈ¸²)
+            {
+                switch (Store[inputNum])
+                {
+                    case UnitList_Store.Àü»ç:
+                        GameManager.instance.inventory.Add_Inventory("Warrior", 1);
+                        break;
+                    case UnitList_Store.¸¶¹ý»ç:
+                        GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
+                        break;
+                    case UnitList_Store.·£¼­:
+                        GameManager.instance.inventory.Add_Inventory("Lancer", 1);
+                        break;
+                    case UnitList_Store.ÅÊÄ¿:
+                        GameManager.instance.inventory.Add_Inventory("Tanker", 1);
+                        break;
+                    case UnitList_Store.Èú·¯:
+                        GameManager.instance.inventory.Add_Inventory("Buffer", 1);
+                        break;
+                    case UnitList_Store.¾ÆÃ³:
+                        GameManager.instance.inventory.Add_Inventory("Archer", 1);
+                        break;
+                    case UnitList_Store.ÆÈ¸²:
+                        break;
+                }
+
+                Store.SetValue(UnitList_Store.ÆÈ¸², inputNum);
+                UIManager.instance.SetStoreImg();
+            }
         }
 
-        switch (Store[inputNum])
-        {
-            case UnitList_Store.Àü»ç:
-                GameManager.instance.inventory.Add_Inventory("Warrior",1);
-                break;
-            case UnitList_Store.¸¶¹ý»ç:
-                GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
-                break;
-            case UnitList_Store.·£¼­:
-                GameManager.instance.inventory.Add_Inventory("Lancer", 1);
-                break;
-            case UnitList_Store.ÅÊÄ¿:
-                GameManager.instance.inventory.Add_Inventory("Tanker", 1);
-                break; 
-            case UnitList_Store.Èú·¯:
-                GameManager.instance.inventory.Add_Inventory("Buffer", 1);
-                break;
-            case UnitList_Store.¾ÆÃ³:
-                GameManager.instance.inventory.Add_Inventory("Archer", 1);
-                break;
-            case UnitList_Store.ÆÈ¸²:
-                break;
-        }
-
-        Store.SetValue(UnitList_Store.ÆÈ¸², inputNum);
-        UIManager.instance.SetStoreImg();
-        if (DiceManager.instance.TheNumberOfDice == 0)
+        if (DiceManager.instance.TheNumberOfDice <= 0)
         {
             UIManager.instance.UnActive_StorePanel();
             UIManager.instance.ResetUI();
         }
-
     }
 
     void Roll_Debug()
@@ -144,7 +143,7 @@ public class AllyGenerator : MonoBehaviour
         }
     }
 
-    public GameObject SpawnAlly(AllyKind allyKind,int rating)
+    public GameObject SpawnAlly(AllyKind allyKind, int rating)
     {
         var unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
         GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
@@ -160,7 +159,7 @@ public class AllyGenerator : MonoBehaviour
             unit = UnitPrefabs[(int)allyKind].SpawnUnit(UnitSpawn_Tf, tile, GameManager.instance.SpawnedAllies);
             Debug.Log(unit);
             GoogleSheetManager.instance.ApplyAllyInfo(unit.gameObject, rating);
-         
+
         }
         else
         {
@@ -178,8 +177,8 @@ public class AllyGenerator : MonoBehaviour
 
     public void Roll(GameObject go, int goType = 0)
     {
-        if(goType == 0)
-            go.SpawnUnit(UnitSpawn_Tf,TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
+        if (goType == 0)
+            go.SpawnUnit(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot(), GameManager.instance.SpawnedAllies);
         else
             go.SpawnItem(UnitSpawn_Tf, TileManager.Instance.GetTableEmptySlot());
 

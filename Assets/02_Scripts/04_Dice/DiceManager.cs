@@ -6,6 +6,8 @@ public class DiceManager : MonoBehaviour
 {
     public static DiceManager instance;
 
+    public DiceControl allyDiceControl;
+
     public int number;
     public int TheNumberOfDice;
 

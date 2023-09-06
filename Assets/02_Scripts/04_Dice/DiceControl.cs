@@ -11,7 +11,7 @@ public class DiceControl : MonoBehaviour
     float value;
     public float Value_A, Value_B;
 
-    bool valueUp, enable;
+    public bool valueUp, enable , IsRollingDice;
 
     void OnEnable()
     {
@@ -20,7 +20,7 @@ public class DiceControl : MonoBehaviour
         enable = true;
     }
 
-    
+
     void Update()
     {
         if (enable)
@@ -49,7 +49,7 @@ public class DiceControl : MonoBehaviour
 
             if (valueUp)
             {
-                value += (Value_A + value / Value_B)*Time.deltaTime;
+                value += (Value_A + value / Value_B) * Time.deltaTime;
                 if (value >= 1)
                 {
                     value = 1;
@@ -68,13 +68,18 @@ public class DiceControl : MonoBehaviour
 
             fillImage.fillAmount = value;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) OnClick_Ally_Btn();
     }
 
     public void OnClick_Ally_Btn()
     {
-        //enable = false;
+        if (DiceManager.instance.TheNumberOfDice <= 0 || IsRollingDice) return;
+
+        enable = false;
+        IsRollingDice = true;
         int number = 0;
-        
+
         if (value < 0.1428571f)
         {
             number = 1;
@@ -104,7 +109,7 @@ public class DiceControl : MonoBehaviour
             number = 6;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Ally);
-        
+
         Debug.Log("DiceNumber is " + number);
         //gameObject.SetActive(false);
     }
@@ -112,7 +117,7 @@ public class DiceControl : MonoBehaviour
     {
         enable = false;
         int number = 0;
-        
+
         if (value < 0.2f)
         {
             number = 1;
@@ -134,7 +139,7 @@ public class DiceControl : MonoBehaviour
             number = 4;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Item);
-        print("Value : "+value+", Number : "+number);
+        print("Value : " + value + ", Number : " + number);
         gameObject.SetActive(false);
     }
     int ValueCalculator(float value, float max, float min, int blink1, int blink2) // value, ÃÖ´ñ°ª, ÃÖ¼Ú°ª, ÃÖ¼Ò ´«²û, ÃÖ´ë ´«²û

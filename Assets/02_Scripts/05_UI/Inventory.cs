@@ -22,18 +22,18 @@ public class Inventory : MonoBehaviour
     {
 
 
-        foreach (GameObject go in prefabs) // 테스트용
-        {
-            if (go.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Unit)
-            {
-                for (int i = 1; i <= 3; i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
+        //foreach (GameObject go in prefabs) // 테스트용
+        //{
+        //    if (go.GetComponent<Inventory_Prefab>().Kind == Inventory_Prefab.Obj_Kind.Unit)
+        //    {
+        //        for (int i = 1; i <= 3; i++) Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType, i);
 
-            }
-            else
-            {
-                Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Add_Inventory(go.GetComponent<Inventory_Prefab>().objectType);
+        //    }
+        //}
 
 
 
@@ -113,9 +113,9 @@ public class Inventory : MonoBehaviour
 
     public void Delete_Inventory(GameObject obj) // 스폰시 삭제되게
     {
+        print(obj);
         inventory.Remove(obj);
         Destroy(obj);
-        print(obj);
     }
 
     public void OpenInventory()

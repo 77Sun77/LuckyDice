@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject startBtn, startTxt;
     TextMeshProUGUI startText;
 
-    public GameObject allyDiceControl, itemDiceControl;
+    public DiceControl allyDiceControl, itemDiceControl;
 
     public GameObject Blind, MapMask;
     public Material UI_Mat;
@@ -54,10 +54,11 @@ public class UIManager : MonoBehaviour
         Gold_Txt.text = GameManager.instance.money.ToString();
         startText.text = "Wave " + EnemyGenerator.instance.CurWaveIndex;
 
-        if (Input.GetKeyDown(KeyCode.Tab)&&!PawnPlacementManager.instance.isInventoryHold) Trigger_StorePanel();//상점 껏다켰다
+        if (PawnPlacementManager.instance.isInventoryHold) UnActive_StorePanel();
+
+        if (allyDiceControl.IsRollingDice || itemDiceControl.IsRollingDice) return;//주사위가 굴러가는 도중 상점 끄기 비활성화
 
         if (IsStorePanelOn && Input.GetKeyDown(KeyCode.Escape)) UnActive_StorePanel();
-            
     }
 
     public void StartGame()
@@ -75,8 +76,8 @@ public class UIManager : MonoBehaviour
     public void ResetUI() // 나중에 얻은 아이템창 이후 확인버튼에 연결
     {
         UI.SetActive(true);
-        allyDiceControl.SetActive(false);
-        itemDiceControl.SetActive(false);
+        allyDiceControl.gameObject.SetActive(false);
+        itemDiceControl.gameObject.SetActive(false);
     }
 
     public void Invoke_ResetUI() // 나중에 얻은 아이템 띄우는 함수로 교체
@@ -94,7 +95,7 @@ public class UIManager : MonoBehaviour
     {
         IsStorePanelOn = true;
         StorePanel.SetActive(true);
-        allyDiceControl.SetActive(true);
+        allyDiceControl.gameObject.SetActive(true);
         SetStoreImg();
     }
     
@@ -102,14 +103,14 @@ public class UIManager : MonoBehaviour
     {
         IsStorePanelOn = false;
         StorePanel.SetActive(false);
-        allyDiceControl.SetActive(false);
+        allyDiceControl.gameObject.SetActive(false);
     }
 
     public void Trigger_StorePanel()
     {
         IsStorePanelOn = !IsStorePanelOn;
         StorePanel.SetActive(IsStorePanelOn);
-        allyDiceControl.SetActive(IsStorePanelOn);
+        allyDiceControl.gameObject.SetActive(IsStorePanelOn);
         SetStoreImg();
     }
 

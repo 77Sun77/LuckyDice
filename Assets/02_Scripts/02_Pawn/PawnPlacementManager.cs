@@ -11,6 +11,7 @@ public class PawnPlacementManager : MonoBehaviour
     public GameObject selectTarget;
     public Pawn selectPawn;
     public bool IsHoldingMouse, isInventoryHold, isActive;
+    public bool IsDebugMode;
 
     Vector3 clickPoint;
     Vector3 deltaVec;
@@ -207,15 +208,17 @@ public class PawnPlacementManager : MonoBehaviour
 
             selectTarget = raycastHit.collider.transform.gameObject;
 
-
-            if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
+            if (!IsDebugMode)
             {
-                if (unit.isMove || (unit.GetComponent<Pawn>().pastTile && unit.GetComponent<Pawn>().pastTile.IsTable))
+                if (selectTarget.TryGetComponent(out Ally unit)) // 맵에 있는 유닛의 움직임을 제한하는 코드
                 {
-                    unit.isMove = false;
+                    if (unit.isMove || (unit.GetComponent<Pawn>().pastTile && unit.GetComponent<Pawn>().pastTile.IsTable))
+                    {
+                        unit.isMove = false;
+                    }
+                    else // 제한시 주석 해제
+                        return;
                 }
-                else // 제한시 주석 해제
-                    return;
             }
 
             if (selectTarget.TryGetComponent(out Pawn pawn)) selectPawn = pawn;

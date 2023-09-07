@@ -8,7 +8,7 @@ public class DiceControl : MonoBehaviour
 {
     public Image fillImage;
 
-    float value;
+    public float value;
     public float Value_A, Value_B;
 
     public bool valueUp, enable , IsRollingDice;
@@ -74,7 +74,7 @@ public class DiceControl : MonoBehaviour
 
     public void OnClick_Ally_Btn()
     {
-        if (DiceManager.instance.TheNumberOfDice <= 0 || IsRollingDice) return;
+        if (IsRollingDice) return;
 
         enable = false;
         IsRollingDice = true;
@@ -109,8 +109,7 @@ public class DiceControl : MonoBehaviour
             number = 6;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Ally);
-        GameManager.instance.dice_Inventory.Delete_Inventory(temp);
-        Debug.Log("DiceNumber is " + number);
+        Debug.Log($"Value is {value},DiceNumber is {number}");
         //gameObject.SetActive(false);
     }
     public void OnClick_Item_Btn()
@@ -139,7 +138,7 @@ public class DiceControl : MonoBehaviour
             number = 4;
         }
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Item);
-        GameManager.instance.dice_Inventory.Delete_Inventory(temp);
+        //GameManager.instance.dice_Inventory.Delete_Inventory(temp);
         print("Value : " + value + ", Number : " + number);
         gameObject.SetActive(false);
     }
@@ -151,8 +150,8 @@ public class DiceControl : MonoBehaviour
         float random = Random.Range(0, max);
         if (random <= value)
         {
-            return blink2;
+            return blink1;
         }
-        return blink1;
+        return blink2;
     }
 }

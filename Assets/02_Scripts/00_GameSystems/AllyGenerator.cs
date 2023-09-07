@@ -32,11 +32,6 @@ public class AllyGenerator : MonoBehaviour
     {
         IsDebuggingMode = Input.GetKey(KeyCode.LeftShift);
 
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //Roll();
-        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetStore();
@@ -76,46 +71,48 @@ public class AllyGenerator : MonoBehaviour
 
     public void Roll(int inputNum)
     {
-        if (DiceManager.instance.TheNumberOfDice > 0)
+
+        if (Store[inputNum] != UnitList_Store.ÆÈ¸²)
         {
-            DiceManager.instance.TheNumberOfDice--;
-
-            if (Store[inputNum] != UnitList_Store.ÆÈ¸²)
+            switch (Store[inputNum])
             {
-                switch (Store[inputNum])
-                {
-                    case UnitList_Store.Àü»ç:
-                        GameManager.instance.inventory.Add_Inventory("Warrior", 1);
-                        break;
-                    case UnitList_Store.¸¶¹ý»ç:
-                        GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
-                        break;
-                    case UnitList_Store.·£¼­:
-                        GameManager.instance.inventory.Add_Inventory("Lancer", 1);
-                        break;
-                    case UnitList_Store.ÅÊÄ¿:
-                        GameManager.instance.inventory.Add_Inventory("Tanker", 1);
-                        break;
-                    case UnitList_Store.Èú·¯:
-                        GameManager.instance.inventory.Add_Inventory("Buffer", 1);
-                        break;
-                    case UnitList_Store.¾ÆÃ³:
-                        GameManager.instance.inventory.Add_Inventory("Archer", 1);
-                        break;
-                    case UnitList_Store.ÆÈ¸²:
-                        break;
-                }
+                case UnitList_Store.Àü»ç:
+                    GameManager.instance.inventory.Add_Inventory("Warrior", 1);
+                    break;
+                case UnitList_Store.¸¶¹ý»ç:
+                    GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
+                    break;
+                case UnitList_Store.·£¼­:
+                    GameManager.instance.inventory.Add_Inventory("Lancer", 1);
+                    break;
+                case UnitList_Store.ÅÊÄ¿:
+                    GameManager.instance.inventory.Add_Inventory("Tanker", 1);
+                    break;
+                case UnitList_Store.Èú·¯:
+                    GameManager.instance.inventory.Add_Inventory("Buffer", 1);
+                    break;
+                case UnitList_Store.¾ÆÃ³:
+                    GameManager.instance.inventory.Add_Inventory("Archer", 1);
+                    break;
+                case UnitList_Store.ÆÈ¸²:
+                    break;
+            }
 
-                Store.SetValue(UnitList_Store.ÆÈ¸², inputNum);
-                UIManager.instance.SetStoreImg();
+            Store.SetValue(UnitList_Store.ÆÈ¸², inputNum);
+            UIManager.instance.SetStoreImg();
+        }
+
+        foreach (var content in GameManager.instance.dice_Inventory.inventory)
+        {
+            if (content.GetComponent<Inventory_Prefab>().d_Kind == Inventory_Prefab.Dice_Kind.Ally)
+            {
+                GameManager.instance.dice_Inventory.Delete_Inventory(content);
+                break;
             }
         }
 
-        if (DiceManager.instance.TheNumberOfDice <= 0)
-        {
-            UIManager.instance.UnActive_StorePanel();
-            UIManager.instance.ResetUI();
-        }
+        if (GameManager.instance.dice_Inventory.inventory.Count <= 0) UIManager.instance.UnActive_StorePanel();
+
     }
 
     void Roll_Debug()
@@ -187,7 +184,6 @@ public class AllyGenerator : MonoBehaviour
 
     void OnEndWave_Store()//³ªÁß¿¡ WaveManagerÀÇ event·Î Ãß°¡
     {
-        DiceManager.instance.TheNumberOfDice += 2;
         ResetStore();
     }
 

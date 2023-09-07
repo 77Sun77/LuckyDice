@@ -9,7 +9,6 @@ public class DiceManager : MonoBehaviour
     public DiceControl allyDiceControl;
 
     public int number;
-    public int TheNumberOfDice;
 
     public GameObject[] AllyDices, ItemDices;
     void Start()

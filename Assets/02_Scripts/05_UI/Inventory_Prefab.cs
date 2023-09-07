@@ -36,17 +36,17 @@ public class Inventory_Prefab : MonoBehaviour
 
             
         }
-        else if(Kind == Obj_Kind.Dice)
-        {
-            if(d_Kind == Dice_Kind.Ally)
-            {
-                prefab = UIManager.instance.allyDiceControl;
-            }
-            else
-            {
-                prefab = UIManager.instance.itemDiceControl;
-            }
-        }
+        //else if(Kind == Obj_Kind.Dice)
+        //{
+        //    if(d_Kind == Dice_Kind.Ally)
+        //    {
+        //        prefab = UIManager.instance.allyDiceControl;
+        //    }
+        //    else
+        //    {
+        //        prefab = UIManager.instance.itemDiceControl;
+        //    }
+        //}
         
     }
     void Update()
@@ -109,10 +109,12 @@ public class Inventory_Prefab : MonoBehaviour
 
     public void OnClick_Dice()
     {
+        if (d_Kind == Dice_Kind.Item) return;//미구현 상태이므로 임시적으로 막아놈
+
         if (GameManager.instance.inventory.contents.childCount == 15) return; 
         UIManager.instance.Trigger_StorePanel();
-        prefab.GetComponent<DiceControl>().temp = gameObject;
-        UIManager.instance.UI.SetActive(false);
+        //prefab.GetComponent<DiceControl>().temp = gameObject;
+
     }
 
     public void SpawnSynthesis()

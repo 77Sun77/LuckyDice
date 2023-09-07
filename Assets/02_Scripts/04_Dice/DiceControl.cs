@@ -103,7 +103,7 @@ public class DiceControl : MonoBehaviour
         }
         
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Ally);
-        Debug.Log($"Value is {value},DiceNumber is {number}");
+        //Debug.Log($"Value is {value},DiceNumber is {number}");
         //gameObject.SetActive(false);
     }
     public void OnClick_Item_Btn()
@@ -138,10 +138,8 @@ public class DiceControl : MonoBehaviour
     }
     int ValueCalculator(float value, float max, float min, int blink1, int blink2) // value, ÃÖ´ñ°ª, ÃÖ¼Ú°ª, ÃÖ¼Ò ´«²û, ÃÖ´ë ´«²û
     {
-        value -= min;
-
-        float random = Random.Range(0, 0.2f);
-        Debug.Log($"Random Value is {random}");
+        float random = Random.Range(min, max);
+        Debug.Log($"Value is {value}, Random Value is {random}");
 
         if (random <= value)
         {

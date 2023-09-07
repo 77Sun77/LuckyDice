@@ -14,13 +14,14 @@ public class AllyGenerator : MonoBehaviour
     public int InputNum;
 
     public bool IsDebuggingMode;
-    public int DebugNum;
+    public int DebugNum, DebugSpawnRate;
 
     private void Awake()
     {
         instance = this;
         Store = new UnitList_Store[6];
         ResetStore();
+        DebugSpawnRate = 1;
     }
 
     private void Start()
@@ -37,12 +38,14 @@ public class AllyGenerator : MonoBehaviour
             ResetStore();
         }
 
-        MakeKeyEvent(KeyCode.Alpha0);
         MakeKeyEvent(KeyCode.Alpha1);
         MakeKeyEvent(KeyCode.Alpha2);
         MakeKeyEvent(KeyCode.Alpha3);
         MakeKeyEvent(KeyCode.Alpha4);
         MakeKeyEvent(KeyCode.Alpha5);
+        MakeKeyEvent(KeyCode.Alpha6);
+
+        if (Input.GetKeyDown(KeyCode.BackQuote)) DebugSpawnRate = DebugSpawnRate >= 3 ? 1 : DebugSpawnRate + 1;
     }
 
     void MakeKeyEvent(KeyCode keyCode)
@@ -51,11 +54,11 @@ public class AllyGenerator : MonoBehaviour
         {
             if (IsDebuggingMode)
             {
-                DebugNum = (int)keyCode - 48;
+                DebugNum = (int)keyCode - 49;
                 Roll_Debug();
                 return;
             }
-            InputNum = (int)keyCode - 48;
+            InputNum = (int)keyCode - 49;
         }
     }
 
@@ -120,22 +123,22 @@ public class AllyGenerator : MonoBehaviour
         switch (DebugNum)
         {
             case 0:
-                GameManager.instance.inventory.Add_Inventory("Warrior", 1);
+                GameManager.instance.inventory.Add_Inventory("Warrior", DebugSpawnRate);
                 break;
             case 1:
-                GameManager.instance.inventory.Add_Inventory("Sorcerer", 1);
+                GameManager.instance.inventory.Add_Inventory("Sorcerer", DebugSpawnRate);
                 break;
             case 2:
-                GameManager.instance.inventory.Add_Inventory("Lancer", 1);
+                GameManager.instance.inventory.Add_Inventory("Lancer", DebugSpawnRate);
                 break;
             case 3:
-                GameManager.instance.inventory.Add_Inventory("Tanker", 1);
+                GameManager.instance.inventory.Add_Inventory("Tanker", DebugSpawnRate);
                 break;
             case 4:
-                GameManager.instance.inventory.Add_Inventory("Buffer", 1);
+                GameManager.instance.inventory.Add_Inventory("Buffer", DebugSpawnRate);
                 break;
             case 5:
-                GameManager.instance.inventory.Add_Inventory("Archer", 1);
+                GameManager.instance.inventory.Add_Inventory("Archer", DebugSpawnRate);
                 break;
         }
     }

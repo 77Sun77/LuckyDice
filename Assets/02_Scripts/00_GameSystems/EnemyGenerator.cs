@@ -7,21 +7,17 @@ using UnityEngine.Networking;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [Header("Debugging Options")]
-    public bool IsDebuggingMode;
-    public int EnemySpawnNum_ForDebug;
-
     public static EnemyGenerator instance;
     [Space(35f)]
     public Transform Generate_Tf;
 
     const string WaveInfoURL = "https://docs.google.com/spreadsheets/d/1zAXyhM2QQsNdDdPuASgWsA2PUlmcSrFLpN3DMmnkAkw/export?format=csv";
     const string WaveInfoURL_Yejun = "https://docs.google.com/spreadsheets/d/1O-LBZEwci2IgEfiPUMIP21uOMrQPIp10_xE33uk3noA/export?format=csv";
-    
+
     public GameObject[] enemyPrefabs;
     public List<Wave> WaveList = new();
     public int CurWaveIndex;
-    
+
     public int spawnX;
     int pastSpawnLine;
 
@@ -71,16 +67,16 @@ public class EnemyGenerator : MonoBehaviour
             if ((int)data_Dialog[i]["Wave"] != waveIndex)
             {
                 if ((int)data_Dialog[i]["Wave"] == -1) return;
-               
+
                 waveIndex++;
                 wave = new Wave(waveIndex);
                 WaveList.Add(wave);
             }
-            wave.enemySpawnInfo_List.Add(GetEnemySpawnInfo(data_Dialog, i)); 
+            wave.enemySpawnInfo_List.Add(GetEnemySpawnInfo(data_Dialog, i));
         }
     }
 
-    EnemySpawnInfo GetEnemySpawnInfo(List<Dictionary<string,object>> data_Dialog,int i)
+    EnemySpawnInfo GetEnemySpawnInfo(List<Dictionary<string, object>> data_Dialog, int i)
     {
         string name = (string)data_Dialog[i]["Name"];
         EnemyKind enemyKind = (EnemyKind)Enum.Parse(typeof(EnemyKind), name);
@@ -117,23 +113,7 @@ public class EnemyGenerator : MonoBehaviour
 
     private void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Return))
-       {
-            GameManager.instance.OnWaveStart.Invoke();
-
-            if (IsDebuggingMode)
-            {
-                enemyIndex = 0;
-                for (int i = 0; i < EnemySpawnNum_ForDebug; i++)
-                {
-                    Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnLine(0), GameManager.instance.SpawnedEnemies, true);
-                    unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
-                    enemyIndex++;
-                }
-
-                StartCoroutine(EndWave_Cor());
-            }
-        }
+        if (Input.GetKeyDown(KeyCode.Return)) GameManager.instance.OnWaveStart.Invoke();
     }
 
     IEnumerator EndWave_Cor()
@@ -148,7 +128,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         enemyIndex = 0;
         //GameManager.instance.OnWaveStart.Invoke();
-       
+
         foreach (var enemySpawnInfo in wave.enemySpawnInfo_List)
         {
             yield return new WaitForSeconds(enemySpawnInfo.GetRandomDelay());
@@ -160,7 +140,7 @@ public class EnemyGenerator : MonoBehaviour
             //MoveEnemyToTile(go, enemySpawnInfo.spawnLine);
 
             //½Å ÄÚµå
-            Unit unit= enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnLine(enemySpawnInfo.spawnLine), GameManager.instance.SpawnedEnemies, true);
+            Unit unit = enemyPrefabs[(int)enemySpawnInfo.enemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnLine(enemySpawnInfo.spawnLine), GameManager.instance.SpawnedEnemies, true);
             unit.gameObject.name = $"{enemySpawnInfo.enemyKind} {enemyIndex}";
             enemyIndex++;
         }
@@ -170,20 +150,19 @@ public class EnemyGenerator : MonoBehaviour
         GameManager.instance.OnWaveEnd.Invoke();
     }
 
-    void SpawnEnemyToLine(GameObject go,int spawnLineIndex)
+    public void Spawn_Enemy_Debug(int EnemyKind, int SpawnLine)
     {
-        if (spawnLineIndex == -1)
-        {
-            spawnLineIndex = UnityEngine.Random.Range(0, TileManager.Instance.MapY);
-        }
-        else if (spawnLineIndex == -2)
-        {
-            spawnLineIndex = pastSpawnLine;
-        }
+        if (!GameManager.instance.IsInBattle) return;
 
-        go.transform.position = TileManager.Instance.TileArray[spawnX, spawnLineIndex].GetPos();
-        //Debug.Log(spawnLineIndex);
-        pastSpawnLine = spawnLineIndex;
+        if (0 <= EnemyKind && EnemyKind <= 4)
+        {
+            if (0 <= SpawnLine && SpawnLine <= 5)
+            {
+                Unit unit = enemyPrefabs[EnemyKind].SpawnUnit(Generate_Tf, GetEnemySpawnLine(SpawnLine), GameManager.instance.SpawnedEnemies, true);
+                unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
+                enemyIndex++;
+            }
+        }
     }
 
     Tile GetEnemySpawnLine(int spawnLineIndex)
@@ -204,9 +183,23 @@ public class EnemyGenerator : MonoBehaviour
 
     public void StartGame()
     {
-        if(!IsDebuggingMode) StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
-        CurWaveIndex++;
+        if (DebugManager.instance.IsDebugMode_EnemyGenerator)
+        {
+            enemyIndex = 0;
+            for (int i = 0; i < DebugManager.instance.DebugSpawnCount; i++)
+            {
+                Unit unit = enemyPrefabs[0].SpawnUnit(Generate_Tf, GetEnemySpawnLine(0), GameManager.instance.SpawnedEnemies, true);
+                unit.gameObject.name = $"{enemyPrefabs[0].name} {enemyIndex}";
+                enemyIndex++;
+            }
+            StartCoroutine(EndWave_Cor());
+        }
+        else
+        {
+            StartCoroutine(SpawnWave(WaveList[CurWaveIndex]));
+            CurWaveIndex++;
+        }
     }
-    
+
 
 }

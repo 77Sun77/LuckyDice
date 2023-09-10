@@ -236,7 +236,7 @@ public class Pawn : MonoBehaviour
                 {
                     int x = (int)(tile.X + range.x);
                     int y = (int)(tile.Y + range.y);
-                    
+
                     if (x > 9 || y > 4 || x < 0 || y < 0) continue;
                     tilesTemp.Add(TileManager.Instance.TileArray[x, y]);
                 }
@@ -246,7 +246,7 @@ public class Pawn : MonoBehaviour
                     SpriteRenderer sr = t.GetComponent<SpriteRenderer>();
                     if (tilesTemp.Contains(t))
                     {
-                        if (count == 0 && !isItem) sr.color = TileManager.Instance.Color2;
+                        if (tile == t && !isItem) sr.color = TileManager.Instance.Color2;
                         else sr.color = TileManager.Instance.Color1;
                         sr.enabled = true;
                         count++;

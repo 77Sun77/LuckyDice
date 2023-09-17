@@ -5083,8 +5083,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f0b40e1126e94d90fe1eeb02b7c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDebuggingMode: 0
-  EnemySpawnNum_ForDebug: 1
   Generate_Tf: {fileID: 1151737341}
   enemyPrefabs:
   - {fileID: 1752806829196891147, guid: 974b2ad7c596ca34c81a40e9fa974e7a, type: 3}
@@ -17255,7 +17253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1141396359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17273,7 +17271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -367, y: -95}
+  m_AnchoredPosition: {x: -126, y: -74}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1141396360
@@ -17337,8 +17335,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -18270,6 +18268,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugTxt: {fileID: 1141396360}
+  DebugNum: 0
+  IsDebugMode_AllyGenerator: 0
+  DebugSpawnRate: 0
+  IsDebugMode_EnemyGenerator: 0
+  DebugSpawnCount: 1
+  DebugSpawnLine: 1
 --- !u!1 &1227064112
 GameObject:
   m_ObjectHideFlags: 0
@@ -22532,9 +22536,6 @@ MonoBehaviour:
   UnitSpawn_Tf: {fileID: 1453006439}
   Store: 
   InputNum: 0
-  IsDebuggingMode: 0
-  DebugNum: 0
-  DebugSpawnRate: 0
 --- !u!1 &1500109690
 GameObject:
   m_ObjectHideFlags: 0
@@ -30798,7 +30799,7 @@ MonoBehaviour:
   IsHoldingMouse: 0
   isInventoryHold: 0
   isActive: 0
-  IsDebugMode: 0
+  IsDebugMode: 1
   DebugObj: {fileID: 0}
   canvas: {fileID: 1101097384}
   gr: {fileID: 1101097385}

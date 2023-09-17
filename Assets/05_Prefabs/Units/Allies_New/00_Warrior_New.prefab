@@ -391,7 +391,7 @@ MonoBehaviour:
   synthesis: {fileID: 0}
   AOERange:
   - {x: 1, y: 0}
-  vampPercent: 0
+  vampPercent: 50
 --- !u!114 &2393364730516908464
 MonoBehaviour:
   m_ObjectHideFlags: 0

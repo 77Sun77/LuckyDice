@@ -200,10 +200,19 @@ MonoBehaviour:
   explosionFCTR: 4
   SlowValue: 0.5
   SlowDuration: 2
-  MeteorRange: []
-  DotDmgFCTR: 0
-  DotDmgDuration: 0
-  DotDmgTick: 0
+  MeteorRange:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  DotDmgFCTR: 4
+  DotDmgDuration: 3
+  DotDmgTick: 0.1
 --- !u!114 &876689905154425691
 MonoBehaviour:
   m_ObjectHideFlags: 0

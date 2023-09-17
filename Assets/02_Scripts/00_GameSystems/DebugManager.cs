@@ -44,7 +44,7 @@ public class DebugManager : MonoBehaviour
         //유닛 스폰시 Rating 설정
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
-            if (IsDebugMode_EnemyGenerator) DebugSpawnLine = DebugSpawnLine >= 5 ? 0 : DebugSpawnLine + 1;
+            if (IsDebugMode_EnemyGenerator) DebugSpawnLine = DebugSpawnLine >= 5 ? 1 : DebugSpawnLine + 1;
             else DebugSpawnRate = DebugSpawnRate >= 3 ? 1 : DebugSpawnRate + 1;
         }
     }
@@ -68,7 +68,7 @@ public class DebugManager : MonoBehaviour
         {
             DebugNum = (int)keyCode - 49;
             if (IsDebugMode_AllyGenerator) AllyGenerator.instance.Spawn_Ally_Debug();
-            else if (IsDebugMode_EnemyGenerator) EnemyGenerator.instance.Spawn_Enemy_Debug(DebugNum, DebugSpawnLine);
+            else if (IsDebugMode_EnemyGenerator) EnemyGenerator.instance.Spawn_Enemy_Debug(DebugNum, DebugSpawnLine - 1);
         }
     }
 

@@ -91,7 +91,7 @@ public class Inventory_Prefab : MonoBehaviour
 
         // if (Kind != Obj_Kind.Dice) UIManager.instance.MapMask.SetActive(true);
         // else UIManager.instance.MapMask.SetActive(false);
-
+        if (Kind == Obj_Kind.Dice && (DiceManager.instance.allyDiceControl.IsRollingDice || DiceManager.instance.itemDiceControl.IsRollingDice)) return;
 
         if (PawnPlacementManager.instance.ObjTemp)
         {
@@ -109,10 +109,17 @@ public class Inventory_Prefab : MonoBehaviour
 
     public void OnClick_Dice()
     {
-        if (d_Kind == Dice_Kind.Item) return;//미구현 상태이므로 임시적으로 막아놈
-
-        if (GameManager.instance.inventory.contents.childCount == 15) return; 
-        UIManager.instance.Trigger_StorePanel();
+        if (GameManager.instance.inventory.contents.childCount == 15) return;
+        if (d_Kind == Dice_Kind.Item) 
+        {
+            UIManager.instance.Trigger_StorePanel(false);
+        }
+        else if (d_Kind == Dice_Kind.Ally)
+        {
+            
+            UIManager.instance.Trigger_StorePanel(true);
+        }
+        
         //prefab.GetComponent<DiceControl>().temp = gameObject;
 
     }

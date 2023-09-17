@@ -26,7 +26,7 @@ public class Dice : MonoBehaviour
     {
         if (rigid.angularVelocity.sqrMagnitude == 0f)
         {
-            if (DiceManager.instance.allyDiceControl.IsRollingDice && IsStart)
+            if ((DiceManager.instance.allyDiceControl.IsRollingDice || DiceManager.instance.itemDiceControl )&& IsStart)
             {
                 if(_DiceKind == DiceRotation.DIceKind.Ally)
                 {
@@ -34,18 +34,24 @@ public class Dice : MonoBehaviour
                     AllyGenerator.instance.Roll(DiceManager.instance.number);
                     DiceManager.instance.allyDiceControl.enable = true;//멈췄던 주사위 게이지 다시 재생
                     DiceManager.instance.allyDiceControl.IsRollingDice = false;
-                    Destroy(gameObject);
+                    
                 }
                 else
                 {
                     int num = DiceManager.instance.number;
-                    if (num == 0) GameManager.instance.inventory.Add_Inventory("HealPotion");
-                    else if (num == 1) GameManager.instance.inventory.Add_Inventory("Bomb");
-                    else if (num == 2) GameManager.instance.inventory.Add_Inventory("Barrier");
-                    else GameManager.instance.inventory.Add_Inventory("CharMove");
-
-                    DiceManager.instance.allyDiceControl.IsRollingDice = false;
+                    //if (num == 0) GameManager.instance.inventory.Add_Inventory("HealPotion");
+                    //else if (num == 1) GameManager.instance.inventory.Add_Inventory("Bomb");
+                    //else if (num == 2) GameManager.instance.inventory.Add_Inventory("Barrier");
+                    //else GameManager.instance.inventory.Add_Inventory("CharMove");
+                    UIManager.instance.Roll(num);
+                    DiceManager.instance.itemDiceControl.enable = true;
+                    DiceManager.instance.itemDiceControl.IsRollingDice = false;
+                    
                 }
+                Destroy(gameObject);
+                UIManager.instance.UnActive_StorePanel();
+                PawnPlacementManager.instance.DiceControlOnOff = false;
+                GameManager.instance.dice_Inventory.Delete_Inventory(PawnPlacementManager.instance.ObjTemp);
             }
 
         }

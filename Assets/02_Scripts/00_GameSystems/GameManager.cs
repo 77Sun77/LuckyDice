@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public float WaveEndHealPercent;
     public float RevivePercent;
 
+
     void Awake()
     {
         SetResolution.Set_Resolution(); // 초기에 게임 해상도 고정
@@ -135,4 +136,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SpeedUp()
+    {
+        Time.timeScale++;
+        if (Time.timeScale == 4)
+        {
+            Time.timeScale = 1;
+        }
+    }
 }

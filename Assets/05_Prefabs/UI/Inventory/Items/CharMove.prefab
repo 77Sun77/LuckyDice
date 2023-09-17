@@ -293,3 +293,5 @@ MonoBehaviour:
   objectType: CharMove
   Rating: 0
   d_Kind: 0
+  isSynthesis: 0
+  SynthesisUnits: []

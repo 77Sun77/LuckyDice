@@ -217,6 +217,8 @@ MonoBehaviour:
   objectType: Barrier
   Rating: 0
   d_Kind: 0
+  isSynthesis: 0
+  SynthesisUnits: []
 --- !u!1 &7183807535318237328
 GameObject:
   m_ObjectHideFlags: 0

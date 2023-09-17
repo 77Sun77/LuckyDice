@@ -10,7 +10,7 @@ public class PawnPlacementManager : MonoBehaviour
     public static PawnPlacementManager instance;
     public GameObject selectTarget;
     public Pawn selectPawn;
-    public bool IsHoldingMouse, isInventoryHold, isActive;
+    public bool IsHoldingMouse, isInventoryHold, isActive, DiceControlOnOff;
     public bool IsDebugMode;
 
     Vector3 clickPoint;
@@ -97,7 +97,7 @@ public class PawnPlacementManager : MonoBehaviour
             Disable = false;
             isInventoryHold = false;
             TileManager.Instance.ResetTile();
-            if (!isActive) ObjTemp = null;
+            if (!isActive && !DiceControlOnOff) ObjTemp = null;
         }
 
         if (selectPawn)
@@ -274,7 +274,9 @@ public class PawnPlacementManager : MonoBehaviour
                 if (temp.Kind == Inventory_Prefab.Obj_Kind.Dice)
                 {
                     temp.OnClick_Dice();
-                    temp.OnClick_Btn();
+                    //temp.OnClick_Btn();
+                    isActive = false;
+                    DiceControlOnOff = true;
                     return;
                 }
 

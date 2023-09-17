@@ -141,6 +141,8 @@ MonoBehaviour:
   objectType: HealPotion
   Rating: 0
   d_Kind: 0
+  isSynthesis: 0
+  SynthesisUnits: []
 --- !u!1 &1588260859255271284
 GameObject:
   m_ObjectHideFlags: 0

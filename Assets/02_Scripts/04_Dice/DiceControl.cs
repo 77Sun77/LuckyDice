@@ -108,7 +108,9 @@ public class DiceControl : MonoBehaviour
     }
     public void OnClick_Item_Btn()
     {
+        if (IsRollingDice) return;
         enable = false;
+        IsRollingDice = true;
         int number = 0;
 
         if (value < 0.2f)
@@ -134,7 +136,7 @@ public class DiceControl : MonoBehaviour
         DiceManager.instance.DiceControl(number, DiceRotation.DIceKind.Item);
         //GameManager.instance.dice_Inventory.Delete_Inventory(temp);
         print("Value : " + value + ", Number : " + number);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     int ValueCalculator(float value, float max, float min, int blink1, int blink2) // value, ÃÖ´ñ°ª, ÃÖ¼Ú°ª, ÃÖ¼Ò ´«²û, ÃÖ´ë ´«²û
     {

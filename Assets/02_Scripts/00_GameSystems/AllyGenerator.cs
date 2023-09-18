@@ -40,7 +40,7 @@ public class AllyGenerator : MonoBehaviour
             int randomInt = Random.Range(0, 6);
             Store.SetValue(randomInt, i);
         }
-        UIManager.instance.SetStoreImg();
+        UIManager.instance.SetStoreImg(UIManager.ImageType.ally);
     }
 
     public void Roll(int inputNum)
@@ -76,6 +76,7 @@ public class AllyGenerator : MonoBehaviour
             UIManager.instance.SetStoreImg();
         }
 
+        /*
         foreach (var content in GameManager.instance.dice_Inventory.inventory)
         {
             if (content.GetComponent<Inventory_Prefab>().d_Kind == Inventory_Prefab.Dice_Kind.Ally)
@@ -86,7 +87,7 @@ public class AllyGenerator : MonoBehaviour
         }
 
         if (GameManager.instance.dice_Inventory.inventory.Count <= 0) UIManager.instance.UnActive_StorePanel();
-
+        */
     }
 
     public void Spawn_Ally_Debug()

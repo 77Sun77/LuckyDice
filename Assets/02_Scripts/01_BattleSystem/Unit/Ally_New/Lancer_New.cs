@@ -11,6 +11,8 @@ public class Lancer_New : Ally
     public float KnockBackValue;
 
     [Header("Lancer_R3")]
+    public List<Vector2> AOERange_R3;
+    public float KnockBackValue_R3;
     public float RangeAtkTickDelay;
     public float RangeAtkDuration;
     
@@ -78,11 +80,11 @@ public class Lancer_New : Ally
             {
                 curTickTimer = rangeAtkTickDelay;
                 Vector2 targetPos = new Vector2(pawn.X + 2, pawn.Y);
-                List<Unit> units = AOE_Attack(damage,targetPos, AOERange);
+                List<Unit> units = AOE_Attack(damage,targetPos, AOERange_R3);
 
                 foreach (Unit unit in units)
                 {
-                    unit.GetComponent<Enemy>().GetKnockBack(KnockBackValue);
+                    unit.GetComponent<Enemy>().GetKnockBack(KnockBackValue_R3);
                 }
             }
 

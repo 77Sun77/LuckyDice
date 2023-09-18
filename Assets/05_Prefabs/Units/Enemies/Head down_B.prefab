@@ -234,24 +234,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   isEnemy: 1
-  maxHP: 15
-  hp: 15
+  maxHP: 150
+  hp: 150
   defense: 0
   modifiedDefense: 0
   minDamage: 0
-  damage: 2
+  damage: 10
   delayTime: 1
   time: 0
   Rating: 0
   UpgradeCount: 0
-  detectRange_List: []
+  detectRange_List:
+  - {x: -1, y: 0}
   targets: []
   attackingTarget: {fileID: 0}
   isTargetDetected: 0
   isAttacking: 0
   isBuff: 0
   mySprite: {fileID: 0}
+  shadowSR: {fileID: 0}
   anim: {fileID: 0}
+  shadowAnim: {fileID: 0}
+  shadow: {fileID: 0}
   hPBar: {fileID: 0}
   enemyKind: 2
   money: 15
@@ -276,6 +280,7 @@ MonoBehaviour:
   IsOverCenter: 0
   IsGrabbed: 0
   IsMoveGrid: 0
+  firstSetting: 0
   X: 0
   Y: 0
   isSearch: 0

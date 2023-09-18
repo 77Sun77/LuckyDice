@@ -398,12 +398,23 @@ MonoBehaviour:
   SynthesisUnits: []
   synthesis: {fileID: 0}
   AOERange:
-  - {x: 1, y: 1}
-  - {x: 1, y: 0}
-  - {x: 1, y: -1}
+  - {x: 0, y: 1}
+  - {x: 0, y: 0}
+  - {x: 0, y: -1}
   curAtkCount: 0
   RangeAtkDelay: 2
   KnockBackValue: 3
+  AOERange_R3:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 0, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  KnockBackValue_R3: 1
   RangeAtkTickDelay: 0.1
   RangeAtkDuration: 1.5
 --- !u!114 &6434187431763836486
